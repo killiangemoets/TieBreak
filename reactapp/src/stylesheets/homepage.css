@@ -1,3 +1,6 @@
+/* MAIN HEADER */
+
+
 #title{
     color: #B3541E;
     font-size: 13rem;
@@ -40,11 +43,18 @@
 
 }
 
+.howItWorks-section{
+    display: flex;
+    gap: 3.2rem;
+    padding: 6.4rem 0;
+}
+
 .header{
     display: flex;
     justify-content: center;
     gap: 3.2rem;
-    padding: 6.4rem 0;
+    padding: 6.4rem;
+    padding-bottom: 1rem;
 }
 
 .rightContainer{
@@ -61,4 +71,68 @@
     padding: 1rem 3rem;
     font-family: 'Squada One';
     font-size: 3rem;
+}
+
+
+/* MAIN CONTAINER */
+
+.howItWorks-section{
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    padding: 6.4rem 6rem;
+    padding-bottom: 1rem;
+}
+
+.title-howItWorks{
+    font-size: 3rem;
+    color: #B3541E;
+
+}
+
+.text-howItWorks{
+    font-size: 4.5rem;
+
+}
+
+.boxText{
+    margin-bottom: 2rem;
+}
+
+.boxText-title{
+ font-size: 15rem;
+ color:#BBBBBB;
+
+
+}
+
+.titleTexts{
+    margin-left: 2rem;
+}
+
+.boxText-description{
+    font-size: 3rem;
+    color: #B3541E;
+}
+
+.boxTemplate{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 3rem 0;
+}
+
+.divideBoxes{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:70rem;
+    height: 0.2rem;
+    background-color: #B3541E;
+    border: none;
+    margin: auto;
+}
+
+.boxElementMaria{
+   height: 25rem;
 }

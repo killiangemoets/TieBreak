@@ -1,0 +1,41 @@
+.center-sign{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 3.6rem;
+    height: calc(100vh - 6rem - 8rem);
+}
+
+.center-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.sign-up-title{
+    color:#B3541E;
+    font-size: 7.2rem;
+    display:flex;
+    justify-content: center;
+    border-bottom: solid 4px #B3541E;
+    border-top: solid 4px #B3541E;
+    padding: 1rem 2rem; 
+}
+
+.sign-up-form {
+    padding-top: 5rem;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.create-account-form input{
+    background-color: #E8CCBC;
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    font-family: 'Squada One';
+    border: none;
+
+}

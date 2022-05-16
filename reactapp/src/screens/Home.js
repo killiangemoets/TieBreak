@@ -8,13 +8,13 @@ import '../stylesheets/general.css'
 function Home() {
     return (
         <div>
-        <NavbarHomePage/>
+            <NavbarHomePage/>
             <div className="container"> 
                 <div className="header">
                    <div className="leftContainer">
                         <div className="header-title">
                             <hr className="horizontalRule"></hr>
-                            <h1 id='title' > TieBreak</h1>
+                            <h1 id='title'> TieBreak</h1>
                             <hr className="horizontalRule"></hr>
                         </div>
                         <div>
@@ -33,11 +33,70 @@ function Home() {
                         </img>
                     </div>
                 </div>
-                <div>
+                <div className="howItWorks-section">
+                    <div className="titleTexts"> 
+                        <div className="title-howItWorks"> 
+                            <p> How it Works </p>
+                        </div>
+                        <div className="text-howItWorks"> 
+                            <p> Finding an available tennis court has never been so easy ! </p>
+                        </div>
+                    </div>
+                    <div className="box-section"> 
+                        <div className="boxTemplate">
+                            <div className="boxText"> 
+                                <div className="boxText-title">
+                                    <p> 15-0</p>
+                                </div>
+                                <div className="boxText-description">
+                                    <p>Chose the perfect time in <br/>
+                                        the calendar!</p>
+                                </div>
+                            </div>
+                            <div className="boxElement">
+                                <img src="../../calandar.png" alt="calendar"> 
+                                </img>
+                            </div>
+                        </div>
+                        <hr className="divideBoxes"></hr>
+                        <div className="boxTemplate">
+                            <div className="boxElement">
+                                <img src="../../map.jpeg" alt="calendar"> 
+                                </img>
+                            </div>
+                            <div className="boxText"> 
+                                <div className="boxText-title">
+                                    <p> 30-0</p>
+                                </div>
+                                <div className="boxText-description">
+                                    <p>Chose the perfect <br/>
+                                        tennis court!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr className="divideBoxes"></hr>
+                        <div className="boxTemplate">
+                            <div className="boxText"> 
+                                <div className="boxText-title">
+                                    <p> 40-0</p>
+                                </div>
+                                <div className="boxText-description">
+                                    <p>Confirm & Pay</p>
+                                </div>
+                            </div>
+                            <div >
+                                <img className="boxElementMaria" src="../../cf25de0e2cacb54159d6f51fa00e042b.png" alt="calendar"> 
+                                </img>
+                            </div>
+                        </div>
                     
+                    
+                    
+                    </div>
+
                 </div>
             </div>
-        <FooterPage/>
+            <FooterPage/>
         </div>
     )
 }
