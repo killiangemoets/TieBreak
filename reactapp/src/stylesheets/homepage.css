@@ -1,47 +1,42 @@
-/* MAIN HEADER */
 
-
-#title{
-    color: #B3541E;
-    font-size: 13rem;
-    letter-spacing: 0.25rem;
-    margin-left:0.8rem;
-
+#title {
+  color: #b3541e;
+  font-size: 13rem;
+  letter-spacing: 0.25rem;
+  margin-left: 0.8rem;
 }
 
 .header-title {
- display: flex; 
- flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .leftContainer {
-    display:flex;
-    flex-direction: column;
-    gap: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .header-description {
-    display: flex;
-    color: #000000;
-    font-size: 3.5rem;
-    padding-left: 1.5rem;
-
+  display: flex;
+  color: #000000;
+  font-size: 3.5rem;
+  padding-left: 1.5rem;
 }
 
 .horizontalRule {
-    width: 45rem;
-    height: 0.3rem;
-    background-color: #B3541E;
-    border: none;
+  width: 45rem;
+  height: 0.3rem;
+  background-color: #b3541e;
+  border: none;
 }
 
-.homePageButton{
-    display: flex;
-    gap: 2rem;
-    padding-left: 1.5rem;
-
+.homePageButton {
+  display: flex;
+  gap: 2rem;
+  padding-left: 1.5rem;
 }
+
 
 .howItWorks-section{
     display: flex;
@@ -57,9 +52,9 @@
     padding-bottom: 1rem;
 }
 
-.rightContainer{
-    display: flex; 
-    height:45rem;
+.rightContainer {
+  display: flex;
+  height: 45rem;
 }
 
 
