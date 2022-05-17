@@ -1,9 +1,9 @@
 .center-sign{
     display:flex;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
     padding-top: 3.6rem;
-    height: calc(100vh - 6rem - 8rem);
+    min-height: calc(100vh - 6rem - 8rem);
 }
 
 .center-title{
@@ -24,7 +24,7 @@
 }
 
 .sign-up-form {
-    padding-top: 5rem;
+    padding-top: 4rem;
     display: flex;
     justify-content: center;
     
@@ -32,10 +32,72 @@
 
 .create-account-form input{
     background-color: #E8CCBC;
-    border-radius: 25px;
-    padding: 0.5rem 1rem;
-    margin: 1rem;
+    border-radius: 15px;
+    padding: 1rem 3rem;
+    margin: 1rem 0;
     font-family: 'Squada One';
     border: none;
+    font-size: large;
+    
+}
 
+.create-account-form input::placeholder{
+    color: #AAA;
+    
+}
+
+
+.sign-up-sumbit-button{
+    background-color: #E8C31B;
+    padding: 2rem 9rem;
+    border-radius: 25px;
+   
+    margin-top: 5rem;
+}
+
+.sign-up-sumbit-button button{
+    font-family: 'Squada One';
+    border: none;
+    background-color: #E8C31B;
+    font-size: 3rem;
+    color: white;
+    letter-spacing: 0.3rem;
+}
+
+.inputDiv{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.login-form {
+    padding-top: 6rem;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.login-account-form {
+    margin-bottom: 1.5rem;
+    
+}
+
+
+
+.login-account-form input{
+    background-color: #E8CCBC;
+    border-radius: 15px;
+    padding: 1rem 3rem;
+    margin: 1rem 0;
+    font-family: 'Squada One';
+    border: none;
+    font-size: large;
+    
+}
+
+.login-account-form input::placeholder{
+    color: #AAA;
+    
 }

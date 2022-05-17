@@ -14,19 +14,15 @@ function CreateAccount() {
             <div className="container center-sign">
                 <div className="center-title">
                     <div className="sign-up-title"> 
-                    <p>Create Your Account</p>
+                    <p>Login</p>
                     </div>
                 </div>
 
-                <div className='sign-up-form'> 
+                <div className='login-form'> 
                     <form >
                         <div className="inputDiv">
-                            <div className="create-account-form"><input placeholder="First Name"></input></div>
-                            <div className="create-account-form"><input placeholder="Last Name"></input></div>
-                            <div className="create-account-form"><input placeholder="Email"></input></div>
-                            <div className="create-account-form"><input placeholder="Phone"></input></div>
-                            <div className="create-account-form"><input placeholder="Password"></input></div>
-                            <div className="create-account-form"><input placeholder="Confirm Password"></input></div>
+                            <div className="login-account-form"><input placeholder="Email"></input></div>
+                            <div className="login-account-form"><input placeholder="Password"></input></div>
                         </div>    
                        <div className="sign-up-sumbit-button"><button  type='submit' > SUBMIT</button> </div>                 
                     </form> 
