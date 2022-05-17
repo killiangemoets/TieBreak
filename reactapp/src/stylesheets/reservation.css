@@ -83,9 +83,16 @@
   justify-content: center;
   gap: 1rem;
 }
+
 .time {
+  cursor: pointer;
   font-size: 2.4rem;
   font-weight: 400;
+  color: #333;
+}
+
+.time:hover {
+  color: #b3541e;
 }
 
 .time-logo {
@@ -99,6 +106,9 @@
 }
 
 .time-out {
+  cursor: pointer;
+  font-size: 2.4rem;
+  font-weight: 400;
   color: #aaa;
 }
 
@@ -115,7 +125,8 @@
 }
 
 .location-form label {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  color: #333;
 }
 #location-input {
 }

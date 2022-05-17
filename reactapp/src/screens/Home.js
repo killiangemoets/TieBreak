@@ -1,11 +1,13 @@
-import React from 'react'; 
-import NavbarHomePage from '../components/NavbarHomePage'
-import FooterPage from '../components/Footer'
-import '../stylesheets/homepage.css'
-import '../stylesheets/general.css'
-
+import React from "react";
+import NavbarHomePage from "../components/NavbarHomePage";
+import FooterPage from "../components/Footer";
+import "../stylesheets/homepage.css";
+import "../stylesheets/general.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
+
     return (
         <div>
             <NavbarHomePage/>
@@ -26,7 +28,10 @@ function Home() {
                         </div>
                         <div className="homePageButton">
                             <button className="yellowButton"> Get Started</button>  
-                            <button className="yellowButton"> Learn More</button>
+                             <button className="yellowButton yellowButton-secondary">
+                <p>Learn More</p>
+                <FontAwesomeIcon className="arrow-icon" icon={faArrowDown} />
+              </button>
                         </div>
                     </div> 
                     <div className="rightContainer" >
@@ -97,11 +102,23 @@ function Home() {
                     
                     </div>
 
+
                 </div>
+              </div>
+              <div>
+                <img
+                  className="boxElementMaria"
+                  src="../../cf25de0e2cacb54159d6f51fa00e042b.png"
+                  alt="calendar"
+                ></img>
+              </div>
             </div>
-            <FooterPage/>
+          </div>
         </div>
-    )
+      </div>
+      <FooterPage />
+    </div>
+  );
 }
 
 export default Home;

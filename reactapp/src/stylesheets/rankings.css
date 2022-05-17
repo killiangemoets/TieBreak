@@ -1,0 +1,30 @@
+.rankings-section {
+  padding-bottom: 9.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ranking {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+  color: #333;
+  font-weight: 400;
+  gap: 9.6rem;
+}
+
+.rankings-num {
+}
+
+.ranking-player {
+}
+
+.ranking-country {
+}
+
+.rankings-points {
+}
