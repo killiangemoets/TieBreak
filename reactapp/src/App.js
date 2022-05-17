@@ -6,7 +6,8 @@ import ReservationPage from "./screens/ReservationPage";
 import OverviewPage from "./screens/OverviewPage";
 import ConfirmationPage from "./screens/ConfirmationPage";
 import ProfilePage from "./screens/ProfilePage";
-
+import CreateAccount from './screens/CreateAccount'
+import LoginPage from './screens/LoginPage'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -20,7 +21,9 @@ function App() {
         <Route path="/reservation/confirmation" component={ConfirmationPage} />
         <Route path="/reservation" component={ReservationPage} />
         <Route path="/profile" component={ProfilePage} />
-      </Switch>
+          <Route path='/signup' component={CreateAccount} />
+          <Route path='/login' component={LoginPage} />
+        </Switch>
     </Router>
   );
 }
