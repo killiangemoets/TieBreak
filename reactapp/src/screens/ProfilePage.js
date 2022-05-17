@@ -20,7 +20,7 @@ function Profile() {
           <div className="personnal-infos">
             <form className="personnal-infos-form">
               <div className="input-div">
-                <label>Firstname</label>
+                <label>First Name</label>
                 <input
                   type="text"
                   id="infos-input"
@@ -38,7 +38,7 @@ function Profile() {
                 />
               </div>
               <div className="input-div">
-                <label>LastName</label>
+                <label>Last Name</label>
                 <input
                   type="text"
                   id="infos-input"

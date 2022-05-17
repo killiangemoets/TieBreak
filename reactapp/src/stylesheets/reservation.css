@@ -148,3 +148,14 @@
   align-items: center;
   gap: 36rem;
 }
+
+.when-input-style input{
+  background-color: #E8CCBC;
+  border-radius: 15px;
+  padding: 1rem 3rem;
+  margin: 1rem 0;
+  font-family: 'Squada One';
+  border: none;
+  font-size: large;
+    
+}
