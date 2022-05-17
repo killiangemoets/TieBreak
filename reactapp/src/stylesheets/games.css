@@ -14,7 +14,7 @@
 }
 
 .start-reservation-btn-section {
-  padding: 4.8rem 0;
+  padding: 5.2rem 0;
 }
 
 .start-reservation-big-btn {
@@ -33,7 +33,7 @@
   display: grid;
   grid-template-columns: auto auto;
   row-gap: 1.6rem;
-  column-gap: 3.2rem;
+  column-gap: 6.4rem;
   align-items: center;
   justify-content: center;
 }
@@ -41,7 +41,7 @@
 .stat {
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 2.4rem;
 }
 
 .stat-title {
@@ -56,11 +56,11 @@
 }
 
 .games {
-  padding: 6.4rem 0 12.8rem 0;
+  padding: 9.6rem 0 12.8rem 0;
 }
 
 .center-games {
-  gap: 3rem;
+  gap: 8rem;
 }
 
 .games-titles {
@@ -114,7 +114,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2.4rem;
+  gap: 2.8rem;
 }
 
 .game-card {
@@ -133,4 +133,5 @@
 .game-info {
   font-size: 3.2rem;
   color: #333;
+  font-weight: 500;
 }

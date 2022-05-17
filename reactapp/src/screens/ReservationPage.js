@@ -1,9 +1,10 @@
 import React from "react";
 import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
-// import { Icon } from "antd";
 import "../stylesheets/reservation.css";
 import "../stylesheets/general.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function Reservation() {
   return (
@@ -97,7 +98,7 @@ function Reservation() {
                 <ul className="time-element">
                   <div className="time-logo"></div>
                   <div>
-                    <h6 className="time time-out">15h-16h</h6>
+                    <h6 className="time-out">15h-16h</h6>
                   </div>
                 </ul>
                 <ul className="time-element">
@@ -109,13 +110,13 @@ function Reservation() {
                 <ul className="time-element">
                   <div className="time-logo"></div>
                   <div>
-                    <h6 className="time time-out">17h-18h</h6>
+                    <h6 className="time-out">17h-18h</h6>
                   </div>
                 </ul>
                 <ul className="time-element">
                   <div className="time-logo"></div>
                   <div>
-                    <h6 className="time time-out">18h-19h</h6>
+                    <h6 className="time-out">18h-19h</h6>
                   </div>
                 </ul>
               </li>
@@ -134,7 +135,9 @@ function Reservation() {
                   name="date"
                   placeholder="Liège"
                 />
-                <label></label>
+                <label>
+                  <FontAwesomeIcon className="search-icon" icon={faSearch} />
+                </label>
               </form>
             </div>
             <div className="map">
