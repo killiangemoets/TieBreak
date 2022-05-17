@@ -4,6 +4,7 @@
   font-size: 13rem;
   letter-spacing: 0.25rem;
   margin-left: 0.8rem;
+  
 }
 
 .header-title {
@@ -130,4 +131,30 @@
 
 .boxElementMaria{
    height: 25rem;
+}
+
+.gameSetMatchButton{
+  display: flex;
+  justify-content: center;
+  padding: 6rem;
+  
+}
+
+
+.yellowButton-final{
+  border: none;
+  color: white;
+  background-color: #E8C31B;
+  border-radius: 25px;
+  padding: 2rem 3rem;
+  font-family: 'Squada One';
+  font-size: 3rem;
+}
+
+.ball-in-title{
+  height: 2.9rem;
+  width: 2.9em;
+  position: absolute;
+  margin-left: 6.2rem;
+  margin-top: 2.1rem;
 }

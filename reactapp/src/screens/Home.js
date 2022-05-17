@@ -14,6 +14,7 @@ function Home() {
                    <div className="leftContainer">
                         <div className="header-title">
                             <hr className="horizontalRule"></hr>
+                            <img className="ball-in-title" src="../../ball1.png" alt="ball" />
                             <h1 id='title'> TieBreak</h1>
                             <hr className="horizontalRule"></hr>
                         </div>
@@ -89,7 +90,9 @@ function Home() {
                                 </img>
                             </div>
                         </div>
-                    
+                        <div className="gameSetMatchButton">
+                            <button className="yellowButton-final"> Game - Set & Match</button>
+                        </div>
                     
                     
                     </div>

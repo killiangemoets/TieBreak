@@ -24,7 +24,7 @@ function Reservation() {
               <h6 className="when-and-where-second-title">
                 Choose the perfect time for you
               </h6>
-              <form>
+              <form className="when-input-style">
                 <input
                   type="date"
                   id="date-input"
@@ -127,7 +127,7 @@ function Reservation() {
               <h6 className="when-and-where-second-title">
                 Choose the perfect time for you
               </h6>
-              <form className="location-form">
+              <form className="location-form when-input-style">
                 <input
                   type="text"
                   id="location-input"
