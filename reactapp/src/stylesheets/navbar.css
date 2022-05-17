@@ -30,18 +30,21 @@
     justify-content: space-between;
     align-items: center;
     height : 8rem;
+    /* font-family: 'Squada One'; */
 }
 
 .navbarLeft {
     display: flex; 
     align-items: center;
     gap: 1rem;
+    font-family: 'Squada One';
 }
 
 .navbarRight{
     padding-right: 5rem;
     display: flex;
-    gap: 3rem;
+    gap: 3rem; 
+    font-family: 'Squada One';
 }
 
 .titleNavBar{
