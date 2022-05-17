@@ -1,53 +1,69 @@
-.button {
-    border: none;
-    background-color: #B3541E;
-    font-size: 1.5rem;
-    color: white;
-    
+.button,
+.button:link,
+.button:visited {
+  border: none;
+  background-color: #b3541e;
+  font-size: 2.4rem;
+  color: white;
+  font-family: "Squada One";
+  transition: all 0.3s;
 }
 
-.buttonShowed {
-    background-color: #E8C31B ;
-    border: none;
-    font-size: 1.5rem;
-    border-radius: 25px;
-    color: white;
-    padding:1rem 3rem;
-   
+.button:hover,
+.button:active {
+  color: #e8c31b;
+  /* color: #ba9c16; */
 }
 
+.buttonShowed,
+.buttonShowed:link,
+.buttonShowed:visited {
+  background-color: #e8c31b;
+  border: none;
+  font-size: 2.4rem;
+  border-radius: 25px;
+  color: white;
+  padding: 1rem 3rem;
+  font-family: "Squada One";
+  transition: all 0.3s;
+}
 
-.logoNavBar{
-    height: 3rem;
-    width: 3rem;
-    margin-left: 2rem;
-    
+.buttonShowed:hover,
+.buttonShowed:active {
+  /* background-color: #edcf49; */
+  background-color: #ba9c16;
+}
+
+.logoNavBar {
+  height: 3rem;
+  width: 3rem;
+  margin-left: 2rem;
 }
 
 .navbar {
-    background-color: #B3541E;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height : 8rem;
-    /* font-family: 'Squada One'; */
+  background-color: #b3541e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 8rem;
+  /* font-family: 'Squada One'; */
 }
 
 .navbarLeft {
-    display: flex; 
-    align-items: center;
-    gap: 1rem;
-    font-family: 'Squada One';
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: "Squada One";
 }
 
-.navbarRight{
-    padding-right: 5rem;
-    display: flex;
-    gap: 3rem; 
-    font-family: 'Squada One';
+.navbarRight {
+  padding-right: 5rem;
+  display: flex;
+  gap: 3rem;
+  font-family: "Squada One";
 }
 
-.titleNavBar{
-    font-size: 2.5rem;
-    color: white ;
+.titleNavBar {
+  font-size: 2.5rem;
+  color: white;
 }

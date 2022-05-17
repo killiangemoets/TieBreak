@@ -8,6 +8,7 @@ body {
   font-family: "Squada One";
   font-weight: 400;
   color: #000;
+  background-color: #fff;
 }
 
 * {
@@ -40,4 +41,27 @@ body {
 .yellowButton:active {
   /* background-color: #edcf49; */
   background-color: #ba9c16;
+}
+
+.yellowButton-secondary,
+.yellowButton-secondary:link,
+.yellowButton-secondary:visited {
+  background-color: white !important;
+  color: #e8c31b !important;
+  box-shadow: inset 0 0 0 3px #e8c31b !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.yellowButton-secondary:hover,
+.yellowButton:active {
+  box-shadow: inset 0 0 0 3px #ba9c16 !important;
+
+  color: #ba9c16 !important;
+}
+
+.arrow-icon {
+  font-size: 2.6rem;
 }
