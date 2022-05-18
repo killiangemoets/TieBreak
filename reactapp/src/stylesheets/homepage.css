@@ -141,8 +141,11 @@
 }
 
 
-.yellowButton-final{
+.yellowButton-final,
+.yellowButton-final:link,
+.yellowButton-final:visited {
   border: none;
+  cursor: pointer;
   color: white;
   background-color: #E8C31B;
   border-radius: 25px;
@@ -150,6 +153,15 @@
   font-family: 'Squada One';
   font-size: 3rem;
 }
+
+.yellowButton-final:hover,
+.yellowButton-final:active {
+  /* background-color: #edcf49; */
+  background-color: #ba9c16;
+}
+
+
+
 
 .ball-in-title{
   height: 2.9rem;

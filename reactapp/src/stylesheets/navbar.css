@@ -2,6 +2,7 @@
 .button:link,
 .button:visited {
   border: none;
+  cursor: pointer;
   background-color: #b3541e;
   font-size: 2.4rem;
   color: white;
@@ -20,6 +21,7 @@
 .buttonShowed:visited {
   background-color: #e8c31b;
   border: none;
+  cursor: pointer;
   font-size: 2.4rem;
   border-radius: 25px;
   color: white;
@@ -66,4 +68,14 @@
 .titleNavBar {
   font-size: 2.5rem;
   color: white;
+}
+
+.link-login {
+ display: flex;
+ align-items :center; 
+ text-decoration: none;
+}
+
+.logoRedirect{
+  text-decoration: none;
 }
