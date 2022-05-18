@@ -13,17 +13,17 @@ router.get("/schedule", async function (req, res, next) {
     const date = new Date(req.query.date);
     let availabilities;
 
-    if (req.query?.club) {
+    if (req.query?.club && req.query?.club.length !== 0) {
       const club = await clubModel.findOne({ token: req.query.club });
 
       availabilities = club.availabilities.filter((availability) => {
         return (
-          availability.date.getYear() == date.getYear() &&
+          availability.date.getFullYear() == date.getFullYear() &&
           availability.date.getMonth() == date.getMonth() &&
-          availability.date.getDay() == date.getDay()
+          availability.date.getDate() == date.getDate()
         );
       });
-    } else if (req.query?.time) {
+    } else if (req.query?.time && req.query?.time.length !== 0) {
       const clubs = await clubModel.find();
       availabilities = [];
 
@@ -31,14 +31,15 @@ router.get("/schedule", async function (req, res, next) {
         if (
           club.availabilities.find((availability) => {
             return (
-              availability.date.getYear() == date.getYear() &&
+              availability.date.getFullYear() == date.getFullYear() &&
               availability.date.getMonth() == date.getMonth() &&
-              availability.date.getDay() == date.getDay() &&
+              availability.date.getDate() == date.getDate() &&
               availability.time == req.query.time
             );
           })
         ) {
-          availabilities.push({ clubname: club.clubname, token: club.token });
+          // availabilities.push({ clubname: club.clubname, token: club.token });
+          availabilities.push(club.token);
         }
       });
     } else {
@@ -49,13 +50,14 @@ router.get("/schedule", async function (req, res, next) {
         if (
           club.availabilities.find((availability) => {
             return (
-              availability.date.getYear() == date.getYear() &&
+              availability.date.getFullYear() == date.getFullYear() &&
               availability.date.getMonth() == date.getMonth() &&
-              availability.date.getDay() == date.getDay()
+              availability.date.getDate() == date.getDate()
             );
           })
         ) {
-          availabilities.push({ clubname: club.clubname, token: club.token });
+          // availabilities.push({ clubname: club.clubname, token: club.token });
+          availabilities.push(club.token);
         }
       });
     }

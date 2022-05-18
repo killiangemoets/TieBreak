@@ -11,6 +11,7 @@ router.post("/sign-up", async function (req, res, next) {
     const newClub = await clubModel.create({
       clubname: req.body.clubname,
       price: req.body.price,
+      address: req.body.address,
       email: req.body.email,
       phone: req.body.phone,
       latitude: req.body.latitude,

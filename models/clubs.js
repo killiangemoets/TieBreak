@@ -3,13 +3,13 @@ const validator = require("validator");
 
 const availabilitySchema = new mongoose.Schema({
   date: Date,
-  time: String,
+  time: Number,
   courts: Number,
 });
 
 const reservationSchema = new mongoose.Schema({
   date: Date,
-  time: String,
+  time: Number,
   firstname: String,
   lastname: String,
   phone: String,
@@ -28,6 +28,10 @@ const clubSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: [true, "vvv Please provide a phone number vvv"],
+  },
+  address: {
+    type: String,
+    required: [true, "aaa Please provide an address aaa"],
   },
   email: {
     type: String,

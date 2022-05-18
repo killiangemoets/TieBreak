@@ -32,7 +32,10 @@ router.post("/sign-up", async function (req, res, next) {
     //     }`
     //   );
     // }
-    const hash = bcrypt.hashSync(req.body.password, 10);
+    const hash =
+      req.body.password.length > 0
+        ? bcrypt.hashSync(req.body.password, 10)
+        : req.body.password;
 
     const newUser = await userModel.create({
       firstname: req.body.firstname,
