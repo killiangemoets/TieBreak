@@ -67,22 +67,22 @@ router.post("/sign-up", async function (req, res, next) {
 router.post("/sign-in", async function (req, res, next) {
   try {
     const user = await userModel.findOne({ email: req.body.email });
-
+    console.log(user)
     if (!user) {
       res.status(404).json({
         status: "fail",
         message:
           req.body.email.length === 0
-            ? "yyy Please provide an email address yyy"
-            : "yyy Email not found yyy",
+            ? "Please provide an email address"
+            : "email not found",
       });
     } else if (!bcrypt.compareSync(req.body.password, user.password)) {
       res.status(404).json({
         status: "fail",
         message:
           req.body.password.length === 0
-            ? "zzz Please provide a password zzz"
-            : "zzz Password incorrect zzz",
+            ? "Please provide a password"
+            : "password incorrect",
       });
     } else {
       res.status(200).json({
