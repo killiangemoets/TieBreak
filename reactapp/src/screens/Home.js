@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import NavbarHomePage from "../components/NavbarHomePage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/homepage.css";
@@ -7,6 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
+  const scrollButton = useRef(null);
+  const scrollToSection = (elementRef) => {
+    window.scrollTo({
+      top: elementRef.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div>
       <NavbarHomePage />
@@ -26,8 +34,14 @@ function Home() {
               </p>
             </div>
             <div className="homePageButton">
-              <button className="yellowButton"> Get Started</button>
-              <button className="yellowButton yellowButton-secondary">
+              <a href="/signup">
+                {" "}
+                <button className="yellowButton"> Get Started</button>{" "}
+              </a>
+              <button
+                onClick={() => scrollToSection(scrollButton)}
+                className="yellowButton yellowButton-secondary"
+              >
                 <p>Learn More</p>
                 <FontAwesomeIcon className="arrow-icon" icon={faArrowDown} />
               </button>
@@ -39,7 +53,7 @@ function Home() {
         </div>
         <div className="howItWorks-section">
           <div className="titleTexts">
-            <div className="title-howItWorks">
+            <div ref={scrollButton} className="title-howItWorks">
               <p> How it Works </p>
             </div>
             <div className="text-howItWorks">
@@ -102,10 +116,12 @@ function Home() {
               </div>
             </div>
             <div className="gameSetMatchButton">
-              <button className="yellowButton-final">
-                {" "}
-                Game - Set & Match
-              </button>
+              <a href="/signup">
+                <button className="yellowButton-final">
+                  {" "}
+                  Game - Set & Match
+                </button>
+              </a>
             </div>
           </div>
         </div>
