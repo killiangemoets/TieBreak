@@ -133,10 +133,21 @@
 
 .map {
   height: 40rem;
+  width: 40rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+.map-container {
+  height: 40rem;
+  width: 40rem;
+}
+
+/* .leaflet-container {
+  height: 600px;
+  width: 100%;
+} */
 
 .map-img {
   width: 40rem;
@@ -149,13 +160,109 @@
   gap: 36rem;
 }
 
-.when-input-style input{
-  background-color: #E8CCBC;
+.when-input-style input {
+  background-color: #e8ccbc;
   border-radius: 15px;
   padding: 1rem 3rem;
   margin: 1rem 0;
-  font-family: 'Squada One';
+  font-family: "Squada One";
   border: none;
   font-size: large;
-    
+}
+
+.location-icon {
+  font-size: 3.2rem;
+}
+
+.where-content {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.clubs-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 40rem;
+  overflow-y: scroll;
+}
+
+.club-card {
+  background-color: #e8ccbc;
+  padding: 2rem 3.2rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 32rem;
+}
+
+.club-card-not-available {
+  background-color: #eee !important;
+}
+
+.club-title {
+  font-size: 2rem;
+  color: #b3541e;
+  font-weight: 600;
+}
+
+.club-infos {
+  font-size: 1.6rem;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.club-infos div {
+  display: flex;
+  gap: 1.4rem;
+}
+
+.club-button-section {
+  display: flex;
+  justify-content: end;
+}
+
+.club-button {
+  font-size: 1.8rem;
+}
+
+.map-button {
+  margin-top: 1rem;
+  margin-left: 1.4rem;
+  font-size: 1.6rem;
+}
+
+.marker-div p {
+  margin: 0.4rem;
+}
+
+.marker-title {
+  margin-bottom: 0.6rem;
+}
+
+.marker-div div {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 0.4rem;
+}
+
+.your-reservation {
+  display: flex;
+  gap: 3.6rem;
+  font-size: 4rem;
+}
+
+.not-clickable,
+.not-clickable:link,
+.not-clickable:visited {
+  background-color: #f8edbb;
+}
+.not-clickable:hover,
+.not-clickable:active,
+.yw {
+  background-color: #f8edbb;
 }

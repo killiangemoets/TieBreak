@@ -1,4 +1,4 @@
-import React , {useRef} from "react";
+import React, { useRef } from "react";
 import NavbarHomePage from "../components/NavbarHomePage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/homepage.css";
@@ -7,6 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
+  const scrollButton = useRef(null);
+  const scrollToSection = (elementRef) => {
+    window.scrollTo({
+      top: elementRef.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
+
 
     const scrollButton = useRef(null)
     const scrollToSection = (elementRef) => {
@@ -111,11 +119,12 @@ function Home() {
                     </div>
 
 
+
                 </div>
             </div>
+
             <FooterPage />
         </div>
   );
 }
-
 export default Home;
