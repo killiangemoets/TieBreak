@@ -234,6 +234,7 @@ function Reservation() {
 
   function handleReset() {
     setDate(new Date(Date.now()));
+    console.log("hello");
     setInputDate(getDateInNiceFormat(new Date(Date.now())));
     setTime("");
     setClub("");
