@@ -27,7 +27,8 @@
     padding-top: 4rem;
     display: flex;
     justify-content: center;
-    
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .create-account-form input{
@@ -46,23 +47,56 @@
     
 }
 
-
-.sign-up-sumbit-button{
-    background-color: #E8C31B;
-    padding: 2rem 9rem;
-    border-radius: 25px;
-   
-    margin-top: 5rem;
+.create-account-form p{
+    font-size: 1.8rem;
+    color: #333
 }
 
-.sign-up-sumbit-button button{
+.sign-up-sumbit-button, 
+.sign-up-sumbit-button:link,
+.sign-up-sumbit-button:visited{
     font-family: 'Squada One';
+    cursor: pointer;
+    padding: 1rem 3rem;
+    border-radius: 15px;
     border: none;
     background-color: #E8C31B;
     font-size: 3rem;
     color: white;
     letter-spacing: 0.3rem;
+    margin: 0rem 42rem;
 }
+
+.sign-up-sumbit-button:hover,
+.sign-up-sumbit-button:active {
+  /* background-color: #edcf49; */
+  background-color: #ba9c16;
+}
+
+.sign-in-sumbit-button:hover,
+.sign-in-sumbit-button:active {
+  /* background-color: #edcf49; */
+  background-color: #ba9c16;
+}
+
+
+
+.sign-in-sumbit-button, 
+.sign-in-sumbit-button:link,
+.sign-in-sumbit-button:visited{
+    font-family: 'Squada One';
+    cursor: pointer;
+    padding: 1rem 3rem;
+    border-radius: 15px;
+    border: none;
+    background-color: #E8C31B;
+    font-size: 3rem;
+    color: white;
+    letter-spacing: 0.3rem;
+    margin: 2rem 44rem;
+}
+
+
 
 .inputDiv{
     display:flex;
@@ -76,11 +110,13 @@
     padding-top: 6rem;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     
 }
 
 .login-account-form {
     margin-bottom: 1.5rem;
+    font-size: large;
     
 }
 

@@ -3,8 +3,15 @@ import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/games.css";
 import "../stylesheets/general.css";
+import { connect } from "react-redux";
+import {Redirect} from 'react-router-dom';
 
-function Home() {
+function Home(props) {
+
+  if (props.token === '') {
+    return <Redirect to='/signin' />
+  } else {
+  
   return (
     <div>
       <NavbarMainPage />
@@ -118,5 +125,11 @@ function Home() {
     </div>
   );
 }
+}
+function mapStateToProps(state) {
+  return { token: state.token }
+}
 
-export default Home;
+export default connect(
+  mapStateToProps
+)(Home);
