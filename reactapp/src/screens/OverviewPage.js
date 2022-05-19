@@ -34,23 +34,23 @@ function Overview(props) {
   const [nextBtn, setNextBtn] = useState(false);
 
   async function handlePayement() {
-    // const reservation = {
-    //   title: "TC Bruxelles",
-    //   price: 20,
-    // };
+    const reservation = {
+      title: "TC Bruxelles",
+      price: 20,
+    };
 
-    // await fetch("/create-checkout-session", {
-    //   method: "POST",
-    //   headers: {
-    //     // "Content-Type": "application/json",
-    //     "Content-Type": "application/x-www-urlencoded",
-    //   },
+    await fetch("/create-checkout-session", {
+      method: "POST",
+      headers: {
+        // "Content-Type": "application/json",
+        "Content-Type": "application/x-www-urlencoded",
+      },
 
-    //   // body: JSON.stringify(reservation),
-    //   body: "title=Bruxelles",
-    // });
+      // body: JSON.stringify(reservation),
+      body: "title=Bruxelles",
+    });
 
-    setNextBtn(true);
+    // setNextBtn(true);
   }
 
   if (returnBtn) {
