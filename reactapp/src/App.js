@@ -12,8 +12,6 @@ import CreateAccount from "./screens/CreateAccount";
 import SignInPage from "./screens/SignInPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-// import "@stripe/stripe-js";
-
 // IMPORT REDUX //
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";

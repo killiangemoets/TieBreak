@@ -91,7 +91,7 @@
 .games-titles-tennisball {
   position: absolute;
   width: 3rem;
-  transition: all 0.3s;
+  transition: all 10s;
 }
 
 .coming {
@@ -126,8 +126,9 @@
   align-items: center;
   justify-content: center;
   grid-template-columns: auto auto;
-  column-gap: 4.8rem;
+  column-gap: 8.8rem;
   row-gap: 2.6rem;
+  
 }
 
 .game-info {
