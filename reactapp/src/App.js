@@ -12,17 +12,19 @@ import CreateAccount from "./screens/CreateAccount";
 import SignInPage from "./screens/SignInPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+// import "@stripe/stripe-js";
+
 // IMPORT REDUX //
-import {createStore, combineReducers} from 'redux';
-import {Provider} from 'react-redux'; 
-import token from './reducer/token'
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import token from "./reducer/token";
+import currentReservation from "./reducer/currentReservation";
 
-
-const reduxToken = createStore(combineReducers({ token}))
+const store = createStore(combineReducers({ token, currentReservation }));
 
 function App() {
   return (
-    <Provider store={reduxToken}>
+    <Provider store={store}>
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -31,7 +33,10 @@ function App() {
           <Route path="/news/wtarankings" component={WTARankingsPage} />
           <Route path="/news" component={NewsPage} />
           <Route path="/reservation/overview" component={OverviewPage} />
-          <Route path="/reservation/confirmation" component={ConfirmationPage} />
+          <Route
+            path="/reservation/confirmation"
+            component={ConfirmationPage}
+          />
           <Route path="/reservation" component={ReservationPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/signup" component={CreateAccount} />
@@ -39,7 +44,7 @@ function App() {
           <Route path="*" component={Home} />
         </Switch>
       </Router>
-  </Provider>
+    </Provider>
   );
 }
 

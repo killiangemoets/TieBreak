@@ -67,7 +67,7 @@ router.post("/sign-up", async function (req, res, next) {
 router.post("/sign-in", async function (req, res, next) {
   try {
     const user = await userModel.findOne({ email: req.body.email });
-    console.log(user)
+    console.log(user);
     if (!user) {
       res.status(404).json({
         status: "fail",
@@ -109,8 +109,8 @@ router.post("/games", async function (req, res, next) {
       day: req.body.day,
       date: req.body.date,
       time: req.body.time,
-      price: club.price,
-      club: club.clubname,
+      price: req.body.price,
+      club: req.body.clubname,
       phone: club.phone,
       email: club.email,
     });
