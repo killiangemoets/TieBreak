@@ -7,6 +7,8 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 function Confirmation(props) {
+  const [overview] = useState(props.currentReservation);
+
   const [goToAllGames, setGoToAllGames] = useState(false);
   const [weekDays] = useState([
     "Monday",
@@ -28,45 +30,49 @@ function Confirmation(props) {
   // });
 
   async function saveReservation() {
-    var rawResponse = await fetch("/users/games", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        tokenUser: props.token,
-        tokenClub: props.currentReservation.club,
-        day: weekDays[props.currentReservation.date.getDay()],
-        date: props.cleanReservation.date,
-        time: props.currentReservation.time,
-        price: props.currentReservation.price,
-        clubname: props.currentReservation.clubname,
-      }),
-    });
-    var response = await rawResponse.json();
+    console.log(props.currentReservation);
+    if (props?.currentReservation || props.currentReservation !== "") {
+      var rawResponse = await fetch("/users/games", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tokenUser: "wvkwrx",
+          tokenClub: props.currentReservation.club,
+          day: weekDays[props.currentReservation.date.getDay()],
+          date: props.currentReservation.date,
+          time: props.currentReservation.time,
+          price: props.currentReservation.price,
+          clubname: props.currentReservation.clubname,
+        }),
+      });
+      var response = await rawResponse.json();
 
-    console.log("-----USER------");
-    console.log(response);
+      console.log("-----USER------");
+      console.log(response);
 
-    var rawResponse2 = await fetch("/clubs/reservations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        tokenUser: props.token,
-        tokenClub: props.currentReservation.club,
-        date: props.currentReservation.date,
-        time: props.currentReservation.time,
-      }),
-    });
-    var response2 = await rawResponse2.json();
-    console.log("-----CLUB------");
-    console.log(response2);
-    props.cleanReservation();
+      // var rawResponse2 = await fetch("/clubs/reservations", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     tokenUser: props.token,
+      //     tokenClub: props.currentReservation.club,
+      //     date: props.currentReservation.date,
+      //     time: props.currentReservation.time,
+      //   }),
+      // });
+      // var response2 = await rawResponse2.json();
+      // console.log("-----CLUB------");
+      // console.log(response2);
+      // props.cleanReservation();
+    }
   }
   useEffect(() => {
     saveReservation();
+    props.cleanReservation();
   }, []);
 
   if (goToAllGames) {
