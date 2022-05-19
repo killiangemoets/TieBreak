@@ -4,6 +4,8 @@ import FooterPage from "../components/Footer";
 import "../stylesheets/reservation.css";
 import "../stylesheets/general.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   faSearch,
   faLocationDot,
@@ -14,7 +16,7 @@ import {
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { divIcon } from "leaflet";
 
-function Reservation() {
+function Reservation(props) {
   function setMapLocation() {
     var lat = 50.84,
       lng = 4.36;
@@ -34,7 +36,7 @@ function Reservation() {
       return { lat, lng };
     }
   }
-  const [hours, setHours] = useState([
+  const [hours] = useState([
     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
   ]);
   const [date, setDate] = useState(new Date(Date.now()));
@@ -47,7 +49,10 @@ function Reservation() {
   const [availableHours, setAvailableHours] = useState([
     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
   ]);
-  const [mapPosition, setMapPostition] = useState(setMapLocation());
+  const [mapPosition, setMapPosition] = useState(setMapLocation());
+  const [searchLocation, setSearchLocation] = useState("");
+  const [clubsResults, setClubsResults] = useState([]);
+  const [next, setNext] = useState(false);
 
   function generatePopups(clubs) {
     const popups = clubs.map((club, i) => {
@@ -133,13 +138,49 @@ function Reservation() {
     return popups;
   }
 
-  function renderClubCards(clubs) {
+  function renderCurrentPosition(position) {
+    const customMarkerIcon = divIcon({
+      html: `
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="marker">
+        <path fill-opacity=".25" d="M16 32s1.427-9.585 3.761-12.025c4.595-4.805 8.685-.99 8.685-.99s4.044 3.964-.526 8.743C25.514 30.245 16 32 16 32z"/>
+        <path fill="#74c0fc" stroke="#333" d="M15.938 32S6 17.938 6 11.938C6 .125 15.938 0 15.938 0S26 .125 26 11.875C26 18.062 15.938 32 15.938 32zM16 6a4 4 0 100 8 4 4 0 000-8z"/>
+      </svg>
+
+      `,
+      iconSize: [32, 32],
+      className: "marker",
+    });
+    return (
+      <Marker
+        position={{ lat: position.lat, lng: position.lng }}
+        icon={customMarkerIcon}
+      >
+        <Popup>
+          <h1
+            className="marker-title"
+            style={{
+              color: "#74c0fc",
+              fontSize: "1.2rem",
+              fontWeight: 500,
+            }}
+          >
+            You are here
+          </h1>
+        </Popup>
+      </Marker>
+    );
+  }
+
+  function renderClubCards(clubs, availableClubs, selectedClub) {
     const cards = clubs.map((club, i) => {
       return (
         <div
           className={
             availableClubs.find((el) => el === club.token)
-              ? "club-card"
+              ? club.token === selectedClub
+                ? "club-card club-card-selected"
+                : "club-card"
               : "club-card club-card-not-available"
           }
           key={i}
@@ -191,6 +232,57 @@ function Reservation() {
     });
     return cards;
   }
+  function renderSearchResults(clubs, availableClubs, selectedClub) {
+    const cards = clubs.map((club, i) => {
+      return (
+        <div
+          className={
+            availableClubs.find((el) => el === club.token)
+              ? club.token === selectedClub
+                ? "club-card club-card-selected club-result"
+                : "club-card club-result"
+              : "club-card club-card-not-available club-result"
+          }
+          key={i}
+          onClick={() => {
+            clickOnClub(
+              availableClubs.find((el) => el === club.token) ? club.token : null
+            );
+            if (availableClubs.find((el) => el === club.token)) {
+              setSearchLocation("");
+              document.querySelector(".search-results").classList.add("hidden");
+            }
+          }}
+        >
+          <div className="club-title">
+            <h4>{club.clubname}</h4>
+          </div>
+          <div className="club-infos">
+            <div>
+              <FontAwesomeIcon className="club-icon" icon={faLocationDot} />
+              <p>{club?.address}</p>
+            </div>
+            <div>
+              <FontAwesomeIcon className="club-icon" icon={faPhone} />
+              <p>{club.phone}</p>
+            </div>
+            <div>
+              <FontAwesomeIcon className="club-icon" icon={faEnvelope} />
+              <p>{club.email}</p>
+            </div>
+            <div>
+              <FontAwesomeIcon
+                className="club-icon"
+                icon={faHandHoldingDollar}
+              />
+              <p>{club.price} €/h</p>
+            </div>
+          </div>
+        </div>
+      );
+    });
+    return cards;
+  }
 
   function renderHours(hours, availableHours, time) {
     const hoursList = hours.map((hour, i) => {
@@ -200,7 +292,12 @@ function Reservation() {
           data-time={hour}
           data-valid={availableHours.find((el) => el === hour) ? true : false}
           key={i}
-          onClick={(e) => clickOnTime(e)}
+          onClick={() =>
+            clickOnTime(
+              hour,
+              availableHours.find((el) => el === hour) ? true : false
+            )
+          }
         >
           <div className="time-logo">
             {hour == time ? (
@@ -234,9 +331,6 @@ function Reservation() {
 
   function handleReset() {
     setDate(new Date(Date.now()));
-    console.log("hello");
-    console.log("hello");
-    console.log("hello");
     setInputDate(getDateInNiceFormat(new Date(Date.now())));
     setTime("");
     setClub("");
@@ -244,6 +338,39 @@ function Reservation() {
       8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
     ]);
     schedule(new Date(Date.now()));
+    document.querySelector(".next-button").classList.add("not-clickable");
+  }
+
+  function handleNext(e) {
+    if (!e.target.classList.contains("not-clickable")) {
+      props.addReservation({
+        date,
+        time,
+        club,
+        clubname: allClubs.find((c) => c.token === club)?.clubname,
+        price: allClubs.find((c) => c.token === club)?.price,
+      });
+      setNext(true);
+    }
+  }
+
+  function handlerSearchLocation(e) {
+    setSearchLocation(e.target.value);
+    if (e.target.value.length > 0) {
+      document.querySelector(".search-results").classList.remove("hidden");
+
+      const results = allClubs.filter(
+        (club) =>
+          club.clubname.toLowerCase().indexOf(e.target.value.toLowerCase()) !==
+            -1 ||
+          club.address.toLowerCase().indexOf(e.target.value.toLowerCase()) !==
+            -1
+      );
+
+      setClubsResults(results);
+    } else {
+      document.querySelector(".search-results").classList.add("hidden");
+    }
   }
 
   async function updateInputDate(inputDate) {
@@ -257,16 +384,11 @@ function Reservation() {
     document.querySelector(".next-button").classList.add("not-clickable");
   }
 
-  async function clickOnTime(e) {
-    const timeElement = e.target.closest(".time-element");
-    // console.log(timeElement);
-    // console.log(timeElement.classList.contains("time-out"));
-    console.log(timeElement.dataset.valid);
-    // if (!timeElement || timeElement.classList.contains("time-out")) return;
-    if (!timeElement || timeElement.dataset.valid === "false") return;
-    setTime(timeElement.dataset.time);
-    await schedule(date, "", timeElement.dataset.time);
-    // if (club.length === 0) schedule(date, "", timeElement.dataset.time);
+  async function clickOnTime(time, valid) {
+    if (!valid) return;
+    setTime(time);
+    await schedule(date, "", time);
+
     if (club.length !== 0)
       document.querySelector(".next-button").classList.remove("not-clickable");
   }
@@ -275,18 +397,19 @@ function Reservation() {
     if (!clubToken) return;
     setClub(clubToken);
 
-    if (time === "") schedule(date, clubToken);
+    // if (time === "") schedule(date, clubToken);
+    schedule(date, clubToken);
 
     if (time !== "")
       document.querySelector(".next-button").classList.remove("not-clickable");
   }
 
-  async function loadClubs() {
+  async function loadClubs(coords) {
     var rawResponse = await fetch("/clubs/all");
     var response = await rawResponse.json();
 
     setAllClubs(response.data.clubs);
-    sortClubs(mapPosition, response.data.clubs);
+    sortClubs(coords, response.data.clubs);
   }
 
   function sortClubs(position, listClubs) {
@@ -310,8 +433,9 @@ function Reservation() {
     var response = await rawResponse.json();
     // console.log(response);
 
-    if (club.length === 0) setAvailableClubs(response.data.availabilities);
-    else {
+    if (club.length === 0) {
+      setAvailableClubs(response.data.availabilities);
+    } else {
       const times = response.data.availabilities.map(
         (availability) => availability.time
       );
@@ -327,102 +451,182 @@ function Reservation() {
   }
 
   useEffect(() => {
-    // getLocation();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          setMapPosition({ lat, lng });
+          loadClubs({ lat, lng });
+        },
+        function () {
+          alert("Could not get your position");
+          const lat = 20;
+          const lng = 20;
+          setMapPosition({ lat, lng });
+          loadClubs({ lat, lng });
+        }
+      );
+    }
 
-    setInputDate(getDateInNiceFormat(new Date(Date.now())));
-    loadClubs();
-    schedule(date);
+    if (props?.currentReservation && props.currentReservation !== "") {
+      setInputDate(getDateInNiceFormat(props.currentReservation.date));
+      setDate(props.currentReservation.date);
+      setClub(props.currentReservation.club);
+      setTime(props.currentReservation.time);
+      schedule(
+        props.currentReservation.date,
+        "",
+        props.currentReservation.time
+      );
+      schedule(props.currentReservation.date, props.currentReservation.club);
+      document.querySelector(".next-button").classList.remove("not-clickable");
+    } else {
+      setInputDate(getDateInNiceFormat(new Date(Date.now())));
+      schedule(date);
+    }
   }, []);
 
-  return (
-    <div>
-      <NavbarMainPage />
-      <div className=" reservation-section">
-        <div className="reservation-main-title-section">
-          <hr className="horizontalRule2"></hr>
-          <h1 id="title" className="reservation-main-title">
+  if (next) {
+    return <Redirect to="/reservation/overview" />;
+  } else {
+    return (
+      <div>
+        <NavbarMainPage />
+        <div
+          className=" reservation-section"
+          onClick={(e) => {
+            if (!e.target.closest(".club-result")) {
+              setSearchLocation("");
+              document.querySelector(".search-results").classList.add("hidden");
+            }
+          }}
+        >
+          {/* <div className="reservation-main-title-section"> */}
+          {/* <hr className="horizontalRule2"></hr> */}
+          {/* <h1 id="title" className="reservation-main-title">
             Book Now
-          </h1>
-          <hr className="horizontalRule2"></hr>
-        </div>
-        <div className="when-and-where">
-          <div className="when">
-            <div className="when-and-where-header">
-              <h4 className="when-and-where-main-title">When ?</h4>
-              <h6 className="when-and-where-second-title">
-                Choose the perfect time for you
-              </h6>
-              <form className="when-input-style">
-                <input
-                  type="date"
-                  id="date-input"
-                  name="date"
-                  value={inputDate}
-                  min={getDateInNiceFormat(new Date(Date.now()))}
-                  placeholder="dd-mm-yyyy"
-                  data-date=""
-                  onChange={(e) => updateInputDate(e.target.value)}
-                  data-date-format="DD MMMM YYYY"
-                />
-              </form>
+          </h1> */}
+          {/* <hr className="horizontalRule2"></hr> */}
+          {/* </div> */}
+          <div className="when-and-where">
+            <div className="when">
+              <div className="when-and-where-header">
+                <h4 className="when-and-where-main-title">When ?</h4>
+                <h6 className="when-and-where-second-title">
+                  Choose the perfect time for you:
+                </h6>
+                <h5 className="current-infos">
+                  {" "}
+                  {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()},{" "}
+                  {time === "" ? "..." : time}h -{" "}
+                  {time === "" ? "..." : +time + 1 < 24 ? +time + 1 : "00"}h
+                </h5>
+                <form className="when-input-style">
+                  <input
+                    type="date"
+                    id="date-input"
+                    name="date"
+                    value={inputDate}
+                    min={getDateInNiceFormat(new Date(Date.now()))}
+                    placeholder="dd-mm-yyyy"
+                    data-date=""
+                    onChange={(e) => updateInputDate(e.target.value)}
+                    data-date-format="DD MMMM YYYY"
+                  />
+                </form>
+              </div>
+              <div className="times">
+                <li className="times-list">
+                  {renderHours(hours, availableHours, time)}
+                </li>
+              </div>
             </div>
-            <div className="times">
-              <li className="times-list">
-                {renderHours(hours, availableHours, time)}
-              </li>
+            <div className="where">
+              <div className="when-and-where-header">
+                <h4 className="when-and-where-main-title">Where ?</h4>
+                <h6 className="when-and-where-second-title">
+                  Choose the perfect club for you:
+                </h6>
+                <h5 className="current-infos">
+                  {" "}
+                  {allClubs.find((c) => c.token === club)?.clubname}
+                </h5>
+                <div className="search-club">
+                  <form className="location-form when-input-style">
+                    <input
+                      type="text"
+                      id="location-input"
+                      name="date"
+                      placeholder={"Club, City, ... "}
+                      value={searchLocation}
+                      onChange={(e) => handlerSearchLocation(e)}
+                    />
+                    <label>
+                      <FontAwesomeIcon
+                        className="search-icon"
+                        icon={faSearch}
+                      />
+                    </label>
+                  </form>
+                  <div className="search-results hidden">
+                    {renderSearchResults(clubsResults, availableClubs, club)}
+                  </div>
+                </div>
+              </div>
+              <div className="where-content">
+                <MapContainer
+                  className="map-container"
+                  center={mapPosition}
+                  zoom={6}
+                >
+                  <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  ></TileLayer>
+                  {generatePopups(allClubs)}
+                  {renderCurrentPosition(mapPosition)}
+                </MapContainer>
+                <div className="clubs-cards">
+                  {renderClubCards(sortAllClubs, availableClubs, club)}
+                </div>
+              </div>
             </div>
           </div>
-          <div className="where">
-            <div className="when-and-where-header">
-              <h4 className="when-and-where-main-title">Where ?</h4>
-              <h6 className="when-and-where-second-title">
-                Choose the perfect club for you
-              </h6>
-              <form className="location-form when-input-style">
-                <input
-                  type="text"
-                  id="location-input"
-                  name="date"
-                  placeholder="Liège"
-                />
-                <label>
-                  <FontAwesomeIcon className="search-icon" icon={faSearch} />
-                </label>
-              </form>
-            </div>
-            <div className="where-content">
-              <MapContainer
-                className="map-container"
-                center={mapPosition}
-                zoom={6}
-              >
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                ></TileLayer>
-                {generatePopups(allClubs)}
-              </MapContainer>
-              <div className="clubs-cards">{renderClubCards(sortAllClubs)}</div>
-            </div>
-          </div>
-        </div>
-        <div className="your-reservation">
+          {/* <div className="your-reservation">
           <h5>Date: {inputDate}</h5>
           <h5>Time: {time}</h5>
           <h5>Club: {club}</h5>
+        </div> */}
+          <div className="reservation-buttons">
+            <button
+              className="yellowButton reservation-button"
+              onClick={() => handleReset()}
+            >
+              Reset
+            </button>
+            <button
+              className="next-button yellowButton not-clickable reservation-button"
+              onClick={(e) => handleNext(e)}
+            >
+              Next
+            </button>
+          </div>
         </div>
-        <div className="reservation-buttons">
-          <button className="yellowButton" onClick={() => handleReset()}>
-            Reset
-          </button>
-          <button className="next-button yellowButton not-clickable">
-            Next
-          </button>
-        </div>
+        <FooterPage />
       </div>
-      <FooterPage />
-    </div>
-  );
+    );
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    addReservation: function (reservation) {
+      dispatch({ type: "addReservation", reservation });
+    },
+  };
+}
+function mapStateToProps(state) {
+  return { currentReservation: state.currentReservation };
 }
 
-export default Reservation;
+export default connect(mapStateToProps, mapDispatchToProps)(Reservation);
