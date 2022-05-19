@@ -15,7 +15,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // IMPORT REDUX //
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux'; 
-import token from './reducer/token'
+import token from './reducer/token';
 
 
 const reduxToken = createStore(combineReducers({ token}))

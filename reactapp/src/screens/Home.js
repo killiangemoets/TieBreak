@@ -15,15 +15,6 @@ function Home() {
     });
   };
 
-
-    const scrollButton = useRef(null)
-    const scrollToSection = (elementRef) => {
-        window.scrollTo({
-            top:elementRef.current.offsetTop, 
-            behavior: "smooth"
-        })
-    }
-
     return (
         <div>
             <NavbarHomePage/>
