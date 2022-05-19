@@ -9,6 +9,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
@@ -17,6 +18,7 @@
     "morgan": "~1.9.1",
     "react-redux": "^8.0.1",
     "redux": "^4.2.0",
+    "stripe": "^8.5.0",
     "uid2": "^1.0.0",
     "validator": "^13.7.0"
   }

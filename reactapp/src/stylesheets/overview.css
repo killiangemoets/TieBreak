@@ -8,3 +8,8 @@
   gap: 9.6rem;
   min-height: calc(100vh - 6rem - 8rem);
 }
+
+.overview-btn {
+  width: 24rem;
+  padding: 1.6rem 0;
+}
