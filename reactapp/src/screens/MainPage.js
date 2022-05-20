@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
@@ -23,118 +24,119 @@ function Home(props) {
 
   async function matchData() {
     // C'est un GET par défaut le fetch
-    // var rawResponse = await fetch(users/games/${props.token})
-    var rawResponse = await fetch("users/games/wvkwrx");
+    var rawResponse = await fetch(`users/games/${props.token}`);
+    // var rawResponse = await fetch("users/games/wvkwrx");
     // On récupère le token grace à REDUX
     var response = await rawResponse.json();
     // console.log(response);
 
-  const totalGames = response.data.games;
+    const totalGames = response.data.games;
 
-  let previousGames = [],
-    comingGames = [];
+    let previousGames = [],
+      comingGames = [];
 
-  const dateNow = new Date(Date.now());
-  const timeNow = dateNow.getHours();
+    const dateNow = new Date(Date.now());
+    const timeNow = dateNow.getHours();
 
-  totalGames.forEach((game) => {
-    if (new Date(game.date) <= dateNow && game.time < timeNow) {
-      previousGames.push(game);
-    } else {
-      comingGames.push(game);
-    }
-  });
+    totalGames.forEach((game) => {
+      if (new Date(game.date) <= dateNow && game.time < timeNow) {
+        previousGames.push(game);
+      } else {
+        comingGames.push(game);
+      }
+    });
 
-  setComingGames(comingGames);
-  setPreviousGames(previousGames);
-  setTotalGamesPlayed(previousGames.length);
+    setComingGames(comingGames);
+    setPreviousGames(previousGames);
+    setTotalGamesPlayed(previousGames.length);
 
-  const gamesPlayedThisMonth = previousGames.filter(
-    (game) =>
-      new Date(game.date).getMonth() === new Date(Date.now()).getMonth()
-  );
-  setGamesPlayedThisMonth(gamesPlayedThisMonth.length);
-
-  let clubs = [];
-  totalGames.forEach((game) => {
-    if (clubs.find((club) => club.name === game.club)) {
-      clubs.forEach((club) => {
-        if (club.name === game.club) club.count++;
-      });
-    } else clubs.push({ name: game.club, count: 1 });
-  });
-  clubs.sort(function (a, b) {
-    return b.count - a.count;
-  });
-  // console.log(clubs);
-  setFavoriteClub(clubs[0].name);
-
-  let clubs2 = [];
-  const totalGamesOfTheMonth = totalGames.filter((game) => {
-    const gameDate = new Date(game.date);
-    const currentDate = new Date(Date.now());
-    return (
-      gameDate.getMonth() === currentDate.getMonth() &&
-      gameDate.getFullYear() === currentDate.getFullYear()
+    const gamesPlayedThisMonth = previousGames.filter(
+      (game) =>
+        new Date(game.date).getMonth() === dateNow.getMonth() &&
+        new Date(game.date).getFullYear() === dateNow.getFullYear()
     );
-  });
-  totalGamesOfTheMonth.forEach((game) => {
-    if (clubs2.find((club) => club.name === game.club)) {
-      clubs2.forEach((club) => {
-        if (club.name === game.club) club.count++;
-      });
-    } else clubs2.push({ name: game.club, count: 1 });
-  });
-  clubs2.sort(function (a, b) {
-    return b.count - a.count;
-  });
-  // console.log(clubs2);
-  setClubOfThisMonth(clubs2[0].name);
+    setGamesPlayedThisMonth(gamesPlayedThisMonth.length);
 
-  // console.log("--- PREVIOUS GAMES ---");
-  // console.log(previousGames);
-  // console.log("--- COMING GAMES ---");
-  // console.log(comingGames);
-    }
-    useEffect(() => {
-      matchData();
-    }, []);
+    let clubs = [];
+    totalGames.forEach((game) => {
+      if (clubs.find((club) => club.name === game.club)) {
+        clubs.forEach((club) => {
+          if (club.name === game.club) club.count++;
+        });
+      } else clubs.push({ name: game.club, count: 1 });
+    });
+    clubs.sort(function (a, b) {
+      return b.count - a.count;
+    });
+    // console.log(clubs);
+    setFavoriteClub(clubs[0].name);
 
-    function renderGames(gameList) {
-      var info = gameList.map((game, i) => {
-        var date = new Date(game.date);
-        var day = ("0" + date.getDate()).slice(-2);
-        var month = ("0" + (date.getMonth() + 1)).slice(-2);
-        var year = date.getFullYear();
-        var fullDate = `${day}/${month}/${year}`;
+    let clubs2 = [];
+    const totalGamesOfTheMonth = totalGames.filter((game) => {
+      const gameDate = new Date(game.date);
+      const currentDate = new Date(Date.now());
+      return (
+        gameDate.getMonth() === currentDate.getMonth() &&
+        gameDate.getFullYear() === currentDate.getFullYear()
+      );
+    });
+    totalGamesOfTheMonth.forEach((game) => {
+      if (clubs2.find((club) => club.name === game.club)) {
+        clubs2.forEach((club) => {
+          if (club.name === game.club) club.count++;
+        });
+      } else clubs2.push({ name: game.club, count: 1 });
+    });
+    clubs2.sort(function (a, b) {
+      return b.count - a.count;
+    });
+    // console.log(clubs2);
+    setClubOfThisMonth(clubs2[0].name);
 
-    return (
-      <div className="game-card" key={i}>
-        <div>
-          <h6 className="game-info">
-            {game.day} {fullDate}
-          </h6>
-        </div>
-        <div>
-          <h6 className="game-info">
-            {game.time}:00 - {+game.time + 1}:00
-          </h6>
-        </div>
-        <div>
-          <h6 className="game-info">{game.club}</h6>
-        </div>
-        <div>
-          <h6 className="game-info">{game.price} €</h6>
-        </div>
-      </div>
-    );
-  });
-  return info;
-    }
+    // console.log("--- PREVIOUS GAMES ---");
+    // console.log(previousGames);
+    // console.log("--- COMING GAMES ---");
+    // console.log(comingGames);
+  }
+  useEffect(() => {
+    matchData();
+  }, []);
 
-  // if (props.token === "") {
-  //   return <Redirect to="/signin" />;
-  // } else {
+  function renderGames(gameList) {
+    var info = gameList.map((game, i) => {
+      var date = new Date(game.date);
+      var day = ("0" + date.getDate()).slice(-2);
+      var month = ("0" + (date.getMonth() + 1)).slice(-2);
+      var year = date.getFullYear();
+      var fullDate = `${day}/${month}/${year}`;
+
+      return (
+        <div className="game-card" key={i}>
+          <div>
+            <h6 className="game-info">
+              {game.day} {fullDate}
+            </h6>
+          </div>
+          <div>
+            <h6 className="game-info">
+              {game.time}h - {+game.time + 1 < 24 ? +game?.time + 1 : "00"}h
+            </h6>
+          </div>
+          <div>
+            <h6 className="game-info">{game.club}</h6>
+          </div>
+          <div>
+            <h6 className="game-info">{game.price} €</h6>
+          </div>
+        </div>
+      );
+    });
+    return info;
+  }
+
+  if (props.token === "") {
+    return <Redirect to="/signin" />;
+  } else {
     return (
       <div>
         <NavbarMainPage />
@@ -182,7 +184,10 @@ function Home(props) {
                   </h2>
                 </div>
                 <div>
-                  <div className="games-titles-background" onClick={toggleSwitch}>
+                  <div
+                    className="games-titles-background"
+                    onClick={toggleSwitch}
+                  >
                     <div
                       className={
                         switchToggled
@@ -210,8 +215,8 @@ function Home(props) {
                 </h2>
               </div>
               <div className="games-list">
-                {/* {info}    /}
-                {/ {renderGames(gameList)} */}
+                {/* {info}    */}
+                {/* {renderGames(gameList)} */}
                 {switchToggled
                   ? renderGames(previousGames)
                   : renderGames(comingGames)}
@@ -223,9 +228,9 @@ function Home(props) {
       </div>
     );
   }
-  // }
-  function mapStateToProps(state) {
-    return { token: state.token };
-  }
+}
+function mapStateToProps(state) {
+  return { token: state.token };
+}
 
-  export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Home);

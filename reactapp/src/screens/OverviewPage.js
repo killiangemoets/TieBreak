@@ -1,24 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/overview.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-
-// import { loadStripe } from "@stripe/stripe-js";
-
-// let stripePromise;
-
-// const getStripe = () => {
-//   if (!stripePromise) {
-//     stripePromise = loadStripe(
-//       "pk_test_51KjexnJNQutKRIOsNHYfubdDtJjRblAZR8hXpPXAJRS6uu1LnRv0Xs9G3tBrOAVsap1ht8UlLQkrJ0hvl5CLROs6001t12xbfR"
-//     );
-//     return stripePromise;
-//   }
-// };
-// const YOUR_DOMAIN = "http://localhost:3001";
 
 function Overview(props) {
   const [weekDays] = useState([
@@ -30,33 +16,48 @@ function Overview(props) {
     "Saturday",
     "Sunday",
   ]);
+  const [overview, setOverview] = useState("");
   const [returnBtn, setReturnBtn] = useState(false);
-  const [nextBtn, setNextBtn] = useState(false);
+  const [token, setToken] = useState("");
 
-  async function handlePayement() {
-    // const reservation = {
-    //   title: "TC Bruxelles",
-    //   price: 20,
-    // };
+  const getLocalStorage = function () {
+    const storage = localStorage.getItem("currentReservation");
+    console.log(JSON.parse(storage));
+    if (storage) setOverview(JSON.parse(storage));
+  };
 
-    // await fetch("/create-checkout-session", {
-    //   method: "POST",
-    //   headers: {
-    //     // "Content-Type": "application/json",
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //   },
-
-    //   // body: JSON.stringify(reservation),
-    //   body: "title=Bruxelles",
-    // });
-
-    setNextBtn(true);
+  async function handlePayment() {
+    const rawResponse = await fetch("/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: `${overview.clubname} - 
+        ${("0" + new Date(overview.date).getDate()).slice(-2)}/${(
+          "0" +
+          (new Date(overview.date).getMonth() + 1)
+        ).slice(-2)}/${new Date(overview.date).getFullYear()}`,
+        price: overview.price,
+      }),
+    });
+    const response = await rawResponse.json();
+    console.log(response);
+    window.location.href = response.url;
   }
 
-  if (returnBtn) {
+  useEffect(() => {
+    const storage = localStorage.getItem("token");
+    console.log(JSON.parse(storage));
+    if (storage) setToken(JSON.parse(storage));
+    else setToken(false);
+    getLocalStorage();
+  }, []);
+
+  if (token === false) {
+    return <Redirect to="/signin" />;
+  } else if (returnBtn) {
     return <Redirect to="/reservation" />;
-  } else if (nextBtn) {
-    return <Redirect to="/reservation/confirmation" />;
   } else {
     return (
       <div>
@@ -73,30 +74,23 @@ function Overview(props) {
             <div className="game-card">
               <div>
                 <h6 className="game-info">
-                  {weekDays[props.currentReservation.date.getDay()]}{" "}
-                  {props.currentReservation.date.getDate()}/
-                  {props.currentReservation.date.getMonth() + 1}/
-                  {props.currentReservation.date.getFullYear()}
+                  {weekDays[new Date(overview.date)?.getDay()]}-
+                  {("0" + new Date(overview.date)?.getDate()).slice(-2)}/
+                  {("0" + (new Date(overview.date)?.getMonth() + 1)).slice(-2)}/
+                  {new Date(overview.date)?.getFullYear()}
                 </h6>
               </div>
               <div>
                 <h6 className="game-info">
-                  {props.currentReservation.time}h -{" "}
-                  {+props.currentReservation.time + 1 < 24
-                    ? +props.currentReservation.time + 1
-                    : "00"}
-                  h
+                  {overview?.time}h -{" "}
+                  {+overview?.time + 1 < 24 ? +overview?.time + 1 : "00"}h
                 </h6>
               </div>
               <div>
-                <h6 className="game-info">
-                  {props.currentReservation.clubname}
-                </h6>
+                <h6 className="game-info">{overview?.clubname}</h6>
               </div>
               <div>
-                <h6 className="game-info">
-                  {props.currentReservation.price} €/h
-                </h6>
+                <h6 className="game-info">{overview?.price} €/h</h6>
               </div>
             </div>
           </div>
@@ -108,12 +102,15 @@ function Overview(props) {
             >
               Return
             </button>
+            {/* <form onSubmit={handlePayment}> */}
+            {/* <PaymentElement /> */}
             <button
+              onClick={() => handlePayment()}
               className="yellowButton overview-btn"
-              onClick={() => handlePayement()}
             >
               Confirm & Pay
             </button>
+            {/* </form> */}
           </div>
         </div>
         <FooterPage />

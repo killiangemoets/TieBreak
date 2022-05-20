@@ -53,6 +53,7 @@ function Reservation(props) {
   const [searchLocation, setSearchLocation] = useState("");
   const [clubsResults, setClubsResults] = useState([]);
   const [next, setNext] = useState(false);
+  const [token, setToken] = useState("");
 
   function generatePopups(clubs) {
     const popups = clubs.map((club, i) => {
@@ -344,13 +345,24 @@ function Reservation(props) {
 
   function handleNext(e) {
     if (!e.target.classList.contains("not-clickable")) {
-      props.addReservation({
-        date,
-        time,
-        club,
-        clubname: allClubs.find((c) => c.token === club)?.clubname,
-        price: allClubs.find((c) => c.token === club)?.price,
-      });
+      // props.addReservation({
+      //   date,
+      //   time,
+      //   club,
+      //   clubname: allClubs.find((c) => c.token === club)?.clubname,
+      //   price: allClubs.find((c) => c.token === club)?.price,
+      // });
+      localStorage.setItem(
+        "currentReservation",
+        JSON.stringify({
+          date,
+          time,
+          club,
+          clubname: allClubs.find((c) => c.token === club)?.clubname,
+          price: allClubs.find((c) => c.token === club)?.price,
+        })
+      );
+
       setNext(true);
     }
   }
@@ -452,6 +464,10 @@ function Reservation(props) {
   }
 
   useEffect(() => {
+    const storage = localStorage.getItem("token");
+    console.log(JSON.parse(storage));
+    if (storage) setToken(JSON.parse(storage));
+    else setToken(false);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function (position) {
@@ -470,17 +486,22 @@ function Reservation(props) {
       );
     }
 
-    if (props?.currentReservation && props.currentReservation !== "") {
-      setInputDate(getDateInNiceFormat(props.currentReservation.date));
-      setDate(props.currentReservation.date);
-      setClub(props.currentReservation.club);
-      setTime(props.currentReservation.time);
+    let currentReservation = "";
+    const storage2 = localStorage.getItem("currentReservation");
+    console.log(JSON.parse(storage2));
+    if (storage) currentReservation = JSON.parse(storage2);
+
+    if (currentReservation && currentReservation !== "") {
+      setInputDate(getDateInNiceFormat(new Date(currentReservation.date)));
+      setDate(new Date(currentReservation.date));
+      setClub(currentReservation.club);
+      setTime(currentReservation.time);
       schedule(
-        props.currentReservation.date,
+        new Date(currentReservation.date),
         "",
-        props.currentReservation.time
+        new Date(currentReservation.time)
       );
-      schedule(props.currentReservation.date, props.currentReservation.club);
+      schedule(new Date(currentReservation.date), currentReservation.club);
       document.querySelector(".next-button").classList.remove("not-clickable");
     } else {
       setInputDate(getDateInNiceFormat(new Date(Date.now())));
@@ -488,7 +509,7 @@ function Reservation(props) {
     }
   }, []);
 
-  if (props.token === "") {
+  if (token === false) {
     return <Redirect to="/signin" />;
   } else if (next) {
     return <Redirect to="/reservation/overview" />;
@@ -609,6 +630,7 @@ function Reservation(props) {
               Reset
             </button>
             <button
+              type="submit"
               className="next-button yellowButton not-clickable reservation-button"
               onClick={(e) => handleNext(e)}
             >
@@ -633,3 +655,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reservation);
+
+// export default Reservation;

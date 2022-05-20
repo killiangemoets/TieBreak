@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 function Confirmation(props) {
-  const [overview] = useState(props.currentReservation);
+  const [overview, setOverview] = useState("");
   const [goToAllGames, setGoToAllGames] = useState(false);
   const [weekDays] = useState([
     "Monday",
@@ -18,52 +18,80 @@ function Confirmation(props) {
     "Saturday",
     "Sunday",
   ]);
+  const [token, setToken] = useState("");
+
+  const getLocalStorage = function () {
+    const storage = localStorage.getItem("currentReservation");
+    console.log(JSON.parse(storage));
+    if (storage) setOverview(JSON.parse(storage));
+
+    // const storage2 = localStorage.getItem("myList");
+    // if (storage2) setToken(JSON.parse(storage2));
+  };
 
   async function saveReservation() {
-    if (!props?.currentReservation || props.currentReservation !== "") {
-      var rawResponse = await fetch("/users/games", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          tokenUser: props.token,
-          tokenClub: props.currentReservation.club,
-          day: weekDays[props.currentReservation.date.getDay()],
-          date: props.currentReservation.date,
-          time: props.currentReservation.time,
-          price: props.currentReservation.price,
-          clubname: props.currentReservation.clubname,
-        }),
-      });
-      var response = await rawResponse.json();
+    // if (!overview || overview !== "") {
+    let currentReservation, token;
 
-      console.log("-----USER------");
-      console.log(response);
+    const storage = localStorage.getItem("currentReservation");
+    console.log(JSON.parse(storage));
+    if (storage) currentReservation = JSON.parse(storage);
 
-      var rawResponse2 = await fetch("/clubs/reservations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          tokenUser: props.token,
-          tokenClub: props.currentReservation.club,
-          date: props.currentReservation.date,
-          time: props.currentReservation.time,
-        }),
-      });
-      var response2 = await rawResponse2.json();
-      console.log("-----CLUB------");
-      console.log(response2);
-      props.cleanReservation();
-    }
+    const storage2 = localStorage.getItem("token");
+    if (storage2) token = JSON.parse(storage2);
+
+    var rawResponse = await fetch("/users/games", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tokenUser: token,
+        tokenClub: currentReservation.club,
+        day: weekDays[new Date(currentReservation.date).getDay()],
+        date: currentReservation.date,
+        time: currentReservation.time,
+        price: currentReservation.price,
+        clubname: currentReservation.clubname,
+      }),
+    });
+    var response = await rawResponse.json();
+
+    console.log("-----USER------");
+    console.log(response);
+
+    var rawResponse2 = await fetch("/clubs/reservations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tokenUser: token,
+        tokenClub: currentReservation.club,
+        date: new Date(currentReservation.date),
+        time: currentReservation.time,
+      }),
+    });
+    var response2 = await rawResponse2.json();
+    console.log("-----CLUB------");
+    console.log(response2);
+    props.cleanReservation();
+    localStorage.removeItem("currentReservation");
+    // }
   }
+
   useEffect(() => {
+    const storage = localStorage.getItem("token");
+    console.log(JSON.parse(storage));
+    if (storage) setToken(JSON.parse(storage));
+    else setToken(false);
+    getLocalStorage();
     saveReservation();
   }, []);
 
-  if (goToAllGames) {
+  if (token === false) {
+    return <Redirect to="/signin" />;
+  } else if (goToAllGames) {
     return <Redirect to="/games" />;
   } else {
     return (
@@ -86,22 +114,23 @@ function Confirmation(props) {
                 <div>
                   <h6 className="game-info">
                     {" "}
-                    {weekDays[overview.date.getDay()]} {overview.date.getDate()}
-                    /{overview.date.getMonth() + 1}/
-                    {overview.date.getFullYear()}
+                    {weekDays[new Date(overview.date)?.getDay()]}{" "}
+                    {new Date(overview.date)?.getDate()}/
+                    {new Date(overview.date)?.getMonth() + 1}/
+                    {new Date(overview.date)?.getFullYear()}
                   </h6>
                 </div>
                 <div>
                   <h6 className="game-info">
-                    {overview.time}h -{" "}
-                    {+overview.time + 1 < 24 ? +overview.time + 1 : "00"}h
+                    {overview?.time}h -{" "}
+                    {+overview?.time + 1 < 24 ? +overview?.time + 1 : "00"}h
                   </h6>
                 </div>
                 <div>
-                  <h6 className="game-info">{overview.clubname}</h6>
+                  <h6 className="game-info">{overview?.clubname}</h6>
                 </div>
                 <div>
-                  <h6 className="game-info">{overview.price} €/h</h6>
+                  <h6 className="game-info">{overview?.price} €/h</h6>
                 </div>
               </div>
             </div>

@@ -6,10 +6,6 @@ var clubModel = require("../models/clubs");
 const stripe = require("stripe")(
   "sk_test_51KjexnJNQutKRIOsRcOA3IOshaqmr6hANOTiJIiVdrsajHQcOZ2yDtXB2fttQnvGN1sHhSRUzDy5XY1yg2B1ITgq00DVdoxPnk"
 );
-// const stripe = require("stripe")(
-//   "pk_test_51KjexnJNQutKRIOsNHYfubdDtJjRblAZR8hXpPXAJRS6uu1LnRv0Xs9G3tBrOAVsap1ht8UlLQkrJ0hvl5CLROs6001t12xbfR"
-// );
-
 const YOUR_DOMAIN = "http://localhost:3001";
 
 /* GET home page. */
@@ -88,43 +84,68 @@ router.get("/schedule", async function (req, res, next) {
   }
 });
 
-// middleWare = (req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Credentials", true);
-//   // res.header(
-//   //   "Access-Control-Allow-Headers",
-//   //   "Origin, X-Requested-With, Content-Type, Accept"
-//   // );
-//   console.log("hello from middleware");
-//   next();
-// };
-
-async function goToStripe(req, res) {
-  basket = [
-    {
-      price_data: {
-        currency: "eur",
-        product_data: {
-          name: "Bruxelles",
+router.post("/create-checkout-session", async function (req, res) {
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: req.body.title,
+            },
+            unit_amount: req.body.price * 100,
+          },
+          quantity: 1,
         },
-        unit_amount: 20 * 100,
+      ],
+      mode: "payment",
+      success_url: `${YOUR_DOMAIN}/reservation/confirmation`,
+      cancel_url: `${YOUR_DOMAIN}/reservation`,
+    });
+    res.json({ url: session.url });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/news", async function (req, res, next) {
+  try {
+    // toISOString()
+    console.log("hey");
+    if (req.query?.date && req.query.date !== "") {
+      const date = new Date(req.query.date);
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const year = date.getFullYear();
+      const day = ("0" + date.getDate()).slice(-2);
+      console.log(`${year}-${month}-${day}`);
+      request = `/matches-by-date/${year}-${month}-${day}`;
+    }
+    if (req.query?.rakings && req.query.rakings !== "")
+      request = `/matches-by-date/rankings/${req.body?.rakings}`;
+
+    const rawResponse = await fetch(
+      `https://tennis-live-data.p.rapidapi.com/${request}`,
+      {
+        method: "GET",
+        headers: {},
+      }
+    );
+    const response = await rawResponse.json();
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        response,
       },
-      quantity: 1,
-    },
-  ];
-
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
-    line_items: basket,
-    mode: "payment",
-    success_url: `${YOUR_DOMAIN}/reservation/overview`,
-    cancel_url: `${YOUR_DOMAIN}/reservation/confirmation`,
-  });
-  // res.header("Access-Control-Allow-Origin", "*");
-  // res.header("Access-Control-Allow-Credentials", true);
-  res.redirect(303, session.url);
-}
-
-router.route("/create-checkout-session").post(goToStripe);
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+});
 
 module.exports = router;

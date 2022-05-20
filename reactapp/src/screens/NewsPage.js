@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/news.css";
 import "../stylesheets/general.css";
 
 function News() {
+  const [date, setDate] = useState(new Date(Date.now()));
+  const [rankings, setRankings] = useState("");
+
+  async function getNews(date = "", rankings = "") {
+    var rawResponse = await fetch(`/news?date=${date}&rankings=${rankings}`);
+    var response = await rawResponse.json();
+    console.log(response);
+  }
+
+  useEffect(() => {
+    getNews(new Date(Date.now()));
+  }, []);
   return (
     <div>
       <NavbarMainPage />
