@@ -8,77 +8,127 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
 function Home(props) {
-  const [gameList, setGameList] = useState([]);
+  const [comingGames, setComingGames] = useState([]);
+  const [previousGames, setPreviousGames] = useState([]);
+
   const [switchToggled, setSwitchToggled] = useState(false);
+  const [totalGamesPlayed, setTotalGamesPlayed] = useState("");
+  const [gamesPlayedThisMonth, setGamesPlayedThisMonth] = useState("");
+  const [favoriteClub, setFavoriteClub] = useState("");
+  const [clubOfThisMonth, setClubOfThisMonth] = useState("");
 
   const toggleSwitch = () => {
     switchToggled ? setSwitchToggled(false) : setSwitchToggled(true);
   };
 
+  async function matchData() {
+    // C'est un GET par défaut le fetch
+    var rawResponse = await fetch(`users/games/${props.token}`);
+    // var rawResponse = await fetch("users/games/wvkwrx");
+    // On récupère le token grace à REDUX
+    var response = await rawResponse.json();
+    // console.log(response);
+
+    const totalGames = response.data.games;
+
+    let previousGames = [],
+      comingGames = [];
+
+    const dateNow = new Date(Date.now());
+    const timeNow = dateNow.getHours();
+
+    totalGames.forEach((game) => {
+      if (new Date(game.date) <= dateNow && game.time < timeNow) {
+        previousGames.push(game);
+      } else {
+        comingGames.push(game);
+      }
+    });
+
+    setComingGames(comingGames);
+    setPreviousGames(previousGames);
+    setTotalGamesPlayed(previousGames.length);
+
+    const gamesPlayedThisMonth = previousGames.filter(
+      (game) =>
+        new Date(game.date).getMonth() === dateNow.getMonth() &&
+        new Date(game.date).getFullYear() === dateNow.getFullYear()
+    );
+    setGamesPlayedThisMonth(gamesPlayedThisMonth.length);
+
+    let clubs = [];
+    totalGames.forEach((game) => {
+      if (clubs.find((club) => club.name === game.club)) {
+        clubs.forEach((club) => {
+          if (club.name === game.club) club.count++;
+        });
+      } else clubs.push({ name: game.club, count: 1 });
+    });
+    clubs.sort(function (a, b) {
+      return b.count - a.count;
+    });
+    // console.log(clubs);
+    setFavoriteClub(clubs[0].name);
+
+    let clubs2 = [];
+    const totalGamesOfTheMonth = totalGames.filter((game) => {
+      const gameDate = new Date(game.date);
+      const currentDate = new Date(Date.now());
+      return (
+        gameDate.getMonth() === currentDate.getMonth() &&
+        gameDate.getFullYear() === currentDate.getFullYear()
+      );
+    });
+    totalGamesOfTheMonth.forEach((game) => {
+      if (clubs2.find((club) => club.name === game.club)) {
+        clubs2.forEach((club) => {
+          if (club.name === game.club) club.count++;
+        });
+      } else clubs2.push({ name: game.club, count: 1 });
+    });
+    clubs2.sort(function (a, b) {
+      return b.count - a.count;
+    });
+    // console.log(clubs2);
+    setClubOfThisMonth(clubs2[0].name);
+
+    // console.log("--- PREVIOUS GAMES ---");
+    // console.log(previousGames);
+    // console.log("--- COMING GAMES ---");
+    // console.log(comingGames);
+  }
   useEffect(() => {
-    async function matchData() {
-      // C'est un GET par défaut le fetch
-      // var rawResponse = await fetch(`users/games/${props.token}`)
-      var rawResponse = await fetch("users/games/wvkwrx");
-      // On récupère le token grace à REDUX
-      var response = await rawResponse.json();
-      console.log(response);
-      setGameList(response.data.games);
-    }
     matchData();
   }, []);
 
   function renderGames(gameList) {
     var info = gameList.map((game, i) => {
       var date = new Date(game.date);
-      var day = date.getDay();
-      var month = date.getMonth();
+      var day = ("0" + date.getDate()).slice(-2);
+      var month = ("0" + (date.getMonth() + 1)).slice(-2);
       var year = date.getFullYear();
       var fullDate = `${day}/${month}/${year}`;
 
-      if (date < new Date() && switchToggled === true) {
-        return (
-          <div className="game-card" key={i}>
-            <div>
-              <h6 className="game-info">
-                {game.day} {fullDate}
-              </h6>
-            </div>
-            <div>
-              <h6 className="game-info">
-                {game.time}:00 - {+game.time + 1}:00
-              </h6>
-            </div>
-            <div>
-              <h6 className="game-info">{game.club}</h6>
-            </div>
-            <div>
-              <h6 className="game-info">{game.price} €</h6>
-            </div>
+      return (
+        <div className="game-card" key={i}>
+          <div>
+            <h6 className="game-info">
+              {game.day} {fullDate}
+            </h6>
           </div>
-        );
-      } else if (date > new Date() && switchToggled === false) {
-        return (
-          <div className="game-card" key={i}>
-            <div>
-              <h6 className="game-info">
-                {game.day} {fullDate}
-              </h6>
-            </div>
-            <div>
-              <h6 className="game-info">
-                {game.time}:00 - {+game.time + 1}:00
-              </h6>
-            </div>
-            <div>
-              <h6 className="game-info">{game.club}</h6>
-            </div>
-            <div>
-              <h6 className="game-info">{game.price} €</h6>
-            </div>
+          <div>
+            <h6 className="game-info">
+              {game.time}h - {+game.time + 1 < 24 ? +game?.time + 1 : "00"}h
+            </h6>
           </div>
-        );
-      }
+          <div>
+            <h6 className="game-info">{game.club}</h6>
+          </div>
+          <div>
+            <h6 className="game-info">{game.price} €</h6>
+          </div>
+        </div>
+      );
     });
     return info;
   }
@@ -101,19 +151,19 @@ function Home(props) {
             <div className="stats">
               <div className="stat">
                 <h5 className="stat-title">Total Games Played:</h5>
-                <h5 className="stat-value">{gameList.length}</h5>
+                <h5 className="stat-value">{totalGamesPlayed}</h5>
               </div>
               <div className="stat">
                 <h5 className="stat-title">Favorite Club:</h5>
-                <h5 className="stat-value">RTC Aywaille</h5>
+                <h5 className="stat-value">{favoriteClub}</h5>
               </div>
               <div className="stat">
                 <h5 className="stat-title">Total Games Played This Month:</h5>
-                <h5 className="stat-value">3</h5>
+                <h5 className="stat-value">{gamesPlayedThisMonth}</h5>
               </div>
               <div className="stat">
                 <h5 className="stat-title">Favorite Club of The Month:</h5>
-                <h5 className="stat-value">TC Bruxelles</h5>
+                <h5 className="stat-value">{clubOfThisMonth}</h5>
               </div>
             </div>
           </div>
@@ -165,7 +215,10 @@ function Home(props) {
               </div>
               <div className="games-list">
                 {/* {info}    */}
-                {renderGames(gameList)}
+                {/* {renderGames(gameList)} */}
+                {switchToggled
+                  ? renderGames(previousGames)
+                  : renderGames(comingGames)}
               </div>
             </div>
           </div>

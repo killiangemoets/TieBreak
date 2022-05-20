@@ -10,28 +10,10 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var clubsRouter = require("./routes/clubs");
 
-const cors = require("cors");
-// var app = express().use("*", cors());
+// const cors = require("cors");
+
 var app = express();
-app.use(cors());
-
-// const corsOptions = {
-//   origin: "http://127.0.0.1:3001",
-//   // origin: "*",
-//   credentials: true,
-//   methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-//   // headers: "Origin, Content-Type, X-Auth-Token",
-// };
-
-// app.use(
-//   cors({
-//     origin: "http://127.0.0.1:3001",
-//     // origin: "*",
-//     credentials: true,
-//     // methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-//     optionSuccessStatus: 200,
-//   })
-// );
+// app.use(cors());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

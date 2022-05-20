@@ -21,7 +21,9 @@ function NavbarMainPage(props) {
   };
 
   const handleLogout = function () {
-    // props.removeToken("");
+    props.removeToken("");
+    localStorage.removeItem("token");
+
     setLogout(true);
   };
   if (logout) {
@@ -29,12 +31,12 @@ function NavbarMainPage(props) {
   } else {
     return (
       <nav className="navbar" onMouseLeave={() => closeProfileMenu()}>
-        <a href="/games" className="logoRedirect">
+        <Link to="/games" className="logoRedirect">
           <div className="navbarLeft ">
             <img className="logoNavBar" src="../../ball1.png" alt="logo" />
             <h1 className="titleNavBar">TieBreak </h1>
           </div>
-        </a>
+        </Link>
         <div className="navbarRight">
           <Link to="/games">
             <button className="button">Games </button>

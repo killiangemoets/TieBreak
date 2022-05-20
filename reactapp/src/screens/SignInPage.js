@@ -37,6 +37,7 @@ function CreateAccount(props) {
     if (body.status === "success") {
       setIsLogin(true);
       props.addToken(body.data.user.token);
+      localStorage.setItem("token", JSON.stringify(body.data.user.token));
       // La ligne juste au dessus sert pour le redux //
     }
 
