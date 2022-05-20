@@ -22,7 +22,9 @@ function NavbarMainPage(props) {
 
   const handleLogout = function () {
     props.removeToken("");
+
     localStorage.removeItem("token");
+
 
     setLogout(true);
   };
