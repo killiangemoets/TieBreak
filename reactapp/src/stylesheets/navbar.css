@@ -61,6 +61,8 @@
 .navbarRight {
   padding-right: 5rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 3rem;
   font-family: "Squada One";
 }
@@ -71,11 +73,59 @@
 }
 
 .link-login {
- display: flex;
- align-items :center; 
- text-decoration: none;
-}
-
-.logoRedirect{
+  display: flex;
+  align-items: center;
   text-decoration: none;
 }
+
+.logoRedirect {
+  text-decoration: none;
+}
+
+.navbar {
+  position: relative;
+}
+
+.profile-menu {
+  background-color: #b3541e;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  top: 100%;
+  right: 1%;
+  /* width: 16rem; */
+  padding: 2rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.chevron-icon {
+  font-size: 1.8rem;
+  transition: all 0.2s;
+  /* transform: rotateZ(180deg); */
+}
+
+/* .profile-menu:after {
+  position: absolute;
+  top: -20%;
+  right: 47%;
+  display: inline-block;
+  border-top: 14px solid transparent;
+  border-left: 14px solid #b3541e;
+  border-right: 0px solid #b3541e;
+  border-bottom: 14px solid transparent;
+  content: " ";
+  transform: rotateZ(-90deg);
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.08);
+} */

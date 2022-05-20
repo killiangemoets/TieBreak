@@ -19,7 +19,7 @@
 .personnal-infos-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   row-gap: 6.4rem;
   column-gap: 16.8rem;
@@ -34,26 +34,31 @@
 .input-div label {
   font-size: 3.2rem;
   color: #333;
+  margin-left: 0.6rem;
 }
 
 .profileBtn {
   padding: 1.2rem 6.4rem;
 }
 
-.personnal-infos-form input{
-  
-    background-color: #E8CCBC;
-    border-radius: 15px;
-    padding: 1rem 3rem;
-    margin: 1rem 0;
-    font-family: 'Squada One';
-    border: none;
-    font-size: large;
-      
-  }
+.personnal-infos-form input {
+  background-color: #e8ccbc;
+  border-radius: 15px;
+  padding: 1rem 3rem;
+  margin: 1rem 0;
+  font-family: "Squada One";
+  border: none;
+  font-size: large;
+  width: 30rem;
+}
 
-  .personnal-infos-form label{
-    font-family: 'Squada One';
-    font-size: 2.5rem;
-      
-  }
+.personnal-infos-form label {
+  font-family: "Squada One";
+  font-size: 2.5rem;
+}
+
+.error-message {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0;
+}

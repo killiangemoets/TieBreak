@@ -1,10 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/profile.css";
 import "../stylesheets/general.css";
+import { connect } from "react-redux";
 
-function Profile() {
+function Profile(props) {
+  const [personnalInfos, setPersonnalInfos] = useState("");
+  const [newFirstname, setNewFirstname] = useState("");
+  const [newLastname, setNewLastname] = useState("");
+  const [newPhone, setNewPhone] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+
+  const [emailError, setEmailError] = useState("");
+
+  async function getPersonnalInfos() {
+    var rawResponse = await fetch(`/users/infos/${props.token}`);
+    var response = await rawResponse.json();
+    console.log(response);
+    if (response.status === "success") setPersonnalInfos(response.data.infos);
+  }
+
+  async function handleConfirm() {
+    var rawResponse = await fetch(`/users/infos/${props.token}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstname:
+          newFirstname.length > 0 ? newFirstname : personnalInfos.firstname,
+        lastname:
+          newLastname.length > 0 ? newLastname : personnalInfos.lastname,
+        phone: newPhone.length > 0 ? newPhone : personnalInfos.phone,
+        email: newEmail.length > 0 ? newEmail : personnalInfos.email,
+      }),
+    });
+    var response = await rawResponse.json();
+    console.log(response);
+    setNewFirstname("");
+    setNewLastname("");
+    setNewPhone("");
+    setNewEmail("");
+    if (response.status === "success") await getPersonnalInfos();
+    setEmailError("");
+
+    if (response.status === "fail") {
+      console.log("---ERROR---");
+      if (
+        response.message?.message &&
+        response.message.message?.indexOf("invalid email") !== -1
+      )
+        setEmailError("Please provide a valid email");
+      else if (
+        response.message?.codeName &&
+        response.message.codeName?.indexOf("DuplicateKey") !== -1
+      )
+        setEmailError("This email is already used");
+    }
+  }
+
+  function handleCancel() {
+    setNewFirstname("");
+    setNewLastname("");
+    setNewPhone("");
+    setNewEmail("");
+  }
+
+  useEffect(() => {
+    getPersonnalInfos();
+  }, []);
   return (
     <div>
       <NavbarMainPage />
@@ -25,7 +90,9 @@ function Profile() {
                   type="text"
                   id="infos-input"
                   name="firstname"
-                  placeholder="Lebron"
+                  value={newFirstname}
+                  onChange={(e) => setNewFirstname(e.target.value)}
+                  placeholder={personnalInfos.firstname}
                 />
               </div>
               <div className="input-div">
@@ -34,7 +101,9 @@ function Profile() {
                   type="text"
                   id="infos-input"
                   name="phone"
-                  placeholder="047912344261"
+                  value={newPhone}
+                  onChange={(e) => setNewPhone(e.target.value)}
+                  placeholder={personnalInfos.phone}
                 />
               </div>
               <div className="input-div">
@@ -43,7 +112,9 @@ function Profile() {
                   type="text"
                   id="infos-input"
                   name="lastname"
-                  placeholder="James"
+                  value={newLastname}
+                  onChange={(e) => setNewLastname(e.target.value)}
+                  placeholder={personnalInfos.lastname}
                 />
               </div>
               <div className="input-div">
@@ -52,16 +123,29 @@ function Profile() {
                   type="text"
                   id="infos-input"
                   name="email"
-                  placeholder="king@gmail.com"
+                  value={newEmail}
+                  onChange={(e) => setNewEmail(e.target.value)}
+                  placeholder={personnalInfos.email}
                 />
+                <p className="error-message">{emailError}</p>
               </div>
             </form>
           </div>
         </div>
 
         <div className="reservation-buttons">
-          <button className="yellowButton profileBtn">Cancel</button>
-          <button className="yellowButton profileBtn">Confirm</button>
+          <button
+            className="yellowButton profileBtn"
+            onClick={() => handleCancel()}
+          >
+            Cancel
+          </button>
+          <button
+            className="yellowButton profileBtn"
+            onClick={() => handleConfirm()}
+          >
+            Confirm
+          </button>
         </div>
       </div>
       <FooterPage />
@@ -69,4 +153,8 @@ function Profile() {
   );
 }
 
-export default Profile;
+function mapStateToProps(state) {
+  return { token: state.token };
+}
+
+export default connect(mapStateToProps, null)(Profile);

@@ -68,6 +68,7 @@
   align-items: center;
   justify-content: center;
   gap: 3.6rem;
+  cursor: pointer;
 }
 
 .games-title {
@@ -86,6 +87,7 @@
   margin-top: 0.4rem;
   background-color: #e8ccbc;
   border-radius: 100px;
+  cursor: pointer;
 }
 
 .games-titles-tennisball {
@@ -128,7 +130,6 @@
   grid-template-columns: auto auto;
   column-gap: 8.8rem;
   row-gap: 2.6rem;
-  
 }
 
 .game-info {
