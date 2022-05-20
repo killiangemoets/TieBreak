@@ -29,7 +29,8 @@ router.get("/schedule", async function (req, res, next) {
         return (
           availability.date.getFullYear() == date.getFullYear() &&
           availability.date.getMonth() == date.getMonth() &&
-          availability.date.getDate() == date.getDate()
+          availability.date.getDate() == date.getDate() &&
+          availability.courts > 0
         );
       });
     } else if (req.query?.time && req.query?.time.length !== 0) {
@@ -43,7 +44,8 @@ router.get("/schedule", async function (req, res, next) {
               availability.date.getFullYear() == date.getFullYear() &&
               availability.date.getMonth() == date.getMonth() &&
               availability.date.getDate() == date.getDate() &&
-              availability.time == req.query.time
+              availability.time == req.query.time &&
+              availability.courts > 0
             );
           })
         ) {
@@ -61,7 +63,8 @@ router.get("/schedule", async function (req, res, next) {
             return (
               availability.date.getFullYear() == date.getFullYear() &&
               availability.date.getMonth() == date.getMonth() &&
-              availability.date.getDate() == date.getDate()
+              availability.date.getDate() == date.getDate() &&
+              availability.courts > 0
             );
           })
         ) {

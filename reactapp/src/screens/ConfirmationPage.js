@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 
 function Confirmation(props) {
   const [overview] = useState(props.currentReservation);
-
   const [goToAllGames, setGoToAllGames] = useState(false);
   const [weekDays] = useState([
     "Monday",
@@ -20,25 +19,15 @@ function Confirmation(props) {
     "Sunday",
   ]);
 
-  // await fetch("/create-checkout-session", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-
-  //   body: JSON.stringify(reservation),
-  // });
-
   async function saveReservation() {
-    console.log(props.currentReservation);
-    if (props?.currentReservation || props.currentReservation !== "") {
+    if (!props?.currentReservation || props.currentReservation !== "") {
       var rawResponse = await fetch("/users/games", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          tokenUser: "wvkwrx",
+          tokenUser: props.token,
           tokenClub: props.currentReservation.club,
           day: weekDays[props.currentReservation.date.getDay()],
           date: props.currentReservation.date,
@@ -52,27 +41,26 @@ function Confirmation(props) {
       console.log("-----USER------");
       console.log(response);
 
-      // var rawResponse2 = await fetch("/clubs/reservations", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     tokenUser: props.token,
-      //     tokenClub: props.currentReservation.club,
-      //     date: props.currentReservation.date,
-      //     time: props.currentReservation.time,
-      //   }),
-      // });
-      // var response2 = await rawResponse2.json();
-      // console.log("-----CLUB------");
-      // console.log(response2);
-      // props.cleanReservation();
+      var rawResponse2 = await fetch("/clubs/reservations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tokenUser: props.token,
+          tokenClub: props.currentReservation.club,
+          date: props.currentReservation.date,
+          time: props.currentReservation.time,
+        }),
+      });
+      var response2 = await rawResponse2.json();
+      console.log("-----CLUB------");
+      console.log(response2);
+      props.cleanReservation();
     }
   }
   useEffect(() => {
     saveReservation();
-    props.cleanReservation();
   }, []);
 
   if (goToAllGames) {
@@ -98,30 +86,22 @@ function Confirmation(props) {
                 <div>
                   <h6 className="game-info">
                     {" "}
-                    {weekDays[props.currentReservation.date.getDay()]}{" "}
-                    {props.currentReservation.date.getDate()}/
-                    {props.currentReservation.date.getMonth() + 1}/
-                    {props.currentReservation.date.getFullYear()}
+                    {weekDays[overview.date.getDay()]} {overview.date.getDate()}
+                    /{overview.date.getMonth() + 1}/
+                    {overview.date.getFullYear()}
                   </h6>
                 </div>
                 <div>
                   <h6 className="game-info">
-                    {props.currentReservation.time}h -{" "}
-                    {+props.currentReservation.time + 1 < 24
-                      ? +props.currentReservation.time + 1
-                      : "00"}
-                    h
+                    {overview.time}h -{" "}
+                    {+overview.time + 1 < 24 ? +overview.time + 1 : "00"}h
                   </h6>
                 </div>
                 <div>
-                  <h6 className="game-info">
-                    {props.currentReservation.clubname}
-                  </h6>
+                  <h6 className="game-info">{overview.clubname}</h6>
                 </div>
                 <div>
-                  <h6 className="game-info">
-                    {props.currentReservation.price} €/h
-                  </h6>
+                  <h6 className="game-info">{overview.price} €/h</h6>
                 </div>
               </div>
             </div>

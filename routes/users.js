@@ -154,7 +154,7 @@ router.get("/infos/:token", async function (req, res, next) {
     res.status(201).json({
       status: "success",
       data: {
-        games: user,
+        infos: user,
       },
     });
   } catch (err) {
@@ -167,33 +167,33 @@ router.get("/infos/:token", async function (req, res, next) {
 
 router.patch("/infos/:token", async function (req, res, next) {
   try {
-    if (req.body.password.length < 8) {
-      throw new Error(
-        `${
-          req.body.password.length === 0
-            ? "zzz Please provide a password zzz"
-            : "zzz Your password should have at least 8 characters zzz"
-        } ${
-          req.body.firstname.length === 0
-            ? "xxx Please provide a firstname xxx"
-            : ""
-        } ${
-          req.body.lastname.length === 0
-            ? "www Please provide a lastname www"
-            : ""
-        } ${
-          req.body.phone.length === 0
-            ? "vvv Please provide a phone number vvv"
-            : ""
-        } ${
-          req.body.email.length === 0
-            ? "yyy Please provide an email address yyy"
-            : ""
-        }`
-      );
-    }
+    // if (req.body.password.length < 8) {
+    //   throw new Error(
+    //     `${
+    //       req.body.password.length === 0
+    //         ? "zzz Please provide a password zzz"
+    //         : "zzz Your password should have at least 8 characters zzz"
+    //     } ${
+    //       req.body.firstname.length === 0
+    //         ? "xxx Please provide a firstname xxx"
+    //         : ""
+    //     } ${
+    //       req.body.lastname.length === 0
+    //         ? "www Please provide a lastname www"
+    //         : ""
+    //     } ${
+    //       req.body.phone.length === 0
+    //         ? "vvv Please provide a phone number vvv"
+    //         : ""
+    //     } ${
+    //       req.body.email.length === 0
+    //         ? "yyy Please provide an email address yyy"
+    //         : ""
+    //     }`
+    //   );
+    // }
 
-    const hash = bcrypt.hashSync(req.body.password, 10);
+    // const hash = bcrypt.hashSync(req.body.password, 10);
     const user = await userModel.findOneAndUpdate(
       { token: req.params.token },
       {
@@ -201,7 +201,7 @@ router.patch("/infos/:token", async function (req, res, next) {
         lastname: req.body.lastname,
         email: req.body.email,
         phone: req.body.phone,
-        password: hash,
+        // password: hash,
       },
       {
         new: true,

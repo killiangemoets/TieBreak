@@ -232,6 +232,7 @@ function Reservation(props) {
     });
     return cards;
   }
+
   function renderSearchResults(clubs, availableClubs, selectedClub) {
     const cards = clubs.map((club, i) => {
       return (
@@ -487,7 +488,9 @@ function Reservation(props) {
     }
   }, []);
 
-  if (next) {
+  if (props.token === "") {
+    return <Redirect to="/signin" />;
+  } else if (next) {
     return <Redirect to="/reservation/overview" />;
   } else {
     return (
@@ -626,7 +629,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 function mapStateToProps(state) {
-  return { currentReservation: state.currentReservation };
+  return { currentReservation: state.currentReservation, token: state.token };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reservation);
