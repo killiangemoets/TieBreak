@@ -10,6 +10,7 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
   const [token, setToken] = useState("");
+  const [type, setType] = useState("");
 
   const scrollButton = useRef(null);
   const scrollToSection = (elementRef) => {
@@ -22,12 +23,15 @@ function Home() {
   useEffect(() => {
     localStorage.removeItem("currentReservation");
     const storage = localStorage.getItem("token");
-    console.log(JSON.parse(storage));
     if (storage) setToken(JSON.parse(storage));
+    const storage2 = localStorage.getItem("type");
+    if (storage2) setType(JSON.parse(storage2));
   }, []);
 
-  if (token !== "") {
+  if (token !== "" && type === "player") {
     return <Redirect to="/games" />;
+  } else if (token !== "" && type === "club") {
+    return <Redirect to="/club/calendar" />;
   } else {
     return (
       <div>

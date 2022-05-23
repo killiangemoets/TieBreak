@@ -7,7 +7,10 @@ var bcrypt = require("bcrypt");
 
 router.post("/sign-up", async function (req, res, next) {
   try {
-    const hash = bcrypt.hashSync(req.body.password, 10);
+    const hash =
+      req.body.password.length > 0
+        ? bcrypt.hashSync(req.body.password, 10)
+        : req.body.password;
     const newClub = await clubModel.create({
       clubname: req.body.clubname,
       price: req.body.price,
@@ -23,7 +26,7 @@ router.post("/sign-up", async function (req, res, next) {
     res.status(201).json({
       status: "success",
       data: {
-        clubModel: newClub,
+        club: newClub,
       },
     });
   } catch (err) {
@@ -43,16 +46,16 @@ router.post("/sign-in", async function (req, res, next) {
         status: "fail",
         message:
           req.body.email.length === 0
-            ? "yyy Please provide an email address yyy"
-            : "yyy Email not found yyy",
+            ? "please provide an email address"
+            : "email not found",
       });
     } else if (!bcrypt.compareSync(req.body.password, club.password)) {
       res.status(404).json({
         status: "fail",
         message:
           req.body.password.length === 0
-            ? "zzz Please provide a password zzz"
-            : "zzz Password incorrect zzz",
+            ? "please provide a password"
+            : "password incorrect",
       });
     } else {
       res.status(200).json({
@@ -148,6 +151,24 @@ router.post("/availabilities", async function (req, res, next) {
       status: "success",
       data: {
         club: clubSaved,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+});
+
+router.get("/infos/:token", async function (req, res, next) {
+  try {
+    const club = await clubModel.findOne({ token: req.params.token });
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        infos: club,
       },
     });
   } catch (err) {

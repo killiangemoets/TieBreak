@@ -134,7 +134,7 @@ router.post("/games", async function (req, res, next) {
 router.get("/games/:token", async function (req, res, next) {
   try {
     const user = await userModel.findOne({ token: req.params.token });
-    res.status(201).json({
+    res.status(200).json({
       status: "success",
       data: {
         games: user.games,
@@ -151,7 +151,7 @@ router.get("/games/:token", async function (req, res, next) {
 router.get("/infos/:token", async function (req, res, next) {
   try {
     const user = await userModel.findOne({ token: req.params.token });
-    res.status(201).json({
+    res.status(200).json({
       status: "success",
       data: {
         infos: user,

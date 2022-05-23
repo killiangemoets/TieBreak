@@ -14,27 +14,27 @@ const gameSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
   firstname: {
     type: String,
-    required: [true, "xxx Please provide a firstname xxx"],
+    required: [true, "Please provide a firstname"],
   },
   lastname: {
     type: String,
-    required: [true, "www Please provide a lastname www"],
+    required: [true, "Please provide a lastname"],
   },
   phone: {
     type: String,
-    required: [true, "vvv Please provide a phone number vvv"],
+    required: [true, "Please provide a phone number"],
   },
   email: {
     type: String,
-    required: [true, "yyy Please provide an email address yyy"],
+    required: [true, "Please provide an email address"],
     unique: true,
     lowercase: true,
     validate: [validator.isEmail, "invalid email"],
   },
   password: {
     type: String,
-    required: [true, "zzz Please provide a password zzz"],
-    // minlength: [8, "zzz Your password should have at least 8 characters zzz"],
+    required: [true, "Please provide a password"],
+    // minlength: [8, "Your password should have at least 8 characters"],
   },
   token: {
     type: String,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import NavbarHomePage from "../components/NavbarHomePage";
 import FooterPage from "../components/Footer";
 import { Redirect } from "react-router-dom";
@@ -38,6 +38,7 @@ function CreateAccount(props) {
       setIsLogin(true);
       props.addToken(body.data.user.token);
       localStorage.setItem("token", JSON.stringify(body.data.user.token));
+      localStorage.setItem("type", "player");
       localStorage.setItem(
         "username",
         JSON.stringify(body.data.user.firstname)

@@ -44,6 +44,7 @@ function CreateAccount() {
       if (response.status === "success") {
         setIsSignUp(true);
         localStorage.setItem("token", JSON.stringify(response.data.user.token));
+        localStorage.setItem("type", "player");
         localStorage.setItem(
           "username",
           JSON.stringify(response.data.user.firstname)
@@ -61,33 +62,39 @@ function CreateAccount() {
         response.message.indexOf("invalid email") !== -1
       )
         setEmailError("Please provide a valid email");
+      else if (
+        response.status === "fail" &&
+        response.message.indexOf("E11000") !== -1
+      )
+        setEmailError("This email is already used");
+      else setEmailError("");
+
+      if (phone === "") setPhoneError("Please provide a phone number");
+      else setPhoneError("");
+
+      setPasswordError("");
+      setConfirmPasswordError("");
+    } else {
+      if (firstname === "") setFirstnameError("Please provide a firstname");
+      else setFirstnameError("");
+
+      if (lastname === "") setLastnameError("Please provide a lastname");
+      else setLastnameError("");
+
+      if (email === "") setEmailError("Please provide an email");
       else setEmailError("");
 
       if (phone === "") setPhoneError("Please provide a phone number");
       else setPhoneError("");
 
       if (password === "") setPasswordError("Please provide a password");
-      else if (
-        response.status === "fail" &&
-        response.message.indexOf("E11000") !== -1
-      )
-        setEmailError("This email is already used");
       else setPasswordError("");
 
       if (confirmPassword === "")
         setConfirmPasswordError("Please confirm your password");
-      if (password !== confirmPassword)
+      else if (password !== confirmPassword)
         setConfirmPasswordError("Confirmation password is incorrect");
-    } else {
-      if (firstname === "") setFirstnameError("Please provide a firstname");
-      if (lastname === "") setLastnameError("Please provide a lastname");
-      if (email === "") setEmailError("Please provide an email");
-      if (phone === "") setPhoneError("Please provide a phone number");
-      if (password === "") setPasswordError("Please provide a password");
-      if (confirmPassword === "")
-        setConfirmPasswordError("Please confirm your password");
-      if (password !== confirmPassword)
-        setConfirmPasswordError("Confirmation password is incorrect");
+      else setConfirmPasswordError("");
     }
   }
 
