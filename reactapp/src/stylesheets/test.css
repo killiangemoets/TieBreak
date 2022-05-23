@@ -1,0 +1,184 @@
+/* rem and em do NOT depend on html font-size in media queries! Instead, 1rem = 1em = 16px */
+
+/**/
+/*** BELOW 1056px **/
+/**/
+
+@media (max-width: 66em) {
+  .stream-logos,
+  .buy-logos {
+    gap: 1.2rem;
+  }
+
+  .stream-logo,
+  .buy-logo {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 12px;
+  }
+}
+
+/**/
+/*** BELOW 928px **/
+/**/
+
+@media (max-width: 58em) {
+  .search-form input {
+    width: 20rem;
+  }
+  .results-section {
+    padding: 4.8rem 4rem 4.8rem 3.2rem;
+  }
+
+  .show-section {
+    padding: 4.8rem 3.2rem 4.8rem 0rem;
+  }
+
+  .results {
+    width: 24rem;
+  }
+}
+
+/**/
+/*** BELOW 848px **/
+/**/
+@media (max-width: 53em) {
+  .show-wheretowatch--flex {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .show-section-box {
+    height: 90rem;
+  }
+
+  .stream,
+  .buy {
+    margin-left: 0rem;
+  }
+
+  .stream-logos,
+  .buy-logos {
+    margin-left: 0rem;
+  }
+}
+
+/**/
+/*** BELOW 784px **/
+/**/
+@media (max-width: 49em) {
+  .grid--2cols {
+    height: 100%;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  .results-section {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .change-page {
+    width: 100%;
+  }
+  .results {
+    width: 40rem;
+    height: 100%;
+  }
+
+  .results li a,
+  .myList li a {
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: 20% 80%;
+  }
+  .change-page {
+    margin-top: 1.2rem;
+  }
+  .num-pages {
+    margin-top: 0.8rem;
+  }
+
+  .logo-box {
+    color: #fff;
+    font-size: 1.8rem;
+    font-style: italic;
+    font-weight: 700;
+    border-bottom: 2px solid #00a8ff;
+  }
+
+  .search-form input {
+    font-size: 1.4rem;
+    width: 16.8rem;
+  }
+
+  .btn,
+  .btn:link,
+  .btn:visited {
+    font-size: 1.4rem;
+  }
+
+  .header-section {
+    padding: 2rem 2rem;
+  }
+
+  .show-section-box {
+    height: 100%;
+  }
+}
+
+/**/
+/*** BELOW 560px **/
+/**/
+
+@media (max-width: 35em) {
+  .header-section {
+    flex-direction: column;
+    height: 100%;
+    gap: 2rem;
+  }
+
+  .stream-logos,
+  .buy-logos {
+    margin-left: 3.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.2rem;
+    width: 10rem;
+  }
+
+  .results {
+    width: 32em;
+  }
+}
+
+/**/
+/*** BELOW 464px **/
+/**/
+@media (max-width: 29em) {
+  .results {
+    width: 100%;
+  }
+
+  .show-presentation {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 2.4rem;
+  }
+
+  .show-img-box {
+    width: 50%;
+    border-radius: 8px;
+  }
+
+  .show-title span {
+    font-size: 3rem !important;
+  }
+}
