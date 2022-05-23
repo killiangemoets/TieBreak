@@ -496,11 +496,7 @@ function Reservation(props) {
       setDate(new Date(currentReservation.date));
       setClub(currentReservation.club);
       setTime(currentReservation.time);
-      schedule(
-        new Date(currentReservation.date),
-        "",
-        new Date(currentReservation.time)
-      );
+      schedule(new Date(currentReservation.date), "", currentReservation.time);
       schedule(new Date(currentReservation.date), currentReservation.club);
       document.querySelector(".next-button").classList.remove("not-clickable");
     } else {
@@ -518,7 +514,7 @@ function Reservation(props) {
       <div>
         <NavbarMainPage />
         <div
-          className=" reservation-section"
+          className=" reservation-section margin-top"
           onClick={(e) => {
             if (!e.target.closest(".club-result")) {
               setSearchLocation("");
@@ -574,7 +570,9 @@ function Reservation(props) {
                 </h6>
                 <h5 className="current-infos">
                   {" "}
-                  {allClubs.find((c) => c.token === club)?.clubname}
+                  {allClubs.find((c) => c.token === club)
+                    ? allClubs.find((c) => c.token === club).clubname
+                    : "..."}
                 </h5>
                 <div className="search-club">
                   <form className="location-form when-input-style">

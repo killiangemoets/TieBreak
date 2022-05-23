@@ -7,7 +7,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-function NavbarMainPage(props) {
+function NavbarClub(props) {
   const [profileMenu, setProfileMenu] = useState(false);
   const [logout, setLogout] = useState(false);
   const [username, setUsername] = useState("");
@@ -38,21 +38,18 @@ function NavbarMainPage(props) {
   } else {
     return (
       <nav className="navbar" onMouseLeave={() => closeProfileMenu()}>
-        <Link to="/games" className="logoRedirect">
+        <Link to="/club/calendar" className="logoRedirect">
           <div className="navbarLeft ">
             <img className="logoNavBar" src="../../ball1.png" alt="logo" />
             <h1 className="titleNavBar">TieBreak </h1>
           </div>
         </Link>
         <div className="navbarRight">
-          <Link to="/games">
-            <button className="button">Games </button>
+          <Link to="/club/howitworks">
+            <button className="button">How it works </button>
           </Link>
-          <Link to="/news">
-            <button className="button">News</button>
-          </Link>
-          <Link to="/reservation">
-            <button className="buttonShowed">Reservation </button>
+          <Link to="/club/calendar">
+            <button className="buttonShowed">Calendar</button>
           </Link>
           <button
             className="button profile-btn"
@@ -63,7 +60,7 @@ function NavbarMainPage(props) {
           </button>
         </div>
         <div className={profileMenu ? "profile-menu" : "profile-menu hidden"}>
-          <Link to="/profile">
+          <Link to="/club/profile">
             <button className="button">Informations </button>
           </Link>
           <button className="button" onClick={() => handleLogout()}>
@@ -83,4 +80,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(NavbarMainPage);
+export default connect(null, mapDispatchToProps)(NavbarClub);

@@ -178,96 +178,86 @@ function Home(props) {
     return (
       <div>
         <NavbarMainPage />
-        <div className=" center-content-games">
-          <div className="games-section margin-top">
-            <div className="games">
-              <div className=" center-games">
-                <div className="games-titles">
-                  <div>
-                    <h2
-                      className={
-                        switchToggled
-                          ? "games-title"
-                          : "games-title active-games-title"
-                      }
-                      onClick={() => setSwitchToggled(false)}
-                    >
-                      Coming Games
-                    </h2>
-                  </div>
-                  <div>
-                    <div
-                      className="games-titles-background"
-                      onClick={toggleSwitch}
-                    >
-                      <div
-                        className={
-                          switchToggled
-                            ? "games-titles-tennisball previous"
-                            : "games-titles-tennisball coming"
-                        }
-                      >
-                        <img
-                          className="tennisball-img"
-                          src="../../ball1.png"
-                          alt="logo"
-                        />
-                      </div>
-                    </div>
-                  </div>
+        <div className="games-section margin-top">
+          <div className="start-reservation-btn-section">
+            <Link to="/reservation">
+              <button className="yellowButton start-reservation-big-btn">
+                Start a Reservation
+              </button>
+            </Link>
+          </div>
+          <div className="stats-section container center-stats">
+            <div className="stats">
+              <div className="stat">
+                <h5 className="stat-title">Total Games Played:</h5>
+                <h5 className="stat-value">{totalGamesPlayed}</h5>
+              </div>
+              <div className="stat">
+                <h5 className="stat-title">Favorite Club:</h5>
+                <h5 className="stat-value">{favoriteClub}</h5>
+              </div>
+              <div className="stat">
+                <h5 className="stat-title">Total Games Played This Month:</h5>
+                <h5 className="stat-value">{gamesPlayedThisMonth}</h5>
+              </div>
+              <div className="stat">
+                <h5 className="stat-title">Favorite Club of The Month:</h5>
+                <h5 className="stat-value">{clubOfThisMonth}</h5>
+              </div>
+            </div>
+          </div>
+          <div className="games">
+            <div className="container center-games">
+              <div className="games-titles">
+                <div>
                   <h2
                     className={
                       switchToggled
-                        ? "games-title active-games-title"
-                        : "games-title"
+                        ? "games-title"
+                        : "games-title active-games-title"
                     }
-                    onClick={() => setSwitchToggled(true)}
+                    onClick={() => setSwitchToggled(false)}
                   >
-                    Previous Games
+                    Coming Games
                   </h2>
                 </div>
-                <div className="games-list">
-                  {/* {info}    */}
-                  {/* {renderGames(gameList)} */}
-                  {switchToggled
-                    ? renderGames(previousGames)
-                    : renderGames(comingGames)}
-                </div>
-              </div>
-            </div>
-            <div className="second-column">
-              <div className="fix-column">
-                <div className="start-reservation-btn-section">
-                  <Link to="/reservation">
-                    <button className="yellowButton start-reservation-big-btn">
-                      Start a Reservation
-                    </button>
-                  </Link>
-                </div>
-                <div className="stats-section center-stats">
-                  <div className="stats">
-                    <div className="stat">
-                      <h5 className="stat-title">Total Games Played:</h5>
-                      <h5 className="stat-value">{totalGamesPlayed}</h5>
-                    </div>
-                    <div className="stat">
-                      <h5 className="stat-title">Favorite Club:</h5>
-                      <h5 className="stat-value">{favoriteClub}</h5>
-                    </div>
-                    <div className="stat">
-                      <h5 className="stat-title">
-                        Total Games Played This Month:
-                      </h5>
-                      <h5 className="stat-value">{gamesPlayedThisMonth}</h5>
-                    </div>
-                    <div className="stat">
-                      <h5 className="stat-title">
-                        Favorite Club of The Month:
-                      </h5>
-                      <h5 className="stat-value">{clubOfThisMonth}</h5>
+                <div>
+                  <div
+                    className="games-titles-background"
+                    onClick={toggleSwitch}
+                  >
+                    <div
+                      className={
+                        switchToggled
+                          ? "games-titles-tennisball previous"
+                          : "games-titles-tennisball coming"
+                      }
+                    >
+                      <img
+                        className="tennisball-img"
+                        src="../../ball1.png"
+                        alt="logo"
+                      />
                     </div>
                   </div>
                 </div>
+                <h2
+                  className={
+                    switchToggled
+                      ? "games-title active-games-title"
+                      : "games-title"
+                  }
+                  onClick={() => setSwitchToggled(true)}
+                >
+                  Previous Games
+                </h2>
+              </div>
+              <div className="games-list">
+                {/* {info}    */}
+                {/* {renderGames(gameList)} */}
+                {switchToggled
+                  ? renderGames(previousGames)
+                  : renderGames(comingGames)}
               </div>
             </div>
           </div>

@@ -1,13 +1,29 @@
-.news-section {
-  margin: 6.4rem 0;
+.news-big-container {
+  min-height: calc(100vh - 8rem - 6rem);
+}
+
+.margin-top-news {
+  margin-top: 12rem !important;
+}
+
+.white-bg {
+  position: fixed;
+  margin: 3.4rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
   width: 100%;
+  background-color: #fff;
+  padding-bottom: 2rem;
+}
+
+.news-section {
+  width: 100%;
+
   background-color: #e8ccbc;
-  padding: 2.4rem 0;
+  padding: 2.4rem;
 }
 
 .news {
@@ -22,6 +38,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  cursor: pointer;
 }
 
 .new-logo {
@@ -35,8 +52,12 @@
 }
 
 .new-value {
-  font-size: 3.2rem;
+  font-size: 3rem;
   color: #aaa;
+  transition: all 0.3s;
+}
+.new-value:hover {
+  color: #b3541e;
 }
 
 .new-value-active {
@@ -44,6 +65,7 @@
 }
 
 .news-results-section {
+  padding-top: 27.2rem;
   padding-bottom: 6.4rem;
 }
 
@@ -58,7 +80,7 @@
 .result-card {
   width: 80rem;
   background-color: #e8ccbc;
-  padding: 3.6rem 6.4rem;
+  padding: 2.6rem 6rem;
   border-radius: 36px;
   display: flex;
   flex-direction: column;
@@ -68,7 +90,7 @@
 }
 
 .tournement-infos {
-  font-size: 3.6rem;
+  font-size: 2.8rem;
   color: #b3541e;
   display: flex;
   align-items: center;
@@ -79,7 +101,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4.8rem;
+  font-size: 3.2rem;
   color: #b3541e;
 }
 
@@ -88,9 +110,9 @@
   align-items: center;
   justify-content: center;
   grid-template-columns: auto auto auto;
-  row-gap: 2rem;
+  row-gap: 1.6rem;
   column-gap: 3.6rem;
-  font-size: 3.2rem;
+  font-size: 2.4rem;
   color: #aaa;
 }
 

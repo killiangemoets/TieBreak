@@ -3,7 +3,7 @@ import "../stylesheets/navbar.css";
 import "../stylesheets/general.css";
 import { Link } from "react-router-dom";
 
-function NavbarHomePage() {
+function NavbarHomePageClub() {
   return (
     <nav className="navbar">
       <a href="/" className="logoRedirect">
@@ -13,13 +13,13 @@ function NavbarHomePage() {
         </div>
       </a>
       <div className="navbarRight">
-        <a href="/club" className="link-login">
-          <button className="button">I'M A CLUB </button>
+        <a href="/" className="link-login">
+          <button className="button">I'M A PLAYER </button>
         </a>
-        <a href="/signin" className="link-login">
+        <a href="/club/signin" className="link-login">
           <button className="button">SIGN IN </button>
         </a>
-        <a href="/signup">
+        <a href="/club/signup">
           <div>
             <button className="buttonShowed">SIGN UP </button>
           </div>
@@ -29,4 +29,4 @@ function NavbarHomePage() {
   );
 }
 
-export default NavbarHomePage;
+export default NavbarHomePageClub;

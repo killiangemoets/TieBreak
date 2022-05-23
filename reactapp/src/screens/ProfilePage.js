@@ -4,6 +4,7 @@ import FooterPage from "../components/Footer";
 import "../stylesheets/profile.css";
 import "../stylesheets/general.css";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 function Profile(props) {
   const [personnalInfos, setPersonnalInfos] = useState("");
@@ -11,18 +12,18 @@ function Profile(props) {
   const [newLastname, setNewLastname] = useState("");
   const [newPhone, setNewPhone] = useState("");
   const [newEmail, setNewEmail] = useState("");
-
   const [emailError, setEmailError] = useState("");
+  const [token, setToken] = useState("");
 
-  async function getPersonnalInfos() {
-    var rawResponse = await fetch(`/users/infos/${props.token}`);
+  async function getPersonnalInfos(token) {
+    var rawResponse = await fetch(`/users/infos/${token}`);
     var response = await rawResponse.json();
     console.log(response);
     if (response.status === "success") setPersonnalInfos(response.data.infos);
   }
 
-  async function handleConfirm() {
-    var rawResponse = await fetch(`/users/infos/${props.token}`, {
+  async function handleConfirm(token) {
+    var rawResponse = await fetch(`/users/infos/${token}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +43,7 @@ function Profile(props) {
     setNewLastname("");
     setNewPhone("");
     setNewEmail("");
-    if (response.status === "success") await getPersonnalInfos();
+    if (response.status === "success") await getPersonnalInfos(token);
     setEmailError("");
 
     if (response.status === "fail") {
@@ -68,89 +69,98 @@ function Profile(props) {
   }
 
   useEffect(() => {
-    getPersonnalInfos();
+    const storage = localStorage.getItem("token");
+    console.log(JSON.parse(storage));
+    if (storage) setToken(JSON.parse(storage));
+    else setToken(false);
+    getPersonnalInfos(JSON.parse(storage));
   }, []);
-  return (
-    <div>
-      <NavbarMainPage />
-      <div className=" profile-section">
-        <div className="reservation-main-title-section">
-          <hr className="horizontalRule4"></hr>
-          <h1 id="title" className="reservation-main-title">
-            Personnal Informations
-          </h1>
-          <hr className="horizontalRule4"></hr>
-        </div>
-        <div>
-          <div className="personnal-infos">
-            <form className="personnal-infos-form">
-              <div className="input-div">
-                <label>First Name</label>
-                <input
-                  type="text"
-                  id="infos-input"
-                  name="firstname"
-                  value={newFirstname}
-                  onChange={(e) => setNewFirstname(e.target.value)}
-                  placeholder={personnalInfos.firstname}
-                />
-              </div>
-              <div className="input-div">
-                <label>Phone</label>
-                <input
-                  type="text"
-                  id="infos-input"
-                  name="phone"
-                  value={newPhone}
-                  onChange={(e) => setNewPhone(e.target.value)}
-                  placeholder={personnalInfos.phone}
-                />
-              </div>
-              <div className="input-div">
-                <label>Last Name</label>
-                <input
-                  type="text"
-                  id="infos-input"
-                  name="lastname"
-                  value={newLastname}
-                  onChange={(e) => setNewLastname(e.target.value)}
-                  placeholder={personnalInfos.lastname}
-                />
-              </div>
-              <div className="input-div">
-                <label>Email</label>
-                <input
-                  type="text"
-                  id="infos-input"
-                  name="email"
-                  value={newEmail}
-                  onChange={(e) => setNewEmail(e.target.value)}
-                  placeholder={personnalInfos.email}
-                />
-                <p className="error-message">{emailError}</p>
-              </div>
-            </form>
+
+  if (token === false) {
+    return <Redirect to="/signin" />;
+  } else {
+    return (
+      <div>
+        <NavbarMainPage />
+        <div className=" profile-section margin-top">
+          <div className="reservation-main-title-section">
+            <hr className="horizontalRule4"></hr>
+            <h1 id="title" className="reservation-main-title">
+              Personnal Informations
+            </h1>
+            <hr className="horizontalRule4"></hr>
+          </div>
+          <div>
+            <div className="personnal-infos">
+              <form className="personnal-infos-form">
+                <div className="input-div">
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    id="infos-input"
+                    name="firstname"
+                    value={newFirstname}
+                    onChange={(e) => setNewFirstname(e.target.value)}
+                    placeholder={personnalInfos.firstname}
+                  />
+                </div>
+                <div className="input-div">
+                  <label>Phone</label>
+                  <input
+                    type="text"
+                    id="infos-input"
+                    name="phone"
+                    value={newPhone}
+                    onChange={(e) => setNewPhone(e.target.value)}
+                    placeholder={personnalInfos.phone}
+                  />
+                </div>
+                <div className="input-div">
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    id="infos-input"
+                    name="lastname"
+                    value={newLastname}
+                    onChange={(e) => setNewLastname(e.target.value)}
+                    placeholder={personnalInfos.lastname}
+                  />
+                </div>
+                <div className="input-div">
+                  <label>Email</label>
+                  <input
+                    type="text"
+                    id="infos-input"
+                    name="email"
+                    value={newEmail}
+                    onChange={(e) => setNewEmail(e.target.value)}
+                    placeholder={personnalInfos.email}
+                  />
+                  <p className="error-message">{emailError}</p>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div className="reservation-buttons">
+            <button
+              className="yellowButton profileBtn"
+              onClick={() => handleCancel()}
+            >
+              Cancel
+            </button>
+            <button
+              className="yellowButton profileBtn"
+              onClick={() => handleConfirm(token)}
+            >
+              Confirm
+            </button>
           </div>
         </div>
-
-        <div className="reservation-buttons">
-          <button
-            className="yellowButton profileBtn"
-            onClick={() => handleCancel()}
-          >
-            Cancel
-          </button>
-          <button
-            className="yellowButton profileBtn"
-            onClick={() => handleConfirm()}
-          >
-            Confirm
-          </button>
-        </div>
+        <FooterPage />
       </div>
-      <FooterPage />
-    </div>
-  );
+    );
+  }
 }
 
 function mapStateToProps(state) {

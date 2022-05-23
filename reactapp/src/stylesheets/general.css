@@ -4,7 +4,6 @@ html {
   font-size: 62.5%;
 }
 
-
 body {
   font-family: "Squada One";
   font-weight: 400;
@@ -18,10 +17,24 @@ body {
   box-sizing: border-box;
 }
 
+.margin-top {
+  margin-top: 8rem !important;
+}
+.margin-top2 {
+  margin-top: 16rem !important;
+}
+
 .container {
   width: 120rem;
   margin: 0 auto;
   padding: 0 3.2rem;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .yellowButton,
@@ -74,4 +87,8 @@ body {
   pointer-events: none;
   /* 3) Hide it from screen readers */
   visibility: hidden;
+}
+
+.remove {
+  display: none;
 }
