@@ -1,0 +1,142 @@
+.club-main-section{
+    min-height : calc(100vh - 8rem - 6rem);
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.photo-left-section{
+    width: 60rem;
+    padding-top: 30rem;
+}
+
+.photo-club{
+    width: 70rem; 
+    margin-top: 25rem;
+    
+
+
+    /* padding-top: 15rem; */
+}
+
+.main-title{
+    font-size: 4.5rem;
+    color:#b3541e;
+    margin-bottom: 10rem;
+    /* padding-top: 3rem; */
+    /* padding-right: 1rem; */
+}
+
+.left-section{
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 40vh;
+    /* gap: 12.8rem; */
+}
+
+
+.horizontalRule {
+    width: 55rem;
+    height: 0.3rem;
+    background-color: #b3541e;
+    border: none;
+  }
+
+
+.right-section{
+    gap: 2rem;
+    margin-left: 3rem;
+    margin-top: 20rem;
+}
+
+.body-text-section-number{
+        font-size: 7rem;
+        color: #bbbbbb;
+}
+
+.body-middle-line-section{
+    width: 0.3rem; 
+    background-color: #b3541e;
+    margin: 0rem 4rem;
+}
+
+.body-text-section{
+    display:flex; 
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.title-right-section{
+    font-size: 5rem;
+    display: flex; 
+    justify-content: center;
+    padding-top: 20rem;
+    
+}
+
+.MiddLine{
+    transform: rotate(165deg);
+    background-color: #e8c31b;
+    height: 00.6rem;
+    width: 130%;
+    position: absolute;
+    top: 35%; 
+    left: -10%
+}
+
+.UpperText{
+    color: #b3541e;
+}
+
+.title-right-section h1{
+    display: flex;
+
+    /* position: absolute; 
+    left: 100rem;
+    top: 70rem; */
+    color:#e8c31b
+}
+
+.text-right-section{
+    font-size: 3rem;
+    margin: 3rem 3rem;
+    
+}
+
+.body-text-section-title{
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.body-text-section-underlined-titel{
+    text-decoration: underline;
+    font-size: 2.5rem;
+    color:#b3541e;
+    margin-bottom: 1rem;
+}
+
+.body-text-section-text{
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.body-left-text-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    
+}
+
+.body-right-text-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    
+
+
+}
