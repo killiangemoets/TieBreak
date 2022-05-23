@@ -62,7 +62,7 @@ function Overview(props) {
     return (
       <div>
         <NavbarMainPage />
-        <div className=" overview-section">
+        <div className=" overview-section margin-top">
           <div className="reservation-main-title-section">
             <hr className="horizontalRule2"></hr>
             <h1 id="title" className="reservation-main-title">

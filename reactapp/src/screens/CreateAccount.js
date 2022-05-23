@@ -43,6 +43,11 @@ function CreateAccount() {
       console.log(response);
       if (response.status === "success") {
         setIsSignUp(true);
+        localStorage.setItem("token", JSON.stringify(response.data.user.token));
+        localStorage.setItem(
+          "username",
+          JSON.stringify(response.data.user.firstname)
+        );
       }
       if (firstname === "") setFirstnameError("Please provide a firstname");
       else setFirstnameError("");
@@ -87,12 +92,12 @@ function CreateAccount() {
   }
 
   if (isSignUp) {
-    return <Redirect to="/signin" />;
+    return <Redirect to="/games" />;
   } else {
     return (
       <div>
         <NavbarHomePage />
-        <div className="container center-sign">
+        <div className="container center-sign margin-top">
           <div className="center-title">
             <div className="sign-up-title">
               <p>Create Your Account</p>

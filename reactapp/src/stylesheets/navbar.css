@@ -13,7 +13,6 @@
 .button:hover,
 .button:active {
   color: #e8c31b;
-  /* color: #ba9c16; */
 }
 
 .buttonShowed,
@@ -32,34 +31,36 @@
 
 .buttonShowed:hover,
 .buttonShowed:active {
-  /* background-color: #edcf49; */
   background-color: #ba9c16;
 }
 
 .logoNavBar {
   height: 3rem;
   width: 3rem;
-  margin-left: 2rem;
 }
 
 .navbar {
+  position: fixed !important;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 999 !important;
+
   background-color: #b3541e;
   display: flex;
+  padding: 0 4rem;
   justify-content: space-between;
   align-items: center;
   height: 8rem;
-  /* font-family: 'Squada One'; */
 }
 
 .navbarLeft {
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-family: "Squada One";
 }
 
 .navbarRight {
-  padding-right: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,10 +83,6 @@
   text-decoration: none;
 }
 
-.navbar {
-  position: relative;
-}
-
 .profile-menu {
   background-color: #b3541e;
   position: absolute;
@@ -96,7 +93,6 @@
   gap: 1.4rem;
   top: 100%;
   right: 1%;
-  /* width: 16rem; */
   padding: 2rem 2rem;
   border-radius: 8px;
   box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.2);
@@ -113,19 +109,4 @@
 .chevron-icon {
   font-size: 1.8rem;
   transition: all 0.2s;
-  /* transform: rotateZ(180deg); */
 }
-
-/* .profile-menu:after {
-  position: absolute;
-  top: -20%;
-  right: 47%;
-  display: inline-block;
-  border-top: 14px solid transparent;
-  border-left: 14px solid #b3541e;
-  border-right: 0px solid #b3541e;
-  border-bottom: 14px solid transparent;
-  content: " ";
-  transform: rotateZ(-90deg);
-  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.08);
-} */

@@ -1,30 +1,9 @@
 .games-section {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 6.4rem;
+  display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   /* justify-content: center; */
   min-height: calc(100vh - 6rem - 8rem);
-  padding: 9.6rem 0 12.8rem 0;
-}
-
-.second-column {
-  width: 60.2rem;
-}
-.fix-column {
-  position: fixed;
-  /* top: 20%; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3.2rem;
-}
-
-.center-content-games {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .center-stats,
@@ -37,13 +16,10 @@
 
 .start-reservation-btn-section {
   padding: 5.2rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .start-reservation-big-btn {
-  font-size: 3.6rem !important;
+  font-size: 4.8rem !important;
   padding: 2rem 6.4rem;
   /* text-transform: uppercase; */
 }
@@ -51,14 +27,13 @@
 .stats-section {
   width: 100%;
   background-color: #e8ccbc;
-  padding: 3.2rem 4.8rem;
-  border-radius: 36px;
+  padding: 1rem 0;
 }
 
 .stats {
   display: grid;
-  grid-template-columns: auto;
-  row-gap: 2.6rem;
+  grid-template-columns: auto auto;
+  row-gap: 1.6rem;
   column-gap: 6.4rem;
   align-items: center;
   justify-content: center;
@@ -67,34 +42,29 @@
 .stat {
   display: flex;
   justify-content: space-between;
-  gap: 9.4rem;
+  gap: 2.4rem;
 }
 
 .stat-title {
-  font-size: 2.4rem;
+  font-size: 3.2rem;
   color: #b3541e;
 }
 
 .stat-value {
   justify-self: end !important;
-  font-size: 2.4rem;
+  font-size: 3.2rem;
   color: #333;
+}
+
+.games {
+  padding: 9.6rem 0 12.8rem 0;
 }
 
 .center-games {
   gap: 8rem;
 }
 
-.games {
-  width: 64rem;
-}
-
 .games-titles {
-  position: fixed;
-  top: 4%;
-  padding-top: 12rem;
-  padding-bottom: 3.6rem;
-  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,7 +73,7 @@
 }
 
 .games-title {
-  font-size: 4rem;
+  font-size: 4.8rem;
   color: #aaa;
 }
 
@@ -143,19 +113,15 @@
 }
 
 .games-list {
-  margin-top: 4.4rem;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
-  gap: 1.6rem;
-  /* height: 84rem;
-  overflow-y: scroll; */
+  align-items: center;
+  justify-content: center;
+  gap: 2.8rem;
 }
 
 .game-card {
-  width: 48rem;
+  width: 60rem;
   background-color: #e8ccbc;
   padding: 2rem 2rem;
   border-radius: 36px;
@@ -168,7 +134,7 @@
 }
 
 .game-info {
-  font-size: 2.4rem;
+  font-size: 3.2rem;
   color: #333;
   font-weight: 500;
 }

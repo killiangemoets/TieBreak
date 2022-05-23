@@ -38,6 +38,10 @@ function CreateAccount(props) {
       setIsLogin(true);
       props.addToken(body.data.user.token);
       localStorage.setItem("token", JSON.stringify(body.data.user.token));
+      localStorage.setItem(
+        "username",
+        JSON.stringify(body.data.user.firstname)
+      );
       // La ligne juste au dessus sert pour le redux //
     }
 
@@ -64,7 +68,7 @@ function CreateAccount(props) {
     return (
       <div>
         <NavbarHomePage />
-        <div className="container center-sign">
+        <div className="container center-sign margin-top">
           <div className="center-title">
             <div className="sign-up-title">
               <p>Login</p>

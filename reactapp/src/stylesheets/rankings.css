@@ -8,23 +8,12 @@
 }
 
 .ranking {
-  display: flex;
+  display: grid;
+  grid-template-columns: 8rem 32rem 26rem 20rem;
   align-items: center;
   justify-content: center;
-  font-size: 3.2rem;
+  font-size: 2.4rem;
   color: #333;
   font-weight: 400;
-  gap: 9.6rem;
-}
-
-.rankings-num {
-}
-
-.ranking-player {
-}
-
-.ranking-country {
-}
-
-.rankings-points {
+  /* gap: 9.6rem; */
 }

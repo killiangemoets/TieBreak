@@ -1,5 +1,7 @@
 var express = require("express");
 var router = express.Router();
+var request = require("sync-request");
+
 // var userModel = require("../models/users");
 var clubModel = require("../models/clubs");
 
@@ -114,30 +116,44 @@ router.get("/news", async function (req, res, next) {
   try {
     // toISOString()
     console.log("hey");
+    let end_url = "";
     if (req.query?.date && req.query.date !== "") {
       const date = new Date(req.query.date);
       const month = ("0" + (date.getMonth() + 1)).slice(-2);
       const year = date.getFullYear();
       const day = ("0" + date.getDate()).slice(-2);
       console.log(`${year}-${month}-${day}`);
-      request = `/matches-by-date/${year}-${month}-${day}`;
+      end_url = `matches-by-date/${year}-${month}-${day}`;
+    } else if (req.query?.rankings && req.query.rankings !== "") {
+      end_url = `rankings/${req.query?.rankings}`;
     }
-    if (req.query?.rakings && req.query.rakings !== "")
-      request = `/matches-by-date/rankings/${req.body?.rakings}`;
+    console.log(end_url);
 
-    const rawResponse = await fetch(
-      `https://tennis-live-data.p.rapidapi.com/${request}`,
+    const rawResponse = await request(
+      "GET",
+      `https://tennis-live-data.p.rapidapi.com/${end_url}`,
       {
-        method: "GET",
-        headers: {},
+        headers: {
+          "X-RapidAPI-Host": "tennis-live-data.p.rapidapi.com",
+          "X-RapidAPI-Key":
+            "2bec16f724msh16b0ac29866aedbp1d8aafjsnfc5e9556ab4c",
+        },
       }
     );
-    const response = await rawResponse.json();
+    const result = JSON.parse(rawResponse.body);
+
+    // const TMDB_KEY = "cc713d5ef08c615055e9a909b650b7d2";
+
+    // const response = await request(
+    //   "GET",
+    //   `https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_KEY}&language=en-US&page=1`
+    // );
+    // const result = JSON.parse(response.body);
 
     res.status(200).json({
       status: "success",
       data: {
-        response,
+        result,
       },
     });
   } catch (err) {

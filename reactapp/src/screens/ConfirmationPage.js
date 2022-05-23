@@ -97,7 +97,7 @@ function Confirmation(props) {
     return (
       <div>
         <NavbarMainPage />
-        <div className=" confirmation-section">
+        <div className=" confirmation-section margin-top">
           <div className="reservation-main-title-section">
             <hr className="horizontalRule3"></hr>
             <h1 id="title" className="reservation-main-title">

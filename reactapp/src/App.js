@@ -10,6 +10,13 @@ import ConfirmationPage from "./screens/ConfirmationPage";
 import ProfilePage from "./screens/ProfilePage";
 import CreateAccount from "./screens/CreateAccount";
 import SignInPage from "./screens/SignInPage";
+import ClubMain from "./screens/ClubMain";
+import CreateClubAccount from "./screens/CreateAClubAccount";
+import ClubSignIn from "./screens/SiginInAsAClub";
+import HowItWorks from "./screens/HowItWorks";
+import Calendar from "./screens/Calendar";
+import EditCalendar from "./screens/EditCalendar";
+import ClubProfile from "./screens/ClubProfile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // IMPORT REDUX //
@@ -39,6 +46,13 @@ function App() {
           <Route path="/profile" component={ProfilePage} />
           <Route path="/signup" component={CreateAccount} />
           <Route path="/signin" component={SignInPage} />
+          <Route path="/club/signup" component={CreateClubAccount} />
+          <Route path="/club/signin" component={ClubSignIn} />
+          <Route path="/club/howitworks" component={HowItWorks} />
+          <Route path="/club/calendar/edit" component={EditCalendar} />
+          <Route path="/club/calendar" component={Calendar} />
+          <Route path="/club/profile" component={ClubProfile} />
+          <Route path="/club" component={ClubMain} />
           <Route path="*" component={Home} />
         </Switch>
       </Router>
