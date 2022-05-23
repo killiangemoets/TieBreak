@@ -31,6 +31,7 @@ function NavbarMainPage(props) {
     props.removeToken("");
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem("type");
     setLogout(true);
   };
   if (logout) {

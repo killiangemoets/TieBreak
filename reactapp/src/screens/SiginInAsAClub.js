@@ -1,18 +1,112 @@
-import React from "react";
+import React, { useState } from "react";
 import "../stylesheets/navbar.css";
 import "../stylesheets/general.css";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import NavbarHomePageClub from "../components/NavbarHomePageClub";
 import FooterPage from "../components/Footer";
 
 function ClubSignIn() {
-  return (
-    <div>
-      <NavbarHomePageClub />
-      <h1 className="center">Sigin in as a club</h1>
-      <FooterPage />
-    </div>
-  );
+  const [isLogin, setIsLogin] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  var handleSignIn = async () => {
+    const login = {
+      email,
+      password,
+    };
+
+    const loginResponse = await fetch("../clubs/sign-in", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(login),
+    });
+
+    const response = await loginResponse.json();
+    console.log(response);
+
+    if (response.status === "success") {
+      setIsLogin(true);
+      localStorage.setItem("token", JSON.stringify(response.data.club.token));
+      localStorage.setItem("type", JSON.stringify("club"));
+      localStorage.setItem(
+        "username",
+        JSON.stringify(response.data.club.clubname)
+      );
+    }
+
+    if (email === "") setEmailError("Please provide an email");
+    else if (
+      response.status === "fail" &&
+      response.message.indexOf("email not found") !== -1
+    ) {
+      setEmailError("User does not exist");
+    } else setEmailError("");
+
+    if (password === "") setPasswordError("Please enter your password");
+    else if (
+      response.status === "fail" &&
+      response.message.indexOf("password incorrect") !== -1
+    ) {
+      setPasswordError("Wrong password");
+    } else setPasswordError("");
+  };
+
+  if (isLogin) {
+    return <Redirect to="/club/calendar" />;
+  } else {
+    return (
+      <div>
+        <NavbarHomePageClub />
+        <div className="container center-sign margin-top">
+          <div className="center-title">
+            <div className="sign-up-title">
+              <p>Login as a Club</p>
+            </div>
+          </div>
+
+          <div className="login-form">
+            <form>
+              <div className="inputDiv">
+                <div className="login-account-form">
+                  <input
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    placeholder="Email"
+                  ></input>
+                  <p>{emailError}</p>
+                </div>
+                <div className="login-account-form">
+                  <input
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    placeholder="Password"
+                  ></input>
+                  <p>{passwordError}</p>
+                </div>
+              </div>
+            </form>
+            <button
+              className="sign-in-sumbit-button"
+              onClick={() => handleSignIn()}
+              type="submit"
+            >
+              {" "}
+              SUBMIT
+            </button>
+          </div>
+        </div>
+        <FooterPage />
+      </div>
+    );
+  }
 }
 
 export default ClubSignIn;

@@ -1,0 +1,87 @@
+.calendar-section {
+  gap: 4.8rem;
+}
+
+.calendar-title {
+  margin-top: 4rem;
+}
+
+.calendar-input,
+.calendar-details,
+.calendar-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-edit {
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.calendar-edit h4 {
+  font-size: 3rem;
+  color: #333;
+  font-weight: 400;
+  color: #b3541e;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  align-items: center;
+  row-gap: 6.4rem;
+  column-gap: 4.8rem;
+}
+
+.calendar-edit-grid {
+  row-gap: 1.4rem !important;
+}
+.calendar-grid div {
+  text-align: center;
+}
+
+.calendar-grid h6 {
+  font-weight: 400 !important;
+  color: #333;
+  font-size: 3.2rem;
+}
+
+.title {
+  color: #b3541e !important;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left !important;
+}
+
+.edit-btn-section {
+  margin-bottom: 9.6rem;
+}
+
+.edit-btn {
+  padding: 1.2rem 10rem;
+  margin: 0;
+}
+
+.edit-btn2 {
+  margin-top: 6.4rem !important;
+  padding: 1.2rem 6.4rem;
+  margin: 0;
+}
+
+#num-input {
+  width: 12rem;
+  margin: 0;
+}
+
+.edit-btn-section {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 16.4rem;
+}

@@ -19,31 +19,30 @@ const reservationSchema = new mongoose.Schema({
 const clubSchema = new mongoose.Schema({
   clubname: {
     type: String,
-    required: [true, "xxx Please provide a club name xxx"],
+    required: [true, "Please provide a club name"],
   },
   price: {
     type: Number,
-    required: [true, "www Please provide a price www"],
+    required: [true, "Please provide a price"],
   },
   phone: {
     type: String,
-    required: [true, "vvv Please provide a phone number vvv"],
+    required: [true, "Please provide a phone number"],
   },
   address: {
     type: String,
-    required: [true, "aaa Please provide an address aaa"],
+    required: [true, "Please provide an address"],
   },
   email: {
     type: String,
-    required: [true, "yyy Please provide an email address yyy"],
+    required: [true, "Please provide an email address"],
     unique: true,
     lowercase: true,
-    validate: [validator.isEmail, "yyy Please provide a valid email yyy"],
+    validate: [validator.isEmail, "invalid email"],
   },
   password: {
     type: String,
-    required: [true, "zzz Please provide a password zzz"],
-    minlength: [8, "zzz Your password should have at least 8 characters zzz"],
+    required: [true, "Please provide a password"],
   },
   token: {
     type: String,
@@ -51,11 +50,11 @@ const clubSchema = new mongoose.Schema({
   },
   latitude: {
     type: Number,
-    required: [true, "mmm Please provide a location on the map mmm"],
+    required: [true, "Please provide a location on the map"],
   },
   longitude: {
     type: Number,
-    required: [true, "mmm Please provide a location on the map mmm"],
+    required: [true, "Please provide a location on the map"],
   },
   availabilities: [availabilitySchema],
   reservations: [reservationSchema],
