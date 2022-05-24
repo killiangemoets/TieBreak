@@ -1,168 +1,343 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../stylesheets/navbar.css";
 import "../stylesheets/general.css";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import FooterPage from "../components/Footer";
 import NavbarClub from "../components/NavbarClub";
 
 function EditCalendar() {
-  return (
-    <div>
-      <NavbarClub />
-      <div className="container center-sign margin-top calendar-section">
-        <div className="center-title calendar-title">
-          <div className="sign-up-title">
-            <p>Edit Mode</p>
+  const [hours] = useState([
+    8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
+  ]);
+
+  const [token, setToken] = useState("");
+  const [type, setType] = useState("");
+
+  const [date, setDate] = useState(new Date(Date.now()));
+  const [inputDate, setInputDate] = useState(new Date(Date.now()));
+
+  const [availabilities, setAvailabilities] = useState([]);
+  const [reservations, setReservations] = useState([]);
+
+  const [changes, setChanges] = useState([]);
+  const [goback, setGoback] = useState(false);
+
+  const [values, setValues] = useState(new Array(16).fill(""));
+  const [generalValue, setGeneralValue] = useState("");
+
+  function getDateInNiceFormat(date) {
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const year = date.getFullYear();
+    const day = ("0" + date.getDate()).slice(-2);
+    return `${year}-${month}-${day}`;
+  }
+
+  function updateInputDate(inputDate) {
+    setInputDate(inputDate);
+    setDate(new Date(inputDate));
+  }
+
+  async function getClubInfos(token) {
+    var rawResponse = await fetch(`../../clubs/infos/${token}`);
+    var response = await rawResponse.json();
+    setReservations(response.data.infos.reservations);
+    setAvailabilities(response.data.infos.availabilities);
+
+    calculateValues(
+      response.data.infos.availabilities,
+      response.data.infos.reservations,
+      new Date(Date.now())
+    );
+  }
+
+  function calculateValues(availabilities, reservations, date) {
+    const obtainedValues = hours.map((time) => {
+      const availability = availabilities.find((el) => {
+        return (
+          new Date(el.date).getFullYear() === date.getFullYear() &&
+          new Date(el.date).getMonth() === date.getMonth() &&
+          new Date(el.date).getDate() === date.getDate() &&
+          +el.time === time
+        );
+      });
+      const num_availabilities = availability ? +availability.courts : 0;
+      const list_reservations = reservations.filter((el) => {
+        return (
+          new Date(el.date).getFullYear() === date.getFullYear() &&
+          new Date(el.date).getMonth() === date.getMonth() &&
+          new Date(el.date).getDate() === date.getDate() &&
+          +el.time === +time
+        );
+      });
+      const num_reservations = +list_reservations.length;
+
+      if (
+        changes.find(
+          (change) =>
+            new Date(change.date).getFullYear() ===
+              new Date(date).getFullYear() &&
+            new Date(change.date).getMonth() === new Date(date).getMonth() &&
+            new Date(change.date).getDate() === new Date(date).getDate() &&
+            +change.time === +time
+        )
+      ) {
+        console.log("change detected");
+        return (
+          +changes.find(
+            (change) =>
+              new Date(change.date).getFullYear() ===
+                new Date(date).getFullYear() &&
+              new Date(change.date).getMonth() === new Date(date).getMonth() &&
+              new Date(change.date).getDate() === new Date(date).getDate() &&
+              +change.time === +time
+          ).courts + num_reservations
+        );
+      } else {
+        return num_availabilities + num_reservations;
+      }
+    });
+
+    console.log(obtainedValues);
+
+    setValues(obtainedValues);
+  }
+
+  function FixAGeneralValue(reservations, date, generalValue) {
+    const obtainedValues = hours.map((time) => {
+      const list_reservations = reservations.filter((el) => {
+        return (
+          new Date(el.date).getFullYear() === date.getFullYear() &&
+          new Date(el.date).getMonth() === date.getMonth() &&
+          new Date(el.date).getDate() === date.getDate() &&
+          +el.time === +time
+        );
+      });
+      const num_reservations = list_reservations.length;
+
+      if (generalValue < num_reservations) {
+        saveChange(0, time, date);
+        return num_reservations;
+      } else {
+        saveChange(generalValue - num_reservations, time, date);
+        return generalValue;
+      }
+    });
+
+    console.log(obtainedValues);
+    setValues(obtainedValues);
+  }
+
+  function saveChange(courts, time, date) {
+    if (
+      changes.find(
+        (change) =>
+          new Date(change.date).getFullYear() ===
+            new Date(date).getFullYear() &&
+          new Date(change.date).getMonth() === new Date(date).getMonth() &&
+          new Date(change.date).getDate() === new Date(date).getDate() &&
+          +change.time === +time
+      )
+    ) {
+      let changesCopy = [...changes];
+      changesCopy.forEach((change) => {
+        if (
+          new Date(change.date).getFullYear() ===
+            new Date(date).getFullYear() &&
+          new Date(change.date).getMonth() === new Date(date).getMonth() &&
+          new Date(change.date).getDate() === new Date(date).getDate() &&
+          +change.time === +time
+        ) {
+          change.courts = courts;
+        }
+      });
+      setChanges(changesCopy);
+      console.log(changesCopy);
+    } else {
+      setChanges((prevChanges) => [
+        ...prevChanges,
+        {
+          courts,
+          date,
+          time,
+        },
+      ]);
+    }
+  }
+
+  function renderInfos(reservations, date, values) {
+    const infos = hours.map((time, i) => {
+      const list_reservations = reservations.filter((el) => {
+        return (
+          new Date(el.date).getFullYear() === date.getFullYear() &&
+          new Date(el.date).getMonth() === date.getMonth() &&
+          new Date(el.date).getDate() === date.getDate() &&
+          +el.time === time
+        );
+      });
+      const num_reservations = list_reservations.length;
+
+      return (
+        <>
+          <div>
+            <h6>
+              {time}h - {time + 1 < 24 ? time + 1 : "00"}h
+            </h6>
+          </div>
+          <div className="form-div">
+            <form className="when-input-style">
+              <input
+                type="number"
+                id="num-input"
+                name="number"
+                min={num_reservations}
+                // placeholder={num_availabilities + num_reservations}
+                value={values[i]}
+                onChange={(e) => {
+                  e.preventDefault();
+                  if (e.target.value < num_reservations)
+                    e.target.value = num_reservations;
+
+                  setValues((prevValues) => {
+                    let copy = [...prevValues];
+                    copy.splice(i, 1, e.target.value);
+                    return copy;
+                  });
+
+                  saveChange(e.target.value - num_reservations, time, date);
+                }}
+              />
+            </form>
+          </div>
+          <div>
+            <h6>courts</h6>
+          </div>
+          <div>
+            <h6 className="num-reservations">
+              currently <span>{num_reservations}</span> reservation(s)
+            </h6>
+          </div>
+        </>
+      );
+    });
+    return infos;
+  }
+
+  async function handleConfirm() {
+    var rawResponse = await fetch(`../../clubs/infos`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token, changes }),
+    });
+    var response = await rawResponse.json();
+    console.log(response);
+    setGoback(true);
+  }
+
+  useEffect(() => {
+    setChanges([]);
+    const storage1 = localStorage.getItem("type");
+    if (JSON.parse(storage1) !== "club") setType(false);
+    const storage = localStorage.getItem("token");
+    if (storage) {
+      setToken(JSON.parse(storage));
+      getClubInfos(JSON.parse(storage));
+    } else setToken(false);
+    setInputDate(getDateInNiceFormat(new Date(Date.now())));
+  }, []);
+
+  if (token === false || type === false) {
+    return <Redirect to="/club/signin" />;
+  } else if (goback === true) {
+    return <Redirect to="/club/calendar" />;
+  } else {
+    return (
+      <div>
+        <NavbarClub />
+        <div className="container center-sign margin-top calendar-section">
+          <div className="center-title calendar-title">
+            <div className="sign-up-title">
+              <p>Edit Mode</p>
+            </div>
+          </div>
+          <div className="calendar-input">
+            <form className="when-input-style">
+              <input
+                type="date"
+                id="date-input"
+                name="date"
+                value={inputDate}
+                min={getDateInNiceFormat(new Date(Date.now()))}
+                placeholder="dd-mm-yyyy"
+                data-date=""
+                onChange={(e) => {
+                  calculateValues(
+                    availabilities,
+                    reservations,
+                    new Date(e.target.value)
+                  );
+                  setGeneralValue("");
+                  updateInputDate(e.target.value);
+                }}
+                data-date-format="DD MMMM YYYY"
+              />
+            </form>
+          </div>
+          <div className="calendar-edit">
+            <h4>Enter the number of courts available</h4>
+            <div className="calendar-grid2">
+              {" "}
+              {renderInfos(reservations, date, values)}
+              {/* <div className="same-number"> */}
+              <div className="same-number">
+                <h6>Same number for all the day:</h6>
+              </div>
+              <div className="form-div same-number">
+                <form className="when-input-style">
+                  <input
+                    type="number"
+                    id="num-input"
+                    name="number"
+                    // min={num_reservations}
+                    placeholder={0}
+                    min={0}
+                    value={generalValue}
+                    onChange={(e) => {
+                      e.preventDefault();
+                      setGeneralValue(e.target.value);
+                      FixAGeneralValue(reservations, date, e.target.value);
+                    }}
+                  />
+                </form>
+              </div>
+              <div className="same-number">
+                <h6>courts</h6>
+              </div>
+            </div>
+            {/* </div> */}
+          </div>
+          <div className="edit-btn-section">
+            <button
+              className="yellowButton sign-in-sumbit-button edit-btn2"
+              onClick={() => setGoback(true)}
+            >
+              {" "}
+              Cancel
+            </button>
+            <button
+              className="yellowButton sign-in-sumbit-button edit-btn2"
+              onClick={() => handleConfirm()}
+            >
+              {" "}
+              Confirm
+            </button>
           </div>
         </div>
-        <div className="calendar-input">
-          <form className="when-input-style">
-            <input
-              type="date"
-              id="date-input"
-              name="date"
-              // value={inputDate}
-              // min={getDateInNiceFormat(new Date(Date.now()))}
-              placeholder="dd-mm-yyyy"
-              data-date=""
-              // onChange={(e) => updateInputDate(e.target.value)}
-              data-date-format="DD MMMM YYYY"
-            />
-          </form>
-        </div>
-        <div className="calendar-edit">
-          <h4>Enter the number of courts available</h4>
-          <div className="calendar-grid calendar-edit-grid">
-            <div>
-              <h6>8h-9h</h6>
-            </div>
-            <div className="form-div">
-              <form className="when-input-style">
-                <input
-                  type="number"
-                  id="num-input"
-                  name="number"
-                  min={0}
-                  // value={inputDate}
-                  // min={getDateInNiceFormat(new Date(Date.now()))}
-                  placeholder="0"
-                  // onChange={(e) => updateInputDate(e.target.value)}
-                />
-              </form>
-            </div>
-            <div>
-              <h6>courts</h6>
-            </div>
-            <div>
-              <h6>8h-9h</h6>
-            </div>
-            <div>
-              <form className="when-input-style">
-                <input
-                  type="number"
-                  id="num-input"
-                  name="number"
-                  min={0}
-                  // value={inputDate}
-                  // min={getDateInNiceFormat(new Date(Date.now()))}
-                  placeholder="0"
-                  // onChange={(e) => updateInputDate(e.target.value)}
-                />
-              </form>
-            </div>
-            <div>
-              <h6>courts</h6>
-            </div>
-            <div>
-              <h6>8h-9h</h6>
-            </div>
-            <div>
-              <form className="when-input-style">
-                <input
-                  type="number"
-                  id="num-input"
-                  name="number"
-                  min={0}
-                  // value={inputDate}
-                  // min={getDateInNiceFormat(new Date(Date.now()))}
-                  placeholder="0"
-                  // onChange={(e) => updateInputDate(e.target.value)}
-                />
-              </form>
-            </div>
-            <div>
-              <h6>courts</h6>
-            </div>
-            <div>
-              <h6>8h-9h</h6>
-            </div>
-            <div>
-              <form className="when-input-style">
-                <input
-                  type="number"
-                  id="num-input"
-                  name="number"
-                  min={0}
-                  // value={inputDate}
-                  // min={getDateInNiceFormat(new Date(Date.now()))}
-                  placeholder="0"
-                  // onChange={(e) => updateInputDate(e.target.value)}
-                />
-              </form>
-            </div>
-            <div>
-              <h6>courts</h6>
-            </div>
-            <div>
-              <h6>8h-9h</h6>
-            </div>
-            <div>
-              <form className="when-input-style">
-                <input
-                  type="number"
-                  id="num-input"
-                  name="number"
-                  min={0}
-                  // value={inputDate}
-                  // min={getDateInNiceFormat(new Date(Date.now()))}
-                  placeholder="0"
-                  // onChange={(e) => updateInputDate(e.target.value)}
-                />
-              </form>
-            </div>
-            <div>
-              <h6>courts</h6>
-            </div>
-            <div>
-              <h6>8h-9h</h6>
-            </div>
-            <div>
-              <form className="when-input-style">
-                <input
-                  type="number"
-                  id="num-input"
-                  name="number"
-                  min={0}
-                  // value={inputDate}
-                  // min={getDateInNiceFormat(new Date(Date.now()))}
-                  placeholder="0"
-                  // onChange={(e) => updateInputDate(e.target.value)}
-                />
-              </form>
-            </div>
-            <div>
-              <h6>courts</h6>
-            </div>
-          </div>
-        </div>
-        <div className="edit-btn-section">
-          <button className="sign-in-sumbit-button edit-btn2"> Cancel</button>
-          <button className="sign-in-sumbit-button edit-btn2"> Confirm</button>
-        </div>
+        <FooterPage />
       </div>
-      <FooterPage />
-    </div>
-  );
+    );
+  }
 }
 
 export default EditCalendar;

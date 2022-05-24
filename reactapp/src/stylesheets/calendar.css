@@ -20,32 +20,51 @@
 }
 
 .calendar-edit h4 {
-  font-size: 3rem;
+  font-size: 3.6rem;
   color: #333;
   font-weight: 400;
   color: #b3541e;
+  margin-bottom: 1.2rem;
 }
 
-.calendar-grid {
+.calendar-grid,
+.calendar-grid2 {
   display: grid;
-  grid-template-columns: auto auto auto;
   justify-content: center;
   align-items: center;
-  row-gap: 6.4rem;
+  row-gap: 2rem;
   column-gap: 4.8rem;
 }
+.calendar-grid {
+  grid-template-columns: auto auto 75rem;
+}
 
-.calendar-edit-grid {
+.calendar-grid2 {
+  grid-template-columns: auto auto auto auto;
   row-gap: 1.4rem !important;
 }
-.calendar-grid div {
+
+.calendar-grid div,
+.calendar-grid2 div {
   text-align: center;
 }
 
-.calendar-grid h6 {
+.calendar-grid h6,
+.calendar-grid2 h6 {
   font-weight: 400 !important;
   color: #333;
   font-size: 3.2rem;
+}
+
+.num-reservations {
+  font-size: 2.4rem !important;
+  /* color: #aaa !important; */
+}
+
+.num-reservations span {
+  color: #333;
+  /* font-size: 3.2rem; */
+  font-weight: 900;
 }
 
 .title {
@@ -84,4 +103,13 @@
   /* align-items: center; */
   justify-content: center;
   gap: 16.4rem;
+}
+
+.same-number {
+  margin-top: 3.2rem;
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  grid-column: 1/5; */
 }

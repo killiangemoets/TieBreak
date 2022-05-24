@@ -18,6 +18,7 @@ function Home(props) {
   const [favoriteClub, setFavoriteClub] = useState("");
   const [clubOfThisMonth, setClubOfThisMonth] = useState("");
   const [token, setToken] = useState("");
+  const [type, setType] = useState("");
 
   const toggleSwitch = () => {
     switchToggled ? setSwitchToggled(false) : setSwitchToggled(true);
@@ -133,6 +134,8 @@ function Home(props) {
     // console.log(comingGames);
   }
   useEffect(() => {
+    const storage1 = localStorage.getItem("type");
+    if (JSON.parse(storage1) !== "player") setType(false);
     const storage = localStorage.getItem("token");
     console.log(JSON.parse(storage));
     if (storage) setToken(JSON.parse(storage));
@@ -172,7 +175,7 @@ function Home(props) {
     return info;
   }
 
-  if (token === false) {
+  if (token === false || type === false) {
     return <Redirect to="/signin" />;
   } else {
     return (

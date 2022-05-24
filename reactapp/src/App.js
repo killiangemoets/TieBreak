@@ -2,8 +2,6 @@ import React from "react";
 import Home from "./screens/Home";
 import MainPage from "./screens/MainPage";
 import NewsPage from "./screens/NewsPage";
-import ATPRankingsPage from "./screens/ATPRankingsPage";
-import WTARankingsPage from "./screens/WTARankingsPage";
 import ReservationPage from "./screens/ReservationPage";
 import OverviewPage from "./screens/OverviewPage";
 import ConfirmationPage from "./screens/ConfirmationPage";
@@ -34,8 +32,6 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/games" component={MainPage} />
-          <Route path="/news/atprankings" component={ATPRankingsPage} />
-          <Route path="/news/wtarankings" component={WTARankingsPage} />
           <Route path="/news" component={NewsPage} />
           <Route path="/reservation/overview" component={OverviewPage} />
           <Route

@@ -38,7 +38,7 @@ function CreateAccount(props) {
       setIsLogin(true);
       props.addToken(body.data.user.token);
       localStorage.setItem("token", JSON.stringify(body.data.user.token));
-      localStorage.setItem("type", "player");
+      localStorage.setItem("type", JSON.stringify("player"));
       localStorage.setItem(
         "username",
         JSON.stringify(body.data.user.firstname)
