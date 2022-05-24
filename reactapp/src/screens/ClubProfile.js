@@ -17,12 +17,71 @@ function ClubProfile() {
   const [newPhone, setNewPhone] = useState("");
   const [emailError, setEmailError] = useState("");
 
+  async function getPersonnalInfos(token) {
+    var rawResponse = await fetch(`/clubs/infos/${token}`);
+    var response = await rawResponse.json();
+    if (response.status === "success") setPersonnalInfos(response.data.infos)
+  }
+
+
+  async function handleConfirm(token) {
+    var rawResponse = await fetch(`/clubs/infos/${token}`, {
+      method : "PATCH", 
+      headers : {
+        "Content-Type" : "application/json",  
+      }, 
+      body : JSON.stringify({
+        address: newAddress.length > 0 ? newAddress : personnalInfos.adress,
+        phone : newPhone.length > 0 ? newPhone : personnalInfos.phone,
+        price : newPrice.length > 0 ? newPrice : personnalInfos.price,
+        email : newEmail.length > 0 ? newEmail : personnalInfos.email, 
+        name : newName.length > 0 ? newName : personnalInfos.name,
+      })
+    }); 
+    var response = await rawResponse.json(); 
+    setNewAddress(""); 
+    setNewPhone(""); 
+    setNewPrice(""); 
+    setNewEmail(""); 
+    setNewName("");   
+    if (response.status === "success") await getPersonnalInfos(token); 
+    setEmailError("");
+
+    if (response.status === "fail") {
+      console.log("---ERROR---");
+      if (
+        response.message?.message &&
+        response.message.message?.indexOf("invalid email") !== -1
+      )
+        setEmailError("Please provide a valid email");
+      else if (
+        response.message?.codeName &&
+        response.message.codeName?.indexOf("DuplicateKey") !== -1
+      )
+        setEmailError("This email is already used");
+    }
+  }
+
+  function handleCancel() {
+    setNewAddress(""); 
+    setNewPhone(""); 
+    setNewPrice(""); 
+    setNewEmail(""); 
+    setNewName("");   
+  }
+
+
   useEffect(() => {
     const storage1 = localStorage.getItem("type");
     if (JSON.parse(storage1) !== "club") setType(false);
     const storage = localStorage.getItem("token");
-    if (storage) setToken(JSON.parse(storage));
-  }, []);
+    if (storage) {
+      setToken(JSON.parse(storage))
+      getPersonnalInfos(JSON.parse(storage));
+    } else {
+      setToken(false);
+  }}, []);
+
 
   if (token === false || type === false) {
     return <Redirect to="/club/signin" />;
@@ -82,7 +141,7 @@ function ClubProfile() {
                     name="lastname"
                     value={newName}
                     onChange={(e) => setNewName(e.target.value)}
-                    placeholder={personnalInfos.name}
+                    placeholder={personnalInfos.clubname}
                   />
                 </div>
                 <div className="input-div">
@@ -113,13 +172,13 @@ function ClubProfile() {
           <div className="reservation-buttons">
             <button
               className="yellowButton profileBtn"
-              // onClick={() => handleCancel()}
+              onClick={() => handleCancel()}
             >
               Cancel
             </button>
             <button
               className="yellowButton profileBtn"
-              // onClick={() => handleConfirm(token)}
+              onClick={() => handleConfirm(token)}
             >
               Confirm
             </button>
@@ -132,3 +191,4 @@ function ClubProfile() {
 }
 
 export default ClubProfile;
+
