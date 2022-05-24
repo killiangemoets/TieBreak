@@ -25,7 +25,7 @@ function NavbarMainPage(props) {
     const storage = localStorage.getItem("username");
     console.log(JSON.parse(storage));
     if (storage) setUsername(JSON.parse(storage));
-  }, []);
+  }, [props.refreshUsername]);
 
   const handleLogout = function () {
     props.removeToken("");

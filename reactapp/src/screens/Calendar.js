@@ -116,7 +116,7 @@ function Calendar() {
                 id="date-input"
                 name="date"
                 value={inputDate}
-                min={getDateInNiceFormat(new Date(Date.now()))}
+                // min={getDateInNiceFormat(new Date(Date.now()))}
                 placeholder="dd-mm-yyyy"
                 data-date=""
                 onChange={(e) => updateInputDate(e.target.value)}

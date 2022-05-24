@@ -16,6 +16,8 @@ function Profile(props) {
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
 
+  const [refreshUsername, setRefreshUsername] = useState(false);
+
   async function getPersonnalInfos(token) {
     var rawResponse = await fetch(`/users/infos/${token}`);
     var response = await rawResponse.json();
@@ -24,6 +26,11 @@ function Profile(props) {
   }
 
   async function handleConfirm(token) {
+    if (newFirstname.length > 0) {
+      localStorage.setItem("username", JSON.stringify(newFirstname));
+      setRefreshUsername(!refreshUsername);
+    }
+
     var rawResponse = await fetch(`/users/infos/${token}`, {
       method: "PATCH",
       headers: {
@@ -74,9 +81,10 @@ function Profile(props) {
     if (JSON.parse(storage1) !== "player") setType(false);
     const storage = localStorage.getItem("token");
     console.log(JSON.parse(storage));
-    if (storage) setToken(JSON.parse(storage));
-    else setToken(false);
-    getPersonnalInfos(JSON.parse(storage));
+    if (storage) {
+      setToken(JSON.parse(storage));
+      getPersonnalInfos(JSON.parse(storage));
+    } else setToken(false);
   }, []);
 
   if (token === false || type === false) {
@@ -84,7 +92,7 @@ function Profile(props) {
   } else {
     return (
       <div>
-        <NavbarMainPage />
+        <NavbarMainPage refreshUsername={refreshUsername} />
         <div className=" profile-section margin-top">
           <div className="reservation-main-title-section">
             <hr className="horizontalRule4"></hr>

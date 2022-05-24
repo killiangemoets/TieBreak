@@ -13,29 +13,10 @@ import {
   faPhone,
   faHandHoldingDollar,
 } from "@fortawesome/free-solid-svg-icons";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { divIcon } from "leaflet";
 
 function Reservation(props) {
-  function setMapLocation() {
-    var lat = 50.84,
-      lng = 4.36;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          lat = position.coords.latitude;
-          lng = position.coords.longitude;
-        },
-        function () {
-          alert("Could not get your position");
-          lat = 20;
-          lng = 20;
-        }
-      );
-
-      return { lat, lng };
-    }
-  }
   const [hours] = useState([
     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
   ]);
@@ -49,12 +30,14 @@ function Reservation(props) {
   const [availableHours, setAvailableHours] = useState([
     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
   ]);
-  const [mapPosition, setMapPosition] = useState(setMapLocation());
+  const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
+  const [currentPosition, setCurrentPosition] = useState({ lat: 32, lng: 38 });
   const [searchLocation, setSearchLocation] = useState("");
   const [clubsResults, setClubsResults] = useState([]);
   const [next, setNext] = useState(false);
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
+  const [loading, setLoading] = useState(true);
 
   function generatePopups(clubs) {
     const popups = clubs.map((club, i) => {
@@ -140,6 +123,18 @@ function Reservation(props) {
     return popups;
   }
 
+  function MinimapBounds({ coords, loading }) {
+    const map = useMap();
+    if (loading) {
+      map.setView([coords.lat, coords.lng], 6);
+    } else map.flyTo([coords.lat, coords.lng], 10, { duration: 1 });
+  }
+
+  function moveToClub(coords) {
+    setLoading(false);
+    setMapPosition(coords);
+  }
+
   function renderCurrentPosition(position) {
     const customMarkerIcon = divIcon({
       html: `
@@ -186,6 +181,9 @@ function Reservation(props) {
               : "club-card club-card-not-available"
           }
           key={i}
+          onClick={() =>
+            moveToClub({ lat: club?.latitude, lng: club?.longitude })
+          }
         >
           <div className="club-title">
             <h4>{club.clubname}</h4>
@@ -337,9 +335,11 @@ function Reservation(props) {
     setInputDate(getDateInNiceFormat(new Date(Date.now())));
     setTime("");
     setClub("");
-    setAvailableHours([
-      8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
-    ]);
+
+    const timeNow = new Date(Date.now()).getHours();
+    const updateAvailableHours = [...hours].filter((hour) => hour > timeNow);
+    setAvailableHours(updateAvailableHours);
+
     schedule(new Date(Date.now()));
     document.querySelector(".next-button").classList.add("not-clickable");
   }
@@ -392,8 +392,22 @@ function Reservation(props) {
     setDate(new Date(inputDate));
 
     await schedule(new Date(inputDate));
-    // if (club.length === 0) await schedule(new Date(inputDate));
+
     if (club.length !== 0) await schedule(new Date(inputDate), club);
+    else {
+      if (
+        new Date(inputDate).getFullYear() ===
+          new Date(Date.now()).getFullYear() &&
+        new Date(inputDate).getMonth() === new Date(Date.now()).getMonth() &&
+        new Date(inputDate).getDate() === new Date(Date.now()).getDate()
+      ) {
+        const timeNow = new Date(Date.now()).getHours();
+        const updateAvailableHours = [...hours].filter(
+          (hour) => hour > timeNow
+        );
+        setAvailableHours(updateAvailableHours);
+      } else setAvailableHours(hours);
+    }
     setTime("");
     document.querySelector(".next-button").classList.add("not-clickable");
   }
@@ -448,12 +462,22 @@ function Reservation(props) {
     // console.log(response);
 
     if (club.length === 0) {
+      console.log(response.data.availabilities);
       setAvailableClubs(response.data.availabilities);
     } else {
       const times = response.data.availabilities.map(
         (availability) => availability.time
       );
-      setAvailableHours(times);
+
+      if (
+        date.getFullYear() === new Date(Date.now()).getFullYear() &&
+        date.getMonth() === new Date(Date.now()).getMonth() &&
+        date.getDate() === new Date(Date.now()).getDate()
+      ) {
+        const timeNow = new Date(Date.now()).getHours();
+        const updateAvailableHours = times.filter((time) => time > timeNow);
+        setAvailableHours(updateAvailableHours);
+      } else setAvailableHours(times);
     }
   }
 
@@ -468,30 +492,36 @@ function Reservation(props) {
     const storage1 = localStorage.getItem("type");
     if (JSON.parse(storage1) !== "player") setType(false);
     const storage = localStorage.getItem("token");
-    console.log(JSON.parse(storage));
     if (storage) setToken(JSON.parse(storage));
     else setToken(false);
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function (position) {
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
           setMapPosition({ lat, lng });
+          setCurrentPosition({ lat, lng });
           loadClubs({ lat, lng });
         },
         function () {
           alert("Could not get your position");
-          const lat = 20;
-          const lng = 20;
+          const lat = 50.84;
+          const lng = 4.36;
           setMapPosition({ lat, lng });
+          setCurrentPosition({ lat, lng });
           loadClubs({ lat, lng });
         }
       );
     }
 
+    const timeNow = new Date(Date.now()).getHours();
+    const updateAvailableHours = [...hours].filter((hour) => hour > timeNow);
+    setAvailableHours(updateAvailableHours);
+
     let currentReservation = "";
     const storage2 = localStorage.getItem("currentReservation");
-    console.log(JSON.parse(storage2));
+
     if (storage) currentReservation = JSON.parse(storage2);
 
     if (currentReservation && currentReservation !== "") {
@@ -602,7 +632,7 @@ function Reservation(props) {
               <div className="where-content">
                 <MapContainer
                   className="map-container"
-                  center={mapPosition}
+                  // center={mapPosition}
                   zoom={6}
                 >
                   <TileLayer
@@ -610,7 +640,8 @@ function Reservation(props) {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   ></TileLayer>
                   {generatePopups(allClubs)}
-                  {renderCurrentPosition(mapPosition)}
+                  {renderCurrentPosition(currentPosition)}
+                  <MinimapBounds coords={mapPosition} loading={loading} />
                 </MapContainer>
                 <div className="clubs-cards">
                   {renderClubCards(sortAllClubs, availableClubs, club)}
@@ -618,11 +649,6 @@ function Reservation(props) {
               </div>
             </div>
           </div>
-          {/* <div className="your-reservation">
-          <h5>Date: {inputDate}</h5>
-          <h5>Time: {time}</h5>
-          <h5>Club: {club}</h5>
-        </div> */}
           <div className="reservation-buttons">
             <button
               className="yellowButton reservation-button"
