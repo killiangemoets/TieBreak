@@ -4,6 +4,7 @@ import "../stylesheets/general.css";
 import { Redirect, Link } from "react-router-dom";
 import FooterPage from "../components/Footer";
 import NavbarClub from "../components/NavbarClub";
+import { now } from "mongoose";
 
 function EditCalendar() {
   const [hours] = useState([
@@ -22,7 +23,7 @@ function EditCalendar() {
   const [changes, setChanges] = useState([]);
   const [goback, setGoback] = useState(false);
 
-  const [values, setValues] = useState(new Array(16).fill(""));
+  const [values, setValues] = useState(new Array(hours.length).fill(""));
   const [generalValue, setGeneralValue] = useState("");
 
   function getDateInNiceFormat(date) {
@@ -102,7 +103,19 @@ function EditCalendar() {
     setValues(obtainedValues);
   }
 
-  function FixAGeneralValue(reservations, date, generalValue) {
+  function fixAGeneralValue(reservations, date, generalValue) {
+    const today = new Date(Date.now());
+    let limitTime = 0;
+    if (
+      date.getFullYear() === today.getFullYear() &&
+      date.getMonth() === today.getMonth() &&
+      date.getDate() === today.getDate()
+    ) {
+      console.log("TODAY");
+      limitTime = today.getHours();
+    }
+    console.log("Limit Time: " + limitTime);
+
     const obtainedValues = hours.map((time) => {
       const list_reservations = reservations.filter((el) => {
         return (
@@ -114,7 +127,18 @@ function EditCalendar() {
       });
       const num_reservations = list_reservations.length;
 
-      if (generalValue < num_reservations) {
+      if (time <= limitTime) {
+        const availability = availabilities.find((el) => {
+          return (
+            new Date(el.date).getFullYear() === date.getFullYear() &&
+            new Date(el.date).getMonth() === date.getMonth() &&
+            new Date(el.date).getDate() === date.getDate() &&
+            +el.time === time
+          );
+        });
+        const num_availabilities = availability ? +availability.courts : 0;
+        return num_availabilities;
+      } else if (generalValue < num_reservations) {
         saveChange(0, time, date);
         return num_reservations;
       } else {
@@ -165,6 +189,18 @@ function EditCalendar() {
   }
 
   function renderInfos(reservations, date, values) {
+    const today = new Date(Date.now());
+    let limitTime = 0;
+    if (
+      date.getFullYear() === today.getFullYear() &&
+      date.getMonth() === today.getMonth() &&
+      date.getDate() === today.getDate()
+    ) {
+      console.log("TODAY");
+      limitTime = today.getHours();
+    }
+    console.log("Limit Time: " + limitTime);
+
     const infos = hours.map((time, i) => {
       const list_reservations = reservations.filter((el) => {
         return (
@@ -175,6 +211,16 @@ function EditCalendar() {
         );
       });
       const num_reservations = list_reservations.length;
+
+      const availability = availabilities.find((el) => {
+        return (
+          new Date(el.date).getFullYear() === date.getFullYear() &&
+          new Date(el.date).getMonth() === date.getMonth() &&
+          new Date(el.date).getDate() === date.getDate() &&
+          +el.time === time
+        );
+      });
+      const num_availabilities = availability ? +availability.courts : 0;
 
       return (
         <>
@@ -189,12 +235,24 @@ function EditCalendar() {
                 type="number"
                 id="num-input"
                 name="number"
-                min={num_reservations}
+                min={
+                  time > limitTime
+                    ? num_reservations
+                    : num_reservations + num_availabilities
+                }
+                max={
+                  time > limitTime ? 999 : num_reservations + num_availabilities
+                }
                 // placeholder={num_availabilities + num_reservations}
                 value={values[i]}
                 onChange={(e) => {
                   e.preventDefault();
-                  if (e.target.value < num_reservations)
+                  if (
+                    time <= limitTime &&
+                    e.target.value < num_availabilities + num_reservations
+                  )
+                    e.target.value = num_availabilities + num_reservations;
+                  else if (e.target.value < num_reservations)
                     e.target.value = num_reservations;
 
                   setValues((prevValues) => {
@@ -306,7 +364,7 @@ function EditCalendar() {
                     onChange={(e) => {
                       e.preventDefault();
                       setGeneralValue(e.target.value);
-                      FixAGeneralValue(reservations, date, e.target.value);
+                      fixAGeneralValue(reservations, date, e.target.value);
                     }}
                   />
                 </form>
