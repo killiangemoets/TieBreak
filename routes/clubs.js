@@ -179,4 +179,68 @@ router.get("/infos/:token", async function (req, res, next) {
   }
 });
 
+router.post("/infos", async function (req, res, next) {
+  try {
+    const club = await clubModel.findOne({ token: req.body.token });
+
+    req.body.changes.forEach((change) => {
+      // console.log(new Date(change.date));
+      // console.log(new Date(club.availabilities[0].date));
+      // console.log(new Date(club.availabilities[0].date).getFullYear());
+      // console.log(+change.time);
+      // console.log(+club.availabilities[0].time);
+      // console.log(+change.time === +club.availabilities[0].time);
+      if (
+        club.availabilities.find(
+          (availability) =>
+            new Date(availability.date).getFullYear() ===
+              new Date(change.date).getFullYear() &&
+            new Date(availability.date).getMonth() ===
+              new Date(change.date).getMonth() &&
+            new Date(availability.date).getDate() ===
+              new Date(change.date).getDate() &&
+            +availability.time === +change.time
+        )
+      ) {
+        console.log("yes");
+        club.availabilities.forEach((availability) => {
+          if (
+            new Date(availability.date).getFullYear() ===
+              new Date(change.date).getFullYear() &&
+            new Date(availability.date).getMonth() ===
+              new Date(change.date).getMonth() &&
+            new Date(availability.date).getDate() ===
+              new Date(change.date).getDate() &&
+            +availability.time === +change.time
+          ) {
+            availability.courts = change.courts;
+          }
+        });
+      } else {
+        console.log("no");
+
+        club.availabilities.push({
+          date: new Date(change.date),
+          time: change.time,
+          courts: change.courts,
+        });
+      }
+    });
+
+    const clubSaved = await club.save();
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        club: clubSaved,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+});
+
 module.exports = router;

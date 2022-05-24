@@ -2,15 +2,29 @@ import React, { useState, useEffect } from "react";
 import "../stylesheets/navbar.css";
 import "../stylesheets/general.css";
 import "../stylesheets/calendar.css";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import FooterPage from "../components/Footer";
 import NavbarClub from "../components/NavbarClub";
 
 function Calendar() {
   const [token, setToken] = useState("");
+  const [type, setType] = useState("");
   const [date, setDate] = useState(new Date(Date.now()));
+  const [inputDate, setInputDate] = useState(new Date(Date.now()));
   const [availabilities, setAvailabilities] = useState([]);
   const [reservations, setReservations] = useState([]);
+
+  function getDateInNiceFormat(date) {
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const year = date.getFullYear();
+    const day = ("0" + date.getDate()).slice(-2);
+    return `${year}-${month}-${day}`;
+  }
+
+  function updateInputDate(inputDate) {
+    setInputDate(inputDate);
+    setDate(new Date(inputDate));
+  }
 
   async function getClubInfos(token) {
     var rawResponse = await fetch(`../clubs/infos/${token}`);
@@ -25,25 +39,45 @@ function Calendar() {
       8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
     ];
     const infos = hours.map((time, i) => {
-      const num_availabilities = 0;
-      const list_reservations = [];
-      const num_reservations = 0;
+      const availability = availabilities.find((el) => {
+        return (
+          new Date(el.date).getFullYear() === date.getFullYear() &&
+          new Date(el.date).getMonth() === date.getMonth() &&
+          new Date(el.date).getDate() === date.getDate() &&
+          +el.time === time
+        );
+      });
+      const num_availabilities = availability ? availability.courts : 0;
+      const list_reservations = reservations.filter((el) => {
+        return (
+          new Date(el.date).getFullYear() === date.getFullYear() &&
+          new Date(el.date).getMonth() === date.getMonth() &&
+          new Date(el.date).getDate() === date.getDate() &&
+          +el.time === time
+        );
+      });
+      const num_reservations = list_reservations.length;
       return (
         <>
           <div>
             <h6>
-              {" "}
               {time}h - {time + 1 < 24 ? time + 1 : "00"}h
             </h6>
           </div>
           <div>
             <h6>
-              {num_availabilities}/{num_reservations}
+              {num_reservations}/{num_availabilities + num_reservations}
             </h6>
           </div>
           <div className="details-list">
-            <h6>Lebron James - kingjames@gmail.com - 0479123456789</h6>
-            <h6>Barack Obama - barackobama@gmail.com - 0479123456789</h6>
+            {list_reservations.map((reservation) => {
+              return (
+                <h6>
+                  {reservation.firstname} {reservation.lastname} -{" "}
+                  {reservation.email} - {reservation.phone}
+                </h6>
+              );
+            })}
           </div>
         </>
       );
@@ -52,14 +86,18 @@ function Calendar() {
   }
 
   useEffect(() => {
+    const storage1 = localStorage.getItem("type");
+    if (JSON.parse(storage1) !== "club") setType(false);
+
     const storage = localStorage.getItem("token");
-    console.log(JSON.parse(storage));
     if (storage) {
       setToken(JSON.parse(storage));
       getClubInfos(JSON.parse(storage));
     } else setToken(false);
+    setInputDate(getDateInNiceFormat(new Date(Date.now())));
   }, []);
-  if (token === false) {
+
+  if (token === false || type === false) {
     return <Redirect to="/club/signin" />;
   } else {
     return (
@@ -77,11 +115,11 @@ function Calendar() {
                 type="date"
                 id="date-input"
                 name="date"
-                // value={inputDate}
-                // min={getDateInNiceFormat(new Date(Date.now()))}
+                value={inputDate}
+                min={getDateInNiceFormat(new Date(Date.now()))}
                 placeholder="dd-mm-yyyy"
                 data-date=""
-                // onChange={(e) => updateInputDate(e.target.value)}
+                onChange={(e) => updateInputDate(e.target.value)}
                 data-date-format="DD MMMM YYYY"
               />
             </form>
@@ -100,31 +138,16 @@ function Calendar() {
               <div>
                 <h6 className="title">Reservations details</h6>
               </div>
-              <div>
-                <h6>8h-9h</h6>
-              </div>
-              <div>
-                <h6>2/5</h6>
-              </div>
-              <div className="details-list">
-                <h6>Lebron James - kingjames@gmail.com - 0479123456789</h6>
-                <h6>Barack Obama - barackobama@gmail.com - 0479123456789</h6>
-              </div>
-              <div>
-                <h6>8h-9h</h6>
-              </div>
-              <div>
-                <h6>2/5</h6>
-              </div>
-              <div className="details-list">
-                <h6>Lebron James - kingjames@gmail.com - 0479123456789</h6>
-                <h6>Barack Obame - barackobama@gmail.com - 0479123456789</h6>
-              </div>
               {renderInfos(availabilities, reservations, date)}
             </div>
           </div>
-          <div className="edit-btn-section">
-            <button className="sign-in-sumbit-button edit-btn"> Edit</button>
+          <div className="  edit-btn-section">
+            <Link to="/club/calendar/edit">
+              <button className="yellowButton sign-in-sumbit-button edit-btn">
+                {" "}
+                Edit
+              </button>
+            </Link>
           </div>
         </div>
 

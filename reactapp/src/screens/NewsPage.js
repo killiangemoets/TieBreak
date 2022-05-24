@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 
 function News() {
   const [token, setToken] = useState("");
+  const [type, setType] = useState("");
   const [games, setGames] = useState([]);
   const [atpRankings, setATPRankings] = useState([]);
   const [wtaRankings, setWTARankings] = useState([]);
@@ -43,9 +44,9 @@ function News() {
                 <h6>{getDateInNiceFormat(new Date(inputDate))}</h6>
               </div>
             </div>
-            <diV className="round-info">
+            <div className="round-info">
               <h6>{game.round}</h6>
-            </diV>
+            </div>
             <div className="players">
               <div
                 className={
@@ -295,8 +296,9 @@ function News() {
 
   useEffect(() => {
     setInputDate(getDateInInputFormat(new Date(Date.now())));
+    const storage1 = localStorage.getItem("type");
+    if (JSON.parse(storage1) !== "player") setType(false);
     const storage = localStorage.getItem("token");
-    console.log(JSON.parse(storage));
     if (storage) setToken(JSON.parse(storage));
     else setToken(false);
     getNews(new Date(Date.now()));
@@ -304,7 +306,7 @@ function News() {
     getNews("", "WTA");
   }, []);
 
-  if (token === false) {
+  if (token === false || type === false) {
     return <Redirect to="/signin" />;
   } else {
     return (

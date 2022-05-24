@@ -14,6 +14,7 @@ function Profile(props) {
   const [newEmail, setNewEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [token, setToken] = useState("");
+  const [type, setType] = useState("");
 
   async function getPersonnalInfos(token) {
     var rawResponse = await fetch(`/users/infos/${token}`);
@@ -69,6 +70,8 @@ function Profile(props) {
   }
 
   useEffect(() => {
+    const storage1 = localStorage.getItem("type");
+    if (JSON.parse(storage1) !== "player") setType(false);
     const storage = localStorage.getItem("token");
     console.log(JSON.parse(storage));
     if (storage) setToken(JSON.parse(storage));
@@ -76,7 +79,7 @@ function Profile(props) {
     getPersonnalInfos(JSON.parse(storage));
   }, []);
 
-  if (token === false) {
+  if (token === false || type === false) {
     return <Redirect to="/signin" />;
   } else {
     return (

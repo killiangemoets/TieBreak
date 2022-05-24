@@ -19,6 +19,7 @@ function Overview(props) {
   const [overview, setOverview] = useState("");
   const [returnBtn, setReturnBtn] = useState(false);
   const [token, setToken] = useState("");
+  const [type, setType] = useState("");
 
   const getLocalStorage = function () {
     const storage = localStorage.getItem("currentReservation");
@@ -47,14 +48,15 @@ function Overview(props) {
   }
 
   useEffect(() => {
+    const storage1 = localStorage.getItem("type");
+    if (JSON.parse(storage1) !== "player") setType(false);
     const storage = localStorage.getItem("token");
-    console.log(JSON.parse(storage));
     if (storage) setToken(JSON.parse(storage));
     else setToken(false);
     getLocalStorage();
   }, []);
 
-  if (token === false) {
+  if (token === false || type === false) {
     return <Redirect to="/signin" />;
   } else if (returnBtn) {
     return <Redirect to="/reservation" />;

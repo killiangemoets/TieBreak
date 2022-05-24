@@ -19,6 +19,7 @@ function Confirmation(props) {
     "Sunday",
   ]);
   const [token, setToken] = useState("");
+  const [type, setType] = useState("");
 
   const getLocalStorage = function () {
     const storage = localStorage.getItem("currentReservation");
@@ -81,15 +82,17 @@ function Confirmation(props) {
   }
 
   useEffect(() => {
+    const storage1 = localStorage.getItem("type");
+    if (JSON.parse(storage1) !== "player") setType(false);
+
     const storage = localStorage.getItem("token");
-    console.log(JSON.parse(storage));
     if (storage) setToken(JSON.parse(storage));
     else setToken(false);
     getLocalStorage();
     saveReservation();
   }, []);
 
-  if (token === false) {
+  if (token === false || type === false) {
     return <Redirect to="/signin" />;
   } else if (goToAllGames) {
     return <Redirect to="/games" />;
@@ -115,9 +118,11 @@ function Confirmation(props) {
                   <h6 className="game-info">
                     {" "}
                     {weekDays[new Date(overview.date)?.getDay()]}{" "}
-                    {new Date(overview.date)?.getDate()}/
-                    {new Date(overview.date)?.getMonth() + 1}/
-                    {new Date(overview.date)?.getFullYear()}
+                    {("0" + new Date(overview.date)?.getDate()).slice(-2)}/
+                    {("0" + (new Date(overview.date)?.getMonth() + 1)).slice(
+                      -2
+                    )}
+                    /{new Date(overview.date)?.getFullYear()}
                   </h6>
                 </div>
                 <div>

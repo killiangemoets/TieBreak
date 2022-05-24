@@ -54,6 +54,7 @@ function Reservation(props) {
   const [clubsResults, setClubsResults] = useState([]);
   const [next, setNext] = useState(false);
   const [token, setToken] = useState("");
+  const [type, setType] = useState("");
 
   function generatePopups(clubs) {
     const popups = clubs.map((club, i) => {
@@ -464,6 +465,8 @@ function Reservation(props) {
   }
 
   useEffect(() => {
+    const storage1 = localStorage.getItem("type");
+    if (JSON.parse(storage1) !== "player") setType(false);
     const storage = localStorage.getItem("token");
     console.log(JSON.parse(storage));
     if (storage) setToken(JSON.parse(storage));
@@ -505,7 +508,7 @@ function Reservation(props) {
     }
   }, []);
 
-  if (token === false) {
+  if (token === false || type === false) {
     return <Redirect to="/signin" />;
   } else if (next) {
     return <Redirect to="/reservation/overview" />;

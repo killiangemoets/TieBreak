@@ -44,7 +44,7 @@ function CreateAccount() {
       if (response.status === "success") {
         setIsSignUp(true);
         localStorage.setItem("token", JSON.stringify(response.data.user.token));
-        localStorage.setItem("type", "player");
+        localStorage.setItem("type", JSON.stringify("player"));
         localStorage.setItem(
           "username",
           JSON.stringify(response.data.user.firstname)
