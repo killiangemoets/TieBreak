@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/reservation.css";
+import "../stylesheets/queries.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -546,7 +547,7 @@ function Reservation(props) {
       <div>
         <NavbarMainPage />
         <div
-          className=" reservation-section margin-top"
+          className="reservation-section margin-top"
           onClick={(e) => {
             if (!e.target.closest(".club-result")) {
               setSearchLocation("");

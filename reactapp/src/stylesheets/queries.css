@@ -2,6 +2,27 @@
 /* Instead, 1rem = 1em = 16px */
 
 /*****************************************/
+/* BELOW 1248px (Vertical tablets) */
+/*****************************************/
+@media (max-width: 78em) {
+  .when-and-where {
+    flex-direction: column !important;
+  }
+  .times-list {
+    flex-direction: row !important;
+    width: 89rem !important;
+    overflow-x: scroll;
+    padding: 2rem 0.2rem !important;
+  }
+  .reservation-buttons {
+    width: 86rem !important;
+  }
+  /* .time-logo {
+    width: 3rem !important;
+  } */
+}
+
+/*****************************************/
 /* BELOW 1008px (Vertical tablets) */
 /*****************************************/
 @media (max-width: 63em) {
@@ -44,20 +65,20 @@
   .games-section {
     grid-template-columns: auto !important;
     width: 100%;
-    align-items: center;
-    padding: 2rem 0 12.8rem 0 !important;
+    gap: 0rem !important;
+    /* align-items: center; */
+    padding: 0rem 0 12.8rem 0 !important;
     /* justify-content: center; */
   }
 
   .second-column {
     grid-row: 1/2 !important;
-    /* background-color: #aaa; */
     height: 34rem;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     width: 100% !important;
-    padding-bottom: 6.4rem;
+    /* padding-bottom: 6.4rem; */
   }
   .fix-column {
     /* width: 100% !important; */
@@ -67,14 +88,53 @@
     /* left: 8%; */
     /* top: 10%; */
     background-color: #fff;
-    /* padding: 0 20rem; */
-    gap: 2rem !important;
+    padding: 0 4rem;
+    gap: 1.6rem !important;
+  }
+
+  .stats {
+    row-gap: 1rem !important;
+  }
+  .stat {
+    gap: 4.8rem !important;
+  }
+
+  .stats-section {
+    padding: 1.6rem 3.6rem !important;
   }
   .games-titles {
     top: 45% !important;
   }
   .games-list {
     margin-top: 2rem !important;
+  }
+  .games-titles {
+    padding-top: 6rem !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 928px (Vertical tablets) */
+/*****************************************/
+@media (max-width: 58em) {
+  .where-content {
+    display: grid !important;
+    grid-template-columns: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    /* flex-direction: column !important; */
+  }
+  .map-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    /* width: 200% !important; */
+  }
+
+  .clubs-cards {
+    flex-direction: row !important;
+    height: 21.2rem !important;
+    grid-row: 1/2;
   }
 }
 
@@ -170,6 +230,43 @@
   .sign-up-title2 p {
     font-size: 3rem !important;
   }
+
+  .game-card {
+    width: 100% !important;
+    column-gap: 0rem !important;
+    justify-content: space-between !important;
+  }
+
+  .stat {
+    gap: 4.8rem !important;
+  }
+  .fix-column {
+    padding: 0 !important;
+  }
+  .stats-section {
+    padding: 1.6rem 2.8rem !important;
+  }
+  .stat-title {
+    font-size: 1.8rem !important;
+  }
+  .games-titles {
+    padding-top: 8rem !important;
+    padding-bottom: 1rem !important;
+
+    gap: 0.4rem !important;
+  }
+
+  .games-title {
+    font-size: 2.6rem !important;
+    color: #aaa;
+  }
+  .games-list {
+    margin-top: 1.8rem !important;
+  }
+
+  .games-section {
+    padding-bottom: 6.4rem !important;
+  }
 }
 
 /*****************************************/
@@ -218,5 +315,9 @@
 
   .sign-in-sumbit-button {
     padding: 1rem 8rem !important;
+  }
+
+  .navbarRight {
+    width: 60% !important;
   }
 }
