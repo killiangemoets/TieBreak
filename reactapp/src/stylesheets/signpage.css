@@ -61,7 +61,7 @@
   border-radius: 15px;
   padding: 1rem 3rem;
   margin: 1rem 0;
-  font-family: "Squada One";
+  font-family: 'Poppins', sans-serif;
   border: none;
   font-size: large;
 }
@@ -79,7 +79,7 @@
 .sign-up-sumbit-button,
 .sign-up-sumbit-button:link,
 .sign-up-sumbit-button:visited {
-  font-family: "Squada One";
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
   padding: 1rem 3rem;
   border-radius: 15px;
@@ -107,7 +107,7 @@
 .sign-in-sumbit-button,
 .sign-in-sumbit-button:link,
 .sign-in-sumbit-button:visited {
-  font-family: "Squada One";
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
   padding: 1rem 3rem;
   border-radius: 15px;
@@ -146,7 +146,7 @@
   border-radius: 15px;
   padding: 1rem 3rem;
   margin: 1rem 0;
-  font-family: "Squada One";
+  font-family: 'Poppins', sans-serif;
   border: none;
   font-size: large;
 }

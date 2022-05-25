@@ -40,14 +40,14 @@ function Home() {
           <div className="header margin-top">
             <div className="leftContainer">
               <div className="header-title">
-                <hr className="horizontalRule"></hr>
-                <img
+               
+                {/* <img
                   className="ball-in-title"
                   src="../../ball1.png"
                   alt="ball"
-                />
-                <h1 id="title"> TieBreak</h1>
-                <hr className="horizontalRule"></hr>
+                /> */}
+                <h1 id="title"> Tie<span className="title-break">Break</span></h1>
+                
               </div>
               <div>
                 <p className="header-description">
