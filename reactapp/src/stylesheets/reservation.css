@@ -135,7 +135,6 @@
 #location-input {
   box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.08);
   width: 22rem;
-  z-index: 999 !important;
   width: 60rem;
   height: 4.8rem;
 }

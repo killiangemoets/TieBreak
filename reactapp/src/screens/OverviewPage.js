@@ -4,7 +4,6 @@ import FooterPage from "../components/Footer";
 import "../stylesheets/overview.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 
 function Overview(props) {
   const [weekDays] = useState([
@@ -121,8 +120,4 @@ function Overview(props) {
   }
 }
 
-function mapStateToProps(state) {
-  return { currentReservation: state.currentReservation };
-}
-
-export default connect(mapStateToProps, null)(Overview);
+export default Overview;

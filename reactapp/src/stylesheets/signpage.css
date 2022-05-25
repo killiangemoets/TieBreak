@@ -1,15 +1,12 @@
-.center-sign {
-  display: flex;
-  /* justify-content: center; */
-  flex-direction: column;
-  padding-top: 3.6rem;
-  min-height: calc(100vh - 6rem - 8rem);
-}
-
 .center-title {
+  padding-top: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.center-sign {
+  min-height: calc(100vh - 6rem - 8rem);
 }
 
 .sign-up-title {
@@ -25,9 +22,11 @@
 .sign-up-form {
   padding-top: 4rem;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  align-items: center;
   flex-direction: column;
   gap: 2rem;
+  margin-bottom: 6.4rem;
 }
 
 .sign-up-club {
@@ -88,19 +87,18 @@
   font-size: 3rem;
   color: white;
   letter-spacing: 0.3rem;
-  margin: 0rem 42rem;
-  margin-bottom: 3.5rem;
+  margin-top: 2.4rem;
+
+  padding: 1rem 10rem;
 }
 
 .sign-up-sumbit-button:hover,
 .sign-up-sumbit-button:active {
-  /* background-color: #edcf49; */
   background-color: #ba9c16;
 }
 
 .sign-in-sumbit-button:hover,
 .sign-in-sumbit-button:active {
-  /* background-color: #edcf49; */
   background-color: #ba9c16;
 }
 
@@ -116,7 +114,9 @@
   font-size: 3rem;
   color: white;
   letter-spacing: 0.3rem;
-  margin: 2rem 44rem;
+  padding: 1rem 10rem;
+  margin-top: 2.4rem;
+  /* margin: 2rem 44rem; */
 }
 
 .sign-up-club-btn {
@@ -133,6 +133,7 @@
   padding-top: 6rem;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 

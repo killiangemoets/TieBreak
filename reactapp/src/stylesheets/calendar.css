@@ -31,7 +31,6 @@
 .calendar-grid2 {
   display: grid;
   justify-content: center;
-  align-items: center;
   row-gap: 2rem;
   column-gap: 4.8rem;
 }
@@ -41,6 +40,7 @@
 
 .calendar-grid2 {
   grid-template-columns: auto auto auto auto;
+  align-items: center;
   row-gap: 1.4rem !important;
 }
 
