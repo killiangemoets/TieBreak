@@ -19,13 +19,15 @@
 }
 
 #title {
-  color: #b3541e;
+  color: #000000;
   font-size: 13rem;
   letter-spacing: 0.25rem;
-  /* margin-left: 0.8rem; */
-  border-top: 4px solid #b3541e;
-  border-bottom: 4px solid #b3541e;
-}
+
+  margin-left: 0.8rem;
+  /* border-top: 0.5rem solid #b3541e;
+  border-bottom: 0.5rem solid #b3541e */
+
+
 
 .header-title {
   position: relative;
@@ -45,6 +47,7 @@
   color: #000000;
   font-size: 3.5rem;
   padding-left: 1.5rem;
+  font-weight: 600;
 }
 
 .homePageButton {
@@ -141,21 +144,19 @@
 }
 
 .ball-in-title {
-  height: 2.9rem;
-  width: 2.9em;
+  height: 3rem;
+  width: 3em;
   position: absolute;
   top: 15.2%;
   left: 12.6%;
-  /* margin-left: 6.2rem;
-  margin-top: 2.1rem; */
 }
 
 .final-title {
   text-align: center;
   color: #b3541e;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 3.2rem;
-  margin-bottom: 6.4rem;
+  margin-bottom: 6.rem;
 }
 
 .yellowButton-final {
@@ -166,4 +167,8 @@
 
 .boxTemplate-last {
   padding-bottom: 4.8rem !important;
+}
+
+.title-break{
+  color: #000000
 }

@@ -6,7 +6,7 @@
   background-color: #b3541e;
   font-size: 2.4rem;
   color: white;
-  font-family: "Squada One";
+font-family: 'Poppins', sans-serif;
   transition: all 0.3s;
 }
 
@@ -25,7 +25,7 @@
   border-radius: 25px;
   color: white;
   padding: 1rem 3rem;
-  font-family: "Squada One";
+font-family: 'Poppins', sans-serif;
   transition: all 0.3s;
 }
 
@@ -65,7 +65,7 @@
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  font-family: "Squada One";
+font-family: 'Poppins', sans-serif;
 }
 
 .titleNavBar {

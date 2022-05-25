@@ -50,12 +50,16 @@ function Home() {
           <div className="header margin-top">
             <div className="leftContainer">
               <div className="header-title">
+
+               
+                
                 <img
                   className="ball-in-title"
                   src="../../ball1.png"
                   alt="ball"
                 />
                 <h1 id="title"> TieBreak</h1>
+
               </div>
               <div>
                 <p className="header-description">
