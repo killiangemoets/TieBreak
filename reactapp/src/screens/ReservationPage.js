@@ -3,9 +3,8 @@ import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/reservation.css";
 import "../stylesheets/general.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
   faLocationDot,
@@ -670,17 +669,5 @@ function Reservation(props) {
     );
   }
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    addReservation: function (reservation) {
-      dispatch({ type: "addReservation", reservation });
-    },
-  };
-}
-function mapStateToProps(state) {
-  return { currentReservation: state.currentReservation, token: state.token };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Reservation);
-
-// export default Reservation;
+export default Reservation;

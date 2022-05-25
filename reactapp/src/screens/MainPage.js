@@ -3,8 +3,8 @@ import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/games.css";
 import "../stylesheets/general.css";
+import "../stylesheets/queries.css";
 import "../stylesheets/navbar.css";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
@@ -23,6 +23,15 @@ function Home(props) {
   const toggleSwitch = () => {
     switchToggled ? setSwitchToggled(false) : setSwitchToggled(true);
   };
+
+  function hideNavBar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
 
   async function matchData(token) {
     // C'est un GET par défaut le fetch
@@ -181,7 +190,10 @@ function Home(props) {
     return (
       <div>
         <NavbarMainPage />
-        <div className=" center-content-games">
+        <div
+          className="container center-content-games"
+          onClick={() => hideNavBar()}
+        >
           <div className="games-section margin-top">
             <div className="games">
               <div className=" center-games">
@@ -280,8 +292,5 @@ function Home(props) {
     );
   }
 }
-function mapStateToProps(state) {
-  return { token: state.token };
-}
 
-export default connect(mapStateToProps)(Home);
+export default Home;

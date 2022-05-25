@@ -4,7 +4,6 @@ import "../stylesheets/general.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 function NavbarClub(props) {
@@ -25,10 +24,9 @@ function NavbarClub(props) {
     const storage = localStorage.getItem("username");
     console.log(JSON.parse(storage));
     if (storage) setUsername(JSON.parse(storage));
-  }, []);
+  }, [props.refreshUsername]);
 
   const handleLogout = function () {
-    props.removeToken("");
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     localStorage.removeItem("type");
@@ -73,12 +71,4 @@ function NavbarClub(props) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    removeToken: function () {
-      dispatch({ type: "removeToken" });
-    },
-  };
-}
-
-export default connect(null, mapDispatchToProps)(NavbarClub);
+export default NavbarClub;
