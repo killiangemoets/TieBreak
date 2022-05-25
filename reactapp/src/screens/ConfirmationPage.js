@@ -4,7 +4,6 @@ import FooterPage from "../components/Footer";
 import "../stylesheets/confirmation.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 
 function Confirmation(props) {
   const [overview, setOverview] = useState("");
@@ -76,7 +75,6 @@ function Confirmation(props) {
     var response2 = await rawResponse2.json();
     console.log("-----CLUB------");
     console.log(response2);
-    props.cleanReservation();
     localStorage.removeItem("currentReservation");
     // }
   }
@@ -156,16 +154,4 @@ function Confirmation(props) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    cleanReservation: function () {
-      dispatch({ type: "cleanReservation" });
-    },
-  };
-}
-
-function mapStateToProps(state) {
-  return { currentReservation: state.currentReservation, token: state.token };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Confirmation);
+export default Confirmation;

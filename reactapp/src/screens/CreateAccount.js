@@ -5,6 +5,7 @@ import { Redirect, Link } from "react-router-dom";
 
 import "../stylesheets/signpage.css";
 import "../stylesheets/general.css";
+import "../stylesheets/queries.css";
 
 function CreateAccount() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -24,7 +25,11 @@ function CreateAccount() {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   async function handleSignUp() {
-    if (password === confirmPassword && password.length !== 0) {
+    if (
+      password === confirmPassword &&
+      password.length !== 0 &&
+      phone.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
+    ) {
       const newUser = {
         firstname,
         lastname,
@@ -75,6 +80,15 @@ function CreateAccount() {
       setPasswordError("");
       setConfirmPasswordError("");
     } else {
+      if (phone === "") setPhoneError("Please provide a phone number");
+      else if (
+        !phone.match(
+          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+        )
+      )
+        setPhoneError("Please provide a valid phone number");
+      else setPhoneError("");
+
       if (firstname === "") setFirstnameError("Please provide a firstname");
       else setFirstnameError("");
 
@@ -83,9 +97,6 @@ function CreateAccount() {
 
       if (email === "") setEmailError("Please provide an email");
       else setEmailError("");
-
-      if (phone === "") setPhoneError("Please provide a phone number");
-      else setPhoneError("");
 
       if (password === "") setPasswordError("Please provide a password");
       else setPasswordError("");
@@ -106,7 +117,7 @@ function CreateAccount() {
         <NavbarHomePage />
         <div className="container center-sign margin-top">
           <div className="center-title">
-            <div className="sign-up-title">
+            <div className="sign-up-title sign-up-title2">
               <p>Create Your Account</p>
             </div>
           </div>

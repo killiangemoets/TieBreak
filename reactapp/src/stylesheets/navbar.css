@@ -110,3 +110,13 @@ font-family: 'Poppins', sans-serif;
   font-size: 1.8rem;
   transition: all 0.2s;
 }
+
+.btn-mobile-nav {
+  color: #fff;
+  font-size: 2.6rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  display: none;
+}

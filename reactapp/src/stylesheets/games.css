@@ -1,16 +1,16 @@
 .games-section {
   display: grid;
   grid-template-columns: auto auto;
-  gap: 6.4rem;
+  gap: 3.2rem;
   flex-direction: column;
   /* align-items: center; */
   /* justify-content: center; */
   min-height: calc(100vh - 6rem - 8rem);
-  padding: 9.6rem 0 12.8rem 0;
+  padding: 3.2rem 0 12.8rem 0;
 }
 
 .second-column {
-  width: 60.2rem;
+  width: 42rem;
 }
 .fix-column {
   position: fixed;
@@ -36,29 +36,29 @@
 }
 
 .start-reservation-btn-section {
-  padding: 5.2rem 0;
+  padding-top: 5.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .start-reservation-big-btn {
-  font-size: 3.6rem !important;
-  padding: 2rem 6.4rem;
+  font-size: 2.8rem !important;
+  padding: 1.4rem 6.4rem;
   /* text-transform: uppercase; */
 }
 
 .stats-section {
   width: 100%;
   background-color: #e8ccbc;
-  padding: 3.2rem 4.8rem;
+  padding: 2.4rem 3.6rem;
   border-radius: 36px;
 }
 
 .stats {
   display: grid;
   grid-template-columns: auto;
-  row-gap: 2.6rem;
+  row-gap: 1.6rem;
   column-gap: 6.4rem;
   align-items: center;
   justify-content: center;
@@ -67,26 +67,22 @@
 .stat {
   display: flex;
   justify-content: space-between;
-  gap: 9.4rem;
+  gap: 6.4rem;
 }
 
 .stat-title {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   color: #b3541e;
 }
 
 .stat-value {
   justify-self: end !important;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   color: #333;
 }
 
 .center-games {
   gap: 8rem;
-}
-
-.games {
-  width: 64rem;
 }
 
 .games-titles {
@@ -103,7 +99,7 @@
 }
 
 .games-title {
-  font-size: 4rem;
+  font-size: 3.2rem;
   color: #aaa;
 }
 
@@ -143,7 +139,7 @@
 }
 
 .games-list {
-  margin-top: 8rem;
+  margin-top: 8.8rem;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -168,7 +164,7 @@
 }
 
 .game-info {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   color: #333;
   font-weight: 500;
 }

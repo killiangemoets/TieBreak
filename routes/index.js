@@ -55,6 +55,17 @@ router.get("/schedule", async function (req, res, next) {
       const clubs = await clubModel.find();
       availabilities = [];
 
+      const dateNow = new Date(Date.now());
+      let currentTime = 0;
+      if (
+        dateNow.getFullYear() == date.getFullYear() &&
+        dateNow.getMonth() == date.getMonth() &&
+        dateNow.getDate() == date.getDate()
+      ) {
+        console.log("Today!");
+        currentTime = dateNow.getHours();
+      }
+
       clubs.forEach((club) => {
         if (
           club.availabilities.find((availability) => {
@@ -62,7 +73,8 @@ router.get("/schedule", async function (req, res, next) {
               availability.date.getFullYear() == date.getFullYear() &&
               availability.date.getMonth() == date.getMonth() &&
               availability.date.getDate() == date.getDate() &&
-              availability.courts > 0
+              availability.courts > 0 &&
+              availability.time > currentTime
             );
           })
         ) {

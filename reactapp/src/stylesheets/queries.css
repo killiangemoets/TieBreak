@@ -1,0 +1,222 @@
+/* IMPORTANT: rem and em do NOT depend on html font-size in media query!!! */
+/* Instead, 1rem = 1em = 16px */
+
+/*****************************************/
+/* BELOW 1008px (Vertical tablets) */
+/*****************************************/
+@media (max-width: 63em) {
+  .tennis-img-header {
+    max-height: 60% !important;
+  }
+
+  .header {
+    gap: 0rem !important;
+    padding-top: 0rem !important;
+  }
+  #title {
+    margin-left: 1rem !important;
+    font-size: 8rem !important;
+    text-align: center !important;
+  }
+  .ball-in-title {
+    height: 1.8rem !important;
+    width: 1.8rem !important;
+    position: absolute !important;
+    top: 16.8% !important;
+    left: 15.6% !important;
+  }
+
+  .btn-header {
+    font-size: 2.4rem !important;
+    padding: 1rem 2rem !important;
+  }
+
+  .homePageButton {
+    gap: 1rem !important;
+  }
+  .text-howItWorks {
+    font-size: 3.6rem !important;
+  }
+  .howItWorks-section {
+    gap: 0rem !important;
+  }
+
+  .games-section {
+    grid-template-columns: auto !important;
+    width: 100%;
+    align-items: center;
+    padding: 2rem 0 12.8rem 0 !important;
+    /* justify-content: center; */
+  }
+
+  .second-column {
+    grid-row: 1/2 !important;
+    /* background-color: #aaa; */
+    height: 34rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+    padding-bottom: 6.4rem;
+  }
+  .fix-column {
+    /* width: 100% !important; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* left: 8%; */
+    /* top: 10%; */
+    background-color: #fff;
+    /* padding: 0 20rem; */
+    gap: 2rem !important;
+  }
+  .games-titles {
+    top: 45% !important;
+  }
+  .games-list {
+    margin-top: 2rem !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 896px (Vertical tablets) */
+/*****************************************/
+@media (max-width: 56em) {
+  /* NAVBAR */
+  .btn-mobile-nav {
+    display: block !important;
+    z-index: 9999 !important;
+  }
+
+  .navbar {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    z-index: 999 !important;
+  }
+
+  .navbarRight {
+    background-color: #b3541e;
+
+    position: absolute !important;
+
+    top: 0 !important;
+    right: 0 !important;
+    width: 40% !important;
+    height: 100vh !important;
+    transform: translateX(100%) !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4.8rem !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding-top: 16rem !important;
+    transition: all 0.3s ease-in !important;
+    z-index: 999 !important;
+  }
+  .nav-open.navbarRight {
+    pointer-events: auto !important;
+    transform: translateX(0) !important;
+    z-index: 999 !important;
+  }
+  .divideBoxes {
+    width: 50rem !important;
+  }
+  .boxText-title {
+    font-size: 12rem !important;
+  }
+  .boxText-description {
+    font-size: 2.8rem !important;
+  }
+
+  .profile-menu {
+    right: 8% !important;
+    top: 560%;
+    gap: 4.8rem;
+    /* background-color: antiquewhite; */
+    box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0);
+
+    z-index: 999 !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 688px (Vertical tablets) */
+/*****************************************/
+@media (max-width: 43em) {
+  .header {
+    padding-top: 6rem !important;
+    flex-direction: column !important;
+    gap: 3.2rem !important;
+    height: 100% !important;
+  }
+  .tennis-img-header {
+    height: 20rem !important;
+  }
+  .home-img,
+  .boxElementMaria {
+    height: 22rem !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 608px (Vertical tablets) */
+/*****************************************/
+@media (max-width: 38em) {
+  .sign-up-title2 p {
+    font-size: 3rem !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 544px (Vertical tablets) */
+/*****************************************/
+@media (max-width: 34em) {
+  .boxTemplate {
+    flex-direction: column !important;
+    gap: 2.4rem !important;
+    padding: 4.8rem 4.8rem !important;
+    align-items: flex-start !important;
+  }
+  .boxElement {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .boxTemplate2 {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .boxElement2 {
+    grid-row: 2/3 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  .divideBoxes {
+    width: 40rem;
+  }
+}
+
+/*****************************************/
+/* BELOW 448px (Vertical tablets) */
+/*****************************************/
+@media (max-width: 28em) {
+  .divideBoxes {
+    width: 30rem !important;
+  }
+
+  .sign-in-sumbit-button {
+    padding: 1rem 8rem !important;
+  }
+}

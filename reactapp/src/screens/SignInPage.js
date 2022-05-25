@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import NavbarHomePage from "../components/NavbarHomePage";
 import FooterPage from "../components/Footer";
 import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 
 import "../stylesheets/signpage.css";
 import "../stylesheets/general.css";
+import "../stylesheets/queries.css";
 
 function CreateAccount(props) {
   const [isLogin, setIsLogin] = useState(false);
@@ -36,7 +36,6 @@ function CreateAccount(props) {
     // Il faut aller voir la ligne 86 dans users.js des routes en backend pour voir le status //
     if (body.status === "success") {
       setIsLogin(true);
-      props.addToken(body.data.user.token);
       localStorage.setItem("token", JSON.stringify(body.data.user.token));
       localStorage.setItem("type", JSON.stringify("player"));
       localStorage.setItem(
@@ -72,7 +71,7 @@ function CreateAccount(props) {
         <div className="container center-sign margin-top">
           <div className="center-title">
             <div className="sign-up-title">
-              <p>Login</p>
+              <p>Sign in</p>
             </div>
           </div>
 
@@ -114,16 +113,4 @@ function CreateAccount(props) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    // Le token dans la fontion fait référence au 'body.data.user.token' qu'on a à la ligne 48//
-    addToken: function (token) {
-      dispatch({
-        type: "addToken",
-        token: token,
-      });
-    },
-  };
-}
-
-export default connect(null, mapDispatchToProps)(CreateAccount);
+export default CreateAccount;

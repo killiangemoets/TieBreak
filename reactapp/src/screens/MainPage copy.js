@@ -4,7 +4,6 @@ import FooterPage from "../components/Footer";
 import "../stylesheets/games.css";
 import "../stylesheets/general.css";
 import "../stylesheets/navbar.css";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
@@ -267,8 +266,5 @@ function Home(props) {
     );
   }
 }
-function mapStateToProps(state) {
-  return { token: state.token };
-}
 
-export default connect(mapStateToProps)(Home);
+export default Home;

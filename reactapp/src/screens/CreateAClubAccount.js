@@ -66,7 +66,11 @@ function CreateClubAccount() {
   }
 
   async function handleSignUp() {
-    if (password === confirmPassword && password.length !== 0) {
+    if (
+      password === confirmPassword &&
+      password.length !== 0 &&
+      phone.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
+    ) {
       const newClub = {
         clubname,
         price,
@@ -140,6 +144,12 @@ function CreateClubAccount() {
       else setEmailError("");
 
       if (phone === "") setPhoneError("Please provide a phone number");
+      else if (
+        !phone.match(
+          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+        )
+      )
+        setPhoneError("Please provide a valid phone number");
       else setPhoneError("");
 
       if (password === "") setPasswordError("Please provide a password");
@@ -183,9 +193,13 @@ function CreateClubAccount() {
                 <div className="create-account-form">
                   <input
                     placeholder="Price (€/h)"
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => {
+                      if (e.target.value < 0) e.target.value = 0;
+                      setPrice(e.target.value);
+                    }}
                     type="number"
                     value={price}
+                    min={0}
                   ></input>
                   <p>{priceError}</p>
                 </div>

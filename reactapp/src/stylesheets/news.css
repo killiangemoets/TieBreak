@@ -1,5 +1,5 @@
 .news-big-container {
-  min-height: calc(100vh - 8rem - 6rem);
+  min-height: calc(100vh - 6rem) !important;
 }
 
 .margin-top-news {

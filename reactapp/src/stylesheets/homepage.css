@@ -1,56 +1,71 @@
+/* HEADER */
+
 .header {
+  /* display: flex;
+  justify-content: center; */
+  /* align-items: center; */
+  /* gap: 3.2rem;
+  padding: 9.4rem;
+  width: 100%; */
+  /* height: calc(100vh - 8rem); */
+
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   gap: 3.2rem;
-  padding: 9.4rem;
-  /* height: calc(100vh - 8rem); */
+  width: 100%;
+  height: 45rem;
+  padding-top: 4rem;
 }
 
 #title {
   color: #000000;
   font-size: 13rem;
   letter-spacing: 0.25rem;
+
   margin-left: 0.8rem;
   /* border-top: 0.5rem solid #b3541e;
   border-bottom: 0.5rem solid #b3541e */
-}
+
+
 
 .header-title {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  align-items: center;
 }
 
 .leftContainer {
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
   gap: 5.4rem;
 }
 
 .header-description {
-  display: flex;
   color: #000000;
   font-size: 3.5rem;
   padding-left: 1.5rem;
   font-weight: 600;
 }
 
-.horizontalRule {
-  width: 45rem;
-  height: 0.3rem;
-  background-color: #b3541e;
-  border: none;
-}
-
 .homePageButton {
   display: flex;
+  align-items: center;
+  /* justify-content: center; */
   gap: 2.8rem;
-  padding-left: 1.5rem;
 }
 
 .rightContainer {
   display: flex;
-  height: 45rem;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.tennis-img-header {
+  max-height: 80%;
 }
 
 /* MAIN CONTAINER */
@@ -132,8 +147,8 @@
   height: 3rem;
   width: 3em;
   position: absolute;
-  margin-left: 9.2em;
-  margin-top: 3.9rem;
+  top: 15.2%;
+  left: 12.6%;
 }
 
 .final-title {

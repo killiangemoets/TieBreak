@@ -3,7 +3,6 @@ import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/profile.css";
 import "../stylesheets/general.css";
-import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 function Profile(props) {
@@ -13,8 +12,11 @@ function Profile(props) {
   const [newPhone, setNewPhone] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
+
+  const [refreshUsername, setRefreshUsername] = useState(false);
 
   async function getPersonnalInfos(token) {
     var rawResponse = await fetch(`/users/infos/${token}`);
@@ -24,42 +26,56 @@ function Profile(props) {
   }
 
   async function handleConfirm(token) {
-    var rawResponse = await fetch(`/users/infos/${token}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        firstname:
-          newFirstname.length > 0 ? newFirstname : personnalInfos.firstname,
-        lastname:
-          newLastname.length > 0 ? newLastname : personnalInfos.lastname,
-        phone: newPhone.length > 0 ? newPhone : personnalInfos.phone,
-        email: newEmail.length > 0 ? newEmail : personnalInfos.email,
-      }),
-    });
-    var response = await rawResponse.json();
-    console.log(response);
-    setNewFirstname("");
-    setNewLastname("");
-    setNewPhone("");
-    setNewEmail("");
-    if (response.status === "success") await getPersonnalInfos(token);
-    setEmailError("");
+    if (
+      newPhone.length === 0 ||
+      newPhone.match(
+        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+      )
+    ) {
+      var rawResponse = await fetch(`/users/infos/${token}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstname:
+            newFirstname.length > 0 ? newFirstname : personnalInfos.firstname,
+          lastname:
+            newLastname.length > 0 ? newLastname : personnalInfos.lastname,
+          phone: newPhone.length > 0 ? newPhone : personnalInfos.phone,
+          email: newEmail.length > 0 ? newEmail : personnalInfos.email,
+        }),
+      });
+      var response = await rawResponse.json();
+      console.log(response);
 
-    if (response.status === "fail") {
-      console.log("---ERROR---");
-      if (
-        response.message?.message &&
-        response.message.message?.indexOf("invalid email") !== -1
-      )
-        setEmailError("Please provide a valid email");
-      else if (
-        response.message?.codeName &&
-        response.message.codeName?.indexOf("DuplicateKey") !== -1
-      )
-        setEmailError("This email is already used");
-    }
+      setPhoneError("");
+      if (response.status === "success") {
+        await getPersonnalInfos(token);
+        if (newFirstname.length > 0) {
+          localStorage.setItem("username", JSON.stringify(newFirstname));
+          setRefreshUsername(!refreshUsername);
+        }
+        setEmailError("");
+        setNewFirstname("");
+        setNewLastname("");
+        setNewPhone("");
+        setNewEmail("");
+      }
+
+      if (response.status === "fail") {
+        if (
+          response.message?.message &&
+          response.message.message?.indexOf("invalid email") !== -1
+        )
+          setEmailError("Please provide a valid email");
+        else if (
+          response.message?.codeName &&
+          response.message.codeName?.indexOf("DuplicateKey") !== -1
+        )
+          setEmailError("This email is already used");
+      }
+    } else setPhoneError("Please provide a valid phone number");
   }
 
   function handleCancel() {
@@ -73,10 +89,10 @@ function Profile(props) {
     const storage1 = localStorage.getItem("type");
     if (JSON.parse(storage1) !== "player") setType(false);
     const storage = localStorage.getItem("token");
-    console.log(JSON.parse(storage));
-    if (storage) setToken(JSON.parse(storage));
-    else setToken(false);
-    getPersonnalInfos(JSON.parse(storage));
+    if (storage) {
+      setToken(JSON.parse(storage));
+      getPersonnalInfos(JSON.parse(storage));
+    } else setToken(false);
   }, []);
 
   if (token === false || type === false) {
@@ -84,7 +100,7 @@ function Profile(props) {
   } else {
     return (
       <div>
-        <NavbarMainPage />
+        <NavbarMainPage refreshUsername={refreshUsername} />
         <div className=" profile-section margin-top">
           <div className="reservation-main-title-section">
             <hr className="horizontalRule4"></hr>
@@ -117,6 +133,7 @@ function Profile(props) {
                     onChange={(e) => setNewPhone(e.target.value)}
                     placeholder={personnalInfos.phone}
                   />
+                  <p className="error-message">{phoneError}</p>
                 </div>
                 <div className="input-div">
                   <label>Last Name</label>
@@ -166,9 +183,5 @@ function Profile(props) {
   }
 }
 
-function mapStateToProps(state) {
-  return { token: state.token };
-}
 
-export default connect(mapStateToProps, null)(Profile);
-
+export default Profile;

@@ -182,32 +182,34 @@ router.get("/infos/:token", async function (req, res, next) {
 router.patch("/infos/:token", async function (req, res, next) {
   try {
     const club = await clubModel.findOneAndUpdate(
-      { token: req.params.token}, 
-      { clubname: req.body.clubname,
+      { token: req.params.token },
+      {
+        clubname: req.body.clubname,
         price: req.body.price,
         address: req.body.address,
         email: req.body.email,
         phone: req.body.phone,
-      }, 
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+      },
       {
         new: true,
         runValidators: true, // Thanks to that, the validators run again when we upadate a user( for example a password must have at least 8 characters)
       }
-      );
-      res.status(201).json({
-        status: "success",
-        data: {
-          club: club,
-        },
-      });
-    } catch (err) {
-      res.status(404).json({
-        status: "fail",
-        message: err,
-      });
-    }
-  });
-
+    );
+    res.status(201).json({
+      status: "success",
+      data: {
+        club: club,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+});
 
 router.post("/infos", async function (req, res, next) {
   try {

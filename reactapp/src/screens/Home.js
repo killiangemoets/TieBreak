@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import NavbarHomePage from "../components/NavbarHomePage";
 import FooterPage from "../components/Footer";
+import "../stylesheets/queries.css";
 import "../stylesheets/homepage.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
@@ -20,6 +21,15 @@ function Home() {
     });
   };
 
+  function hideNavBar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   useEffect(() => {
     localStorage.removeItem("currentReservation");
     const storage = localStorage.getItem("token");
@@ -36,18 +46,20 @@ function Home() {
     return (
       <div>
         <NavbarHomePage />
-        <div className="container">
+        <div className="container" onClick={() => hideNavBar()}>
           <div className="header margin-top">
             <div className="leftContainer">
               <div className="header-title">
+
                
-                {/* <img
+                
+                <img
                   className="ball-in-title"
                   src="../../ball1.png"
                   alt="ball"
-                /> */}
-                <h1 id="title"> Tie<span className="title-break">Break</span></h1>
-                
+                />
+                <h1 id="title"> TieBreak</h1>
+
               </div>
               <div>
                 <p className="header-description">
@@ -58,11 +70,14 @@ function Home() {
               <div className="homePageButton">
                 <a href="/signup">
                   {" "}
-                  <button className="yellowButton"> Get Started</button>{" "}
+                  <button className="yellowButton btn-header">
+                    {" "}
+                    Get Started
+                  </button>{" "}
                 </a>
                 <button
                   onClick={() => scrollToSection(scrollButton)}
-                  className="yellowButton yellowButton-secondary"
+                  className="yellowButton yellowButton-secondary btn-header"
                 >
                   <p>Learn More</p>
                   <FontAwesomeIcon className="arrow-icon" icon={faArrowDown} />
@@ -70,7 +85,11 @@ function Home() {
               </div>
             </div>
             <div className="rightContainer">
-              <img src="../../tennis-header.png" alt="tennismanwomen"></img>
+              <img
+                src="../../tennis-header.png"
+                alt="tennismanwoman"
+                className="tennis-img-header"
+              ></img>
             </div>
           </div>
           <div className="howItWorks-section" ref={scrollButton}>
@@ -107,8 +126,8 @@ function Home() {
                 </div>
               </div>
               <hr className="divideBoxes"></hr>
-              <div className="boxTemplate">
-                <div className="boxElement">
+              <div className="boxTemplate boxTemplate2">
+                <div className="boxElement boxElement2">
                   <img
                     src="../../map.jpeg"
                     alt="calendar"

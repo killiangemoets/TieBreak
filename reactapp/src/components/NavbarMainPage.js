@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from "react";
 import "../stylesheets/navbar.css";
 import "../stylesheets/general.css";
+import "../stylesheets/queries.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { connect } from "react-redux";
+import {
+  faChevronDown,
+  faBars,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router-dom";
 
 function NavbarMainPage(props) {
   const [profileMenu, setProfileMenu] = useState(false);
   const [logout, setLogout] = useState(false);
   const [username, setUsername] = useState("");
+
+  function handleClick() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.toggle("nav-open");
+    menuIcon.classList.toggle("remove");
+    crossIcon.classList.toggle("remove");
+  }
 
   const openProfileMenu = function () {
     setProfileMenu(true);
@@ -25,10 +38,9 @@ function NavbarMainPage(props) {
     const storage = localStorage.getItem("username");
     console.log(JSON.parse(storage));
     if (storage) setUsername(JSON.parse(storage));
-  }, []);
+  }, [props.refreshUsername]);
 
   const handleLogout = function () {
-    props.removeToken("");
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     localStorage.removeItem("type");
@@ -71,17 +83,17 @@ function NavbarMainPage(props) {
             Logout{" "}
           </button>
         </div>
+
+        <button className="btn-mobile-nav" onClick={() => handleClick()}>
+          <FontAwesomeIcon className="mobile-nav-menu-icon" icon={faBars} />
+          <FontAwesomeIcon
+            className="mobile-nav-cross-icon remove"
+            icon={faXmark}
+          />
+        </button>
       </nav>
     );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    removeToken: function () {
-      dispatch({ type: "removeToken" });
-    },
-  };
-}
-
-export default connect(null, mapDispatchToProps)(NavbarMainPage);
+export default NavbarMainPage;
