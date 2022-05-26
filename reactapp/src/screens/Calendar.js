@@ -14,6 +14,15 @@ function Calendar() {
   const [availabilities, setAvailabilities] = useState([]);
   const [reservations, setReservations] = useState([]);
 
+  function hideNavBar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   function getDateInNiceFormat(date) {
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const year = date.getFullYear();
@@ -103,14 +112,17 @@ function Calendar() {
     return (
       <div>
         <NavbarClub />
-        <div className="container center-sign margin-top calendar-section">
+        <div
+          className="container center-sign margin-top calendar-section"
+          onClick={() => hideNavBar()}
+        >
           <div className="center-title calendar-title">
-            <div className="sign-up-title">
+            <div className="sign-up-title calendar-consultation-title">
               <p>Consultation Mode</p>
             </div>
           </div>
           <div className="calendar-input">
-            <form className="when-input-style">
+            <form className="when-input-style calendar-input">
               <input
                 type="date"
                 id="date-input"

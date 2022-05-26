@@ -32,6 +32,15 @@ function ClubProfile() {
   const [locationError, setLocationError] = useState("");
   const [position, setPosition] = useState(["", ""]);
 
+  function hideNavBar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   function LocationMarker() {
     const map = useMapEvents({
       click(e) {
@@ -155,13 +164,14 @@ function ClubProfile() {
     return (
       <div>
         <NavbarClub refreshUsername={refreshUsername} />
-        <div className=" profile-section profile-section-club margin-top">
-          <div className="reservation-main-title-section">
-            <hr className="horizontalRule4"></hr>
+        <div
+          className=" profile-section profile-section-club margin-top"
+          onClick={() => hideNavBar()}
+        >
+          <div className="reservation-main-title-section club-profile-title">
             <h1 id="title" className="reservation-main-title">
               Personnal Informations
             </h1>
-            <hr className="horizontalRule4"></hr>
           </div>
           <div>
             <div className="club-infos-section">
@@ -249,7 +259,7 @@ function ClubProfile() {
             </div>
           </div>
 
-          <div className="reservation-buttons">
+          <div className="reservation-buttons club-profile-btns">
             <button
               className="yellowButton profileBtn"
               onClick={() => handleCancel()}

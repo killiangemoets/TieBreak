@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../stylesheets/navbar.css";
+import "../stylesheets/queries.css";
 import "../stylesheets/general.css";
 import { Redirect, Link } from "react-router-dom";
 import FooterPage from "../components/Footer";
@@ -25,6 +26,15 @@ function EditCalendar() {
 
   const [values, setValues] = useState(new Array(hours.length).fill(""));
   const [generalValue, setGeneralValue] = useState("");
+
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
 
   function getDateInNiceFormat(date) {
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -230,7 +240,7 @@ function EditCalendar() {
             </h6>
           </div>
           <div className="form-div">
-            <form className="when-input-style">
+            <form className="when-input-style edit-form">
               <input
                 type="number"
                 id="num-input"
@@ -313,7 +323,10 @@ function EditCalendar() {
     return (
       <div>
         <NavbarClub />
-        <div className="container center-sign margin-top calendar-section">
+        <div
+          className="container center-sign margin-top calendar-section"
+          onClick={() => hideNavbar()}
+        >
           <div className="center-title calendar-title">
             <div className="sign-up-title">
               <p>Edit Mode</p>
@@ -377,14 +390,14 @@ function EditCalendar() {
           </div>
           <div className="edit-btn-section">
             <button
-              className="yellowButton sign-in-sumbit-button edit-btn2"
+              className="edit-btn2 yellowButton sign-in-sumbit-button "
               onClick={() => setGoback(true)}
             >
               {" "}
               Cancel
             </button>
             <button
-              className="yellowButton sign-in-sumbit-button edit-btn2"
+              className="edit-btn2 yellowButton sign-in-sumbit-button "
               onClick={() => handleConfirm()}
             >
               {" "}

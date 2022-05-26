@@ -20,10 +20,6 @@ function Home(props) {
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
 
-  const toggleSwitch = () => {
-    switchToggled ? setSwitchToggled(false) : setSwitchToggled(true);
-  };
-
   function hideNavBar() {
     const navbar = document.querySelector(".navbarRight");
     const menuIcon = document.querySelector(".mobile-nav-menu-icon");
@@ -32,6 +28,10 @@ function Home(props) {
     menuIcon.classList.remove("remove");
     crossIcon.classList.add("remove");
   }
+
+  const toggleSwitch = () => {
+    switchToggled ? setSwitchToggled(false) : setSwitchToggled(true);
+  };
 
   async function matchData(token) {
     // C'est un GET par défaut le fetch

@@ -17,9 +17,20 @@
   .reservation-buttons {
     width: 86rem !important;
   }
-  /* .time-logo {
-    width: 3rem !important;
-  } */
+  .calendar-grid {
+    grid-template-columns: 1fr 1fr 2fr !important;
+    /* row-gap: 2rem; */
+    column-gap: 0rem !important;
+    padding: 0 2rem !important;
+  }
+
+  .club-infos-section {
+    flex-direction: column !important;
+  }
+
+  .club-profile-btns {
+    width: 60% !important;
+  }
 }
 
 /*****************************************/
@@ -62,54 +73,51 @@
     gap: 0rem !important;
   }
 
+  .center-games {
+    gap: 2.4rem !important;
+  }
+
   .games-section {
     grid-template-columns: auto !important;
     width: 100%;
     gap: 0rem !important;
-    /* align-items: center; */
     padding: 0rem 0 12.8rem 0 !important;
-    /* justify-content: center; */
   }
 
   .second-column {
     grid-row: 1/2 !important;
     height: 34rem;
     display: flex;
-    /* align-items: center; */
     justify-content: center;
     width: 100% !important;
-    /* padding-bottom: 6.4rem; */
   }
   .fix-column {
-    /* width: 100% !important; */
+    position: relative !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* left: 8%; */
-    /* top: 10%; */
     background-color: #fff;
     padding: 0 4rem;
     gap: 1.6rem !important;
+    padding-bottom: 4.4rem !important;
   }
-
   .stats {
     row-gap: 1rem !important;
   }
   .stat {
     gap: 4.8rem !important;
   }
-
   .stats-section {
     padding: 1.6rem 3.6rem !important;
   }
   .games-titles {
+    position: relative !important;
     top: 45% !important;
+    padding: 0 !important;
   }
   .games-list {
-    margin-top: 2rem !important;
-  }
-  .games-titles {
-    padding-top: 6rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }
 
@@ -128,13 +136,26 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    /* width: 200% !important; */
+    width: 92% !important;
+    margin: 0 auto;
+    z-index: 0 !important;
   }
 
   .clubs-cards {
     flex-direction: row !important;
     height: 21.2rem !important;
     grid-row: 1/2;
+    width: 92% !important;
+    margin: 0 auto;
+  }
+  .times-list {
+    width: 92vw !important;
+  }
+  #location-input {
+    width: 240% !important;
+  }
+  .reservation-buttons {
+    width: 72% !important;
   }
 }
 
@@ -165,7 +186,7 @@
 
     top: 0 !important;
     right: 0 !important;
-    width: 40% !important;
+    width: 50% !important;
     height: 100vh !important;
     transform: translateX(100%) !important;
 
@@ -194,13 +215,33 @@
   }
 
   .profile-menu {
-    right: 8% !important;
+    right: 14.6% !important;
     top: 560%;
     gap: 4.8rem;
     /* background-color: antiquewhite; */
     box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0);
 
     z-index: 999 !important;
+  }
+  .personnal-infos-form {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  #profile-title {
+    font-size: 6.4rem !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 848px (Vertical tablets) */
+/*****************************************/
+@media (max-width: 53em) {
+  .sign-up-club {
+    flex-direction: column !important;
+    /* gap: 2rem !important; */
+  }
+  .club-profile-title #title {
+    font-size: 4.8rem !important;
   }
 }
 
@@ -221,6 +262,39 @@
   .boxElementMaria {
     height: 22rem !important;
   }
+  #profile-title {
+    font-size: 4.8rem !important;
+  }
+  .profileBtn {
+    font-size: 2.4rem !important;
+    padding: 1.2rem 4.8rem !important;
+  }
+
+  .calendar-grid h6 {
+    font-size: 2rem !important;
+  }
+  .edit-btn-section {
+    gap: 2.4rem !important;
+  }
+  .edit-btn2 {
+    font-size: 2.4rem !important;
+    padding: 1.2rem 2rem !important;
+    /* text-align: center !important; */
+  }
+
+  .address-div {
+    grid-column: 1/2 !important;
+  }
+  #address-input {
+    width: 30rem !important;
+  }
+  .club-infos-form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .profile-menu {
+    right: 12.6% !important;
+  }
 }
 
 /*****************************************/
@@ -229,6 +303,9 @@
 @media (max-width: 38em) {
   .sign-up-title2 p {
     font-size: 3rem !important;
+  }
+  .profile-menu {
+    right: 11% !important;
   }
 
   .game-card {
@@ -240,32 +317,43 @@
   .stat {
     gap: 4.8rem !important;
   }
-  .fix-column {
-    padding: 0 !important;
-  }
-  .stats-section {
-    padding: 1.6rem 2.8rem !important;
-  }
+
   .stat-title {
     font-size: 1.8rem !important;
   }
   .games-titles {
-    padding-top: 8rem !important;
-    padding-bottom: 1rem !important;
-
+    margin-top: 1.8rem !important;
     gap: 0.4rem !important;
+  }
+  .games {
+    min-width: 0rem !important;
   }
 
   .games-title {
-    font-size: 2.6rem !important;
-    color: #aaa;
-  }
-  .games-list {
-    margin-top: 1.8rem !important;
+    font-size: 2.4rem !important;
   }
 
-  .games-section {
-    padding-bottom: 6.4rem !important;
+  .sign-up-club-title {
+    font-size: 4rem !important;
+  }
+
+  .map-container-sign-up {
+    width: 90vw !important;
+    height: 36rem !important;
+  }
+  .calendar-consultation-title {
+    font-size: 4.2rem !important;
+  }
+
+  .calendar-grid2 {
+    column-gap: 1.2rem !important;
+  }
+
+  .calendar-grid2 h6 {
+    font-size: 2rem !important;
+  }
+  .edit-form input {
+    font-size: 1.6rem !important;
   }
 }
 
@@ -286,6 +374,10 @@
     width: 100% !important;
   }
 
+  .profile-menu {
+    right: 10% !important;
+  }
+
   .boxTemplate2 {
     display: grid !important;
     grid-template-columns: 1fr !important;
@@ -303,6 +395,32 @@
   .divideBoxes {
     width: 40rem;
   }
+  .map-container {
+    height: 36rem !important;
+  }
+  .reservation-buttons {
+    width: 90% !important;
+    gap: 2rem !important;
+  }
+
+  .sign-in-club-title {
+    font-size: 4.8rem !important;
+  }
+
+  .you-made-it#title {
+    font-size: 4.8rem !important;
+  }
+
+  .coming-game-title {
+    font-size: 3.6rem !important;
+  }
+
+  /* .calendar-grid2 h6 {
+    font-size: 1.6rem !important;
+  }
+  .edit-form input {
+    font-size: 1.2rem !important;
+  } */
 }
 
 /*****************************************/
@@ -317,7 +435,15 @@
     padding: 1rem 8rem !important;
   }
 
+  .edit-btn2 {
+    font-size: 2.4rem !important;
+    padding: 1.2rem 2rem !important;
+  }
+
   .navbarRight {
     width: 60% !important;
+  }
+  .profile-menu {
+    right: 8% !important;
   }
 }

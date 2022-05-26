@@ -20,6 +20,15 @@ function Overview(props) {
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
 
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   const getLocalStorage = function () {
     const storage = localStorage.getItem("currentReservation");
     console.log(JSON.parse(storage));
@@ -63,13 +72,14 @@ function Overview(props) {
     return (
       <div>
         <NavbarMainPage />
-        <div className=" overview-section margin-top">
-          <div className="reservation-main-title-section">
-            <hr className="horizontalRule2"></hr>
+        <div
+          className=" overview-section margin-top"
+          onClick={() => hideNavbar()}
+        >
+          <div className="reservation-main-title-section you-made-it">
             <h1 id="title" className="reservation-main-title">
               Overview
             </h1>
-            <hr className="horizontalRule2"></hr>
           </div>
           <div>
             <div className="game-card">
