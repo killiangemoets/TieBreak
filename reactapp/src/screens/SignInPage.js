@@ -16,6 +16,15 @@ function CreateAccount(props) {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   var handleSignIn = async () => {
     const login = {
       email,
@@ -68,7 +77,10 @@ function CreateAccount(props) {
     return (
       <div>
         <NavbarHomePage />
-        <div className="container center-sign margin-top">
+        <div
+          className="container center-sign margin-top"
+          onClick={() => hideNavbar()}
+        >
           <div className="center-title">
             <div className="sign-up-title">
               <p>Sign in</p>

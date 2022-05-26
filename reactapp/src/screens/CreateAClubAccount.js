@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../stylesheets/navbar.css";
+import "../stylesheets/queries.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
 import NavbarHomePageClub from "../components/NavbarHomePageClub";
@@ -35,6 +36,15 @@ function CreateClubAccount() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState(null);
   const [locationError, setLocationError] = useState("");
+
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
 
   function LocationMarker() {
     const map = useMapEvents({
@@ -173,10 +183,13 @@ function CreateClubAccount() {
     return (
       <div c>
         <NavbarHomePageClub />
-        <div className="container center-sign margin-top">
+        <div
+          className="container center-sign margin-top"
+          onClick={() => hideNavbar()}
+        >
           <div className="center-title">
-            <div className="sign-up-title">
-              <p>Create Your Account</p>
+            <div className="sign-up-title sign-up-club-title">
+              <p style={{ textAlign: "center" }}>Create Your Club Account</p>
             </div>
           </div>
           <div className="sign-up-club">
@@ -268,7 +281,7 @@ function CreateClubAccount() {
               <p className="map-error">{locationError}</p>
             </div>
           </div>
-          <div>
+          <div className="center-sign-up-club-btn">
             <button
               className="sign-up-sumbit-button sign-up-club-btn"
               onClick={() => handleSignUp()}

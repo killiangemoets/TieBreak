@@ -9,6 +9,10 @@
   gap: 6.4rem;
 }
 
+.games {
+  min-width: 50rem;
+}
+
 .reservation-main-title {
   font-size: 7.2rem !important;
   text-align: center;
@@ -152,6 +156,7 @@
   width: 54.6rem;
   border-radius: 12px;
   box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.08);
+  z-index: 0 !important;
 }
 
 /* .leaflet-container {
@@ -180,7 +185,7 @@
   border-radius: 12px;
   padding: 1rem 3rem;
   margin: 1rem 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   border: none;
   font-size: large;
 }
@@ -292,7 +297,7 @@
 }
 .search-results {
   background-color: #eee;
-  z-index: 999 !important;
+  /* z-index: 999 !important; */
   width: 36rem;
   max-height: 46.9rem;
   overflow-y: scroll;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../stylesheets/navbar.css";
+import "../stylesheets/queries.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
 import NavbarHomePageClub from "../components/NavbarHomePageClub";
@@ -13,6 +14,15 @@ function ClubSignIn() {
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
 
   var handleSignIn = async () => {
     const login = {
@@ -64,10 +74,13 @@ function ClubSignIn() {
     return (
       <div>
         <NavbarHomePageClub />
-        <div className="container center-sign margin-top">
+        <div
+          className="container center-sign margin-top"
+          onClick={() => hideNavbar()}
+        >
           <div className="center-title">
-            <div className="sign-up-title">
-              <p>Login as a Club</p>
+            <div className="sign-up-title sign-in-club-title">
+              <p>Sign in as a club</p>
             </div>
           </div>
 

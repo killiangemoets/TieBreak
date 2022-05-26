@@ -15,6 +15,15 @@ function News() {
   const [state, setState] = useState("games");
   const [inputDate, setInputDate] = useState("");
 
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   function getDateInNiceFormat(date) {
     const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const year = date.getFullYear();
@@ -312,7 +321,7 @@ function News() {
     return (
       <div>
         <NavbarMainPage />
-        <div className="news-big-container">
+        <div className="news-big-container" onClick={() => hideNavbar()}>
           <div className="white-bg">
             <div className="news-section container center-stats margin-top-news">
               <div className="news">

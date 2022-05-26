@@ -31,16 +31,25 @@
 .calendar-grid2 {
   display: grid;
   justify-content: center;
-  row-gap: 2rem;
-  column-gap: 4.8rem;
+  /* row-gap: 2rem; */
+  /* column-gap: 4.8rem; */
 }
 .calendar-grid {
   grid-template-columns: auto auto 75rem;
+  margin-bottom: 6.4rem;
+  border-collapse: collapse !important;
+}
+
+.calendar-grid div {
+  border: 4px solid #eee;
+  border-collapse: collapse;
+  padding: 0.6rem;
 }
 
 .calendar-grid2 {
   grid-template-columns: auto auto auto auto;
   align-items: center;
+  column-gap: 4.8rem;
   row-gap: 1.4rem !important;
 }
 
@@ -112,4 +121,9 @@
   justify-content: center;
   gap: 2rem;
   grid-column: 1/5; */
+}
+
+.calendar-input {
+  margin-top: 2rem;
+  margin-bottom: 1.6rem;
 }

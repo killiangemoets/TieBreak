@@ -18,6 +18,15 @@ function Home(props) {
   const [clubOfThisMonth, setClubOfThisMonth] = useState("");
   const [token, setToken] = useState("");
 
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   const toggleSwitch = () => {
     switchToggled ? setSwitchToggled(false) : setSwitchToggled(true);
   };
@@ -177,7 +186,7 @@ function Home(props) {
     return (
       <div>
         <NavbarMainPage />
-        <div className="games-section margin-top">
+        <div className="games-section margin-top" onClick={() => hideNavbar()}>
           <div className="start-reservation-btn-section">
             <Link to="/reservation">
               <button className="yellowButton start-reservation-big-btn">

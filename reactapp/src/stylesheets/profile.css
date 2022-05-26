@@ -12,6 +12,14 @@
 .profile-section-club {
   gap: 6.4rem !important;
 }
+#profile-title {
+  color: #b3541e;
+  font-size: 13rem;
+  letter-spacing: 0.25rem;
+  border-top: 4px solid #b3541e;
+  border-bottom: 4px solid #b3541e;
+  margin: 0 auto;
+}
 
 .horizontalRule4 {
   width: 72rem;
@@ -54,14 +62,14 @@
   border-radius: 15px;
   padding: 1rem 3rem;
   margin: 1rem 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   border: none;
   font-size: large;
   width: 30rem;
 }
 
 .personnal-infos-form label {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 2.5rem;
 }
 
@@ -97,4 +105,8 @@
 .map-input {
   width: 60rem !important;
   height: 30rem !important;
+}
+
+.profile-btns {
+  gap: 2rem;
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavbarMainPage from "../components/NavbarMainPage";
 import FooterPage from "../components/Footer";
 import "../stylesheets/confirmation.css";
+import "../stylesheets/queries.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
 
@@ -19,6 +20,15 @@ function Confirmation(props) {
   ]);
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
+
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
 
   const getLocalStorage = function () {
     const storage = localStorage.getItem("currentReservation");
@@ -98,13 +108,14 @@ function Confirmation(props) {
     return (
       <div>
         <NavbarMainPage />
-        <div className=" confirmation-section margin-top">
+        <div
+          className=" confirmation-section margin-top"
+          onClick={() => hideNavbar()}
+        >
           <div className="reservation-main-title-section">
-            <hr className="horizontalRule3"></hr>
-            <h1 id="title" className="reservation-main-title">
+            <h1 id="title" className="reservation-main-title you-made-it">
               You made it!
             </h1>
-            <hr className="horizontalRule3"></hr>
           </div>
           <div className="coming-game">
             <div>

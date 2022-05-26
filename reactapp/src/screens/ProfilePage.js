@@ -18,6 +18,15 @@ function Profile(props) {
 
   const [refreshUsername, setRefreshUsername] = useState(false);
 
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   async function getPersonnalInfos(token) {
     var rawResponse = await fetch(`/users/infos/${token}`);
     var response = await rawResponse.json();
@@ -101,13 +110,14 @@ function Profile(props) {
     return (
       <div>
         <NavbarMainPage refreshUsername={refreshUsername} />
-        <div className=" profile-section margin-top">
+        <div
+          className=" profile-section margin-top"
+          onClick={() => hideNavbar()}
+        >
           <div className="reservation-main-title-section">
-            <hr className="horizontalRule4"></hr>
-            <h1 id="title" className="reservation-main-title">
+            <h1 id="profile-title" className="reservation-main-title">
               Personnal Informations
             </h1>
-            <hr className="horizontalRule4"></hr>
           </div>
           <div>
             <div className="personnal-infos">
@@ -162,7 +172,7 @@ function Profile(props) {
             </div>
           </div>
 
-          <div className="reservation-buttons">
+          <div className="reservation-buttons profile-btns">
             <button
               className="yellowButton profileBtn"
               onClick={() => handleCancel()}
@@ -182,6 +192,5 @@ function Profile(props) {
     );
   }
 }
-
 
 export default Profile;

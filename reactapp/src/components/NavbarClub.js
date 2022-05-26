@@ -3,13 +3,26 @@ import "../stylesheets/navbar.css";
 import "../stylesheets/general.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faBars,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router-dom";
 
 function NavbarClub(props) {
   const [profileMenu, setProfileMenu] = useState(false);
   const [logout, setLogout] = useState(false);
   const [username, setUsername] = useState("");
+
+  function handleClick() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.toggle("nav-open");
+    menuIcon.classList.toggle("remove");
+    crossIcon.classList.toggle("remove");
+  }
 
   const openProfileMenu = function () {
     setProfileMenu(true);
@@ -45,7 +58,7 @@ function NavbarClub(props) {
         </Link>
         <div className="navbarRight">
           <Link to="/club/howitworks">
-            <button className="button">How it works </button>
+            <button className="button">Dashboard </button>
           </Link>
           <Link to="/club/calendar">
             <button className="buttonShowed">Calendar</button>
@@ -66,6 +79,14 @@ function NavbarClub(props) {
             Logout{" "}
           </button>
         </div>
+
+        <button className="btn-mobile-nav" onClick={() => handleClick()}>
+          <FontAwesomeIcon className="mobile-nav-menu-icon" icon={faBars} />
+          <FontAwesomeIcon
+            className="mobile-nav-cross-icon remove"
+            icon={faXmark}
+          />
+        </button>
       </nav>
     );
   }
