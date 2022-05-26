@@ -6,32 +6,32 @@
   background-color: #b3551e00;
   font-size: 2.4rem;
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: all 0.3s;
 }
 
 .button:hover,
 .button:active {
-  color: #E08F62;
+  color: #e08f62;
 }
 
 .buttonShowed,
 .buttonShowed:link,
 .buttonShowed:visited {
-  background-color: #E08F62;
+  background-color: #e08f62;
   border: none;
   cursor: pointer;
   font-size: 2.4rem;
   border-radius: 25px;
   color: white;
   padding: 1rem 3rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: all 0.3s;
 }
 
 .buttonShowed:hover,
 .buttonShowed:active {
-  background-color: #E08F62;
+  background-color: #e08f62;
 }
 
 .logoNavBar {
@@ -46,6 +46,7 @@
   width: 100%;
   z-index: 999 !important;
   background-color: rgba(0, 0, 0, 0);
+  background-color: #e08e62a7;
   display: flex;
   padding: 0 4rem;
   justify-content: space-between;
@@ -65,13 +66,13 @@
   align-items: center;
   justify-content: center;
   gap: 3rem;
-font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .titleNavBar {
   font-size: 2.5rem;
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .link-login {

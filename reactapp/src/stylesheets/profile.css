@@ -57,7 +57,8 @@
   padding: 1.2rem 6.4rem;
 }
 
-.personnal-infos-form input {
+.personnal-infos-form input,
+.personnal-infos-form select {
   background-color: #e8ccbc;
   border-radius: 15px;
   padding: 1rem 3rem;

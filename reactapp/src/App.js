@@ -11,7 +11,7 @@ import SignInPage from "./screens/SignInPage";
 import ClubMain from "./screens/ClubMain";
 import CreateClubAccount from "./screens/CreateAClubAccount";
 import ClubSignIn from "./screens/SiginInAsAClub";
-import HowItWorks from "./screens/HowItWorks";
+import Dashboard from "./screens/Dashboard";
 import Calendar from "./screens/Calendar";
 import EditCalendar from "./screens/EditCalendar";
 import ClubProfile from "./screens/ClubProfile";
@@ -44,7 +44,7 @@ function App() {
           <Route path="/signin" component={SignInPage} />
           <Route path="/club/signup" component={CreateClubAccount} />
           <Route path="/club/signin" component={ClubSignIn} />
-          <Route path="/club/howitworks" component={HowItWorks} />
+          <Route path="/club/dashboard" component={Dashboard} />
           <Route path="/club/calendar/edit" component={EditCalendar} />
           <Route path="/club/calendar" component={Calendar} />
           <Route path="/club/profile" component={ClubProfile} />
