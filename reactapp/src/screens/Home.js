@@ -6,6 +6,8 @@ import "../stylesheets/homepage.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
 
+
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -50,7 +52,10 @@ function Home() {
             <div className="header margin-top" onClick={() => hideNavBar()}>
               <div className="details-banner">
                 <div className="header-title">
-                  <h1 id="title"> TieBreak</h1>
+                  <h1 id="title" > 
+                    <span > Tie</span> 
+                    <span >Break</span>
+                    </h1>
                 </div>
                 <div>
                     <p className="header-description">
@@ -80,81 +85,84 @@ function Home() {
             <div className="middle-page">
             <div className="howItWorks-section" ref={scrollButton}>
           <div className="titleTexts">
-            <div className="title-howItWorks">
-              <p> How it Works </p>
-            </div>
             <div className="text-howItWorks">
               <p>
                 {" "}
                 Finding an available tennis court has never been so easy !{" "}
               </p>
             </div>
-          </div>
-          <div className="box-section">
-            <div className="boxTemplate">
-              <div className="boxText">
-                <div className="boxText-title">
-                  <p> 15-0</p>
-                </div>
-                <div className="boxText-description">
-                  <p>
-                    Chose the perfect time in <br />
-                    the calendar!
-                  </p>
-                </div>
-              </div>
-              <div className="boxElement">
-                <img
-                  src="../../calandar.png"
-                  alt="calendar"
-                  className="home-img"
-                ></img>
-              </div>
+            <div className="title-howItWorks">
+              <p> How it Works </p>
             </div>
-            <hr className="divideBoxes"></hr>
-            <div className="boxTemplate boxTemplate2">
-              <div className="boxElement boxElement2">
-                <img
-                  src="../../map.jpeg"
-                  alt="calendar"
-                  className="home-img"
-                ></img>
-              </div>
-              <div className="boxText">
-                <div className="boxText-title">
-                  <p> 30-0</p>
-                </div>
-                <div className="boxText-description">
-                  <p>
+          </div>
+
+          <div className="box-section">
+            
+            <div className=" card">
+                
+                  
+                    <p className="TitleCardScore"> 15-0</p>
+                    <img
+                      src="../../calendar.png"
+                      alt="calendar"
+                      className="home-img"
+                    ></img>
+                    <p className="DescriptionCardOdd">
+                      Chose the perfect time in 
+                      the calendar!
+                    </p>
+                  
+                  
+                  
+                
+            </div>
+
+            <div className=" cardMiddle">
+                
+              <p className="TitleCardScore"> 30-0</p>
+                  
+                    <img
+                      src="../../map.png"
+                      alt="map"
+                      className="home-img"
+                    ></img>
+                  
+                  
+                    <p className="DescriptionCardEven">
                     Chose the perfect <br />
                     tennis court!
-                  </p>
-                </div>
-              </div>
-            </div>
-            <hr className="divideBoxes"></hr>
-            <div className="boxTemplate boxTemplate-last">
-              <div className="boxText">
-                <div className="boxText-title">
-                  <p> 40-0</p>
-                </div>
-                <div className="boxText-description">
-                  <p>Confirm & Pay</p>
-                </div>
-              </div>
-              <div className="boxElement">
-                <img
-                  className="boxElementMaria"
-                  src="../../cf25de0e2cacb54159d6f51fa00e042b.png"
-                  alt="calendar"
-                ></img>
-              </div>
+                    </p>
+                  
+                
             </div>
 
-            <div>
-              <h2 className="final-title">Game, Set & Match!</h2>
-            </div>
+            <div className=" card">
+                    
+                
+                    <p className="TitleCardScore"> 40-0</p>
+                  
+                    <img
+                      src="../../credit-card.png"
+                      alt="pay"
+                      className="home-img"
+                    ></img>
+                  
+                    <p className="DescriptionCardOdd">
+                      Confirm & Play <br />
+                      <span className="hidden-text"> test</span>
 
+                    </p>
+                  
+                  
+                
+            </div>
+           
+
+          </div>
+            
+          
+            </div>
+            
             <div className="gameSetMatchButton">
               <a href="/signup">
                 <button className="yellowButton yellowButton-final">
@@ -163,8 +171,7 @@ function Home() {
                 </button>
               </a>
             </div>
-          </div>
-        </div>
+     
 
 
 

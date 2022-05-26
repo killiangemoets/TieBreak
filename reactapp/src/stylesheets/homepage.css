@@ -31,7 +31,7 @@
 
 
 .section-intermediaire{
-  height: 15vh;
+  height: 5vh;
   background-color: white;
 }
 
@@ -96,12 +96,15 @@
 
 .title-howItWorks {
   margin-top: 4rem;
-  font-size: 3rem;
+  font-size: 5rem;
   color: #b3541e;
+  letter-spacing: 1rem;
 }
 
 .text-howItWorks {
   font-size: 4.5rem;
+  font-weight: 500;
+  
 }
 
 .boxText {
@@ -110,51 +113,63 @@
 
 .boxText-title {
   font-size: 15rem;
-  color: #bbbbbb;
+  color: white;
+  font-weight: 500;
+
 }
 
 .titleTexts {
   margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .boxText-description {
-  font-size: 3rem;
+  font-size: 3.5rem;
   color: #b3541e;
+  font-weight: 600;
 }
 
 .boxTemplate {
-  display: flex;
+  /* display:flex; 
+  justify-content: space-around;
+  background-color: red; */
+  /* display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 9rem 0;
+  padding: 9rem 0; */
 }
 
 .home-img {
-  height: 25rem;
-  border-radius: 12px;
-  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.04);
+  height: 15rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  /* border-radius: 12px;
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.04); */
 }
 
 .divideBoxes {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70rem;
-  height: 0.2rem;
-  background-color: #b3541e;
+  /* width: 70rem;
+  background-color: #b3541e; */
   border: none;
   margin: auto;
+  /* height: 0.2rem; */
 }
 
-.boxElementMaria {
+/* .boxElementMaria {
   height: 25rem;
-}
+} */
 
 .gameSetMatchButton {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 7rem;
   gap: 2rem;
   /* padding: 6rem; */
 }
@@ -181,6 +196,8 @@
   padding: 1.6rem 6.4rem !important;
   margin-bottom: 12.8rem;
   border-radius: 9999px;
+  box-shadow: 0 1.2rem 3.2rem rgba(0,0,0,0.3);
+
 }
 
 .boxTemplate-last {
@@ -193,5 +210,81 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
+}
+
+.box-section{
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.card{
+  background-color: #DED7B1;
+  width: 50rem;
+  height: 65rem;
+  border-radius: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1.2rem 3.2rem rgba(0,0,0,0.3);
+
+}
+
+.cardMiddle{
+  background-color: #9DAB86;
+  width: 50rem;
+  height: 65rem;
+  border-radius: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1.2rem 3.2rem rgba(0,0,0,0.3);
+}
+
+/* .cardTwo{
+  background-color: #9DAB86;
+  width: 50rem;
+  height: 65rem;
+  border-radius: 15%;
+}
+
+.cardThree{
+background-color: #DED7B1;
+width: 50rem;
+height: 65rem;
+border-radius: 15%;
+} */
+
+.TitleCardScore{
+  font-size: 15rem;
+  color: white;
+}
+
+.DescriptionCardOdd{
+  font-size: 3rem;
+  text-align: center;
+  color:#9DAB86;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  
+}
+
+.hidden-text{
+  opacity: 0
+}
+
+.DescriptionCardEven{
+  font-size: 3rem;
+  text-align: center;
+  color:#DED7B1;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
   
 }

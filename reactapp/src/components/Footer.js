@@ -8,7 +8,7 @@ function FooterPage () {
     return (
         <footer className="footer">
             <div >
-              
+              <p>&copy; Made by Kiki & Flo</p>
             </div>
 
         </footer>
