@@ -3,35 +3,35 @@
 .button:visited {
   border: none;
   cursor: pointer;
-  background-color: #b3541e;
+  background-color: #b3551e00;
   font-size: 2.4rem;
   color: white;
-font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
   transition: all 0.3s;
 }
 
 .button:hover,
 .button:active {
-  color: #e8c31b;
+  color: #E08F62;
 }
 
 .buttonShowed,
 .buttonShowed:link,
 .buttonShowed:visited {
-  background-color: #e8c31b;
+  background-color: #E08F62;
   border: none;
   cursor: pointer;
   font-size: 2.4rem;
   border-radius: 25px;
   color: white;
   padding: 1rem 3rem;
-font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
   transition: all 0.3s;
 }
 
 .buttonShowed:hover,
 .buttonShowed:active {
-  background-color: #ba9c16;
+  background-color: #E08F62;
 }
 
 .logoNavBar {
@@ -45,13 +45,13 @@ font-family: 'Poppins', sans-serif;
   bottom: 0;
   width: 100%;
   z-index: 999 !important;
-
-  background-color: #b3541e;
+  background-color: rgba(0, 0, 0, 0);
   display: flex;
   padding: 0 4rem;
   justify-content: space-between;
   align-items: center;
   height: 8rem;
+  /* opacity: 0; */
 }
 
 .navbarLeft {
@@ -71,6 +71,7 @@ font-family: 'Poppins', sans-serif;
 .titleNavBar {
   font-size: 2.5rem;
   color: white;
+  font-family: 'Poppins', sans-serif;
 }
 
 .link-login {
