@@ -24,6 +24,15 @@ function CreateAccount() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   async function handleSignUp() {
     if (
       password === confirmPassword &&
@@ -115,7 +124,10 @@ function CreateAccount() {
     return (
       <div>
         <NavbarHomePage />
-        <div className="container center-sign margin-top">
+        <div
+          className="container center-sign margin-top"
+          onClick={() => hideNavbar()}
+        >
           <div className="center-title">
             <div className="sign-up-title sign-up-title2">
               <p>Create Your Account</p>

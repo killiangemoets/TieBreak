@@ -7,10 +7,22 @@ import NavbarHomePageClub from "../components/NavbarHomePageClub";
 import FooterPage from "../components/Footer";
 
 function ClubMain() {
+  function hideNavBar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   return (
     <div>
       <NavbarHomePageClub />
-      <div className="margin-top club-main-section">
+      <div
+        className="margin-top club-main-section"
+        onClick={() => hideNavBar()}
+      >
         <div className="margin-top left-section container">
           {/* <div className="photo-left-section"> */}
           <img

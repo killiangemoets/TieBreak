@@ -60,7 +60,7 @@
   border-radius: 15px;
   padding: 1rem 3rem;
   margin: 1rem 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   border: none;
   font-size: large;
 }
@@ -78,7 +78,7 @@
 .sign-up-sumbit-button,
 .sign-up-sumbit-button:link,
 .sign-up-sumbit-button:visited {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   cursor: pointer;
   padding: 1rem 3rem;
   border-radius: 15px;
@@ -90,6 +90,7 @@
   margin-top: 2.4rem;
 
   padding: 1rem 10rem;
+  transition: all 0.3s;
 }
 
 .sign-up-sumbit-button:hover,
@@ -105,7 +106,7 @@
 .sign-in-sumbit-button,
 .sign-in-sumbit-button:link,
 .sign-in-sumbit-button:visited {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   cursor: pointer;
   padding: 1rem 3rem;
   border-radius: 15px;
@@ -117,6 +118,7 @@
   padding: 1rem 10rem;
   margin-top: 2.4rem;
   /* margin: 2rem 44rem; */
+  transition: all 0.3s;
 }
 
 .sign-up-club-btn {
@@ -147,7 +149,7 @@
   border-radius: 15px;
   padding: 1rem 3rem;
   margin: 1rem 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   border: none;
   font-size: large;
 }
@@ -161,4 +163,11 @@
   width: 50rem;
   border-radius: 12px;
   /* box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.08); */
+}
+
+.center-sign-up-club-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6.4rem;
 }

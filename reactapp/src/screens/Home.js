@@ -150,6 +150,7 @@ function Home() {
                 ></img>
               </div>
             </div>
+
             <div>
               <h2 className="final-title">Game, Set & Match!</h2>
             </div>
@@ -315,5 +316,4 @@ function Home() {
         </div>
       </div> */}
    
-
 export default Home;

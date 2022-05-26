@@ -9,6 +9,15 @@ function HowItWorks() {
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
 
+  function hideNavbar() {
+    const navbar = document.querySelector(".navbarRight");
+    const menuIcon = document.querySelector(".mobile-nav-menu-icon");
+    const crossIcon = document.querySelector(".mobile-nav-cross-icon");
+    navbar.classList.remove("nav-open");
+    menuIcon.classList.remove("remove");
+    crossIcon.classList.add("remove");
+  }
+
   useEffect(() => {
     const storage1 = localStorage.getItem("type");
     if (JSON.parse(storage1) !== "club") setType(false);
@@ -23,7 +32,9 @@ function HowItWorks() {
     return (
       <div>
         <NavbarClub />
-        <h1 className="center">How it works</h1>
+        <div oncClick={() => hideNavbar()}>
+          <h1 className="center">How it works</h1>
+        </div>
         <FooterPage />
       </div>
     );
