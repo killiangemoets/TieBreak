@@ -19,7 +19,7 @@ function NavbarHomePage() {
     <nav className="navbar">
       <a href="/" className="logoRedirect">
         <div className="navbarLeft">
-          <img className="logoNavBar" src="../../ball1.png" alt="logo" />
+          
           <h1 className="titleNavBar">TieBreak </h1>
         </div>
       </a>
