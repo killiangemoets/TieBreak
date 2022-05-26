@@ -57,7 +57,7 @@ function NavbarClub(props) {
           </div>
         </Link>
         <div className="navbarRight">
-          <Link to="/club/howitworks">
+          <Link to="/club/dashboard">
             <button className="button">Dashboard </button>
           </Link>
           <Link to="/club/calendar">
