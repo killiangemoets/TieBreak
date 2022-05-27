@@ -3,12 +3,12 @@
 }
 
 .margin-top-news {
-  margin-top: 12rem !important;
+  margin-top: 14.8rem !important;
 }
 
 .white-bg {
   position: fixed;
-  margin: 3.4rem 0;
+  /* margin: 3.4rem 0; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,10 +19,14 @@
   padding-bottom: 2rem;
 }
 
+.api-input {
+  background-color: #f0c7b1 !important;
+}
+
 .news-section {
   width: 100%;
 
-  background-color: #e8ccbc;
+  background-color: #ebeee7;
   padding: 2.4rem;
 }
 
@@ -52,16 +56,17 @@
 }
 
 .new-value {
+  margin: 0;
   font-size: 3rem;
   color: #aaa;
   transition: all 0.3s;
 }
 .new-value:hover {
-  color: #b3541e;
+  color: #e08f62;
 }
 
 .new-value-active {
-  color: #b3541e;
+  color: #e08f62;
 }
 
 .news-results-section {
@@ -79,7 +84,7 @@
 
 .result-card {
   width: 80rem;
-  background-color: #e8ccbc;
+  background-color: #ebeee7;
   padding: 2.6rem 6rem;
   border-radius: 36px;
   display: flex;
@@ -91,10 +96,18 @@
 
 .tournement-infos {
   font-size: 2.8rem;
-  color: #b3541e;
+  color: #e08f62;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.tournemant-title h6 {
+  margin: 0;
+}
+
+.tournemant-date h6 {
+  margin: 0;
 }
 
 .round-info {
@@ -102,7 +115,11 @@
   align-items: center;
   justify-content: center;
   font-size: 3.2rem;
-  color: #b3541e;
+  color: #e08f62;
+}
+
+.round-info h6 {
+  margin: 0;
 }
 
 .players {
@@ -123,10 +140,12 @@
 .player {
 }
 
-.player-ranking {
+.player-ranking p {
+  margin: 0;
 }
 
-.player-name {
+.player-name p {
+  margin: 0;
 }
 
 .player-score {
@@ -137,4 +156,8 @@
 }
 
 .score-num {
+}
+
+.ranking p {
+  margin: 0 !important;
 }

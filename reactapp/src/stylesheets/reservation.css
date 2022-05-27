@@ -22,7 +22,7 @@
 .horizontalRule2 {
   width: 32rem;
   height: 0.3rem;
-  background-color: #b3541e;
+  background-color: #b3724e;
   border: none;
 }
 
@@ -48,7 +48,7 @@
 
 .when-and-where-main-title {
   font-size: 3.2rem;
-  color: #b3541e;
+  color: #b3724e;
   margin: 0;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .times-list {
-  background-color: #e8ccbc;
+  background-color: #f6ddd0;
   width: 80%;
   width: 30rem;
   /* height: 40rem; */
@@ -110,22 +110,22 @@
   margin: 0;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #b3541e;
+  color: #b3724e;
 }
 
 .time:hover {
-  color: #b3541e;
+  color: #b3724e;
 }
 
 .time-logo {
   width: 2rem;
   height: 2rem;
-  /* background-color: #b3541e; */
+  /* background-color: #b3724e; */
 }
 
 .time-selected {
   margin: 0;
-  color: #b3541e;
+  color: #b3724e;
 }
 
 .time-out {
@@ -199,7 +199,7 @@
 }
 
 .when-input-style input {
-  background-color: #e8ccbc;
+  background-color: #f6ddd0;
   border-radius: 12px;
   padding: 1rem 3rem;
   margin: 1rem 0;
@@ -226,7 +226,7 @@
 }
 
 .club-card {
-  background-color: #e8ccbc;
+  background-color: #f6ddd0;
   padding: 2rem 3.2rem;
   border-radius: 12px;
   display: flex;
@@ -241,12 +241,12 @@
 }
 
 .club-card-selected {
-  box-shadow: inset 0 0 0 5px #b3541e;
+  box-shadow: inset 0 0 0 5px #b3724e;
 }
 
 .club-title {
   font-size: 2rem;
-  color: #b3541e;
+  color: #b3724e;
   font-weight: 600;
 }
 
@@ -348,11 +348,11 @@
   align-items: center;
   justify-content: center;
   font-size: 2.6rem;
-  color: #b3541e;
+  color: #b3724e;
   margin-bottom: 3.2rem;
   margin-top: 1.4rem;
   height: 5.4rem;
   width: 29.2rem;
-  border: solid 6px #b3541e;
+  border: solid 6px #b3724e;
   border-radius: 12px;
 }

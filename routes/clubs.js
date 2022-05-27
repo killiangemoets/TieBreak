@@ -192,6 +192,7 @@ router.patch("/infos/:token", async function (req, res, next) {
         phone: req.body.phone,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
+        image: req.body.image,
       },
       {
         new: true,
