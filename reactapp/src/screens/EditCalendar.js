@@ -335,7 +335,7 @@ function EditCalendar() {
           onClick={() => hideNavbar()}
         >
           <div className="center-title calendar-title">
-            <div className="sign-up-title">
+            <div className="calendar-consultation-title">
               <p>Edit Mode</p>
             </div>
           </div>

@@ -53,7 +53,7 @@ function NavbarMainPage(props) {
       <nav className="navbar" onMouseLeave={() => closeProfileMenu()}>
         <Link to="/games" className="logoRedirect">
           <div className="navbarLeft ">
-            <img className="logoNavBar" src="../../ball1.png" alt="logo" />
+            {/* <img className="logoNavBar" src="../../ball1.png" alt="logo" /> */}
             <h1 className="titleNavBar">TieBreak </h1>
           </div>
         </Link>

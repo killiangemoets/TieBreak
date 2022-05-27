@@ -19,20 +19,19 @@ function NavbarHomePage() {
     <nav className="navbar">
       <a href="/" className="logoRedirect">
         <div className="navbarLeft">
-          
           <h1 className="titleNavBar">TieBreak </h1>
         </div>
       </a>
       <div className="navbarRight">
         <a href="/club" className="link-login">
-          <button className="button">I'M A CLUB </button>
+          <button className="button">I'm a club </button>
         </a>
         <a href="/signin" className="link-login">
-          <button className="button">SIGN IN </button>
+          <button className="button">Sign in </button>
         </a>
         <a href="/signup">
           <div>
-            <button className="buttonShowed">SIGN UP</button>
+            <button className="buttonShowed">Sign up</button>
           </div>
         </a>
       </div>

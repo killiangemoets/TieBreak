@@ -12,7 +12,8 @@
 
 .button:hover,
 .button:active {
-  color: #e08f62;
+  /* color: #e08f62; */
+  color: #9dab86;
 }
 
 .buttonShowed,
@@ -24,14 +25,15 @@
   font-size: 2.4rem;
   border-radius: 25px;
   color: white;
-  padding: 1rem 3rem;
+  padding: 0.5rem 2.2rem;
   font-family: "Poppins", sans-serif;
   transition: all 0.3s;
 }
 
 .buttonShowed:hover,
 .buttonShowed:active {
-  background-color: #e08f62;
+  /* background-color: #e08f62; */
+  background-color: #9dab86;
 }
 
 .logoNavBar {
@@ -51,7 +53,7 @@
   padding: 0 4rem;
   justify-content: space-between;
   align-items: center;
-  height: 8rem;
+  height: 7.2rem;
   /* opacity: 0; */
 }
 
@@ -70,6 +72,7 @@
 }
 
 .titleNavBar {
+  margin: 0;
   font-size: 2.5rem;
   color: white;
   font-family: "Poppins", sans-serif;
@@ -86,7 +89,7 @@
 }
 
 .profile-menu {
-  background-color: #b3541e;
+  background-color: #e08e62a7;
   position: absolute;
   display: flex;
   flex-direction: column;

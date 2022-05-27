@@ -108,14 +108,9 @@ function Confirmation(props) {
     return (
       <div>
         <NavbarMainPage />
-        <div
-          className=" confirmation-section margin-top"
-          onClick={() => hideNavbar()}
-        >
+        <div className=" confirmation-section" onClick={() => hideNavbar()}>
           <div className="reservation-main-title-section">
-            <h1 id="title" className="reservation-main-title you-made-it">
-              You made it!
-            </h1>
+            <h1 className="overview-main-title">You made it!</h1>
           </div>
           <div className="coming-game">
             <div>
@@ -152,7 +147,7 @@ function Confirmation(props) {
 
           <div className="confirmation-button-section">
             <button
-              className="yellowButton"
+              className="yellowButton all-games-btn"
               onClick={() => setGoToAllGames(true)}
             >
               See All Coming Games

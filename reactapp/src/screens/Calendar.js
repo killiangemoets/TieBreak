@@ -125,7 +125,7 @@ function CalendarScreen() {
           onClick={() => hideNavBar()}
         >
           <div className="center-title calendar-title">
-            <div className="sign-up-title calendar-consultation-title">
+            <div className="calendar-consultation-title">
               <p>Consultation Mode</p>
             </div>
           </div>

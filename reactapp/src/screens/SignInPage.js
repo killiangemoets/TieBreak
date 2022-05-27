@@ -77,10 +77,7 @@ function CreateAccount(props) {
     return (
       <div>
         <NavbarHomePage />
-        <div
-          className="container center-sign margin-top"
-          onClick={() => hideNavbar()}
-        >
+        <div className="container center-sign" onClick={() => hideNavbar()}>
           <div className="center-title">
             <div className="sign-up-title">
               <p>Sign in</p>

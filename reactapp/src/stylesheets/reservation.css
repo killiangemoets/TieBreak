@@ -1,6 +1,7 @@
 .reservation-section {
   min-height: calc(100vh - 8rem - 6rem);
-  padding: 4.8rem 0;
+  padding-top: 12rem;
+  padding-bottom: 6.4rem;
 
   display: flex;
   flex-direction: column;
@@ -14,7 +15,7 @@
 }
 
 .reservation-main-title {
-  font-size: 7.2rem !important;
+  font-size: 6.4rem !important;
   text-align: center;
 }
 
@@ -42,16 +43,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  /* gap: 1rem; */
 }
 
 .when-and-where-main-title {
-  font-size: 3.6rem;
+  font-size: 3.2rem;
   color: #b3541e;
+  margin: 0;
 }
 
 .when-and-where-second-title {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
+  text-align: center;
+  margin: 0;
   color: #333;
 }
 
@@ -70,7 +74,7 @@
 .times-list {
   background-color: #e8ccbc;
   width: 80%;
-  width: 32rem;
+  width: 30rem;
   /* height: 40rem; */
   /* overflow-y: scroll; */
   padding: 2rem 0;
@@ -78,13 +82,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
+  /* gap: 0.6rem; */
   box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.08);
 
   /* padding-left: 4rem; */
 }
 
 .time-element {
+  margin: 0;
   display: flex;
   width: 80%;
   /* flex-direction: row; */
@@ -94,6 +99,7 @@
 }
 
 .time {
+  margin: 0;
   cursor: pointer;
   font-size: 2.4rem;
   font-weight: 400;
@@ -101,6 +107,7 @@
 }
 
 .courts-left {
+  margin: 0;
   font-size: 2.2rem;
   font-weight: 700;
   color: #b3541e;
@@ -117,10 +124,12 @@
 }
 
 .time-selected {
+  margin: 0;
   color: #b3541e;
 }
 
 .time-out {
+  margin: 0;
   cursor: pointer;
   font-size: 2.4rem;
   font-weight: 400;
@@ -151,7 +160,7 @@
 }
 
 .map {
-  height: 54.6rem;
+  height: 64.3rem;
   width: 54.6rem;
   display: flex;
   align-items: center;
@@ -159,7 +168,7 @@
 }
 
 .map-container {
-  height: 54.6rem;
+  height: 64.3rem;
   width: 54.6rem;
   border-radius: 12px;
   box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.08);
@@ -184,7 +193,9 @@
 }
 
 .reservation-button {
-  width: 20rem;
+  width: 16rem;
+  font-size: 2.8rem;
+  padding: 0.5rem 0;
 }
 
 .when-input-style input {
@@ -210,7 +221,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 54.6rem;
+  height: 64.3rem;
   overflow-y: scroll;
 }
 
@@ -239,6 +250,10 @@
   font-weight: 600;
 }
 
+.club-title h4 {
+  margin: 0 !important;
+}
+
 .club-infos {
   font-size: 1.6rem;
   color: #333;
@@ -250,6 +265,10 @@
 .club-infos div {
   display: flex;
   gap: 1.4rem;
+}
+
+.club-infos div p {
+  margin: 0;
 }
 
 .club-button-section {
@@ -291,12 +310,12 @@
 .not-clickable,
 .not-clickable:link,
 .not-clickable:visited {
-  background-color: #f8edbb;
+  background-color: #f9e9e0;
 }
 .not-clickable:hover,
 .not-clickable:active,
 .yw {
-  background-color: #f8edbb;
+  background-color: #f9e9e0;
 }
 
 .search-club {
@@ -305,6 +324,7 @@
 .search-results {
   background-color: #eee;
   /* z-index: 999 !important; */
+  z-index: 1;
   width: 36rem;
   max-height: 46.9rem;
   overflow-y: scroll;
@@ -327,12 +347,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3.2rem;
+  font-size: 2.6rem;
   color: #b3541e;
-  margin-bottom: 4rem;
-  margin-top: 1rem;
-  height: 6rem;
-  width: 32rem;
+  margin-bottom: 3.2rem;
+  margin-top: 1.4rem;
+  height: 5.4rem;
+  width: 29.2rem;
   border: solid 6px #b3541e;
   border-radius: 12px;
 }

@@ -204,24 +204,16 @@ function Dashboard() {
           label: "Number of reservations",
           data: yAxis,
           backgroundColor: [
-            "#4b6584",
-            "#fc5c65",
-            "#fcd34d",
-            "#a3e635",
-            "#6ee7b7",
-            "#c084fc",
-            "#ff922b",
+            "#9dab86",
+            "#d8ddcf",
+            "#a7b392",
+            "#ced5c3",
+            "#b1bc9e",
+            "#c4cdb6",
+            "#bac4aa",
           ],
-          borderColor: [
-            "#304256",
-            "#dd252b",
-            "#fbbf24",
-            "#84cc16",
-            "#34d399",
-            "#a855f7",
-            "#fd7e14",
-          ],
-          borderWidth: 2,
+          borderColor: ["#7e896b"],
+          borderWidth: 0.6,
         },
       ],
     };
@@ -264,25 +256,19 @@ function Dashboard() {
         {
           label: "Number of reservations",
           data: counts,
+
           backgroundColor: [
-            "#4b6584",
-            "#fc5c65",
-            "#fcd34d",
-            "#a3e635",
-            "#6ee7b7",
-            "#c084fc",
-            "#ff922b",
+            "#9dab86",
+            "#a7b392",
+            "#b1bc9e",
+            "#bac4aa",
+            "#c4cdb6",
+            "#ced5c3",
+            "#d8ddcf",
           ],
-          borderColor: [
-            "#304256",
-            "#dd252b",
-            "#fbbf24",
-            "#84cc16",
-            "#34d399",
-            "#a855f7",
-            "#fd7e14",
-          ],
-          borderWidth: 2,
+          borderColor: ["#7e896b"],
+
+          borderWidth: 1,
         },
       ],
     };
@@ -324,9 +310,9 @@ function Dashboard() {
         {
           label: "Reserved tennis courts / Unreserved tennis courts",
           data: [numReservedCourts, numUnreservedCourts],
-          backgroundColor: ["#7ed6df", "#e056fd"],
-          borderColor: ["#22a6b3", "#be2edd"],
-          borderWidth: 2,
+          backgroundColor: ["#9dab86", "#d8ddcf"],
+          borderColor: ["#7e896b", "#7e896b"],
+          borderWidth: 0.6,
         },
       ],
     };
@@ -371,15 +357,15 @@ function Dashboard() {
       datasets: [
         {
           data: numReservations,
-          backgroundColor: "#9AECDB",
-          borderColor: "#58B19F",
+          backgroundColor: "#d8ddcf",
+          borderColor: "#9dab86",
           borderWidth: 2,
           fill: {
             target: "origin",
-            above: "#9AECDB",
-            below: "#9AECDB",
+            above: "#d8ddcf",
+            below: "#d8ddcf",
           },
-          lineTension: 0.4,
+          lineTension: 0.6,
         },
       ],
     };
@@ -430,7 +416,7 @@ function Dashboard() {
           onClick={() => hideNavbar()}
         >
           <div className="center-title calendar-title">
-            <div className="sign-up-title calendar-consultation-title dashboard-title">
+            <div className="calendar-consultation-title">
               <p>Dashboard</p>
             </div>
           </div>
@@ -490,7 +476,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="list-players">
-            <h6>The most regular players:</h6>
+            <h6>The most regular players</h6>
             {renderTable(reservations)}
           </div>
         </div>
