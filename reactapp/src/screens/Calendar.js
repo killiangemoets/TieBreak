@@ -6,10 +6,18 @@ import { Link, Redirect } from "react-router-dom";
 import FooterPage from "../components/Footer";
 import NavbarClub from "../components/NavbarClub";
 
-function Calendar() {
+import { Calendar } from "antd";
+
+import { format } from "date-fns";
+import { enGB } from "date-fns/locale";
+import { DatePickerCalendar } from "react-nice-dates";
+import "react-nice-dates/build/style.css";
+
+function CalendarScreen() {
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
   const [date, setDate] = useState(new Date(Date.now()));
+
   const [inputDate, setInputDate] = useState(new Date(Date.now()));
   const [availabilities, setAvailabilities] = useState([]);
   const [reservations, setReservations] = useState([]);
@@ -113,7 +121,7 @@ function Calendar() {
       <div>
         <NavbarClub />
         <div
-          className="container center-sign margin-top calendar-section"
+          className=" center-sign margin-top calendar-section"
           onClick={() => hideNavBar()}
         >
           <div className="center-title calendar-title">
@@ -121,7 +129,7 @@ function Calendar() {
               <p>Consultation Mode</p>
             </div>
           </div>
-          <div className="calendar-input">
+          {/* <div className="calendar-input">
             <form className="when-input-style calendar-input">
               <input
                 type="date"
@@ -135,8 +143,33 @@ function Calendar() {
                 data-date-format="DD MMMM YYYY"
               />
             </form>
-          </div>
+          </div> */}
+
           <div className="calendar-details">
+            <div className="calendar">
+              {/* <p>
+                Selected date:{" "}
+                {date ? format(date, "dd MMM yyyy", { locale: enGB }) : "none"}.
+              </p> */}
+              <div className="calendar-element-section">
+                <DatePickerCalendar
+                  className="calendar-element"
+                  date={date}
+                  onDateChange={setDate}
+                  locale={enGB}
+                />
+              </div>
+              <img
+                src="../../calendar-pic-2.jpg"
+                alt="calendar"
+                className="calendar-img"
+              ></img>
+              {/* <Calendar
+                className="calendar-element"
+                fullscreen={false}
+                // onPanelChange={onPanelChange}
+              /> */}
+            </div>
             <div className="calendar-grid">
               <div>
                 <h6 className="title">Time</h6>
@@ -169,4 +202,4 @@ function Calendar() {
   }
 }
 
-export default Calendar;
+export default CalendarScreen;

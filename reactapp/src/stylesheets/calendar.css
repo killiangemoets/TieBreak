@@ -1,17 +1,71 @@
-.calendar-section {
-  gap: 4.8rem;
-}
+/* @import "react-nice-dates/src/style.scss"; */
 
 .calendar-title {
   margin-top: 4rem;
 }
 
 .calendar-input,
-.calendar-details,
 .calendar-edit {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.calendar-details {
+  margin-top: 12.8rem;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 6.4rem;
+  /* gap: 6.4rem; */
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  /* justify-content: space-between; */
+  /* padding-bottom: 16rem; */
+  /* width: 30%; */
+  /* height: 80rem; */
+  gap: 4.8rem;
+}
+.calendar-img {
+  width: 56rem;
+  /* height: 20rem; */
+  border-radius: 16px;
+}
+
+.edit-img {
+  margin-top: 4.8rem;
+  width: 70rem;
+  border-radius: 16px;
+}
+.calendar-element-section {
+  width: 80rem;
+}
+
+.nice-dates-grid {
+  /* height: 40rem !important; */
+}
+.nice-dates-week-header_day {
+  font-size: 3.2rem !important;
+}
+
+.nice-dates-navigation_current {
+  font-size: 2.9rem !important;
+}
+.calendar {
+  font-size: 2.8rem !important;
+}
+
+.nice-dates-grid_container span {
+  font-size: 2.8rem !important;
+}
+
+.-disabled::before {
+  background-color: #b3541e !important;
 }
 
 .calendar-edit {
@@ -107,6 +161,7 @@
 #num-input {
   width: 12rem;
   margin: 0;
+  font-size: 2.4rem;
 }
 
 .edit-btn-section {

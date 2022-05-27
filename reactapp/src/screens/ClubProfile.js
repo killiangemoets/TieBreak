@@ -200,7 +200,7 @@ function ClubProfile() {
                   <p className="error-message">{phoneError}</p>
                 </div>
                 <div className="input-div">
-                  <label>Price</label>
+                  <label>Price (€/h)</label>
                   <input
                     type="number"
                     id="infos-input"

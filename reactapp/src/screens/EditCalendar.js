@@ -7,6 +7,13 @@ import FooterPage from "../components/Footer";
 import NavbarClub from "../components/NavbarClub";
 import { now } from "mongoose";
 
+import { Calendar } from "antd";
+
+import { format } from "date-fns";
+import { enGB } from "date-fns/locale";
+import { DatePickerCalendar } from "react-nice-dates";
+import "react-nice-dates/build/style.css";
+
 function EditCalendar() {
   const [hours] = useState([
     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
@@ -324,7 +331,7 @@ function EditCalendar() {
       <div>
         <NavbarClub />
         <div
-          className="container center-sign margin-top calendar-section"
+          className="center-sign margin-top calendar-section"
           onClick={() => hideNavbar()}
         >
           <div className="center-title calendar-title">
@@ -332,7 +339,7 @@ function EditCalendar() {
               <p>Edit Mode</p>
             </div>
           </div>
-          <div className="calendar-input">
+          {/* <div className="calendar-input">
             <form className="when-input-style">
               <input
                 type="date"
@@ -354,39 +361,80 @@ function EditCalendar() {
                 data-date-format="DD MMMM YYYY"
               />
             </form>
-          </div>
-          <div className="calendar-edit">
-            <h4>Enter the number of courts available</h4>
-            <div className="calendar-grid2">
-              {" "}
-              {renderInfos(reservations, date, values)}
-              {/* <div className="same-number"> */}
-              <div className="same-number">
-                <h6>Same number for all the day:</h6>
+          </div> */}
+          <div className="calendar-details">
+            <div className=" calendar">
+              {/* <p>
+                Selected date:{" "}
+                {date ? format(date, "dd MMM yyyy", { locale: enGB }) : "none"}.
+              </p> */}
+              <div className="calendar-element-section">
+                <DatePickerCalendar
+                  className="calendar-element"
+                  date={date}
+                  onDateChange={(date) => {
+                    calculateValues(
+                      availabilities,
+                      reservations,
+                      new Date(date)
+                    );
+                    setGeneralValue("");
+                    setDate(date);
+                  }}
+                  locale={enGB}
+                  modifiers={{
+                    disabled: (date) =>
+                      date.getDate() < new Date(Date.now()).getDate() &&
+                      date.getMonth() <= new Date(Date.now()).getMonth() &&
+                      date.getFullYear() <= new Date(Date.now()),
+                  }}
+                />
               </div>
-              <div className="form-div same-number">
-                <form className="when-input-style">
-                  <input
-                    type="number"
-                    id="num-input"
-                    name="number"
-                    // min={num_reservations}
-                    placeholder={0}
-                    min={0}
-                    value={generalValue}
-                    onChange={(e) => {
-                      e.preventDefault();
-                      setGeneralValue(e.target.value);
-                      fixAGeneralValue(reservations, date, e.target.value);
-                    }}
-                  />
-                </form>
-              </div>
-              <div className="same-number">
-                <h6>courts</h6>
-              </div>
+
+              <img
+                src="../../tennis_edit.jpg"
+                alt="calendar"
+                className="edit-img"
+              ></img>
+              {/* <Calendar
+                className="calendar-element"
+                fullscreen={false}
+                // onPanelChange={onPanelChange}
+              /> */}
             </div>
-            {/* </div> */}
+            <div className="calendar-edit">
+              <h4>Enter the number of courts available</h4>
+              <div className="calendar-grid2">
+                {" "}
+                {renderInfos(reservations, date, values)}
+                {/* <div className="same-number"> */}
+                <div className="same-number">
+                  <h6>Same number for all the day:</h6>
+                </div>
+                <div className="form-div same-number">
+                  <form className="when-input-style">
+                    <input
+                      type="number"
+                      id="num-input"
+                      name="number"
+                      // min={num_reservations}
+                      placeholder={0}
+                      min={0}
+                      value={generalValue}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        setGeneralValue(e.target.value);
+                        fixAGeneralValue(reservations, date, e.target.value);
+                      }}
+                    />
+                  </form>
+                </div>
+                <div className="same-number">
+                  <h6>courts</h6>
+                </div>
+              </div>
+              {/* </div> */}
+            </div>
           </div>
           <div className="edit-btn-section">
             <button
