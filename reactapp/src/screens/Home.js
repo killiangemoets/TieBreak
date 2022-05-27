@@ -52,13 +52,13 @@ function Home() {
             <div className="header margin-top" onClick={() => hideNavBar()}>
               <div className="details-banner">
                 <div className="header-title">
-                  <h1 id="title" > 
+                  <h1 id="title-main-page" > 
                     <span > Tie</span> 
                     <span >Break</span>
                     </h1>
                 </div>
                 <div>
-                    <p className="header-description">
+                    <p className="header-description-main-page">
                       The ultimate website to book 
                       your tennis session!
                     </p>
@@ -66,16 +66,16 @@ function Home() {
                 <div className="homePageButton">
                     <a href="/signup">
                       {" "}
-                      <button className="yellowButton btn-header">
+                      <button className="yellowButton">
                         {" "}
                         Get Started
                       </button>{" "}
                     </a>
                     <button
                       onClick={() => scrollToSection(scrollButton)}
-                      className="yellowButton yellowButton-secondary btn-header"
+                      className="yellowButton yellowButton-secondary"
                     >
-                      <p>Learn More </p>
+                      <p className="learn-more">Learn More </p>
                       <FontAwesomeIcon className="arrow-icon" icon={faArrowDown} />
                     </button>
                 </div>
@@ -98,7 +98,7 @@ function Home() {
 
           <div className="box-section">
             
-            <div className=" card">
+            <div className="card">
                 
                   
                     <p className="TitleCardScore"> 15-0</p>
@@ -131,7 +131,8 @@ function Home() {
                     <p className="DescriptionCardEven">
                     Chose the perfect <br />
                     tennis court!
-                    </p>
+                    </p> <br/>
+                    <span className="hidden-text"> test</span>
                   
                 
             </div>
@@ -149,6 +150,8 @@ function Home() {
                   
                     <p className="DescriptionCardOdd">
                       Confirm & Play <br />
+                      <span className="hidden-text"> test</span>
+                      <br />
                       <span className="hidden-text"> test</span>
 
                     </p>
@@ -196,131 +199,5 @@ function Home() {
     );
   }
   }
-{/*         
-          <div className="header margin-top"onClick={() => hideNavBar()}>
-            
-              <div className="leftContainer">
-                <div className="header-title">
-                  <img
-                    className="ball-in-title"
-                    src="../../ball1.png"
-                    alt="ball"
-                  />
-                  <h1 id="title"> TieBreak</h1>
-                </div>
-                <div>
-                  <p className="header-description">
-                    The ultimate website to book <br />
-                    your tennis session!
-                  </p>
-                </div>
-                <div className="homePageButton">
-                  <a href="/signup">
-                    {" "}
-                    <button className="yellowButton btn-header">
-                      {" "}
-                      Get Started
-                    </button>{" "}
-                  </a>
-                  <button
-                    onClick={() => scrollToSection(scrollButton)}
-                    className="yellowButton yellowButton-secondary btn-header"
-                  >
-                    <p>Learn More</p>
-                    <FontAwesomeIcon className="arrow-icon" icon={faArrowDown} />
-                  </button>
-                </div>
-              </div>
-              
-            </div>
-           
-        <div className="container" >
-        <div className="howItWorks-section" ref={scrollButton}>
-          <div className="titleTexts">
-            <div className="title-howItWorks">
-              <p> How it Works </p>
-            </div>
-            <div className="text-howItWorks">
-              <p>
-                {" "}
-                Finding an available tennis court has never been so easy !{" "}
-              </p>
-            </div>
-          </div>
-          <div className="box-section">
-            <div className="boxTemplate">
-              <div className="boxText">
-                <div className="boxText-title">
-                  <p> 15-0</p>
-                </div>
-                <div className="boxText-description">
-                  <p>
-                    Chose the perfect time in <br />
-                    the calendar!
-                  </p>
-                </div>
-              </div>
-              <div className="boxElement">
-                <img
-                  src="../../calandar.png"
-                  alt="calendar"
-                  className="home-img"
-                ></img>
-              </div>
-            </div>
-            <hr className="divideBoxes"></hr>
-            <div className="boxTemplate boxTemplate2">
-              <div className="boxElement boxElement2">
-                <img
-                  src="../../map.jpeg"
-                  alt="calendar"
-                  className="home-img"
-                ></img>
-              </div>
-              <div className="boxText">
-                <div className="boxText-title">
-                  <p> 30-0</p>
-                </div>
-                <div className="boxText-description">
-                  <p>
-                    Chose the perfect <br />
-                    tennis court!
-                  </p>
-                </div>
-              </div>
-            </div>
-            <hr className="divideBoxes"></hr>
-            <div className="boxTemplate boxTemplate-last">
-              <div className="boxText">
-                <div className="boxText-title">
-                  <p> 40-0</p>
-                </div>
-                <div className="boxText-description">
-                  <p>Confirm & Pay</p>
-                </div>
-              </div>
-              <div className="boxElement">
-                <img
-                  className="boxElementMaria"
-                  src="../../cf25de0e2cacb54159d6f51fa00e042b.png"
-                  alt="calendar"
-                ></img>
-              </div>
-            </div>
-            <div>
-              <h2 className="final-title">Game, Set & Match!</h2>
-            </div>
 
-            <div className="gameSetMatchButton">
-              <a href="/signup">
-                <button className="yellowButton yellowButton-final">
-                  {" "}
-                  GET STARTED NOW!
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div> */}
-   
 export default Home;

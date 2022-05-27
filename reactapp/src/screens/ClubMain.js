@@ -19,18 +19,72 @@ function ClubMain() {
   return (
     <div>
       <NavbarHomePageClub />
+        <div className="allPage">
+          <div className="club-banner">
+            <div className="header-title">
+              <h1 id="title">TieBreak</h1>
+            </div>
+            <div className="header-description">
+              <p>The must-have tennis management app</p>
+            </div>
+          </div>
+          <div className="after-banner-space">
+          </div>
+
+          <div className="general-explanation">
+            <div className="text-explanation">
+              <p className="text">
+                  Our vision is to increase your business by using the internet power. 
+                  <br/>
+                  Spare time by using an automatic courts rental system.
+                  <br/>
+                  Be more visible thanks to TieBreak.
+                  <br/>
+                  Being visible nowadays is more than an asset. It’s just a need!
+                  <br/>
+                  And here we are to help you in that way ! 
+                  <br /> 
+                  More precisely :{" "}
+              </p>
+            </div>
+          </div>
+
+          
+        
+
+
+    
+        </div>
+    
+      
+      <FooterPage />
+    </div>
+
+  );
+}
+
+export default ClubMain;
+      
+      
+      
+      
+      
+      
+      
+      
+      /*       
       <div
         className="margin-top club-main-section"
         onClick={() => hideNavBar()}
       >
         <div className="margin-top left-section container">
-          {/* <div className="photo-left-section"> */}
+          
           <img
             className="photo-club"
             src="../../TennisManagement.png"
             alt="ball"
           />
-          {/* </div>   */}
+         
           <div className="main-title">
             <h1>
               {" "}
@@ -166,10 +220,6 @@ function ClubMain() {
             </div>
           </div>
         </div>
-      </div>
-      <FooterPage />
-    </div>
-  );
-}
-
-export default ClubMain;
+      </div> */
+    
+      
