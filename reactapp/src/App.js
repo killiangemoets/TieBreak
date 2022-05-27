@@ -12,7 +12,7 @@ import ClubMain from "./screens/ClubMain";
 import CreateClubAccount from "./screens/CreateAClubAccount";
 import ClubSignIn from "./screens/SiginInAsAClub";
 import Dashboard from "./screens/Dashboard";
-import Calendar from "./screens/Calendar";
+import CalendarScreen from "./screens/Calendar";
 import EditCalendar from "./screens/EditCalendar";
 import ClubProfile from "./screens/ClubProfile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -46,7 +46,7 @@ function App() {
           <Route path="/club/signin" component={ClubSignIn} />
           <Route path="/club/dashboard" component={Dashboard} />
           <Route path="/club/calendar/edit" component={EditCalendar} />
-          <Route path="/club/calendar" component={Calendar} />
+          <Route path="/club/calendar" component={CalendarScreen} />
           <Route path="/club/profile" component={ClubProfile} />
           <Route path="/club" component={ClubMain} />
           <Route path="*" component={Home} />

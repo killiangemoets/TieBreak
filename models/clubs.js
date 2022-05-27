@@ -25,6 +25,7 @@ const clubSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Please provide a price"],
   },
+  image: String,
   phone: {
     type: String,
     required: [true, "Please provide a phone number"],

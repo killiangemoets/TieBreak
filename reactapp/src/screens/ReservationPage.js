@@ -16,6 +16,8 @@ import {
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { divIcon } from "leaflet";
 
+import { DatePicker, Space } from "antd";
+
 function Reservation(props) {
   const [hours] = useState([
     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
@@ -30,6 +32,24 @@ function Reservation(props) {
   const [availableHours, setAvailableHours] = useState([
     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
   ]);
+  const [courtsLeft, setCourtsLeft] = useState([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
   const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
   const [currentPosition, setCurrentPosition] = useState({ lat: 32, lng: 38 });
   const [searchLocation, setSearchLocation] = useState("");
@@ -38,6 +58,15 @@ function Reservation(props) {
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+    if (
+      dateString.length > 0 &&
+      new Date(dateString) >= new Date(Date.now()) - 1
+    )
+      updateInputDate(dateString);
+  };
 
   function hideNavbar() {
     const navbar = document.querySelector(".navbarRight");
@@ -320,7 +349,7 @@ function Reservation(props) {
               ""
             )}
           </div>
-          <div>
+          <div className="hours-div">
             <h6
               className={
                 availableHours.find((el) => el === hour)
@@ -333,6 +362,9 @@ function Reservation(props) {
               {hour}h-{hour + 1 < 24 ? hour + 1 : "00"}h
             </h6>
           </div>
+          <div>
+            <h6 className="courts-left">{courtsLeft[i]}</h6>
+          </div>
         </ul>
       );
     });
@@ -344,6 +376,24 @@ function Reservation(props) {
     setInputDate(getDateInNiceFormat(new Date(Date.now())));
     setTime("");
     setClub("");
+    setCourtsLeft([
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ]);
 
     const timeNow = new Date(Date.now()).getHours();
     const updateAvailableHours = [...hours].filter((hour) => hour > timeNow);
@@ -355,13 +405,6 @@ function Reservation(props) {
 
   function handleNext(e) {
     if (!e.target.classList.contains("not-clickable")) {
-      // props.addReservation({
-      //   date,
-      //   time,
-      //   club,
-      //   clubname: allClubs.find((c) => c.token === club)?.clubname,
-      //   price: allClubs.find((c) => c.token === club)?.price,
-      // });
       localStorage.setItem(
         "currentReservation",
         JSON.stringify({
@@ -470,8 +513,8 @@ function Reservation(props) {
     var response = await rawResponse.json();
     // console.log(response);
 
+    console.log(response.data.availabilities);
     if (club.length === 0) {
-      console.log(response.data.availabilities);
       setAvailableClubs(response.data.availabilities);
     } else {
       const times = response.data.availabilities.map(
@@ -486,7 +529,64 @@ function Reservation(props) {
         const timeNow = new Date(Date.now()).getHours();
         const updateAvailableHours = times.filter((time) => time > timeNow);
         setAvailableHours(updateAvailableHours);
-      } else setAvailableHours(times);
+
+        let courtsLeftLessThanThree = [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ];
+
+        response.data.availabilities.forEach((availability) => {
+          if (availability.courts <= 3 && availability.time > timeNow)
+            courtsLeftLessThanThree[
+              availability.time - 8
+            ] = `Only ${availability.courts} left`;
+        });
+        console.log(courtsLeftLessThanThree);
+        setCourtsLeft(courtsLeftLessThanThree);
+      } else {
+        setAvailableHours(times);
+        let courtsLeftLessThanThree = [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ];
+
+        response.data.availabilities.forEach((availability) => {
+          if (availability.courts <= 3)
+            courtsLeftLessThanThree[
+              availability.time - 8
+            ] = `Only ${availability.courts} left`;
+        });
+        console.log(courtsLeftLessThanThree);
+        setCourtsLeft(courtsLeftLessThanThree);
+      }
     }
   }
 
@@ -565,13 +665,6 @@ function Reservation(props) {
             hideNavbar();
           }}
         >
-          {/* <div className="reservation-main-title-section"> */}
-          {/* <hr className="horizontalRule2"></hr> */}
-          {/* <h1 id="title" className="reservation-main-title">
-            Book Now
-          </h1> */}
-          {/* <hr className="horizontalRule2"></hr> */}
-          {/* </div> */}
           <div className="when-and-where">
             <div className="when">
               <div className="when-and-where-header">
@@ -585,6 +678,11 @@ function Reservation(props) {
                   {time === "" ? "..." : time}h -{" "}
                   {time === "" ? "..." : +time + 1 < 24 ? +time + 1 : "00"}h
                 </h5>
+                {/* <DatePicker
+                  onChange={onChange}
+                  defaultValue={inputDate}
+                  min={getDateInNiceFormat(new Date(Date.now()))}
+                /> */}
                 <form className="when-input-style">
                   <input
                     type="date"
@@ -594,7 +692,10 @@ function Reservation(props) {
                     min={getDateInNiceFormat(new Date(Date.now()))}
                     placeholder="dd-mm-yyyy"
                     data-date=""
-                    onChange={(e) => updateInputDate(e.target.value)}
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      if (e.target.value) updateInputDate(e.target.value);
+                    }}
                     data-date-format="DD MMMM YYYY"
                   />
                 </form>

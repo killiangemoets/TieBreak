@@ -49,6 +49,7 @@
 .map-text {
   font-size: 2.4rem;
   color: #333;
+  font-weight: 600 !important;
 }
 
 .map-img {
@@ -65,7 +66,14 @@
   font-size: large;
 }
 
-.create-account-form input::placeholder {
+.image-input {
+  font-family: "Poppins", sans-serif;
+  border: none;
+  font-size: large;
+}
+
+.create-account-form input::placeholder,
+.image-input::placeholder {
   color: #aaa;
 }
 
@@ -154,6 +162,11 @@
   font-size: large;
 }
 
+.image-input {
+  margin-left: 2rem;
+  width: 27.2rem;
+}
+
 .login-account-form input::placeholder {
   color: #aaa;
 }
@@ -170,4 +183,75 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 6.4rem;
+}
+
+.image-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rem;
+}
+
+.get-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4.8rem;
+}
+
+.image-title {
+  color: #333;
+  font-size: 2.4rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.drop-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 6px dashed #e8ccbc;
+  border-radius: 16px;
+  width: 28rem;
+  height: 10rem;
+}
+
+.drop-image p {
+  margin: 0;
+  font-size: 2.4rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.drop-image input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 28rem; */
+  /* height: 12rem; */
+  padding: 2rem 1rem;
+  /* background-color: #b3541e; */
+  /* display: block !important; */
+  border: 6px dashed #e8ccbc;
+  border-radius: 16px;
+}
+
+.overview-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30rem !important;
+  border-radius: 16px;
+  height: 30rem;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.overview-img img {
+  width: 30rem !important;
+  /* border-radius: 999px; */
+
+  /* height: 20rem; */
 }

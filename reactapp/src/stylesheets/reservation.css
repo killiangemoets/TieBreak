@@ -70,7 +70,7 @@
 .times-list {
   background-color: #e8ccbc;
   width: 80%;
-  width: 25.8rem;
+  width: 32rem;
   /* height: 40rem; */
   /* overflow-y: scroll; */
   padding: 2rem 0;
@@ -86,9 +86,10 @@
 
 .time-element {
   display: flex;
+  width: 80%;
   /* flex-direction: row; */
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 1rem;
 }
 
@@ -97,6 +98,12 @@
   font-size: 2.4rem;
   font-weight: 400;
   color: #333;
+}
+
+.courts-left {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #b3541e;
 }
 
 .time:hover {

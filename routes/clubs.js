@@ -21,6 +21,7 @@ router.post("/sign-up", async function (req, res, next) {
       longitude: req.body.longitude,
       password: hash,
       token: uid2(6),
+      image: req.body.image,
     });
 
     res.status(201).json({

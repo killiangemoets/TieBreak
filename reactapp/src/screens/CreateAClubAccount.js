@@ -14,6 +14,8 @@ import {
 } from "react-leaflet";
 import { divIcon } from "leaflet";
 
+import { useDropzone } from "react-dropzone";
+
 function CreateClubAccount() {
   const [isSignUp, setIsSignUp] = useState(false);
 
@@ -36,6 +38,53 @@ function CreateClubAccount() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState(null);
   const [locationError, setLocationError] = useState("");
+
+  const [files, setFiles] = useState([]);
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [imageToUpload, setImageToUpload] = useState("");
+
+  const uploadImage = async (e) => {
+    // const files = e.target.files;
+    // const data = new FormData();
+    // data.append("file", files[0]);
+    // data.append("upload_preset", "upload_pics");
+    // setLoading(true);
+    // const res = await fetch(
+    //   "https://api.cloudinary.com/v1_1/djuuji1j9/image/upload",
+    //   {
+    //     method: "POST",
+    //     body: data,
+    //   }
+    // );
+    // const file = await res.json();
+
+    // setImage(file.secure_url);
+
+    // setLoading(false);
+
+    setImageToUpload(
+      Object.assign(e.target.files[0], {
+        preview: URL.createObjectURL(e.target.files[0]),
+      })
+    );
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "images/*",
+    onDrop: (acceptedFiles) => {
+      // setFiles(
+      //   acceptedFiles.map((file) =>
+      //     Object.assign(file, { preview: URL.createObjectURL(file) })
+      //   )
+      // );
+      setImageToUpload(
+        Object.assign(acceptedFiles[0], {
+          preview: URL.createObjectURL(acceptedFiles[0]),
+        })
+      );
+    },
+  });
 
   function hideNavbar() {
     const navbar = document.querySelector(".navbarRight");
@@ -81,6 +130,21 @@ function CreateClubAccount() {
       password.length !== 0 &&
       phone.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
     ) {
+      const data = new FormData();
+      data.append("file", imageToUpload);
+      data.append("upload_preset", "upload_pics");
+      // setLoading(true);
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/djuuji1j9/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const file = await res.json();
+
+      // setImage(file.secure_url);
+
       const newClub = {
         clubname,
         price,
@@ -90,6 +154,7 @@ function CreateClubAccount() {
         password,
         latitude: position?.lat,
         longitude: position.lng,
+        image: file.secure_url,
       };
       const rawResponse = await fetch("../clubs/sign-up", {
         method: "POST",
@@ -192,6 +257,7 @@ function CreateClubAccount() {
               <p style={{ textAlign: "center" }}>Create Your Club Account</p>
             </div>
           </div>
+
           <div className="sign-up-club">
             <form>
               <div className="inputDiv">
@@ -279,6 +345,37 @@ function CreateClubAccount() {
                 {/* {renderCurrentPosition(mapPosition)} */}
               </MapContainer>
               <p className="map-error">{locationError}</p>
+            </div>
+          </div>
+          <h1 className="image-title">
+            Add a picture of your club (optional):
+          </h1>
+          <div className="image-inputs">
+            <div className="get-image">
+              <div {...getRootProps()} className="drop-image">
+                <p>Drop an image here</p>
+                <input {...getInputProps()} placeholder="Drop an image here" />
+              </div>
+              <div>
+                <input
+                  type="file"
+                  name="file"
+                  className="image-input"
+                  placeholder="Upload an image"
+                  onChange={uploadImage}
+                />
+              </div>
+            </div>
+            <div className="overview-img">
+              {imageToUpload === "" ? (
+                <h3>No Image</h3>
+              ) : (
+                <img
+                  src={imageToUpload.preview}
+                  style={{ width: "300px" }}
+                  alt=""
+                />
+              )}
             </div>
           </div>
           <div className="center-sign-up-club-btn">
