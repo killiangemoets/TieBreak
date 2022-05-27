@@ -85,14 +85,14 @@ function Home() {
             <div className="middle-page">
             <div className="howItWorks-section" ref={scrollButton}>
           <div className="titleTexts">
+            <div className="title-howItWorks">
+              <p> How it Works </p>
+            </div>
             <div className="text-howItWorks">
               <p>
                 {" "}
                 Finding an available tennis court has never been so easy !{" "}
               </p>
-            </div>
-            <div className="title-howItWorks">
-              <p> How it Works </p>
             </div>
           </div>
 
@@ -149,9 +149,9 @@ function Home() {
                     ></img>
                   
                     <p className="DescriptionCardOdd">
-                      Confirm & Play <br />
                       <span className="hidden-text"> test</span>
                       <br />
+                      Confirm & Play <br />
                       <span className="hidden-text"> test</span>
 
                     </p>
