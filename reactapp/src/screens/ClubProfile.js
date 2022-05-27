@@ -169,7 +169,7 @@ function ClubProfile() {
           onClick={() => hideNavBar()}
         >
           <div className="reservation-main-title-section club-profile-title">
-            <h1 id="title" className="reservation-main-title">
+            <h1 className="calendar-consultation-title">
               Personnal Informations
             </h1>
           </div>

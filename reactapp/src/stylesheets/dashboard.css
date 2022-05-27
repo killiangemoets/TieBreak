@@ -35,12 +35,27 @@
 }
 
 .chart-div h6 {
-  color: #333;
+  color: #e08f62;
   font-size: 2.8rem;
 }
 
 .input-day {
   gap: 0rem !important;
+}
+
+.input-day label {
+  font-size: 2rem;
+}
+
+#select-month {
+  margin: 0;
+  margin-top: 0.2rem;
+  background-color: #f5f7f3;
+}
+#select-year {
+  margin: 0;
+  margin-top: 0.2rem;
+  background-color: #f5f7f3;
 }
 
 .list-players {
@@ -49,21 +64,24 @@
 
 .list-players h6 {
   font-size: 2.8rem;
-  color: #333;
-  margin-bottom: 2rem;
+  text-align: center;
+  color: #e08f62;
+  margin-bottom: 2.4rem;
 }
 
 .table-players td,
 .table-players th {
-  font-size: 2.4rem !important;
+  font-size: 1.8rem !important;
 }
 
 .table-players th {
-  color: #b3541e !important;
+  color: #333 !important;
+  background-color: #e2e6db !important;
 }
 
 .table-players td {
   color: #333 !important;
+  background-color: #f5f7f3 !important;
 }
 
 .ant-pagination {
@@ -71,15 +89,15 @@
 }
 
 .chart {
-  width: 40rem !important;
-  height: 40rem !important;
+  width: 32rem !important;
+  height: 32rem !important;
 }
 
 .chart-day {
-  width: 60rem !important;
-  height: 30rem !important;
+  width: 50rem !important;
+  height: 25rem !important;
 }
 .chart-months {
-  width: 60rem !important;
-  height: 30rem !important;
+  width: 50rem !important;
+  height: 25rem !important;
 }

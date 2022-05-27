@@ -110,14 +110,9 @@ function Profile(props) {
     return (
       <div>
         <NavbarMainPage refreshUsername={refreshUsername} />
-        <div
-          className=" profile-section margin-top"
-          onClick={() => hideNavbar()}
-        >
+        <div className=" profile-section" onClick={() => hideNavbar()}>
           <div className="reservation-main-title-section">
-            <h1 id="profile-title" className="reservation-main-title">
-              Personnal Informations
-            </h1>
+            <h1 className="overview-main-title">Personnal Informations</h1>
           </div>
           <div>
             <div className="personnal-infos">
@@ -172,7 +167,7 @@ function Profile(props) {
             </div>
           </div>
 
-          <div className="reservation-buttons profile-btns">
+          <div className=" container reservation-buttons profile-btns">
             <button
               className="yellowButton profileBtn"
               onClick={() => handleCancel()}

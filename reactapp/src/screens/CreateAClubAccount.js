@@ -317,7 +317,7 @@ function CreateClubAccount() {
                   ></input>
                   <p>{passwordError}</p>
                 </div>
-                <div className="create-account-form">
+                <div className="create-account-form create-club-account-form">
                   <input
                     placeholder="Confirm Password"
                     type="password"

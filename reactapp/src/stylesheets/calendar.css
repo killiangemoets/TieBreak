@@ -1,7 +1,27 @@
 /* @import "react-nice-dates/src/style.scss"; */
 
 .calendar-title {
-  margin-top: 4rem;
+  margin-top: 2rem;
+}
+
+.calendar-consultation-title {
+  margin: 0;
+  padding: 0;
+  color: #e08f62;
+  /* color: #9dab86; */
+  font-size: 4.8rem;
+  display: flex;
+  justify-content: center;
+  border-bottom: solid 4px #e08f62;
+  /* border-bottom: solid 4px #9dab86; */
+  border-top: solid 4px #e08f62;
+  /* border-top: solid 4px #9dab86; */
+  padding: 0 1rem;
+  font-weight: 500;
+}
+
+.calendar-consultation-title p {
+  margin: 0;
 }
 
 .calendar-input,
@@ -12,11 +32,12 @@
 }
 
 .calendar-details {
-  margin-top: 12.8rem;
+  padding: 0 4.8rem;
+  margin-top: 6.4rem;
   display: flex;
   /* align-items: center; */
   justify-content: center;
-  gap: 6.4rem;
+  gap: 5.6rem;
   /* gap: 6.4rem; */
 }
 
@@ -32,40 +53,40 @@
   gap: 4.8rem;
 }
 .calendar-img {
-  width: 56rem;
+  width: 32rem;
   /* height: 20rem; */
   border-radius: 16px;
 }
 
 .edit-img {
   margin-top: 4.8rem;
-  width: 70rem;
+  width: 32rem;
   border-radius: 16px;
 }
 .calendar-element-section {
-  width: 80rem;
+  width: 40rem;
 }
 
 .nice-dates-grid {
   /* height: 40rem !important; */
 }
 .nice-dates-week-header_day {
-  font-size: 3.2rem !important;
+  font-size: 2rem !important;
 }
 
 .nice-dates-navigation_current {
-  font-size: 2.9rem !important;
+  font-size: 1.8rem !important;
 }
 .calendar {
-  font-size: 2.8rem !important;
+  font-size: 1.8rem !important;
 }
 
 .nice-dates-grid_container span {
-  font-size: 2.8rem !important;
+  font-size: 1.8rem !important;
 }
 
 .-disabled::before {
-  background-color: #b3541e !important;
+  background-color: #e08f62 !important;
 }
 
 .calendar-edit {
@@ -74,10 +95,10 @@
 }
 
 .calendar-edit h4 {
-  font-size: 3.6rem;
+  font-size: 3rem;
   color: #333;
   font-weight: 400;
-  color: #b3541e;
+  color: #e08f62;
   margin-bottom: 1.2rem;
 }
 
@@ -89,10 +110,10 @@
   /* column-gap: 4.8rem; */
 }
 .calendar-grid {
-  grid-template-columns: auto auto 75rem;
+  grid-template-columns: auto auto 54rem;
   margin-bottom: 6.4rem;
   border-collapse: collapse !important;
-  border: 4px solid #eee;
+  /* border: 4px solid #eee; */
   border-radius: 8px;
 }
 
@@ -118,11 +139,11 @@
 .calendar-grid2 h6 {
   font-weight: 400 !important;
   color: #333;
-  font-size: 3.2rem;
+  font-size: 1.8rem;
 }
 
 .num-reservations {
-  font-size: 2.4rem !important;
+  font-size: 2rem !important;
   /* color: #aaa !important; */
 }
 
@@ -133,7 +154,7 @@
 }
 
 .title {
-  color: #b3541e !important;
+  color: #e08f62 !important;
 }
 
 .details-list {
@@ -148,20 +169,23 @@
 }
 
 .edit-btn {
-  padding: 1.2rem 10rem;
+  padding: 0.6rem 8rem;
   margin: 0;
 }
 
 .edit-btn2 {
   margin-top: 6.4rem !important;
-  padding: 1.2rem 6.4rem;
+  padding: 1rem 5.6rem;
   margin: 0;
+  font-size: 2.2rem;
 }
 
 #num-input {
   width: 12rem;
   margin: 0;
-  font-size: 2.4rem;
+  font-size: 1.8rem;
+  padding: 0.4rem 2rem;
+  background-color: #f9e9e0;
 }
 
 .edit-btn-section {

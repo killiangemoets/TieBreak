@@ -72,14 +72,9 @@ function Overview(props) {
     return (
       <div>
         <NavbarMainPage />
-        <div
-          className=" overview-section margin-top"
-          onClick={() => hideNavbar()}
-        >
+        <div className=" overview-section" onClick={() => hideNavbar()}>
           <div className="reservation-main-title-section you-made-it">
-            <h1 id="title" className="reservation-main-title">
-              Overview
-            </h1>
+            <h1 className="overview-main-title">Overview</h1>
           </div>
           <div>
             <div className="game-card">

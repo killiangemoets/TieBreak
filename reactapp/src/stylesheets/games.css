@@ -3,8 +3,6 @@
   grid-template-columns: auto auto;
   gap: 3.2rem;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
   min-height: calc(100vh - 6rem - 8rem);
   padding: 3.2rem 0 12.8rem 0;
 }
@@ -22,6 +20,7 @@
 }
 
 .center-content-games {
+  padding: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,14 +42,14 @@
 }
 
 .start-reservation-big-btn {
-  font-size: 2.8rem !important;
-  padding: 1.4rem 6.4rem;
+  font-size: 2.4rem !important;
+  padding: 1.4rem 5rem;
   /* text-transform: uppercase; */
 }
 
 .stats-section {
   width: 100%;
-  background-color: #e8ccbc;
+  background-color: #f6ddd0;
   padding: 2.4rem 3.6rem;
   border-radius: 36px;
 }
@@ -58,7 +57,7 @@
 .stats {
   display: grid;
   grid-template-columns: auto;
-  row-gap: 1.6rem;
+  row-gap: 0.6rem;
   column-gap: 6.4rem;
   align-items: center;
   justify-content: center;
@@ -72,7 +71,8 @@
 
 .stat-title {
   font-size: 2.2rem;
-  color: #b3541e;
+  color: #b3724e;
+  color: #b3724e;
 }
 
 .stat-value {
@@ -87,8 +87,8 @@
 
 .games-titles {
   position: fixed;
-  top: 4%;
-  padding-top: 12rem;
+  top: 0%;
+  padding-top: 16rem;
   padding-bottom: 3.6rem;
   background-color: #fff;
   display: flex;
@@ -104,7 +104,12 @@
 }
 
 .active-games-title {
-  color: #b3541e;
+  color: #e08f62;
+  color: #9dab86;
+}
+
+.games-title:hover {
+  color: #9dab86;
 }
 
 .games-titles-background {
@@ -112,7 +117,7 @@
   width: 5.6rem;
   height: 2.9rem;
   margin-top: 0.4rem;
-  background-color: #e8ccbc;
+  background-color: #f6ddd0;
   border-radius: 100px;
   cursor: pointer;
 }
@@ -139,7 +144,7 @@
 }
 
 .games-list {
-  margin-top: 12.8rem;
+  margin-top: 12.98rem;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -152,14 +157,14 @@
 
 .game-card {
   width: 48rem;
-  background-color: #e8ccbc;
+  background-color: #f6ddd0;
   padding: 2rem 2rem;
   border-radius: 36px;
   display: grid;
   align-items: center;
   justify-content: center;
   grid-template-columns: auto auto;
-  column-gap: 8.8rem;
+  column-gap: 7.2rem;
   row-gap: 2.6rem;
 }
 

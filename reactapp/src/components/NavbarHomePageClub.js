@@ -18,20 +18,20 @@ function NavbarHomePageClub() {
     <nav className="navbar">
       <a href="/" className="logoRedirect">
         <div className="navbarLeft">
-          <img className="logoNavBar" src="../../ball1.png" alt="logo" />
+          {/* <img className="logoNavBar" src="../../ball1.png" alt="logo" /> */}
           <h1 className="titleNavBar">TieBreak </h1>
         </div>
       </a>
       <div className="navbarRight">
         <a href="/" className="link-login">
-          <button className="button">I'M A PLAYER </button>
+          <button className="button">I'm a player </button>
         </a>
         <a href="/club/signin" className="link-login">
-          <button className="button">SIGN IN </button>
+          <button className="button">Sign in </button>
         </a>
         <a href="/club/signup">
           <div>
-            <button className="buttonShowed">SIGN UP </button>
+            <button className="buttonShowed">Sign up </button>
           </div>
         </a>
       </div>

@@ -16,8 +16,6 @@ import {
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { divIcon } from "leaflet";
 
-import { DatePicker, Space } from "antd";
-
 function Reservation(props) {
   const [hours] = useState([
     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
@@ -59,14 +57,14 @@ function Reservation(props) {
   const [type, setType] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
-    if (
-      dateString.length > 0 &&
-      new Date(dateString) >= new Date(Date.now()) - 1
-    )
-      updateInputDate(dateString);
-  };
+  // const onChange = (date, dateString) => {
+  //   console.log(date, dateString);
+  //   if (
+  //     dateString.length > 0 &&
+  //     new Date(dateString) >= new Date(Date.now()) - 1
+  //   )
+  //     updateInputDate(dateString);
+  // };
 
   function hideNavbar() {
     const navbar = document.querySelector(".navbarRight");
@@ -656,7 +654,7 @@ function Reservation(props) {
       <div>
         <NavbarMainPage />
         <div
-          className="reservation-section margin-top"
+          className="reservation-section"
           onClick={(e) => {
             if (!e.target.closest(".club-result")) {
               setSearchLocation("");

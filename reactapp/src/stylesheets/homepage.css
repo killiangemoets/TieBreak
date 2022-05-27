@@ -15,19 +15,15 @@
   gap: 3.2rem;
   width: 100%;
   padding-top: 4rem; */
-  background-image: url('../../public/skypicture.jpeg');
+  background-image: url("../../public/skypicture.jpeg");
   height: 100vh;
   background-position: center center;
   display: flex;
   justify-content: center;
   background-size: cover;
-
-
 }
 
-
-
-.section-intermediaire{
+.section-intermediaire {
   height: 5vh;
   background-color: white;
 }
@@ -39,7 +35,7 @@
   letter-spacing: 4rem;
   /* margin-left: 0.8rem; */
 
-    /* border: solid white;
+  /* border: solid white;
   border-radius: 5rem;
   padding-left: 5rem; */
 }
@@ -57,7 +53,6 @@
   align-items: center;
   gap: 5.4rem;
 }
-
 
 .header-description-main-page {
   color: white;
@@ -102,7 +97,6 @@
 .text-howItWorks {
   font-size: 2.5rem;
   font-weight: 500;
-  
 }
 
 .boxText {
@@ -113,7 +107,6 @@
   font-size: 15rem;
   color: white;
   font-weight: 500;
-
 }
 
 .titleTexts {
@@ -128,8 +121,6 @@
   color: #b3541e;
   font-weight: 600;
 }
-
-
 
 .home-img {
   height: 15rem;
@@ -186,54 +177,49 @@
   padding: 1.6rem 6.4rem !important;
   margin-bottom: 12.8rem;
   border-radius: 9999px;
-  box-shadow: 0 1.2rem 3.2rem rgba(0,0,0,0.3);
-
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.3);
 }
 
 .boxTemplate-last {
   padding-bottom: 4.8rem !important;
 }
 
-
-.details-banner{
-  display: flex; 
+.details-banner {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
 }
 
-.box-section{
+.box-section {
   display: flex;
   /* align-items: center; */
   justify-content: space-around;
   align-items: center;
-
 }
 
-.card{
-  background-color: #DED7B1;
+.card {
+  background-color: #ded7b1;
   width: 30rem;
   height: 55rem;
-  border-radius: 15%;
+  border-radius: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1.2rem 3.2rem rgba(0,0,0,0.3);
-
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.3);
 }
 
-.cardMiddle{
-  background-color: #9DAB86;
+.cardMiddle {
+  background-color: #9dab86;
   width: 30rem;
   height: 55rem;
-  border-radius: 15%;
+  border-radius: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1.2rem 3.2rem rgba(0,0,0,0.3);
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.3);
 }
 
 /* .cardTwo{
@@ -250,36 +236,34 @@ height: 65rem;
 border-radius: 15%;
 } */
 
-.TitleCardScore{
+.TitleCardScore {
   font-size: 5rem;
   color: white;
   margin-top: 3rem;
 }
 
-.DescriptionCardOdd{
+.DescriptionCardOdd {
   font-size: 3rem;
   text-align: center;
-  color:#9DAB86;
+  color: #9dab86;
   margin-top: 2rem;
   margin-bottom: 2rem;
   font-weight: 600;
-  
 }
 
-.hidden-text{
-  opacity: 0
+.hidden-text {
+  opacity: 0;
 }
 
-.DescriptionCardEven{
+.DescriptionCardEven {
   font-size: 3rem;
   text-align: center;
-  color:#DED7B1;
+  color: #ded7b1;
   margin-top: 2rem;
   margin-bottom: 2rem;
   font-weight: 600;
-  
 }
 
-.learn-more{
+.learn-more {
   margin-bottom: 0;
 }
