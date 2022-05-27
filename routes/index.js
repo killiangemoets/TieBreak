@@ -146,9 +146,11 @@ router.get("/news", async function (req, res, next) {
       `https://tennis-live-data.p.rapidapi.com/${end_url}`,
       {
         headers: {
-          "X-RapidAPI-Host": "tennis-live-data.p.rapidapi.com",
-          "X-RapidAPI-Key":
-            "2bec16f724msh16b0ac29866aedbp1d8aafjsnfc5e9556ab4c",
+          // "X-RapidAPI-Host": "tennis-live-data.p.rapidapi.com",
+          // "X-RapidAPI-Key":
+          //   "2bec16f724msh16b0ac29866aedbp1d8aafjsnfc5e9556ab4c",
+          'X-RapidAPI-Host': 'tennis-live-data.p.rapidapi.com',
+          'X-RapidAPI-Key': 'f39958def2msh69580fe8da0233dp116bc7jsn20c318b9cc63',
         },
       }
     );
