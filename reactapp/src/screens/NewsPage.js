@@ -323,7 +323,7 @@ function News() {
         <NavbarMainPage />
         <div className="news-big-container" onClick={() => hideNavbar()}>
           <div className="white-bg">
-            <div className="news-section container center-stats margin-top-news">
+            <div className="news-section center-stats margin-top-news">
               <div className="news">
                 <div className="new" onClick={() => setState("games")}>
                   <div className="new-logo">
@@ -407,6 +407,7 @@ function News() {
                   type="date"
                   id="date-input"
                   name="date"
+                  className="api-input"
                   value={inputDate}
                   placeholder="dd-mm-yyyy"
                   data-date=""

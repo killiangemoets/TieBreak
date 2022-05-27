@@ -14,6 +14,8 @@ import {
 } from "react-leaflet";
 import { divIcon } from "leaflet";
 
+import { useDropzone } from "react-dropzone";
+
 function ClubProfile() {
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
@@ -31,6 +33,33 @@ function ClubProfile() {
   const [mapPosition] = useState({ lat: 50.84, lng: 4.36 });
   const [locationError, setLocationError] = useState("");
   const [position, setPosition] = useState(["", ""]);
+
+  const [imageToUpload, setImageToUpload] = useState("");
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "images/*",
+    onDrop: (acceptedFiles) => {
+      // setFiles(
+      //   acceptedFiles.map((file) =>
+      //     Object.assign(file, { preview: URL.createObjectURL(file) })
+      //   )
+      // );
+      setImageToUpload(
+        Object.assign(acceptedFiles[0], {
+          preview: URL.createObjectURL(acceptedFiles[0]),
+          new: true,
+        })
+      );
+    },
+  });
+
+  const uploadImage = async (e) => {
+    setImageToUpload(
+      Object.assign(e.target.files[0], {
+        preview: URL.createObjectURL(e.target.files[0]),
+      })
+    );
+  };
 
   function hideNavBar() {
     const navbar = document.querySelector(".navbarRight");
@@ -80,6 +109,10 @@ function ClubProfile() {
         lat: response.data.infos.latitude,
         lng: response.data.infos.longitude,
       });
+      if (response.data.infos?.image)
+        setImageToUpload({
+          preview: response.data.infos?.image,
+        });
     }
   }
 
@@ -91,6 +124,22 @@ function ClubProfile() {
         /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
       )
     ) {
+      let file;
+      if (imageToUpload?.new) {
+        const data = new FormData();
+        data.append("file", imageToUpload);
+        data.append("upload_preset", "upload_pics");
+        // setLoading(true);
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/djuuji1j9/image/upload",
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        file = await res.json();
+      }
+
       var rawResponse = await fetch(`/clubs/infos/${token}`, {
         method: "PATCH",
         headers: {
@@ -104,6 +153,8 @@ function ClubProfile() {
           clubname: newName.length > 0 ? newName : clubInfos.name,
           latitude: position.lat,
           longitude: position.lng,
+          image: imageToUpload?.new ? file.secure_url : imageToUpload.preview,
+          // image: file.secure_url,
         }),
       });
       var response = await rawResponse.json();
@@ -256,6 +307,35 @@ function ClubProfile() {
                 </MapContainer>
                 <p className="map-error">{locationError}</p>
               </div>
+            </div>
+          </div>
+
+          <div className="image-inputs">
+            <div className="get-image">
+              <div {...getRootProps()} className="drop-image">
+                <p>Drop an image here</p>
+                <input {...getInputProps()} placeholder="Drop an image here" />
+              </div>
+              <div>
+                <input
+                  type="file"
+                  name="file"
+                  className="image-input"
+                  placeholder="Upload an image"
+                  onChange={uploadImage}
+                />
+              </div>
+            </div>
+            <div className="overview-img">
+              {imageToUpload === "" ? (
+                <h3>No Image</h3>
+              ) : (
+                <img
+                  src={imageToUpload.preview}
+                  style={{ width: "300px" }}
+                  alt=""
+                />
+              )}
             </div>
           </div>
 

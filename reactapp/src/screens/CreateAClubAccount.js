@@ -39,9 +39,9 @@ function CreateClubAccount() {
   const [confirmPasswordError, setConfirmPasswordError] = useState(null);
   const [locationError, setLocationError] = useState("");
 
-  const [files, setFiles] = useState([]);
-  const [image, setImage] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [files, setFiles] = useState([]);
+  // const [image, setImage] = useState("");
+  // const [loading, setLoading] = useState(false);
   const [imageToUpload, setImageToUpload] = useState("");
 
   const uploadImage = async (e) => {

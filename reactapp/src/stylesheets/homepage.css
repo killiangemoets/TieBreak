@@ -33,7 +33,7 @@
   /* color: #E08F62; */
   font-size: 8rem;
   letter-spacing: 4rem;
-  
+
   /* margin-left: 0.8rem; */
 
   /* border: solid white;
@@ -199,12 +199,12 @@
   align-items: center;
 }
 
-
 .card {
   background-color: #ded7b1;
-  width: 30rem;
+  width: 36rem;
   height: 55rem;
   border-radius: 50px;
+  padding: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -213,12 +213,12 @@
   box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.3);
 }
 
-
 .cardMiddle {
   background-color: #9dab86;
-  width: 30rem;
+  width: 36rem;
   height: 55rem;
   border-radius: 50px;
+  padding: 2rem;
 
   display: flex;
   flex-direction: column;
