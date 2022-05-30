@@ -142,6 +142,7 @@ function Home(props) {
     // console.log("--- COMING GAMES ---");
     // console.log(comingGames);
   }
+
   useEffect(() => {
     const storage1 = localStorage.getItem("type");
     if (JSON.parse(storage1) !== "player") setType(false);
@@ -162,21 +163,30 @@ function Home(props) {
 
       return (
         <div className="game-card" key={i}>
-          <div>
-            <h6 className="game-info">
-              {game.day} {fullDate}
-            </h6>
+          <div className="game-card-img-content">
+            {game?.image && game?.image.length > 0 ? (
+              <img src={game.image} alt="club" className="game-img"></img>
+            ) : (
+              <h3>No image</h3>
+            )}
           </div>
-          <div>
-            <h6 className="game-info">
-              {game.time}h - {+game.time + 1 < 24 ? +game?.time + 1 : "00"}h
-            </h6>
-          </div>
-          <div>
-            <h6 className="game-info">{game.club}</h6>
-          </div>
-          <div>
-            <h6 className="game-info">{game.price} €</h6>
+          <div className="game-card-text-content">
+            <div>
+              <h6 className="game-info">
+                {game.day} {fullDate}
+              </h6>
+            </div>
+            <div>
+              <h6 className="game-info">
+                {game.time}h - {+game.time + 1 < 24 ? +game?.time + 1 : "00"}h
+              </h6>
+            </div>
+            <div>
+              <h6 className="game-info">{game.club}</h6>
+            </div>
+            <div>
+              <h6 className="game-info">{game.price} €</h6>
+            </div>
           </div>
         </div>
       );

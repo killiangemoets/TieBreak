@@ -5,7 +5,7 @@ import "../stylesheets/overview.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
 
-function Overview(props) {
+function Overview() {
   const [weekDays] = useState([
     "Monday",
     "Tuesday",
@@ -78,25 +78,40 @@ function Overview(props) {
           </div>
           <div>
             <div className="game-card">
-              <div>
-                <h6 className="game-info">
-                  {weekDays[new Date(overview.date)?.getDay()]}-
-                  {("0" + new Date(overview.date)?.getDate()).slice(-2)}/
-                  {("0" + (new Date(overview.date)?.getMonth() + 1)).slice(-2)}/
-                  {new Date(overview.date)?.getFullYear()}
-                </h6>
+              <div className="game-card-img-content">
+                {overview?.image && overview?.image.length > 0 ? (
+                  <img
+                    src={overview.image}
+                    alt="club"
+                    className="game-img"
+                  ></img>
+                ) : (
+                  <h3>No image</h3>
+                )}
               </div>
-              <div>
-                <h6 className="game-info">
-                  {overview?.time}h -{" "}
-                  {+overview?.time + 1 < 24 ? +overview?.time + 1 : "00"}h
-                </h6>
-              </div>
-              <div>
-                <h6 className="game-info">{overview?.clubname}</h6>
-              </div>
-              <div>
-                <h6 className="game-info">{overview?.price} €/h</h6>
+              <div className="game-card-text-content">
+                <div>
+                  <h6 className="game-info">
+                    {weekDays[new Date(overview.date)?.getDay()]}-
+                    {("0" + new Date(overview.date)?.getDate()).slice(-2)}/
+                    {("0" + (new Date(overview.date)?.getMonth() + 1)).slice(
+                      -2
+                    )}
+                    /{new Date(overview.date)?.getFullYear()}
+                  </h6>
+                </div>
+                <div>
+                  <h6 className="game-info">
+                    {overview?.time}h -{" "}
+                    {+overview?.time + 1 < 24 ? +overview?.time + 1 : "00"}h
+                  </h6>
+                </div>
+                <div>
+                  <h6 className="game-info">{overview?.clubname}</h6>
+                </div>
+                <div>
+                  <h6 className="game-info">{overview?.price} €/h</h6>
+                </div>
               </div>
             </div>
           </div>

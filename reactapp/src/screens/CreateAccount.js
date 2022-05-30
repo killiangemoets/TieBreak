@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import NavbarHomePage from "../components/NavbarHomePage";
 import FooterPage from "../components/Footer";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+
+import { useDropzone } from "react-dropzone";
 
 import "../stylesheets/signpage.css";
 import "../stylesheets/general.css";
@@ -23,6 +25,26 @@ function CreateAccount() {
   const [phoneError, setPhoneError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [imageToUpload, setImageToUpload] = useState("");
+
+  const uploadImage = async (e) => {
+    setImageToUpload(
+      Object.assign(e.target.files[0], {
+        preview: URL.createObjectURL(e.target.files[0]),
+      })
+    );
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "images/*",
+    onDrop: (acceptedFiles) => {
+      setImageToUpload(
+        Object.assign(acceptedFiles[0], {
+          preview: URL.createObjectURL(acceptedFiles[0]),
+        })
+      );
+    },
+  });
 
   function hideNavbar() {
     const navbar = document.querySelector(".navbarRight");
@@ -39,13 +61,32 @@ function CreateAccount() {
       password.length !== 0 &&
       phone.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
     ) {
+      console.log(imageToUpload);
+      let file;
+      if (imageToUpload?.preview) {
+        const data = new FormData();
+        data.append("file", imageToUpload);
+        data.append("upload_preset", "upload_pics");
+        // setLoading(true);
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/djuuji1j9/image/upload",
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        file = await res.json();
+      }
+
       const newUser = {
         firstname,
         lastname,
         email,
         phone,
         password,
+        image: imageToUpload?.preview ? file.secure_url : "",
       };
+
       const rawResponse = await fetch("users/sign-up", {
         method: "POST",
         headers: {
@@ -62,6 +103,10 @@ function CreateAccount() {
         localStorage.setItem(
           "username",
           JSON.stringify(response.data.user.firstname)
+        );
+        localStorage.setItem(
+          "image",
+          JSON.stringify(response.data.user?.image)
         );
       }
       if (firstname === "") setFirstnameError("Please provide a firstname");
@@ -190,6 +235,40 @@ function CreateAccount() {
                 </div>
               </div>
             </form>
+            <h1 className="image-player-title image-title">
+              Add a picture of your club (optional):
+            </h1>
+            <div className="image-inputs">
+              <div className="get-image">
+                <div {...getRootProps()} className="drop-image">
+                  <p>Drop an image here</p>
+                  <input
+                    {...getInputProps()}
+                    placeholder="Drop an image here"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="file"
+                    name="file"
+                    className="image-input"
+                    placeholder="Upload an image"
+                    onChange={uploadImage}
+                  />
+                </div>
+              </div>
+              <div className="overview-img">
+                {imageToUpload === "" ? (
+                  <h3>No Image</h3>
+                ) : (
+                  <img
+                    src={imageToUpload.preview}
+                    style={{ width: "300px" }}
+                    alt=""
+                  />
+                )}
+              </div>
+            </div>
             <button
               className="sign-up-sumbit-button"
               onClick={() => handleSignUp()}

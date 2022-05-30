@@ -18,7 +18,7 @@ function CalendarScreen() {
   const [type, setType] = useState("");
   const [date, setDate] = useState(new Date(Date.now()));
 
-  const [inputDate, setInputDate] = useState(new Date(Date.now()));
+  // const [inputDate, setInputDate] = useState(new Date(Date.now()));
   const [availabilities, setAvailabilities] = useState([]);
   const [reservations, setReservations] = useState([]);
 
@@ -38,14 +38,15 @@ function CalendarScreen() {
     return `${year}-${month}-${day}`;
   }
 
-  function updateInputDate(inputDate) {
-    setInputDate(inputDate);
-    setDate(new Date(inputDate));
-  }
+  // function updateInputDate(inputDate) {
+  //   setInputDate(inputDate);
+  //   setDate(new Date(inputDate));
+  // }
 
   async function getClubInfos(token) {
     var rawResponse = await fetch(`../clubs/infos/${token}`);
     var response = await rawResponse.json();
+
     console.log(response);
     setReservations(response.data.infos.reservations);
     setAvailabilities(response.data.infos.availabilities);
@@ -89,10 +90,25 @@ function CalendarScreen() {
           <div className="details-list">
             {list_reservations.map((reservation) => {
               return (
-                <h6>
-                  {reservation.firstname} {reservation.lastname} -{" "}
-                  {reservation.email} - {reservation.phone}
-                </h6>
+                <div className="one-reservation">
+                  <div className="player-mini-img-div">
+                    {reservation.image && reservation.image.length > 0 ? (
+                      <img
+                        src={reservation.image}
+                        alt="player"
+                        className="player-mini-img"
+                      ></img>
+                    ) : (
+                      <h3>
+                        No <br></br> image
+                      </h3>
+                    )}
+                  </div>
+                  <h6>
+                    {reservation.firstname} {reservation.lastname} -{" "}
+                    {reservation.email} - {reservation.phone}
+                  </h6>
+                </div>
               );
             })}
           </div>
@@ -111,7 +127,7 @@ function CalendarScreen() {
       setToken(JSON.parse(storage));
       getClubInfos(JSON.parse(storage));
     } else setToken(false);
-    setInputDate(getDateInNiceFormat(new Date(Date.now())));
+    // setInputDate(getDateInNiceFormat(new Date(Date.now())));
   }, []);
 
   if (token === false || type === false) {

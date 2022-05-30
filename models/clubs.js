@@ -14,6 +14,7 @@ const reservationSchema = new mongoose.Schema({
   lastname: String,
   phone: String,
   email: String,
+  image: String,
 });
 
 const clubSchema = new mongoose.Schema({

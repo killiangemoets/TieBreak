@@ -42,6 +42,7 @@ router.post("/sign-up", async function (req, res, next) {
       lastname: req.body.lastname,
       email: req.body.email,
       phone: req.body.phone,
+      image: req.body.image,
       password: hash,
       token: uid2(6),
     });
@@ -113,6 +114,7 @@ router.post("/games", async function (req, res, next) {
       club: req.body.clubname,
       phone: club.phone,
       email: club.email,
+      image: club?.image,
     });
 
     const userSaved = await user.save();
@@ -201,6 +203,7 @@ router.patch("/infos/:token", async function (req, res, next) {
         lastname: req.body.lastname,
         email: req.body.email,
         phone: req.body.phone,
+        image: req.body.image,
         // password: hash,
       },
       {
@@ -221,5 +224,24 @@ router.patch("/infos/:token", async function (req, res, next) {
     });
   }
 });
+
+// router.get("/all", async function (req, res, next) {
+//   try {
+//     const users = await userModel.find();
+
+//     res.status(200).json({
+//       status: "success",
+//       results: users.length,
+//       data: {
+//         users,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(404).json({
+//       status: "fail",
+//       message: err.message,
+//     });
+//   }
+// });
 
 module.exports = router;

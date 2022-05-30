@@ -130,18 +130,21 @@ function CreateClubAccount() {
       password.length !== 0 &&
       phone.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
     ) {
-      const data = new FormData();
-      data.append("file", imageToUpload);
-      data.append("upload_preset", "upload_pics");
-      // setLoading(true);
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/djuuji1j9/image/upload",
-        {
-          method: "POST",
-          body: data,
-        }
-      );
-      const file = await res.json();
+      let file;
+      if (imageToUpload?.preview) {
+        const data = new FormData();
+        data.append("file", imageToUpload);
+        data.append("upload_preset", "upload_pics");
+        // setLoading(true);
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/djuuji1j9/image/upload",
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        file = await res.json();
+      }
 
       // setImage(file.secure_url);
 
@@ -154,7 +157,7 @@ function CreateClubAccount() {
         password,
         latitude: position?.lat,
         longitude: position.lng,
-        image: file.secure_url,
+        image: imageToUpload?.preview ? file.secure_url : "",
       };
       const rawResponse = await fetch("../clubs/sign-up", {
         method: "POST",
@@ -172,6 +175,10 @@ function CreateClubAccount() {
         localStorage.setItem(
           "username",
           JSON.stringify(response.data.club.clubname)
+        );
+        localStorage.setItem(
+          "image",
+          JSON.stringify(response.data.club?.image)
         );
       }
 

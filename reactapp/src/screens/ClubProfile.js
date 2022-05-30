@@ -13,7 +13,6 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { divIcon } from "leaflet";
-
 import { useDropzone } from "react-dropzone";
 
 function ClubProfile() {
@@ -28,10 +27,10 @@ function ClubProfile() {
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
 
-  const [refreshUsername, setRefreshUsername] = useState(false);
+  const [refreshUser, setRefreshUser] = useState(false);
 
   const [mapPosition] = useState({ lat: 50.84, lng: 4.36 });
-  const [locationError, setLocationError] = useState("");
+  // const [locationError, setLocationError] = useState("");
   const [position, setPosition] = useState(["", ""]);
 
   const [imageToUpload, setImageToUpload] = useState("");
@@ -39,11 +38,6 @@ function ClubProfile() {
   const { getRootProps, getInputProps } = useDropzone({
     accept: "images/*",
     onDrop: (acceptedFiles) => {
-      // setFiles(
-      //   acceptedFiles.map((file) =>
-      //     Object.assign(file, { preview: URL.createObjectURL(file) })
-      //   )
-      // );
       setImageToUpload(
         Object.assign(acceptedFiles[0], {
           preview: URL.createObjectURL(acceptedFiles[0]),
@@ -57,6 +51,7 @@ function ClubProfile() {
     setImageToUpload(
       Object.assign(e.target.files[0], {
         preview: URL.createObjectURL(e.target.files[0]),
+        new: true,
       })
     );
   };
@@ -153,17 +148,19 @@ function ClubProfile() {
           clubname: newName.length > 0 ? newName : clubInfos.name,
           latitude: position.lat,
           longitude: position.lng,
-          image: imageToUpload?.new ? file.secure_url : imageToUpload.preview,
-          // image: file.secure_url,
+          image: imageToUpload?.new ? file.secure_url : imageToUpload?.preview,
         }),
       });
       var response = await rawResponse.json();
 
       if (response.status === "success") {
         await getClubInfos(token);
-        if (newName.length > 0) {
-          localStorage.setItem("username", JSON.stringify(newName));
-          setRefreshUsername(!refreshUsername);
+        if (newName.length > 0 || imageToUpload?.new) {
+          if (newName.length > 0)
+            localStorage.setItem("username", JSON.stringify(newName));
+          if (imageToUpload?.new)
+            localStorage.setItem("image", JSON.stringify(file.secure_url));
+          setRefreshUser(!refreshUser);
         }
         setNewAddress("");
         setNewPhone("");
@@ -195,6 +192,11 @@ function ClubProfile() {
     setNewEmail("");
     setNewName("");
     setPosition({ lat: clubInfos.latitude, lng: clubInfos.longitude });
+    if (clubInfos?.image)
+      setImageToUpload({
+        preview: clubInfos?.image,
+      });
+    else setImageToUpload("");
   }
 
   useEffect(() => {
@@ -214,7 +216,7 @@ function ClubProfile() {
   } else {
     return (
       <div>
-        <NavbarClub refreshUsername={refreshUsername} />
+        <NavbarClub refreshUser={refreshUser} />
         <div
           className=" profile-section profile-section-club margin-top"
           onClick={() => hideNavBar()}
@@ -305,7 +307,7 @@ function ClubProfile() {
                   {/* {generatePopups(allClubs)} */}
                   {/* {renderCurrentPosition(mapPosition)} */}
                 </MapContainer>
-                <p className="map-error">{locationError}</p>
+                {/* <p className="map-error">{locationError}</p> */}
               </div>
             </div>
           </div>
