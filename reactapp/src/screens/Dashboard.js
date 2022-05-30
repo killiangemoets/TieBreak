@@ -81,6 +81,7 @@ function Dashboard() {
           multiple: 3,
         },
       },
+
       {
         title: "Lastname",
         dataIndex: "lastname",

@@ -125,3 +125,24 @@
 
   display: none;
 }
+
+.navbar-img-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #ddd;
+  height: 4rem !important;
+  width: 4rem !important;
+  border-radius: 999px !important;
+}
+
+.navbar-img-div h3 {
+  font-size: 0.8rem;
+  color: #333;
+}
+
+.navbar-img {
+  min-height: 100%;
+  min-width: 100%;
+}

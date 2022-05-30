@@ -50,10 +50,10 @@ function EditCalendar() {
     return `${year}-${month}-${day}`;
   }
 
-  function updateInputDate(inputDate) {
-    setInputDate(inputDate);
-    setDate(new Date(inputDate));
-  }
+  // function updateInputDate(inputDate) {
+  //   setInputDate(inputDate);
+  //   setDate(new Date(inputDate));
+  // }
 
   async function getClubInfos(token) {
     var rawResponse = await fetch(`../../clubs/infos/${token}`);

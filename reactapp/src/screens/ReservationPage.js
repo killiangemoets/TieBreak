@@ -20,7 +20,10 @@ function Reservation(props) {
   const [hours] = useState([
     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
   ]);
-  const [date, setDate] = useState(new Date(Date.now()));
+  // We do that to get today's date WITHOUT THE TIME
+  const [date, setDate] = useState(
+    new Date(getDateInNiceFormat(new Date(Date.now())))
+  );
   const [inputDate, setInputDate] = useState("");
   const [time, setTime] = useState("");
   const [club, setClub] = useState("");
@@ -95,62 +98,76 @@ function Reservation(props) {
           key={i}
         >
           <Popup>
-            <h1
-              className="marker-title"
-              style={{
-                color: availableClubs.find((el) => el === club.token)
-                  ? "#b3541e"
-                  : "#aaa",
-                fontSize: "1.6rem",
-                fontWeight: 600,
-              }}
-            >
-              {club.clubname}
-            </h1>
-            <div
-              className="marker-div"
-              style={{
-                color: availableClubs.find((el) => el === club.token)
-                  ? "#b3541e"
-                  : "#aaa",
-              }}
-            >
-              <div>
-                <FontAwesomeIcon className="club-icon" icon={faLocationDot} />
-                <p>{club?.address}</p>
+            <div className="popup">
+              <div className="popup-img-div">
+                {club?.image && club?.image.length > 0 ? (
+                  <img src={club.image} alt="club" className="popup-img"></img>
+                ) : (
+                  <h3>No image</h3>
+                )}
               </div>
-              <div>
-                <FontAwesomeIcon className="club-icon" icon={faPhone} />
-                <p>{club.phone}</p>
-              </div>
-              <div>
-                <FontAwesomeIcon className="club-icon" icon={faEnvelope} />
-                <p>{club.email}</p>
-              </div>
-              <div>
-                <FontAwesomeIcon
-                  className="club-icon"
-                  icon={faHandHoldingDollar}
-                />
-                <p>{club.price} €/h</p>
+              <div className="popup-text-div">
+                <h1
+                  className="marker-title"
+                  style={{
+                    color: availableClubs.find((el) => el === club.token)
+                      ? "#b3541e"
+                      : "#aaa",
+                    fontSize: "1.6rem",
+                    fontWeight: 600,
+                  }}
+                >
+                  {club.clubname}
+                </h1>
+                <div
+                  className="marker-div"
+                  style={{
+                    color: availableClubs.find((el) => el === club.token)
+                      ? "#b3541e"
+                      : "#aaa",
+                  }}
+                >
+                  <div>
+                    <FontAwesomeIcon
+                      className="club-icon"
+                      icon={faLocationDot}
+                    />
+                    <p>{club?.address}</p>
+                  </div>
+                  <div>
+                    <FontAwesomeIcon className="club-icon" icon={faPhone} />
+                    <p>{club.phone}</p>
+                  </div>
+                  <div>
+                    <FontAwesomeIcon className="club-icon" icon={faEnvelope} />
+                    <p>{club.email}</p>
+                  </div>
+                  <div>
+                    <FontAwesomeIcon
+                      className="club-icon"
+                      icon={faHandHoldingDollar}
+                    />
+                    <p>{club.price} €/h</p>
+                  </div>
+                </div>
+                <button
+                  className={
+                    availableClubs.find((el) => el === club.token)
+                      ? "yellowButton map-button"
+                      : "yellowButton amp-button hidden"
+                  }
+                  onClick={() =>
+                    clickOnClub(
+                      availableClubs.find((el) => el === club.token)
+                        ? club.token
+                        : null
+                    )
+                  }
+                >
+                  Select
+                </button>
               </div>
             </div>
-            <button
-              className={
-                availableClubs.find((el) => el === club.token)
-                  ? "yellowButton map-button"
-                  : "yellowButton amp-button hidden"
-              }
-              onClick={() =>
-                clickOnClub(
-                  availableClubs.find((el) => el === club.token)
-                    ? club.token
-                    : null
-                )
-              }
-            >
-              Select
-            </button>
           </Popup>
         </Marker>
       );
@@ -190,16 +207,18 @@ function Reservation(props) {
         icon={customMarkerIcon}
       >
         <Popup>
-          <h1
-            className="marker-title"
-            style={{
-              color: "#74c0fc",
-              fontSize: "1.2rem",
-              fontWeight: 500,
-            }}
-          >
-            You are here
-          </h1>
+          <div className="popup-current-position">
+            <h1
+              className="marker-title"
+              style={{
+                color: "#74c0fc",
+                fontSize: "1.2rem",
+                fontWeight: 500,
+              }}
+            >
+              You are here
+            </h1>
+          </div>
         </Popup>
       </Marker>
     );
@@ -221,47 +240,58 @@ function Reservation(props) {
             moveToClub({ lat: club?.latitude, lng: club?.longitude })
           }
         >
-          <div className="club-title">
-            <h4>{club.clubname}</h4>
+          <div className="club-img-div">
+            {club?.image && club?.image.length > 0 ? (
+              <div className="club-img-sub-div">
+                <img src={club.image} alt="club" className="club-img"></img>
+              </div>
+            ) : (
+              <h3>No image</h3>
+            )}
           </div>
-          <div className="club-infos">
-            <div>
-              <FontAwesomeIcon className="club-icon" icon={faLocationDot} />
-              <p>{club?.address}</p>
+          <div className="club-card-infos">
+            <div className="club-title">
+              <h4>{club.clubname}</h4>
             </div>
-            <div>
-              <FontAwesomeIcon className="club-icon" icon={faPhone} />
-              <p>{club.phone}</p>
+            <div className="club-infos">
+              <div>
+                <FontAwesomeIcon className="club-icon" icon={faLocationDot} />
+                <p>{club?.address}</p>
+              </div>
+              <div>
+                <FontAwesomeIcon className="club-icon" icon={faPhone} />
+                <p>{club.phone}</p>
+              </div>
+              <div>
+                <FontAwesomeIcon className="club-icon" icon={faEnvelope} />
+                <p>{club.email}</p>
+              </div>
+              <div>
+                <FontAwesomeIcon
+                  className="club-icon"
+                  icon={faHandHoldingDollar}
+                />
+                <p>{club.price} €/h</p>
+              </div>
             </div>
-            <div>
-              <FontAwesomeIcon className="club-icon" icon={faEnvelope} />
-              <p>{club.email}</p>
-            </div>
-            <div>
-              <FontAwesomeIcon
-                className="club-icon"
-                icon={faHandHoldingDollar}
-              />
-              <p>{club.price} €/h</p>
-            </div>
-          </div>
-          <div className="club-button-section">
-            <button
-              className={
-                availableClubs.find((el) => el === club.token)
-                  ? "yellowButton club-button"
-                  : "yellowButton club-button hidden"
-              }
-              onClick={() =>
-                clickOnClub(
+            <div className="club-button-section">
+              <button
+                className={
                   availableClubs.find((el) => el === club.token)
-                    ? club.token
-                    : null
-                )
-              }
-            >
-              Select
-            </button>
+                    ? "yellowButton club-button"
+                    : "yellowButton club-button hidden"
+                }
+                onClick={() =>
+                  clickOnClub(
+                    availableClubs.find((el) => el === club.token)
+                      ? club.token
+                      : null
+                  )
+                }
+              >
+                Select
+              </button>
+            </div>
           </div>
         </div>
       );
@@ -411,6 +441,7 @@ function Reservation(props) {
           club,
           clubname: allClubs.find((c) => c.token === club)?.clubname,
           price: allClubs.find((c) => c.token === club)?.price,
+          image: allClubs.find((c) => c.token === club)?.image,
         })
       );
 

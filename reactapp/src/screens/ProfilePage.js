@@ -4,6 +4,7 @@ import FooterPage from "../components/Footer";
 import "../stylesheets/profile.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
 
 function Profile(props) {
   const [personnalInfos, setPersonnalInfos] = useState("");
@@ -16,7 +17,30 @@ function Profile(props) {
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
 
-  const [refreshUsername, setRefreshUsername] = useState(false);
+  const [refreshUser, setRefreshUser] = useState(false);
+
+  const [imageToUpload, setImageToUpload] = useState("");
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "images/*",
+    onDrop: (acceptedFiles) => {
+      setImageToUpload(
+        Object.assign(acceptedFiles[0], {
+          preview: URL.createObjectURL(acceptedFiles[0]),
+          new: true,
+        })
+      );
+    },
+  });
+
+  const uploadImage = async (e) => {
+    setImageToUpload(
+      Object.assign(e.target.files[0], {
+        preview: URL.createObjectURL(e.target.files[0]),
+        new: true,
+      })
+    );
+  };
 
   function hideNavbar() {
     const navbar = document.querySelector(".navbarRight");
@@ -32,6 +56,10 @@ function Profile(props) {
     var response = await rawResponse.json();
     console.log(response);
     if (response.status === "success") setPersonnalInfos(response.data.infos);
+    if (response.data.infos?.image)
+      setImageToUpload({
+        preview: response.data.infos?.image,
+      });
   }
 
   async function handleConfirm(token) {
@@ -41,6 +69,22 @@ function Profile(props) {
         /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
       )
     ) {
+      let file;
+      if (imageToUpload?.new) {
+        const data = new FormData();
+        data.append("file", imageToUpload);
+        data.append("upload_preset", "upload_pics");
+        // setLoading(true);
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/djuuji1j9/image/upload",
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        file = await res.json();
+      }
+
       var rawResponse = await fetch(`/users/infos/${token}`, {
         method: "PATCH",
         headers: {
@@ -53,6 +97,7 @@ function Profile(props) {
             newLastname.length > 0 ? newLastname : personnalInfos.lastname,
           phone: newPhone.length > 0 ? newPhone : personnalInfos.phone,
           email: newEmail.length > 0 ? newEmail : personnalInfos.email,
+          image: imageToUpload?.new ? file.secure_url : imageToUpload?.preview,
         }),
       });
       var response = await rawResponse.json();
@@ -61,10 +106,14 @@ function Profile(props) {
       setPhoneError("");
       if (response.status === "success") {
         await getPersonnalInfos(token);
-        if (newFirstname.length > 0) {
-          localStorage.setItem("username", JSON.stringify(newFirstname));
-          setRefreshUsername(!refreshUsername);
+        if (newFirstname.length > 0 || imageToUpload?.new) {
+          if (newFirstname.length > 0)
+            localStorage.setItem("username", JSON.stringify(newFirstname));
+          if (imageToUpload?.new)
+            localStorage.setItem("image", JSON.stringify(file.secure_url));
+          setRefreshUser(!refreshUser);
         }
+
         setEmailError("");
         setNewFirstname("");
         setNewLastname("");
@@ -92,6 +141,11 @@ function Profile(props) {
     setNewLastname("");
     setNewPhone("");
     setNewEmail("");
+    if (personnalInfos?.image)
+      setImageToUpload({
+        preview: personnalInfos?.image,
+      });
+    else setImageToUpload("");
   }
 
   useEffect(() => {
@@ -109,7 +163,7 @@ function Profile(props) {
   } else {
     return (
       <div>
-        <NavbarMainPage refreshUsername={refreshUsername} />
+        <NavbarMainPage refreshUser={refreshUser} />
         <div className=" profile-section" onClick={() => hideNavbar()}>
           <div className="reservation-main-title-section">
             <h1 className="overview-main-title">Personnal Informations</h1>
@@ -164,6 +218,35 @@ function Profile(props) {
                   <p className="error-message">{emailError}</p>
                 </div>
               </form>
+            </div>
+          </div>
+
+          <div className="image-inputs">
+            <div className="get-image">
+              <div {...getRootProps()} className="drop-image">
+                <p>Drop an image here</p>
+                <input {...getInputProps()} placeholder="Drop an image here" />
+              </div>
+              <div>
+                <input
+                  type="file"
+                  name="file"
+                  className="image-input"
+                  placeholder="Upload an image"
+                  onChange={uploadImage}
+                />
+              </div>
+            </div>
+            <div className="overview-img">
+              {imageToUpload === "" ? (
+                <h3>No Image</h3>
+              ) : (
+                <img
+                  src={imageToUpload.preview}
+                  style={{ width: "300px" }}
+                  alt=""
+                />
+              )}
             </div>
           </div>
 

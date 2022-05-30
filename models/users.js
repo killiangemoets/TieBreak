@@ -9,6 +9,7 @@ const gameSchema = new mongoose.Schema({
   price: Number,
   phone: String,
   email: String,
+  image: String,
 });
 
 const userSchema = new mongoose.Schema({
@@ -20,6 +21,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a lastname"],
   },
+  image: String,
   phone: {
     type: String,
     required: [true, "Please provide a phone number"],

@@ -105,6 +105,7 @@ router.post("/reservations", async function (req, res, next) {
       lastname: user.lastname,
       phone: user.phone,
       email: user.email,
+      image: user?.image,
     });
 
     const date = new Date(req.body.date);

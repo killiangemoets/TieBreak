@@ -143,6 +143,7 @@
 }
 
 .games-list {
+  width: 58rem;
   margin-top: 12.98rem;
   padding: 2rem;
   display: flex;
@@ -155,20 +156,47 @@
 }
 
 .game-card {
-  width: 48rem;
+  width: 54rem;
   background-color: #e2e6db;
-  padding: 2rem 2rem;
   border-radius: 36px;
+  display: flex;
+}
+
+.game-card-img-content {
+  border-top-left-radius: 36px;
+  border-bottom-left-radius: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 16rem;
+  width: 14rem !important;
+  background-color: #bbb;
+}
+
+.game-card-text-content {
+  padding: 2rem 2rem;
+
   display: grid;
   align-items: center;
   justify-content: center;
   grid-template-columns: auto auto;
-  column-gap: 7.2rem;
-  row-gap: 2.6rem;
+  column-gap: 2rem;
+  /* row-gap: 1rem; */
+}
+
+.game-card-text-content h6 {
+  margin: 0;
 }
 
 .game-info {
   font-size: 2.2rem;
   color: #333;
   font-weight: 500;
+}
+
+.game-img {
+  /* width: 2rem; */
+  min-height: 100%;
+  min-width: 100%;
 }

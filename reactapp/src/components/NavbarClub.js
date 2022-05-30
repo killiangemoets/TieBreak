@@ -14,6 +14,7 @@ function NavbarClub(props) {
   const [profileMenu, setProfileMenu] = useState(false);
   const [logout, setLogout] = useState(false);
   const [username, setUsername] = useState("");
+  const [image, setImage] = useState("");
 
   function handleClick() {
     const navbar = document.querySelector(".navbarRight");
@@ -35,14 +36,18 @@ function NavbarClub(props) {
 
   useEffect(() => {
     const storage = localStorage.getItem("username");
-    console.log(JSON.parse(storage));
+    // console.log(JSON.parse(storage));
     if (storage) setUsername(JSON.parse(storage));
-  }, [props.refreshUsername]);
+    const storage2 = localStorage.getItem("image");
+    console.log(JSON.parse(storage2));
+    if (storage2) setImage(JSON.parse(storage2));
+  }, [props.refreshUser]);
 
   const handleLogout = function () {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     localStorage.removeItem("type");
+    localStorage.removeItem("image");
     setLogout(true);
   };
   if (logout) {
@@ -67,6 +72,15 @@ function NavbarClub(props) {
             className="button profile-btn"
             onMouseOver={() => openProfileMenu()}
           >
+            <div className="navbar-img-div">
+              {image && image.length > 0 ? (
+                <img src={image} alt="club" className="navbar-img"></img>
+              ) : (
+                <h3>
+                  No <br></br> image
+                </h3>
+              )}
+            </div>
             {username.length !== 0 ? username : "Profile"}{" "}
             <FontAwesomeIcon className="chevron-icon" icon={faChevronDown} />{" "}
           </button>
