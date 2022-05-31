@@ -63,11 +63,14 @@ function Home() {
               <div className="homePageButton">
                 <a href="/signup">
                   {" "}
-                  <button className="yellowButton"> Get Started</button>{" "}
+                  <button className="yellowButton header-btn">
+                    {" "}
+                    Get Started
+                  </button>{" "}
                 </a>
                 <button
                   onClick={() => scrollToSection(scrollButton)}
-                  className="yellowButton yellowButton-secondary"
+                  className="yellowButton yellowButton-secondary header-btn"
                 >
                   <p className="learn-more">Learn More </p>
                   <FontAwesomeIcon className="arrow-icon" icon={faArrowDown} />
@@ -99,7 +102,7 @@ function Home() {
                     className="home-img"
                   ></img>
                   <p className="DescriptionCardOdd">
-                    Chose the perfect time in the calendar!
+                    Choose the perfect time in the calendar!
                   </p>{" "}
                   <br />
                   <span className="hidden-text"> test</span>
@@ -109,8 +112,8 @@ function Home() {
                   <p className="TitleCardScore"> 30-0</p>
                   <img src="../../map.png" alt="map" className="home-img"></img>
                   <p className="DescriptionCardEven">
-                    Chose the perfect <br />
-                    tennis court!
+                    Choose the perfect <br />
+                    tennis club!
                   </p>{" "}
                   <br />
                   <span className="hidden-text"> test</span>

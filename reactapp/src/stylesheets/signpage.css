@@ -261,6 +261,7 @@
 }
 
 .overview-img {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -292,4 +293,30 @@
 
 .image-player-title {
   margin: 0;
+}
+
+.delete-picture-btn {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  background-color: rgba(51, 51, 51, 0);
+  border: none;
+}
+
+.x-icon {
+  font-size: 2.2rem;
+  color: #e8ccbc;
+  background-color: #333;
+  border: 2px solid #333;
+  border-radius: 999px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.x-icon:hover {
+  color: #e08f62;
+}
+
+.sign-in-club-title {
+  text-align: center;
 }

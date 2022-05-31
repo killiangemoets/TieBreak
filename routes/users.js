@@ -104,17 +104,18 @@ router.post("/sign-in", async function (req, res, next) {
 router.post("/games", async function (req, res, next) {
   try {
     const user = await userModel.findOne({ token: req.body.tokenUser });
-    const club = await clubModel.findOne({ token: req.body.tokenClub });
+    // const club = await clubModel.findOne({ token: req.body.tokenClub });
 
     user.games.push({
       day: req.body.day,
       date: req.body.date,
       time: req.body.time,
       price: req.body.price,
-      club: req.body.clubname,
-      phone: club.phone,
-      email: club.email,
-      image: club?.image,
+      clubToken: req.body.tokenClub,
+      // club: req.body.clubname,
+      // phone: club.phone,
+      // email: club.email,
+      // image: club?.image,
     });
 
     const userSaved = await user.save();
@@ -225,23 +226,23 @@ router.patch("/infos/:token", async function (req, res, next) {
   }
 });
 
-// router.get("/all", async function (req, res, next) {
-//   try {
-//     const users = await userModel.find();
+router.get("/all", async function (req, res, next) {
+  try {
+    const users = await userModel.find();
 
-//     res.status(200).json({
-//       status: "success",
-//       results: users.length,
-//       data: {
-//         users,
-//       },
-//     });
-//   } catch (err) {
-//     res.status(404).json({
-//       status: "fail",
-//       message: err.message,
-//     });
-//   }
-// });
+    res.status(200).json({
+      status: "success",
+      results: users.length,
+      data: {
+        users,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+});
 
 module.exports = router;

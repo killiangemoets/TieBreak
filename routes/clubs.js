@@ -96,16 +96,17 @@ router.get("/all", async function (req, res, next) {
 router.post("/reservations", async function (req, res, next) {
   try {
     const club = await clubModel.findOne({ token: req.body.tokenClub });
-    const user = await userModel.findOne({ token: req.body.tokenUser });
+    // const user = await userModel.findOne({ token: req.body.tokenUser });
 
     club.reservations.push({
       date: req.body.date,
       time: req.body.time,
-      firstname: user.firstname,
-      lastname: user.lastname,
-      phone: user.phone,
-      email: user.email,
-      image: user?.image,
+      userToken: req.body.tokenUser,
+      // firstname: user.firstname,
+      // lastname: user.lastname,
+      // phone: user.phone,
+      // email: user.email,
+      // image: user?.image,
     });
 
     const date = new Date(req.body.date);

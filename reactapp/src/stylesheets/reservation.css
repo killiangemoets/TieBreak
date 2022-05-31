@@ -53,7 +53,7 @@
 }
 
 .when-and-where-second-title {
-  font-size: 2.4rem;
+  font-size: 1.8rem;
   text-align: center;
   margin: 0;
   color: #333;
@@ -73,8 +73,8 @@
 
 .times-list {
   background-color: #f6ddd0;
-  width: 80%;
-  width: 30rem;
+  /* width: 80%; */
+  width: 26rem;
   /* height: 40rem; */
   /* overflow-y: scroll; */
   padding: 2rem 0;
@@ -108,7 +108,7 @@
 
 .courts-left {
   margin: 0;
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: #b3724e;
 }
@@ -120,7 +120,17 @@
 .time-logo {
   width: 2rem;
   height: 2rem;
+  margin-bottom: 0.6rem;
   /* background-color: #b3724e; */
+}
+
+.time-ball-icon {
+  /* font-size: 4rem; */
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.36rem;
+
+  color: #b3724e;
 }
 
 .time-selected {
@@ -214,7 +224,7 @@
 
 .where-content {
   display: flex;
-  gap: 2.4rem;
+  gap: 1.6rem;
 }
 
 .clubs-cards {
@@ -232,15 +242,15 @@
   display: flex;
   /* flex-direction: column; */
   gap: 1rem;
-  width: 32rem;
-  width: 48rem;
+  /* width: 32rem; */
+  width: 42rem;
   height: 26rem;
   cursor: pointer;
 }
 
 .club-card-infos {
   padding: 2rem 2rem 2rem 1rem;
-  width: 30rem;
+  width: 30rem !important;
 }
 
 .club-card-not-available {
@@ -276,7 +286,7 @@
 
 .club-card-selected {
   box-shadow: inset 0 0 0 5px #b3724e;
-  z-index: 999 !important;
+  /* z-index: 999 !important; */
 }
 
 .club-card-selected .club-img-div {
@@ -440,7 +450,7 @@
 .search-results {
   background-color: #eee;
   /* z-index: 999 !important; */
-  z-index: 1;
+  /* z-index: 1; */
   width: 36rem;
   max-height: 46.9rem;
   overflow-y: scroll;
@@ -468,7 +478,7 @@
   margin-bottom: 3.2rem;
   margin-top: 1.4rem;
   height: 5.4rem;
-  width: 29.2rem;
+  width: 28rem;
   border: solid 6px #b3724e;
   border-radius: 12px;
 }

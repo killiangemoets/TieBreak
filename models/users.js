@@ -5,11 +5,11 @@ const gameSchema = new mongoose.Schema({
   day: String,
   date: Date,
   time: String,
-  club: String,
+  clubToken: String,
   price: Number,
-  phone: String,
-  email: String,
-  image: String,
+  // phone: String,
+  // email: String,
+  // image: String,
 });
 
 const userSchema = new mongoose.Schema({

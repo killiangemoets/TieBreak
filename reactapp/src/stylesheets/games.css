@@ -8,7 +8,7 @@
 }
 
 .second-column {
-  width: 42rem;
+  width: 54rem;
 }
 .fix-column {
   position: fixed;
@@ -24,6 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden !important;
 }
 
 .center-stats,
@@ -85,6 +86,10 @@
   gap: 8rem;
 }
 
+.games {
+  width: 58rem !important;
+}
+
 .games-titles {
   position: fixed;
   top: 0%;
@@ -101,6 +106,7 @@
 .games-title {
   font-size: 3.2rem;
   color: #aaa;
+  margin: 0 !important;
 }
 
 .active-games-title {
@@ -128,18 +134,25 @@
 }
 
 .coming {
-  left: -1%;
+  left: -4%;
   top: -4%;
 }
 
 .previous {
-  right: -1%;
+  right: 0%;
   top: -4%;
 }
 
 .tennisball-img {
   width: 3.2rem;
   height: 3.2rem;
+}
+
+.tennisball-icon {
+  /* font-size: 4rem; */
+  width: 3.2rem;
+  height: 3.2rem;
+  color: #e08f62;
 }
 
 .games-list {
@@ -186,6 +199,10 @@
 }
 
 .game-card-text-content h6 {
+  margin: 0;
+}
+
+.start-reservation-big-btn {
   margin: 0;
 }
 

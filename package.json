@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "heroku-postbuild": "cd reactapp && npm install && npm run build",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "heroku-postbuild": "cd reactapp && npm install && npm run build"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

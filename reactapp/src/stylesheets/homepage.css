@@ -29,6 +29,7 @@
 }
 
 #title-main-page {
+  text-align: center !important;
   color: white;
   /* color: #E08F62; */
   font-size: 8rem;
@@ -44,7 +45,8 @@
 .header-title {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .leftContainer {
@@ -64,7 +66,16 @@
 .homePageButton {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
+  gap: 3.6rem;
+}
+
+.homePageButton a {
+  display: inline-block !important;
+}
+
+.header-btn {
+  margin: 0;
 }
 
 .rightContainer {
@@ -98,6 +109,10 @@
 .text-howItWorks {
   font-size: 2.5rem;
   font-weight: 500;
+}
+
+.text-howItWorks p {
+  text-align: center;
 }
 
 .boxText {

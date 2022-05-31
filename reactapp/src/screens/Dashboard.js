@@ -62,13 +62,30 @@ function Dashboard() {
     var rawResponse = await fetch(`../clubs/infos/${token}`);
     var response = await rawResponse.json();
     console.log(response);
-    setReservations(response.data.infos.reservations);
+
+    var rawResponsePlayers = await fetch(`../users/all`);
+    var responsePlayers = await rawResponsePlayers.json();
+
+    // console.log(responsePlayers);
+    const reservations = response.data.infos.reservations.map((reservation) => {
+      const user = responsePlayers.data.users.find(
+        (user) => user.token === reservation.userToken
+      );
+      return {
+        date: reservation.date,
+        time: reservation.time,
+        firstname: user?.firstname,
+        lastname: user?.lastname,
+        phone: user?.phone,
+        email: user?.email,
+        image: user?.image,
+      };
+    });
+    setReservations(reservations);
+
+    // setReservations(response.data.infos.reservations);
     setAvailabilities(response.data.infos.availabilities);
-    renderReservationsByDay(
-      response.data.infos.reservations,
-      currentYear,
-      currentMonth
-    );
+    renderReservationsByDay(reservations, currentYear, currentMonth);
   }
 
   function renderTable(reservations) {
@@ -437,9 +454,9 @@ function Dashboard() {
                 +currentYear,
                 +currentMonth
               )}
-              <form className="personnal-infos-form">
+              <form className="personnal-infos-form graph-form">
                 <div className="input-div input-day">
-                  <label>Month:</label>
+                  <label className="label-month-and-year">Month:</label>
                   <select
                     id="select-month"
                     name="select-month"
@@ -460,7 +477,7 @@ function Dashboard() {
                   </select>
                 </div>
                 <div className="input-div input-day">
-                  <label>Year:</label>
+                  <label className="label-month-and-year">Year:</label>
                   <select
                     id="select-year"
                     name="select-year"

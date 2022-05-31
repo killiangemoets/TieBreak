@@ -9,6 +9,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router-dom";
+import { GiTennisBall } from "react-icons/gi";
 
 function NavbarClub(props) {
   const [profileMenu, setProfileMenu] = useState(false);
@@ -58,6 +59,7 @@ function NavbarClub(props) {
         <Link to="/club/calendar" className="logoRedirect">
           <div className="navbarLeft ">
             {/* <img className="logoNavBar" src="../../ball1.png" alt="logo" /> */}
+            <GiTennisBall className="nav-ball-icon" />
             <h1 className="titleNavBar">TieBreak </h1>
           </div>
         </Link>
@@ -85,7 +87,13 @@ function NavbarClub(props) {
             <FontAwesomeIcon className="chevron-icon" icon={faChevronDown} />{" "}
           </button>
         </div>
-        <div className={profileMenu ? "profile-menu" : "profile-menu hidden"}>
+        <div
+          className={
+            profileMenu
+              ? "profile-menu profile-menu-club"
+              : "profile-menu profile-menu-club hidden"
+          }
+        >
           <Link to="/club/profile">
             <button className="button">Informations </button>
           </Link>

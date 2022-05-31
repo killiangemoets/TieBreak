@@ -5,6 +5,7 @@ import "../stylesheets/news.css";
 import "../stylesheets/rankings.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
+import { GiTennisBall } from "react-icons/gi";
 
 function News() {
   const [token, setToken] = useState("");
@@ -328,11 +329,12 @@ function News() {
                 <div className="new" onClick={() => setState("games")}>
                   <div className="new-logo">
                     {state === "games" ? (
-                      <img
-                        className="new-logo-img"
-                        src="../../ball1.png"
-                        alt="time-logo-img"
-                      />
+                      // <img
+                      //   className="new-logo-img"
+                      //   src="../../ball1.png"
+                      //   alt="time-logo-img"
+                      // />
+                      <GiTennisBall className="new-ball-icon" />
                     ) : (
                       ""
                     )}
@@ -350,11 +352,12 @@ function News() {
                 <div className="new" onClick={() => setState("atp")}>
                   <div className="new-logo">
                     {state === "atp" ? (
-                      <img
-                        className="new-logo-img"
-                        src="../../ball1.png"
-                        alt="time-logo-img"
-                      />
+                      // <img
+                      //   className="new-logo-img"
+                      //   src="../../ball1.png"
+                      //   alt="time-logo-img"
+                      // />
+                      <GiTennisBall className="new-ball-icon" />
                     ) : (
                       ""
                     )}
@@ -372,11 +375,12 @@ function News() {
                 <div className="new" onClick={() => setState("wta")}>
                   <div className="new-logo">
                     {state === "wta" ? (
-                      <img
-                        className="new-logo-img"
-                        src="../../ball1.png"
-                        alt="time-logo-img"
-                      />
+                      // <img
+                      //   className="new-logo-img"
+                      //   src="../../ball1.png"
+                      //   alt="time-logo-img"
+                      // />
+                      <GiTennisBall className="new-ball-icon" />
                     ) : (
                       ""
                     )}
@@ -407,7 +411,7 @@ function News() {
                   type="date"
                   id="date-input"
                   name="date"
-                  className="api-input"
+                  className="api-input news-input"
                   value={inputDate}
                   placeholder="dd-mm-yyyy"
                   data-date=""

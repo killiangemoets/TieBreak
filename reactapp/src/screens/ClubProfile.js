@@ -14,6 +14,8 @@ import {
 } from "react-leaflet";
 import { divIcon } from "leaflet";
 import { useDropzone } from "react-dropzone";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 function ClubProfile() {
   const [token, setToken] = useState("");
@@ -33,7 +35,7 @@ function ClubProfile() {
   // const [locationError, setLocationError] = useState("");
   const [position, setPosition] = useState(["", ""]);
 
-  const [imageToUpload, setImageToUpload] = useState("");
+  const [imageToUpload, setImageToUpload] = useState({ preview: "" });
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "images/*",
@@ -155,11 +157,17 @@ function ClubProfile() {
 
       if (response.status === "success") {
         await getClubInfos(token);
-        if (newName.length > 0 || imageToUpload?.new) {
+        if (
+          newName.length > 0 ||
+          imageToUpload?.new ||
+          imageToUpload?.preview === ""
+        ) {
           if (newName.length > 0)
             localStorage.setItem("username", JSON.stringify(newName));
           if (imageToUpload?.new)
             localStorage.setItem("image", JSON.stringify(file.secure_url));
+          else if (imageToUpload?.preview === "")
+            localStorage.setItem("image", JSON.stringify(""));
           setRefreshUser(!refreshUser);
         }
         setNewAddress("");
@@ -196,7 +204,7 @@ function ClubProfile() {
       setImageToUpload({
         preview: clubInfos?.image,
       });
-    else setImageToUpload("");
+    else setImageToUpload({ preview: "" });
   }
 
   useEffect(() => {
@@ -329,7 +337,7 @@ function ClubProfile() {
               </div>
             </div>
             <div className="overview-img">
-              {imageToUpload === "" ? (
+              {imageToUpload.preview === "" ? (
                 <h3>No Image</h3>
               ) : (
                 <img
@@ -338,6 +346,16 @@ function ClubProfile() {
                   alt=""
                 />
               )}
+              <button
+                className={
+                  imageToUpload.preview === ""
+                    ? "delete-picture-btn remove"
+                    : "delete-picture-btn"
+                }
+                onClick={() => setImageToUpload({ preview: "" })}
+              >
+                <FontAwesomeIcon className="x-icon" icon={faCircleXmark} />
+              </button>
             </div>
           </div>
 

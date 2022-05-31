@@ -10,6 +10,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { Redirect } from "react-router-dom";
+import { GiTennisBall } from "react-icons/gi";
 
 function NavbarMainPage(props) {
   const [profileMenu, setProfileMenu] = useState(false);
@@ -57,6 +58,7 @@ function NavbarMainPage(props) {
         <Link to="/games" className="logoRedirect">
           <div className="navbarLeft ">
             {/* <img className="logoNavBar" src="../../ball1.png" alt="logo" /> */}
+            <GiTennisBall className="nav-ball-icon" />
             <h1 className="titleNavBar">TieBreak </h1>
           </div>
         </Link>

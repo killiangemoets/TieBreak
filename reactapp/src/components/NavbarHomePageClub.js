@@ -4,6 +4,7 @@ import "../stylesheets/general.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { GiTennisBall } from "react-icons/gi";
 
 function NavbarHomePageClub() {
   function handleClick() {
@@ -19,6 +20,7 @@ function NavbarHomePageClub() {
       <a href="/" className="logoRedirect">
         <div className="navbarLeft">
           {/* <img className="logoNavBar" src="../../ball1.png" alt="logo" /> */}
+          <GiTennisBall className="nav-ball-icon" />
           <h1 className="titleNavBar">TieBreak </h1>
         </div>
       </a>

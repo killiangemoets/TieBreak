@@ -13,8 +13,9 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { divIcon } from "leaflet";
-
 import { useDropzone } from "react-dropzone";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 function CreateClubAccount() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -42,7 +43,7 @@ function CreateClubAccount() {
   // const [files, setFiles] = useState([]);
   // const [image, setImage] = useState("");
   // const [loading, setLoading] = useState(false);
-  const [imageToUpload, setImageToUpload] = useState("");
+  const [imageToUpload, setImageToUpload] = useState({ preview: "" });
 
   const uploadImage = async (e) => {
     // const files = e.target.files;
@@ -131,7 +132,7 @@ function CreateClubAccount() {
       phone.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
     ) {
       let file;
-      if (imageToUpload?.preview) {
+      if (imageToUpload?.preview.length > 0) {
         const data = new FormData();
         data.append("file", imageToUpload);
         data.append("upload_preset", "upload_pics");
@@ -157,7 +158,7 @@ function CreateClubAccount() {
         password,
         latitude: position?.lat,
         longitude: position.lng,
-        image: imageToUpload?.preview ? file.secure_url : "",
+        image: imageToUpload?.preview.length > 0 ? file.secure_url : "",
       };
       const rawResponse = await fetch("../clubs/sign-up", {
         method: "POST",
@@ -176,10 +177,11 @@ function CreateClubAccount() {
           "username",
           JSON.stringify(response.data.club.clubname)
         );
-        localStorage.setItem(
-          "image",
-          JSON.stringify(response.data.club?.image)
-        );
+        if (response.data.club?.image)
+          localStorage.setItem(
+            "image",
+            JSON.stringify(response.data.club?.image)
+          );
       }
 
       if (clubname === "") setClubnameError("Please provide a club name");
@@ -374,7 +376,7 @@ function CreateClubAccount() {
               </div>
             </div>
             <div className="overview-img">
-              {imageToUpload === "" ? (
+              {imageToUpload.preview === "" ? (
                 <h3>No Image</h3>
               ) : (
                 <img
@@ -383,6 +385,16 @@ function CreateClubAccount() {
                   alt=""
                 />
               )}
+              <button
+                className={
+                  imageToUpload.preview === ""
+                    ? "delete-picture-btn remove"
+                    : "delete-picture-btn"
+                }
+                onClick={() => setImageToUpload({ preview: "" })}
+              >
+                <FontAwesomeIcon className="x-icon" icon={faCircleXmark} />
+              </button>
             </div>
           </div>
           <div className="center-sign-up-club-btn">
