@@ -9,7 +9,7 @@
 
 .ranking {
   display: grid;
-  grid-template-columns: 8rem 32rem 26rem 20rem;
+  grid-template-columns: 8rem 32rem 26rem 10rem;
   align-items: center;
   justify-content: center;
   font-size: 2.4rem;

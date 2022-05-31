@@ -49,7 +49,11 @@ function ClubSignIn() {
         "username",
         JSON.stringify(response.data.club.clubname)
       );
-      localStorage.setItem("image", JSON.stringify(response.data.club?.image));
+      if (response.data.club?.image)
+        localStorage.setItem(
+          "image",
+          JSON.stringify(response.data.club?.image)
+        );
     }
 
     if (email === "") setEmailError("Please provide an email");

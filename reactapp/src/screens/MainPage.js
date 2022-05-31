@@ -8,6 +8,8 @@ import "../stylesheets/navbar.css";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
+import { GiTennisBall } from "react-icons/gi";
+
 function Home(props) {
   const [comingGames, setComingGames] = useState([]);
   const [previousGames, setPreviousGames] = useState([]);
@@ -36,12 +38,31 @@ function Home(props) {
   async function matchData(token) {
     // C'est un GET par défaut le fetch
     var rawResponse = await fetch(`users/games/${token}`);
-    // var rawResponse = await fetch("users/games/wvkwrx");
     // On récupère le token grace à REDUX
     var response = await rawResponse.json();
-    // console.log(response);
 
-    const totalGames = response.data.games;
+    var rawResponseClubs = await fetch(`clubs/all`);
+    // On récupère le token grace à REDUX
+    var responseClubs = await rawResponseClubs.json();
+
+    console.log(responseClubs);
+
+    const totalGames = response.data.games.map((game) => {
+      return {
+        day: game.day,
+        date: game.date,
+        time: game.time,
+        price: game.price,
+        club: responseClubs.data.clubs.find(
+          (club) => club.token === game.clubToken
+        )?.clubname,
+        image: responseClubs.data.clubs.find(
+          (club) => club.token === game.clubToken
+        )?.image,
+      };
+    });
+
+    // const totalGames = response.data.games;
 
     let previousGames = [],
       comingGames = [];
@@ -232,11 +253,13 @@ function Home(props) {
                             : "games-titles-tennisball coming"
                         }
                       >
-                        <img
+                        {/* <img
                           className="tennisball-img"
                           src="../../ball1.png"
                           alt="logo"
-                        />
+                        /> */}
+
+                        <GiTennisBall className="tennisball-icon" />
                       </div>
                     </div>
                   </div>

@@ -19,6 +19,8 @@
     "react-chartjs-2": "^4.1.0",
     "react-dom": "^18.1.0",
     "react-dropzone": "^14.2.1",
+    "react-icons": "^4.4.0",
+    "react-ionicons": "^4.2.0",
     "react-leaflet": "^4.0.0",
     "react-native-element": "^1.2.1",
     "react-nice-dates": "^3.1.0",

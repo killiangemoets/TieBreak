@@ -391,11 +391,20 @@ function EditCalendar() {
                 />
               </div>
 
+              <div className="calendar-message">
+                <h1>Edit Calendar</h1>
+                <h6>Close and open slots as it suits you the best</h6>
+                <p>
+                  Use the last input to change the availabilities for all the
+                  time slots
+                </p>
+              </div>
+              {/* 
               <img
                 src="../../tennis_edit.jpg"
                 alt="calendar"
                 className="edit-img"
-              ></img>
+              ></img> */}
               {/* <Calendar
                 className="calendar-element"
                 fullscreen={false}
@@ -409,7 +418,7 @@ function EditCalendar() {
                 {renderInfos(reservations, date, values)}
                 {/* <div className="same-number"> */}
                 <div className="same-number">
-                  <h6>Same number for all the day:</h6>
+                  <h6>Change all slots:</h6>
                 </div>
                 <div className="form-div same-number">
                   <form className="when-input-style">

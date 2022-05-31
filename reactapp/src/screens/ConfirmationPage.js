@@ -62,7 +62,7 @@ function Confirmation(props) {
         date: currentReservation.date,
         time: currentReservation.time,
         price: currentReservation.price,
-        clubname: currentReservation.clubname,
+        // clubname: currentReservation.clubname,
       }),
     });
     var response = await rawResponse.json();

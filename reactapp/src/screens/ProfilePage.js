@@ -5,6 +5,8 @@ import "../stylesheets/profile.css";
 import "../stylesheets/general.css";
 import { Redirect } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 function Profile(props) {
   const [personnalInfos, setPersonnalInfos] = useState("");
@@ -19,7 +21,7 @@ function Profile(props) {
 
   const [refreshUser, setRefreshUser] = useState(false);
 
-  const [imageToUpload, setImageToUpload] = useState("");
+  const [imageToUpload, setImageToUpload] = useState({ preview: "" });
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "images/*",
@@ -106,11 +108,17 @@ function Profile(props) {
       setPhoneError("");
       if (response.status === "success") {
         await getPersonnalInfos(token);
-        if (newFirstname.length > 0 || imageToUpload?.new) {
+        if (
+          newFirstname.length > 0 ||
+          imageToUpload?.new ||
+          imageToUpload?.preview === ""
+        ) {
           if (newFirstname.length > 0)
             localStorage.setItem("username", JSON.stringify(newFirstname));
           if (imageToUpload?.new)
             localStorage.setItem("image", JSON.stringify(file.secure_url));
+          else if (imageToUpload?.preview === "")
+            localStorage.setItem("image", JSON.stringify(""));
           setRefreshUser(!refreshUser);
         }
 
@@ -145,7 +153,7 @@ function Profile(props) {
       setImageToUpload({
         preview: personnalInfos?.image,
       });
-    else setImageToUpload("");
+    else setImageToUpload({ preview: "" });
   }
 
   useEffect(() => {
@@ -238,7 +246,7 @@ function Profile(props) {
               </div>
             </div>
             <div className="overview-img">
-              {imageToUpload === "" ? (
+              {imageToUpload.preview === "" ? (
                 <h3>No Image</h3>
               ) : (
                 <img
@@ -247,6 +255,16 @@ function Profile(props) {
                   alt=""
                 />
               )}
+              <button
+                className={
+                  imageToUpload.preview === ""
+                    ? "delete-picture-btn remove"
+                    : "delete-picture-btn"
+                }
+                onClick={() => setImageToUpload({ preview: "" })}
+              >
+                <FontAwesomeIcon className="x-icon" icon={faCircleXmark} />
+              </button>
             </div>
           </div>
 

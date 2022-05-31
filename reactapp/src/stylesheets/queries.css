@@ -2,7 +2,7 @@
 /* Instead, 1rem = 1em = 16px */
 
 /*****************************************/
-/* BELOW 1248px (Vertical tablets) */
+/* BELOW 1248px */
 /*****************************************/
 @media (max-width: 78em) {
   .when-and-where {
@@ -10,16 +10,42 @@
   }
   .times-list {
     flex-direction: row !important;
-    width: 89rem !important;
+    width: 98.2rem !important;
     overflow-x: scroll;
     padding: 2rem 0.2rem !important;
+  }
+  .times-list {
+    gap: 1rem !important;
+  }
+
+  .time-element {
+    width: 12rem !important;
+    gap: 0.1rem !important;
+  }
+
+  .courts-left-div {
+    min-width: 4rem !important;
+  }
+
+  .courts-left {
+    font-size: 1.4rem !important;
+    text-align: center;
+  }
+
+  .time-logo {
+    min-width: 2rem !important;
+  }
+
+  .time,
+  .time-out {
+    font-size: 1.8rem !important;
   }
   .reservation-buttons {
     width: 86rem !important;
   }
+
   .calendar-grid {
     grid-template-columns: 1fr 1fr 2fr !important;
-    /* row-gap: 2rem; */
     column-gap: 0rem !important;
     padding: 0 2rem !important;
   }
@@ -31,10 +57,170 @@
   .club-profile-btns {
     width: 60% !important;
   }
+
+  .charts-grid h6,
+  .list-players h6 {
+    font-size: 2rem !important;
+  }
+
+  .label-month-and-year {
+    font-size: 1.4rem !important;
+  }
+
+  #select-year,
+  #select-month {
+    font-size: 1.4rem !important;
+    width: 16rem !important;
+  }
 }
 
 /*****************************************/
-/* BELOW 1008px (Vertical tablets) */
+/* BELOW 1152px */
+/*****************************************/
+@media (max-width: 72em) {
+  .box-section {
+    flex-direction: column;
+    gap: 3.6rem;
+  }
+  .center-games {
+    gap: 2.4rem !important;
+    /* align-items: center !important; */
+    /* justify-content: center !important; */
+    width: 60rem !important;
+    min-height: 46rem !important;
+    align-items: start !important;
+    justify-content: start !important;
+  }
+
+  .games-titles {
+    width: 100% !important;
+  }
+
+  .second-column {
+    width: 60rem !important;
+    height: 34rem !important;
+  }
+
+  .games-section {
+    grid-template-columns: auto !important;
+    /* align-items: center !important; */
+    justify-content: center !important;
+    width: 60rem;
+    gap: 3rem !important;
+    padding: 0rem 0 12.8rem 0 !important;
+  }
+
+  .second-column {
+    grid-row: 1/2 !important;
+    height: 34rem;
+    display: flex;
+    justify-content: center;
+    width: 100% !important;
+  }
+
+  .fix-column {
+    width: 60rem !important;
+    position: relative !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 0 4rem;
+    gap: 1.6rem !important;
+    padding: 0;
+    padding-bottom: 4.4rem !important;
+  }
+
+  .stats {
+    row-gap: 1rem !important;
+  }
+  .stat {
+    gap: 4.8rem !important;
+  }
+  .stats-section {
+    padding: 1.6rem 3.6rem !important;
+    width: 100% !important;
+  }
+  .games-titles {
+    margin-top: 2.4rem !important;
+    position: relative !important;
+    top: 45% !important;
+    padding: 0 !important;
+  }
+  .games-list {
+    width: 60rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 1056px */
+/*****************************************/
+@media (max-width: 66em) {
+  .general-explanation-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .general-explanation {
+    display: grid !important;
+    align-items: center !important;
+    justify-content: center !important;
+    grid-template-columns: 1fr 1fr !important;
+    row-gap: 4rem !important;
+    column-gap: 16rem !important;
+  }
+
+  .card-center {
+    grid-column: 1/3;
+    align-self: center;
+    justify-self: center;
+    font-weight: 600 !important;
+  }
+
+  .more-precisely-card {
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 3.2rem;
+    height: 100% !important;
+  }
+
+  .more-precisely-left {
+    /* margin: 0 !important; */
+    margin-top: 9rem !important;
+    margin-left: 24rem !important;
+    width: 40rem !important;
+    height: 100% !important;
+    padding: 3.2rem 2.4rem !important;
+    border-radius: 36px !important;
+  }
+
+  .more-precisely-rigth {
+    margin: 0 !important;
+    margin-right: 24rem !important;
+    margin-bottom: 8rem !important;
+    width: 40rem !important;
+    height: 100% !important;
+    padding: 3.2rem 2.4rem !important;
+    border-radius: 36px !important;
+  }
+
+  .calendar-details {
+    gap: 0.2rem !important;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3.2rem !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 1008px */
 /*****************************************/
 @media (max-width: 63em) {
   .tennis-img-header {
@@ -73,58 +259,6 @@
     gap: 0rem !important;
   }
 
-  .center-games {
-    gap: 2.4rem !important;
-  }
-
-  .games-section {
-    grid-template-columns: auto !important;
-    width: 100%;
-    gap: 0rem !important;
-    padding: 0rem 0 12.8rem 0 !important;
-  }
-
-  .second-column {
-    grid-row: 1/2 !important;
-    height: 34rem;
-    display: flex;
-    justify-content: center;
-    width: 100% !important;
-  }
-  .fix-column {
-    position: relative !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    padding: 0 4rem;
-    gap: 1.6rem !important;
-    padding-bottom: 4.4rem !important;
-  }
-  .stats {
-    row-gap: 1rem !important;
-  }
-  .stat {
-    gap: 4.8rem !important;
-  }
-  .stats-section {
-    padding: 1.6rem 3.6rem !important;
-  }
-  .games-titles {
-    position: relative !important;
-    top: 45% !important;
-    padding: 0 !important;
-  }
-  .games-list {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-}
-
-/*****************************************/
-/* BELOW 928px (Vertical tablets) */
-/*****************************************/
-@media (max-width: 58em) {
   .where-content {
     display: grid !important;
     grid-template-columns: auto !important;
@@ -138,12 +272,12 @@
     justify-content: center !important;
     width: 92% !important;
     margin: 0 auto;
-    z-index: 0 !important;
+    z-index: -1 !important;
   }
 
   .clubs-cards {
     flex-direction: row !important;
-    height: 21.2rem !important;
+    height: 26rem !important;
     grid-row: 1/2;
     width: 92% !important;
     margin: 0 auto;
@@ -160,7 +294,29 @@
 }
 
 /*****************************************/
-/* BELOW 896px (Vertical tablets) */
+/* BELOW 944px */
+/*****************************************/
+@media (max-width: 59em) {
+  .calendar-details {
+    flex-direction: column;
+    gap: 4.8rem !important;
+  }
+
+  .calendar-message {
+    display: none !important;
+  }
+
+  .time-div {
+    /* width: rem !important; */
+  }
+
+  .calendar-grid {
+    grid-template-columns: 9.7rem auto 1fr !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 896px */
 /*****************************************/
 @media (max-width: 56em) {
   /* NAVBAR */
@@ -180,7 +336,7 @@
   }
 
   .navbarRight {
-    background-color: #b3541e;
+    background-color: #e6a581;
 
     position: absolute !important;
 
@@ -215,25 +371,43 @@
   }
 
   .profile-menu {
-    right: 14.6% !important;
-    top: 560%;
-    gap: 4.8rem;
-    /* background-color: antiquewhite; */
+    right: 14% !important;
+    top: 680%;
+    gap: 3.2rem !important;
+    background-color: #e6a48100 !important;
     box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0);
 
     z-index: 999 !important;
+  }
+
+  .profile-menu-club {
+    top: 542% !important;
   }
   .personnal-infos-form {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
   }
+
+  .graph-form {
+    grid-template-columns: 1fr 1fr !important;
+  }
   #profile-title {
     font-size: 6.4rem !important;
+  }
+
+  .overview-btn {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .reservation-buttons {
+    justify-content: center !important;
+    gap: 4.8rem !important;
   }
 }
 
 /*****************************************/
-/* BELOW 848px (Vertical tablets) */
+/* BELOW 848px */
 /*****************************************/
 @media (max-width: 53em) {
   .sign-up-club {
@@ -243,25 +417,110 @@
   .club-profile-title #title {
     font-size: 4.8rem !important;
   }
+
+  .new-logo,
+  .new-logo-img {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+
+  .new-logo {
+    margin-bottom: 0.4rem !important;
+  }
+
+  .news {
+    gap: 2rem !important;
+  }
+
+  .new-value {
+    font-size: 1.8rem !important;
+  }
+
+  .result-card {
+    width: 40rem !important;
+    padding: 2rem 2.6rem !important;
+    gap: 1.2rem !important;
+    border-radius: 16px !important;
+  }
+
+  .tournement-infos h6 {
+    font-size: 1.4rem !important;
+  }
+
+  .round-info h6 {
+    font-size: 1.8rem !important;
+  }
+
+  .players p,
+  .score-num {
+    font-size: 1.6rem !important;
+  }
+
+  .players {
+    row-gap: 1.2rem !important;
+    column-gap: 3rem !important;
+  }
+
+  .news-input {
+    font-size: 1.4rem !important;
+  }
+
+  .ranking {
+    font-size: 1.6rem !important;
+    grid-template-columns: 3rem 20rem 16rem 6.4rem !important;
+  }
+
+  .table-players td,
+  .table-players th {
+    font-size: 1.2rem !important;
+  }
 }
 
 /*****************************************/
-/* BELOW 688px (Vertical tablets) */
+/* BELOW 736x */
+/*****************************************/
+@media (max-width: 46em) {
+  .image-inputs {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 688px */
 /*****************************************/
 @media (max-width: 43em) {
-  .header {
+  /* .header {
     padding-top: 6rem !important;
     flex-direction: column !important;
     gap: 3.2rem !important;
     height: 100% !important;
+  } */
+  #title-main-page {
+    font-size: 7.2rem !important;
+    letter-spacing: 3.2rem !important;
   }
+
+  .title-howItWorks {
+    font-size: 3.6rem !important;
+  }
+
+  .text-howItWorks {
+    font-size: 2rem !important;
+  }
+
+  .header-description-main-page {
+    font-size: 2rem !important;
+  }
+
+  .header-btn {
+    font-size: 2.4rem !important;
+  }
+
   .tennis-img-header {
     height: 20rem !important;
   }
-  .home-img,
-  .boxElementMaria {
-    height: 22rem !important;
-  }
+
   #profile-title {
     font-size: 4.8rem !important;
   }
@@ -270,9 +529,6 @@
     padding: 1.2rem 4.8rem !important;
   }
 
-  .calendar-grid h6 {
-    font-size: 2rem !important;
-  }
   .edit-btn-section {
     gap: 2.4rem !important;
   }
@@ -293,44 +549,133 @@
   }
 
   .profile-menu {
-    right: 12.6% !important;
+    right: 11.4% !important;
   }
 }
 
 /*****************************************/
-/* BELOW 608px (Vertical tablets) */
+/* BELOW 656px */
+/*****************************************/
+@media (max-width: 41em) {
+  .general-explanation {
+    row-gap: 2rem !important;
+    column-gap: 3.6rem !important;
+  }
+
+  .more-precisely-left {
+    /* margin: 0 !important; */
+    margin-left: 9rem !important;
+    width: 26rem !important;
+    padding: 3.2rem 2.4rem !important;
+    border-radius: 24px !important;
+  }
+
+  .card-club-page-odd,
+  .card-club-page-even {
+    width: 16rem !important;
+    height: 16rem !important;
+  }
+
+  .text-description {
+    font-size: 1.6rem !important;
+  }
+
+  .more-precisely-rigth {
+    margin-right: 9rem !important;
+    width: 26rem !important;
+    padding: 3.2rem 2.4rem !important;
+    border-radius: 24px !important;
+  }
+
+  .more-precisly-card-header {
+    font-size: 2.4rem !important;
+  }
+
+  .more-precisely-number {
+    font-size: 3.6rem !important;
+  }
+
+  .more-precisely-header {
+    font-size: 2rem !important;
+  }
+
+  .more-precisely-description {
+    font-size: 1.2rem !important;
+  }
+
+  .title-more-precisely {
+    font-size: 2.8rem !important;
+    text-align: center;
+  }
+
+  #title-club-page {
+    font-size: 4.8rem !important;
+    letter-spacing: 2rem !important;
+  }
+
+  .header-description {
+    font-size: 2.6rem !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 608px */
 /*****************************************/
 @media (max-width: 38em) {
+  #title-main-page {
+    font-size: 6.4rem !important;
+    letter-spacing: 2.4rem !important;
+  }
+
+  .title-howItWorks {
+    font-size: 3rem !important;
+  }
+
+  .text-howItWorks {
+    font-size: 1.6rem !important;
+    margin-bottom: 3.2rem !important;
+  }
+
+  .header-description-main-page {
+    font-size: 1.6rem !important;
+  }
+
+  .header-btn {
+    font-size: 2rem !important;
+  }
+
+  .arrow-icon {
+    font-size: 2rem !important;
+  }
+
+  .TitleCardScore {
+    font-size: 3.2rem !important;
+    font-weight: 500;
+  }
+
+  .DescriptionCardOdd {
+    font-size: 2.4rem !important;
+  }
+
+  .DescriptionCardEven {
+    font-size: 2.4rem !important;
+  }
+
+  .yellowButton-final {
+    font-size: 2.4rem !important;
+  }
   .sign-up-title2 p {
     font-size: 3rem !important;
   }
+  .card,
+  .cardMiddle {
+    /* padding: 0 !important; */
+    width: 32rem !important;
+    height: 50rem !important;
+  }
+
   .profile-menu {
-    right: 11% !important;
-  }
-
-  .game-card {
-    width: 100% !important;
-    column-gap: 0rem !important;
-    justify-content: space-between !important;
-  }
-
-  .stat {
-    gap: 4.8rem !important;
-  }
-
-  .stat-title {
-    font-size: 1.8rem !important;
-  }
-  .games-titles {
-    margin-top: 1.8rem !important;
-    gap: 0.4rem !important;
-  }
-  .games {
-    min-width: 0rem !important;
-  }
-
-  .games-title {
-    font-size: 2.4rem !important;
+    right: 8.8% !important;
   }
 
   .sign-up-club-title {
@@ -349,16 +694,125 @@
     column-gap: 1.2rem !important;
   }
 
-  .calendar-grid2 h6 {
+  /* .calendar-grid2 h6 {
+    font-size: 2rem !important;
+  } */
+  .edit-form input,
+  #num-input {
+    font-size: 1.6rem !important;
+  }
+
+  .same-number {
+    /* grid-column: 1/3 !important; */
+  }
+
+  .games-section {
+    display: grid !important;
+    grid-template-columns: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40rem !important;
+  }
+
+  .games,
+  .second-column,
+  .games-titles,
+  .games-list,
+  .fix-column,
+  .stats,
+  .game-card {
+    width: 40rem !important;
+    align-self: center !important;
+    justify-self: center !important;
+  }
+
+  .game-card,
+  .stats-section {
+    border-radius: 24px !important;
+  }
+
+  .center-games {
+    width: 100% !important;
+  }
+
+  .games-titles {
+    margin-top: 0 !important;
+    gap: 1.2rem !important;
+  }
+
+  .games-title {
+    font-size: 2.2rem !important;
+  }
+
+  .stats {
+    row-gap: 0.6rem !important;
+  }
+  .stat {
+    gap: 2.8rem !important;
+  }
+
+  .stat h5 {
+    font-size: 1.8rem !important;
+  }
+
+  .game-info {
+    font-size: 1.8rem !important;
+  }
+
+  .game-card-text-content {
+    gap: 0rem !important;
+    width: 28rem !important;
+  }
+
+  .overview-btn {
+    font-size: 1.8rem !important;
+  }
+
+  .all-games-btn {
+    font-size: 1.8rem !important;
+  }
+
+  .overview-main-title {
+    font-size: 4rem !important;
+    text-align: center !important;
+  }
+
+  .profileBtn {
+    padding: 1rem 4rem !important;
     font-size: 2rem !important;
   }
-  .edit-form input {
-    font-size: 1.6rem !important;
+
+  .sign-in-club-title {
+    font-size: 4.8rem !important;
   }
 }
 
 /*****************************************/
-/* BELOW 544px (Vertical tablets) */
+/* BELOW 592px */
+/*****************************************/
+@media (max-width: 37em) {
+  .table-players td,
+  .table-players th {
+    font-size: 0.9rem !important;
+    padding: 0.8rem 0.2rem !important;
+  }
+  .chart {
+    width: 10rem !important;
+    height: 10rem !important;
+  }
+
+  .chart-day {
+    width: 10rem !important;
+    height: 10rem !important;
+  }
+  .chart-months {
+    width: 10rem !important;
+    height: 10rem !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 544px */
 /*****************************************/
 @media (max-width: 34em) {
   .boxTemplate {
@@ -373,9 +827,12 @@
     justify-content: center !important;
     width: 100% !important;
   }
+  .navbarRight {
+    width: 70% !important;
+  }
 
   .profile-menu {
-    right: 10% !important;
+    right: 17% !important;
   }
 
   .boxTemplate2 {
@@ -421,10 +878,184 @@
   .edit-form input {
     font-size: 1.2rem !important;
   } */
+
+  .new-logo,
+  .new-logo-img {
+    width: 1.6rem !important;
+    height: 1.6rem !important;
+  }
+
+  .new-logo-img {
+    margin-bottom: 0.4rem !important;
+  }
+
+  .news {
+    gap: 0.6rem !important;
+  }
+
+  .news-section {
+    padding: 1rem 0.6rem !important;
+  }
+
+  .new-value {
+    font-size: 1.3rem !important;
+  }
+
+  .result-card {
+    width: 35rem !important;
+    padding: 1.6rem 2rem !important;
+    gap: 1.2rem !important;
+    border-radius: 16px !important;
+  }
+
+  .tournement-infos h6 {
+    font-size: 1.2rem !important;
+  }
+
+  .round-info h6 {
+    font-size: 1.6rem !important;
+  }
+
+  .players p,
+  .score-num {
+    font-size: 1.4rem !important;
+  }
+
+  .players {
+    row-gap: 1rem !important;
+    column-gap: 2.8rem !important;
+  }
+
+  .news-input {
+    font-size: 1.4rem !important;
+    padding: 1rem 2.4rem !important;
+    width: 20rem !important;
+  }
+
+  .ranking {
+    font-size: 1.2rem !important;
+    grid-template-columns: 2rem 14rem 11rem 4.8rem !important;
+  }
+
+  .margin-top-news {
+    margin-top: 12rem !important;
+  }
+
+  .news-results-section {
+    padding-top: 18.6rem !important;
+  }
+
+  .calendar-grid {
+    grid-template-columns: 7.2rem 9rem auto !important;
+  }
+  .time-div {
+    min-width: 7.2rem !important;
+  }
+
+  .calendar-grid h6 {
+    font-size: 1.2rem !important;
+  }
+
+  .edit-btn,
+  .edit-btn2 {
+    font-size: 2rem !important;
+  }
+
+  .calendar-element-section {
+    width: 32rem !important;
+  }
+
+  .calendar-consultation-title {
+    font-size: 3.2rem !important;
+  }
+
+  .nice-dates-week-header_day {
+    font-size: 1.6rem !important;
+  }
+
+  .nice-dates-navigation_current {
+    font-size: 1.2rem !important;
+  }
+  .calendar {
+    font-size: 1.2rem !important;
+  }
+
+  .nice-dates-grid_container span {
+    font-size: 1.2rem !important;
+  }
+
+  .calendar-grid2 h6 {
+    font-size: 1.4rem !important;
+  }
+  .edit-form input {
+    font-size: 1.4rem !important;
+    width: 10rem !important;
+  }
+
+  #num-input {
+    font-size: 1.4rem !important;
+    width: 10rem !important;
+  }
+
+  .calendar-edit h4 {
+    font-size: 2.4rem !important;
+  }
 }
 
 /*****************************************/
-/* BELOW 448px (Vertical tablets) */
+/* BELOW 464px */
+/*****************************************/
+@media (max-width: 29em) {
+  #title-main-page {
+    font-size: 5rem !important;
+    letter-spacing: 1.6rem !important;
+  }
+  .sign-up-title {
+    font-size: 4.8rem !important;
+  }
+  .sign-in-club-title {
+    font-size: 4.2rem !important;
+  }
+  .sign-up-club-title {
+    font-size: 4rem !important;
+  }
+
+  .title-howItWorks {
+    font-size: 3rem !important;
+  }
+
+  .homePageButton {
+    gap: 1rem !important;
+  }
+
+  .text-howItWorks {
+    font-size: 1.6rem !important;
+    margin-bottom: 3.2rem !important;
+  }
+
+  .header-description-main-page {
+    font-size: 1.4rem !important;
+  }
+
+  .yellowButton-final {
+    font-size: 2rem !important;
+  }
+
+  .header-btn {
+    font-size: 1.6rem !important;
+  }
+  .arrow-icon {
+    font-size: 1.6rem !important;
+  }
+
+  .TitleCardScore {
+    font-size: 3.2rem !important;
+    font-weight: 500;
+  }
+}
+
+/*****************************************/
+/* BELOW 448px */
 /*****************************************/
 @media (max-width: 28em) {
   .divideBoxes {
@@ -436,14 +1067,89 @@
   }
 
   .edit-btn2 {
-    font-size: 2.4rem !important;
+    font-size: 2rem !important;
     padding: 1.2rem 2rem !important;
   }
 
   .navbarRight {
-    width: 60% !important;
+    width: 70% !important;
   }
   .profile-menu {
-    right: 8% !important;
+    right: 13.8% !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 416px */
+/*****************************************/
+@media (max-width: 26em) {
+  .games-section {
+    display: grid !important;
+    grid-template-columns: auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 35rem !important;
+    gap: 0rem !important;
+  }
+
+  .games,
+  .second-column,
+  .games-titles,
+  .games-list,
+  .fix-column,
+  .stats,
+  .game-card {
+    width: 35rem !important;
+    align-self: center !important;
+    justify-self: center !important;
+  }
+
+  .center-games {
+    width: 100% !important;
+  }
+
+  .games-titles {
+    gap: 1rem !important;
+  }
+
+  .games-title {
+    font-size: 1.9rem !important;
+  }
+
+  .stats {
+    row-gap: 0.6rem !important;
+  }
+  .stat {
+    gap: 2.4rem !important;
+  }
+
+  .stat h5 {
+    font-size: 1.4rem !important;
+  }
+
+  .game-info {
+    font-size: 1.6rem !important;
+  }
+
+  .game-card-text-content {
+    gap: 0rem !important;
+    width: 28.8rem !important;
+  }
+
+  .profile-menu {
+    right: 11.8% !important;
+  }
+
+  .calendar-grid {
+    grid-template-columns: 7.2rem 9rem auto !important;
+  }
+}
+
+/*****************************************/
+/* BELOW 384px */
+/*****************************************/
+@media (max-width: 24em) {
+  .profile-menu {
+    right: 8.6% !important;
   }
 }

@@ -51,7 +51,8 @@ function CreateAccount(props) {
         "username",
         JSON.stringify(body.data.user.firstname)
       );
-      localStorage.setItem("image", JSON.stringify(body.data.user?.image));
+      if (body.data.user?.image)
+        localStorage.setItem("image", JSON.stringify(body.data.user?.image));
       // La ligne juste au dessus sert pour le redux //
     }
 

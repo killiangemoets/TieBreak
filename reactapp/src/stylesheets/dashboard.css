@@ -47,15 +47,12 @@
   font-size: 2rem;
 }
 
-#select-month {
-  margin: 0;
-  margin-top: 0.2rem;
-  background-color: #f5f7f3;
-}
+#select-month,
 #select-year {
   margin: 0;
   margin-top: 0.2rem;
   background-color: #f5f7f3;
+  width: 18.8rem;
 }
 
 .list-players {
@@ -71,7 +68,8 @@
 
 .table-players td,
 .table-players th {
-  font-size: 1.8rem !important;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
 .table-players th {
@@ -88,7 +86,7 @@
   display: none !important;
 }
 
-.chart {
+/* .chart {
   width: 32rem !important;
   height: 32rem !important;
 }
@@ -99,5 +97,19 @@
 }
 .chart-months {
   width: 50rem !important;
-  height: 25rem !important;
+  height: 22rem !important;
+} */
+
+.chart {
+  width: 26rem !important;
+  height: 26rem !important;
+}
+
+.chart-day {
+  width: 35rem !important;
+  height: 20rem !important;
+}
+.chart-months {
+  width: 35rem !important;
+  height: 20rem !important;
 }

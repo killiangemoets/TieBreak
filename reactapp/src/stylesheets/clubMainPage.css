@@ -13,6 +13,7 @@
 }
 
 .club-banner {
+  position: relative;
   background-image: url("../../public/tennisclub.jpeg");
   height: 100vh;
   background-position: center center;
@@ -27,6 +28,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  text-align: center;
 }
 
 #title-club-page {
@@ -40,6 +42,7 @@
   color: white;
   font-size: 4.5rem;
   margin-bottom: 3.5rem;
+  text-align: center;
 }
 
 .after-banner-space {
@@ -48,6 +51,8 @@
 }
 
 .general-explanation {
+  padding-top: 4.8rem;
+  padding-bottom: 6.4rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -106,12 +111,13 @@
   background-position: center center;
   background-size: cover;
   height: 150vh;
+  /* margin-bottom: 12.8rem !important; */
 }
 
 .more-precisely-left {
   padding: 5rem;
   width: 50rem;
-  height: 65rem;
+  height: 69rem;
   background-color: #fae8c8;
   margin: 40rem 0 0 0;
   border-radius: 50px;
@@ -120,6 +126,7 @@
 .more-precisely-rigth {
   padding: 5rem;
   width: 50rem;
+  /* height: 100%; */
   height: 80rem;
   background-color: #fae8c8;
   margin: 15rem 0 0 0;
@@ -127,6 +134,7 @@
 }
 
 .more-precisly-card-header {
+  margin-bottom: 2rem !important;
   display: flex;
   justify-content: center;
   color: #e08f62;
@@ -150,6 +158,7 @@
   display: flex;
   justify-content: center;
   color: #333;
+  text-align: center;
 }
 
 .more-precisely-description {
@@ -161,6 +170,26 @@
   color-scheme: #333;
 }
 
+.club-chevron-btn {
+  background-color: rgba(51, 51, 51, 0);
+  border: none;
+  height: 4rem;
+  width: 4rem;
+}
+
+.club-chevron-icon {
+  position: absolute;
+  bottom: 3%;
+  color: #fff;
+  font-size: 3.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.club-chevron-icon:hover {
+  color: #fff;
+  font-size: 3.6rem;
+}
 /* 
 
 .photo-left-section {
@@ -305,4 +334,4 @@
   justify-content: center;
   gap: 0.2rem;
   text-align: center;
-} */
+} */ ;

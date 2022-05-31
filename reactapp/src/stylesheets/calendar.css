@@ -58,6 +58,10 @@
   border-radius: 16px;
 }
 
+.calendar-message {
+  width: 36rem;
+}
+
 .edit-img {
   margin-top: 4.8rem;
   width: 32rem;
@@ -71,18 +75,18 @@
   /* height: 40rem !important; */
 }
 .nice-dates-week-header_day {
-  font-size: 2rem !important;
+  font-size: 2rem;
 }
 
 .nice-dates-navigation_current {
-  font-size: 1.8rem !important;
+  font-size: 1.8rem;
 }
 .calendar {
-  font-size: 1.8rem !important;
+  font-size: 1.8rem;
 }
 
 .nice-dates-grid_container span {
-  font-size: 1.8rem !important;
+  font-size: 1.8rem;
 }
 
 .-disabled::before {
@@ -110,11 +114,17 @@
   /* column-gap: 4.8rem; */
 }
 .calendar-grid {
-  grid-template-columns: auto auto 58rem;
+  grid-template-columns: 9.7rem auto 58rem;
   margin-bottom: 6.4rem;
   border-collapse: collapse !important;
   /* border: 4px solid #eee; */
   border-radius: 8px;
+  /* align-items: center; */
+}
+
+.time-div {
+  min-width: 9.7rem;
+  /* width: 100%; */
 }
 
 .calendar-grid div {
@@ -154,8 +164,42 @@
   font-weight: 900;
 }
 
-.title {
+.calendar-grid div .title {
   color: #e08f62 !important;
+  font-weight: 600 !important;
+}
+
+.calendar-message {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-message h1 {
+  color: #e08f62;
+  font-size: 3.2rem;
+  /* text-align: center; */
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.calendar-message h6 {
+  color: #333;
+  font-size: 2.4rem;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
+}
+
+.calendar-message p {
+  color: #aaa;
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
 }
 
 .details-list {
@@ -218,6 +262,7 @@
   background-color: #ddd;
   height: 4rem !important;
   width: 4rem !important;
+  min-width: 4rem !important;
   border-radius: 999px !important;
   border: none !important;
 }
@@ -238,4 +283,8 @@
   align-items: center;
   /* justify-content: center; */
   border: none !important;
+}
+
+.one-reservation h6 {
+  text-align: left;
 }

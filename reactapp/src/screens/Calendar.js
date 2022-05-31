@@ -47,8 +47,25 @@ function CalendarScreen() {
     var rawResponse = await fetch(`../clubs/infos/${token}`);
     var response = await rawResponse.json();
 
-    console.log(response);
-    setReservations(response.data.infos.reservations);
+    var rawResponsePlayers = await fetch(`../users/all`);
+    var responsePlayers = await rawResponsePlayers.json();
+
+    console.log(responsePlayers);
+    const reservations = response.data.infos.reservations.map((reservation) => {
+      const user = responsePlayers.data.users.find(
+        (user) => user.token === reservation.userToken
+      );
+      return {
+        date: reservation.date,
+        time: reservation.time,
+        firstname: user?.firstname,
+        lastname: user?.lastname,
+        phone: user?.phone,
+        email: user?.email,
+        image: user?.image,
+      };
+    });
+    setReservations(reservations);
     setAvailabilities(response.data.infos.availabilities);
   }
 
@@ -175,19 +192,21 @@ function CalendarScreen() {
                   locale={enGB}
                 />
               </div>
-              <img
+              <div className="calendar-message">
+                <h1>Calendar Management</h1>
+                <h6>
+                  Get an overview of current reservations and club availability
+                </h6>
+                <p>Use the interactive calendar to change the date</p>
+              </div>
+              {/* <img
                 src="../../calendar-pic-2.jpg"
                 alt="calendar"
                 className="calendar-img"
-              ></img>
-              {/* <Calendar
-                className="calendar-element"
-                fullscreen={false}
-                // onPanelChange={onPanelChange}
-              /> */}
+              ></img> */}
             </div>
             <div className="calendar-grid">
-              <div>
+              <div className="time-div">
                 <h6 className="title">Time</h6>
               </div>
               <div>

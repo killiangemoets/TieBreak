@@ -10,11 +10,12 @@ const availabilitySchema = new mongoose.Schema({
 const reservationSchema = new mongoose.Schema({
   date: Date,
   time: Number,
-  firstname: String,
-  lastname: String,
-  phone: String,
-  email: String,
-  image: String,
+  userToken: String,
+  // firstname: String,
+  // lastname: String,
+  // phone: String,
+  // email: String,
+  // image: String,
 });
 
 const clubSchema = new mongoose.Schema({

@@ -5,6 +5,7 @@ import "../stylesheets/queries.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { GiTennisBall } from "react-icons/gi";
 
 function NavbarHomePage() {
   function handleClick() {
@@ -19,6 +20,7 @@ function NavbarHomePage() {
     <nav className="navbar">
       <a href="/" className="logoRedirect">
         <div className="navbarLeft">
+          <GiTennisBall className="nav-ball-icon" />
           <h1 className="titleNavBar">TieBreak </h1>
         </div>
       </a>

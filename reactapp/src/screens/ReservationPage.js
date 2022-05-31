@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { divIcon } from "leaflet";
+import { GiTennisBall } from "react-icons/gi";
 
 function Reservation(props) {
   const [hours] = useState([
@@ -368,11 +369,13 @@ function Reservation(props) {
         >
           <div className="time-logo">
             {hour == time ? (
-              <img
-                className="time-logo-img"
-                src="../../ball1.png"
-                alt="time-logo-img"
-              />
+              // <img
+              //   className="time-logo-img"
+              //   src="../../ball1.png"
+              //   alt="time-logo-img"
+              // />
+
+              <GiTennisBall className="time-ball-icon" />
             ) : (
               ""
             )}
@@ -390,7 +393,7 @@ function Reservation(props) {
               {hour}h-{hour + 1 < 24 ? hour + 1 : "00"}h
             </h6>
           </div>
-          <div>
+          <div className="courts-left-div">
             <h6 className="courts-left">{courtsLeft[i]}</h6>
           </div>
         </ul>
@@ -704,7 +707,7 @@ function Reservation(props) {
                 <h5 className="current-infos">
                   {" "}
                   {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()},{" "}
-                  {time === "" ? "..." : time}h -{" "}
+                  {time === "" ? "..." : time}h-
                   {time === "" ? "..." : +time + 1 < 24 ? +time + 1 : "00"}h
                 </h5>
                 {/* <DatePicker

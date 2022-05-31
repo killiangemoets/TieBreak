@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import NavbarHomePage from "../components/NavbarHomePage";
 import FooterPage from "../components/Footer";
 import { Redirect } from "react-router-dom";
-
 import { useDropzone } from "react-dropzone";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 import "../stylesheets/signpage.css";
 import "../stylesheets/general.css";
@@ -25,7 +26,7 @@ function CreateAccount() {
   const [phoneError, setPhoneError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
-  const [imageToUpload, setImageToUpload] = useState("");
+  const [imageToUpload, setImageToUpload] = useState({ preview: "" });
 
   const uploadImage = async (e) => {
     setImageToUpload(
@@ -63,7 +64,7 @@ function CreateAccount() {
     ) {
       console.log(imageToUpload);
       let file;
-      if (imageToUpload?.preview) {
+      if (imageToUpload?.preview.length > 0) {
         const data = new FormData();
         data.append("file", imageToUpload);
         data.append("upload_preset", "upload_pics");
@@ -84,7 +85,7 @@ function CreateAccount() {
         email,
         phone,
         password,
-        image: imageToUpload?.preview ? file.secure_url : "",
+        image: imageToUpload?.preview.length > 0 ? file.secure_url : "",
       };
 
       const rawResponse = await fetch("users/sign-up", {
@@ -104,10 +105,11 @@ function CreateAccount() {
           "username",
           JSON.stringify(response.data.user.firstname)
         );
-        localStorage.setItem(
-          "image",
-          JSON.stringify(response.data.user?.image)
-        );
+        if (response.data.user?.image)
+          localStorage.setItem(
+            "image",
+            JSON.stringify(response.data.user?.image)
+          );
       }
       if (firstname === "") setFirstnameError("Please provide a firstname");
       else setFirstnameError("");
@@ -258,7 +260,7 @@ function CreateAccount() {
                 </div>
               </div>
               <div className="overview-img">
-                {imageToUpload === "" ? (
+                {imageToUpload.preview === "" ? (
                   <h3>No Image</h3>
                 ) : (
                   <img
@@ -267,6 +269,16 @@ function CreateAccount() {
                     alt=""
                   />
                 )}
+                <button
+                  className={
+                    imageToUpload.preview === ""
+                      ? "delete-picture-btn remove"
+                      : "delete-picture-btn"
+                  }
+                  onClick={() => setImageToUpload({ preview: "" })}
+                >
+                  <FontAwesomeIcon className="x-icon" icon={faCircleXmark} />
+                </button>
               </div>
             </div>
             <button
