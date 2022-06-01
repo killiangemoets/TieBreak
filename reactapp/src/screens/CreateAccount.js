@@ -238,7 +238,7 @@ function CreateAccount() {
               </div>
             </form>
             <h1 className="image-player-title image-title">
-              Add a picture of your club (optional):
+              Add a profile picture (optional):
             </h1>
             <div className="image-inputs">
               <div className="get-image">
