@@ -11,7 +11,7 @@
                     cy="128"
                     r="96"
                     fill="#9dab86"
-                    stroke="#fff"
+                    stroke="#f5f7f3"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="16"
@@ -19,7 +19,7 @@
                   <path
                     d="M127.8,32A95.9,95.9,0,0,1,32,127.8"
                     fill="#9dab86"
-                    stroke="#fff"
+                    stroke="#f5f7f3"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="16"
@@ -27,7 +27,7 @@
                   <path
                     d="M224,128.2A95.9,95.9,0,0,0,128.2,224"
                     fill="#9dab86"
-                    stroke="#fff"
+                    stroke="#f5f7f3"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="16"
