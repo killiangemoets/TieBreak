@@ -27,7 +27,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 function App() {
   return (
     // <Provider store={store}>
-    <BrowserRouter>
+    // <BrowserRouter>
+    <div>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/games" component={MainPage} />
@@ -47,7 +48,8 @@ function App() {
         <Route path="/club" component={ClubMain} />
         {/* <Route path="*" component={Home} /> */}
       </Switch>
-    </BrowserRouter>
+    </div>
+    // </BrowserRouter>
     // </Provider>
   );
 }
