@@ -25,7 +25,7 @@
     "react-native-element": "^1.2.1",
     "react-nice-dates": "^3.1.0",
     "react-redux": "^8.0.1",
-    "react-router-dom": "^4.1.0",
+    "react-router-dom": "^5.1.0",
     "react-scripts": "5.0.1",
     "reactstrap": "^9.0.2",
     "redux": "^4.2.0",
