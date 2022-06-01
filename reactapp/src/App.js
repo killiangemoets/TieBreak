@@ -15,7 +15,7 @@ import Dashboard from "./screens/Dashboard";
 import CalendarScreen from "./screens/Calendar";
 import EditCalendar from "./screens/EditCalendar";
 import ClubProfile from "./screens/ClubProfile";
-import { BrowserRouter, HashRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // IMPORT REDUX //
 // import { createStore, combineReducers } from "redux";
@@ -27,7 +27,7 @@ import { BrowserRouter, HashRouter, Switch, Route } from "react-router-dom";
 function App() {
   return (
     // <Provider store={store}>
-    <HashRouter>
+    <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/games" component={MainPage} />
@@ -45,9 +45,9 @@ function App() {
         <Route path="/club/calendar" component={CalendarScreen} />
         <Route path="/club/profile" component={ClubProfile} />
         <Route path="/club" component={ClubMain} />
-        <Route path="*" component={Home} />
+        {/* <Route path="*" component={Home} /> */}
       </Switch>
-    </HashRouter>
+    </BrowserRouter>
     // </Provider>
   );
 }
