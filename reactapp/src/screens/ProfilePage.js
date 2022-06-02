@@ -174,7 +174,7 @@ function Profile(props) {
         <NavbarMainPage refreshUser={refreshUser} />
         <div className=" profile-section" onClick={() => hideNavbar()}>
           <div className="reservation-main-title-section">
-            <h1 className="overview-main-title">Personnal Informations</h1>
+            <h1 className="overview-main-title">Personal Informations</h1>
           </div>
           <div>
             <div className="personnal-infos">

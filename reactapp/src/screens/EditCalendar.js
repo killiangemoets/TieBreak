@@ -384,9 +384,7 @@ function EditCalendar() {
                   locale={enGB}
                   modifiers={{
                     disabled: (date) =>
-                      date.getDate() < new Date(Date.now()).getDate() &&
-                      date.getMonth() <= new Date(Date.now()).getMonth() &&
-                      date.getFullYear() <= new Date(Date.now()),
+                      date <= new Date(Date.now() - 86400 * 1000),
                   }}
                 />
               </div>

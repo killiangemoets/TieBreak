@@ -120,7 +120,17 @@ function CreateClubAccount() {
 
     return position === null ? null : (
       <Marker position={position} icon={customMarkerIcon}>
-        <Popup>Club Location</Popup>
+        <div className="popup-current-position">
+          <h1
+            style={{
+              color: "#74c0fc",
+              fontSize: "1.2rem",
+              fontWeight: 500,
+            }}
+          >
+            Club Location
+          </h1>
+        </div>
       </Marker>
     );
   }

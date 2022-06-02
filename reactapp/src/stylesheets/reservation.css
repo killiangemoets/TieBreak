@@ -175,6 +175,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 0 !important;
 }
 
 .map-container {
@@ -278,8 +279,8 @@
   /* width: 20rem; */
   height: 26rem;
   /* min-width: 100% !important; */
-  min-height: 26rem;
-  min-width: 20rem;
+  /* min-height: 26rem; */
+  /* min-width: 100%; */
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
 }
@@ -289,13 +290,31 @@
   /* z-index: 999 !important; */
 }
 
+.club-result .club-img-div {
+  background-color: rgba(187, 187, 187, 0);
+}
+
+.club-result .club-img-sub-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(26rem - 4px);
+  margin-bottom: 4px;
+  width: calc(24rem - 2px);
+  /* margin-left: 0px; */
+  border-top-left-radius: 11px;
+  border-bottom-left-radius: 11px;
+  overflow: hidden;
+}
+
+.club-result.club-card-selected .club-img-div {
+  margin-top: 5px;
+  /* margin-left: 1px; */
+  height: calc(26rem - 14px);
+}
+
 .club-card-selected .club-img-div {
   background-color: rgba(187, 187, 187, 0);
-  /* height: calc(26rem - 10px); */
-  /* width: calc(20rem - 5px); */
-  /* margin-left: 5px; */
-  /* border-top-left-radius: 8px; */
-  /* border-bottom-left-radius: 8px; */
 }
 
 .club-card-selected .club-img-sub-div {
@@ -382,8 +401,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem;
+  padding: 1.2rem;
   width: 10rem;
+  /* height: rem; */
 }
 
 .popup-current-position h1 {
@@ -451,7 +471,7 @@
   background-color: #eee;
   /* z-index: 999 !important; */
   /* z-index: 1; */
-  width: 36rem;
+  width: 43.7rem;
   max-height: 46.9rem;
   overflow-y: scroll;
   position: absolute;
@@ -459,17 +479,19 @@
   left: 0%;
   border-radius: 12px;
   box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.08);
+  z-index: 1;
 }
 
 .club-result {
-  width: 100%;
-  border-radius: 0px;
+  /* width: 100%; */
+  /* border-radius: 0px; */
+
   cursor: pointer;
   border: 2px solid #aaa;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
-.current-infos {
+.club .current-infos {
   display: flex;
   align-items: center;
   justify-content: center;

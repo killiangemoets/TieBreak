@@ -105,7 +105,7 @@ router.post("/create-checkout-session", async function (req, res) {
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: "eur",
             product_data: {
               name: req.body.title,
             },
@@ -116,7 +116,7 @@ router.post("/create-checkout-session", async function (req, res) {
       ],
       mode: "payment",
       success_url: `${YOUR_DOMAIN}/reservation/confirmation`,
-      cancel_url: `${YOUR_DOMAIN}/reservation`,
+      cancel_url: `${YOUR_DOMAIN}/reservation/overview`,
     });
     res.json({ url: session.url });
   } catch (error) {
@@ -149,8 +149,9 @@ router.get("/news", async function (req, res, next) {
           // "X-RapidAPI-Host": "tennis-live-data.p.rapidapi.com",
           // "X-RapidAPI-Key":
           //   "2bec16f724msh16b0ac29866aedbp1d8aafjsnfc5e9556ab4c",
-          'X-RapidAPI-Host': 'tennis-live-data.p.rapidapi.com',
-          'X-RapidAPI-Key': 'f39958def2msh69580fe8da0233dp116bc7jsn20c318b9cc63',
+          "X-RapidAPI-Host": "tennis-live-data.p.rapidapi.com",
+          "X-RapidAPI-Key":
+            "f39958def2msh69580fe8da0233dp116bc7jsn20c318b9cc63",
         },
       }
     );
