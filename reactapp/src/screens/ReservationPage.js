@@ -320,30 +320,42 @@ function Reservation(props) {
               setSearchLocation("");
               document.querySelector(".search-results").classList.add("hidden");
             }
+            moveToClub({ lat: club?.latitude, lng: club?.longitude });
           }}
         >
-          <div className="club-title">
-            <h4>{club.clubname}</h4>
+          <div className="club-img-div">
+            {club?.image && club?.image.length > 0 ? (
+              <div className="club-img-sub-div">
+                <img src={club.image} alt="club" className="club-img"></img>
+              </div>
+            ) : (
+              <h3>No image</h3>
+            )}
           </div>
-          <div className="club-infos">
-            <div>
-              <FontAwesomeIcon className="club-icon" icon={faLocationDot} />
-              <p>{club?.address}</p>
+          <div className="club-card-infos">
+            <div className="club-title">
+              <h4>{club.clubname}</h4>
             </div>
-            <div>
-              <FontAwesomeIcon className="club-icon" icon={faPhone} />
-              <p>{club.phone}</p>
-            </div>
-            <div>
-              <FontAwesomeIcon className="club-icon" icon={faEnvelope} />
-              <p>{club.email}</p>
-            </div>
-            <div>
-              <FontAwesomeIcon
-                className="club-icon"
-                icon={faHandHoldingDollar}
-              />
-              <p>{club.price} €/h</p>
+            <div className="club-infos">
+              <div>
+                <FontAwesomeIcon className="club-icon" icon={faLocationDot} />
+                <p>{club?.address}</p>
+              </div>
+              <div>
+                <FontAwesomeIcon className="club-icon" icon={faPhone} />
+                <p>{club.phone}</p>
+              </div>
+              <div>
+                <FontAwesomeIcon className="club-icon" icon={faEnvelope} />
+                <p>{club.email}</p>
+              </div>
+              <div>
+                <FontAwesomeIcon
+                  className="club-icon"
+                  icon={faHandHoldingDollar}
+                />
+                <p>{club.price} €/h</p>
+              </div>
             </div>
           </div>
         </div>

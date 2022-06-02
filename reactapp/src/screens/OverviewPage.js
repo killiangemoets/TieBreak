@@ -52,6 +52,7 @@ function Overview() {
     });
     const response = await rawResponse.json();
     console.log(response);
+    console.log(response.url);
     window.location.href = response.url;
   }
 

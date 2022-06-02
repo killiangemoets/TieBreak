@@ -91,7 +91,19 @@ function ClubProfile() {
 
     return position === null ? null : (
       <Marker position={position} icon={customMarkerIcon}>
-        <Popup>Club Location</Popup>
+        <Popup>
+          <div className="popup-current-position">
+            <h1
+              style={{
+                color: "#74c0fc",
+                fontSize: "1.2rem",
+                fontWeight: 500,
+              }}
+            >
+              Club Location
+            </h1>
+          </div>
+        </Popup>
       </Marker>
     );
   }
@@ -230,9 +242,7 @@ function ClubProfile() {
           onClick={() => hideNavBar()}
         >
           <div className="reservation-main-title-section club-profile-title">
-            <h1 className="calendar-consultation-title">
-              Personnal Informations
-            </h1>
+            <h1 className="calendar-consultation-title">Club Informations</h1>
           </div>
           <div>
             <div className="club-infos-section">
