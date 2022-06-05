@@ -16,7 +16,6 @@
     "http-errors": "~1.6.3",
     "mongoose": "^6.3.3",
     "morgan": "~1.9.1",
-    "node": "^17.7.2",
     "react-redux": "^8.0.1",
     "redux": "^4.2.0",
     "stripe": "^8.5.0",
