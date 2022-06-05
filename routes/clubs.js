@@ -113,9 +113,9 @@ router.post("/reservations", async function (req, res, next) {
 
     club.availabilities.forEach((availability) => {
       if (
-        availability.date.getYear() == date.getYear() &&
+        availability.date.getFullYear() == date.getFullYear() &&
         availability.date.getMonth() == date.getMonth() &&
-        availability.date.getDay() == date.getDay() &&
+        availability.date.getDate() == date.getDate() &&
         availability.time == req.body.time
       ) {
         availability.courts -= 1;

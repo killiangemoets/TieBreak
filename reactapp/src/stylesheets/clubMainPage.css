@@ -14,7 +14,7 @@
 
 .club-banner {
   position: relative;
-  background-image: url("../../public/tennisclub.jpeg");
+  background-image: url("../../public/tennisclub.webp");
   height: 100vh;
   background-position: center center;
   display: flex;
@@ -107,7 +107,7 @@
 .more-precisely-card {
   display: flex;
   justify-content: space-around;
-  background-image: url("../../public/clubPageSecond.jpeg");
+  background-image: url("../../public/clubPageSecond.webp");
   background-position: center center;
   background-size: cover;
   height: 150vh;

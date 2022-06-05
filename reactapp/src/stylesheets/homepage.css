@@ -15,7 +15,7 @@
   gap: 3.2rem;
   width: 100%;
   padding-top: 4rem; */
-  background-image: url("../../public/skypicture.jpeg");
+  background-image: url("../../public/skypicture.webp");
   height: 100vh;
   background-position: center center;
   display: flex;
@@ -140,6 +140,7 @@
 
 .home-img {
   height: 15rem;
+  width: 15rem;
   margin-top: 4rem;
   margin-bottom: 4rem;
   /* border-radius: 12px;
