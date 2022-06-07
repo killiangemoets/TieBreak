@@ -17,25 +17,25 @@ function NavbarHomePageClub() {
   }
   return (
     <nav className="navbar">
-      <a href="/" className="logoRedirect">
+      <Link to="/" className="logoRedirect">
         <div className="navbarLeft">
           {/* <img className="logoNavBar" src="../../ball1.png" alt="logo" /> */}
           <GiTennisBall className="nav-ball-icon" />
           <h1 className="titleNavBar">TieBreak </h1>
         </div>
-      </a>
+      </Link>
       <div className="navbarRight">
-        <a href="/" className="link-login">
+        <Link to="/" className="link-login">
           <button className="button">I'm a player </button>
-        </a>
-        <a href="/club/signin" className="link-login">
+        </Link>
+        <Link to="/club/signin" className="link-login">
           <button className="button">Sign in </button>
-        </a>
-        <a href="/club/signup">
+        </Link>
+        <Link to="/club/signup">
           <div>
             <button className="buttonShowed">Sign up </button>
           </div>
-        </a>
+        </Link>
       </div>
 
       <button className="btn-mobile-nav" onClick={() => handleClick()}>

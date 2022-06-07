@@ -6,6 +6,7 @@ import "../stylesheets/queries.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { GiTennisBall } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 function NavbarHomePage() {
   function handleClick() {
@@ -18,24 +19,24 @@ function NavbarHomePage() {
   }
   return (
     <nav className="navbar">
-      <a href="/" className="logoRedirect">
+      <Link to="/" className="logoRedirect">
         <div className="navbarLeft">
           <GiTennisBall className="nav-ball-icon" />
           <h1 className="titleNavBar">TieBreak </h1>
         </div>
-      </a>
+      </Link>
       <div className="navbarRight">
-        <a href="/club" className="link-login">
+        <Link to="/club" className="link-login">
           <button className="button">I'm a club </button>
-        </a>
-        <a href="/signin" className="link-login">
+        </Link>
+        <Link to="/signin" className="link-login">
           <button className="button">Sign in </button>
-        </a>
-        <a href="/signup">
+        </Link>
+        <Link to="/signup">
           <div>
             <button className="buttonShowed">Sign up</button>
           </div>
-        </a>
+        </Link>
       </div>
 
       <button className="btn-mobile-nav" onClick={() => handleClick()}>
