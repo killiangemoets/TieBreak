@@ -4,7 +4,7 @@ import FooterPage from "../components/Footer";
 import "../stylesheets/queries.css";
 import "../stylesheets/homepage.css";
 import "../stylesheets/general.css";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -61,13 +61,13 @@ function Home() {
                 </p>
               </div>
               <div className="homePageButton">
-                <a href="/signup">
+                <Link to="/signup">
                   {" "}
                   <button className="yellowButton header-btn">
                     {" "}
                     Get Started
                   </button>{" "}
-                </a>
+                </Link>
                 <button
                   onClick={() => scrollToSection(scrollButton)}
                   className="yellowButton yellowButton-secondary header-btn"
@@ -139,12 +139,12 @@ function Home() {
             </div>
 
             <div className="gameSetMatchButton">
-              <a href="/signup">
+              <Link to="/signup">
                 <button className="yellowButton yellowButton-final">
                   {" "}
                   GET STARTED NOW!
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
