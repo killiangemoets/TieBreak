@@ -90,9 +90,13 @@
 }
 
 .create-account-form p,
-.map-error {
+.map-error,
+.login-account-form p {
   font-size: 1.8rem;
   color: #333;
+  color: rgb(247, 76, 76);
+  height: 2.8rem;
+  margin: 0;
 }
 
 .sign-up-sumbit-button,
