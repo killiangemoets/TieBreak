@@ -7,9 +7,6 @@ const gameSchema = new mongoose.Schema({
   time: String,
   clubToken: String,
   price: Number,
-  // phone: String,
-  // email: String,
-  // image: String,
 });
 
 const userSchema = new mongoose.Schema({
@@ -36,7 +33,6 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Please provide a password"],
-    // minlength: [8, "Your password should have at least 8 characters"],
   },
   token: {
     type: String,

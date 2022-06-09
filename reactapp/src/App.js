@@ -45,7 +45,7 @@ function App() {
         <Route path="/club/calendar" component={CalendarScreen} />
         <Route path="/club/profile" component={ClubProfile} />
         <Route path="/club" component={ClubMain} />
-        {/* <Route path="*" component={Home} /> */}
+        <Route path="*" component={Home} />
       </Switch>
     </BrowserRouter>
     // </Provider>

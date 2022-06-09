@@ -220,12 +220,6 @@ router.post("/infos", async function (req, res, next) {
     const club = await clubModel.findOne({ token: req.body.token });
 
     req.body.changes.forEach((change) => {
-      // console.log(new Date(change.date));
-      // console.log(new Date(club.availabilities[0].date));
-      // console.log(new Date(club.availabilities[0].date).getFullYear());
-      // console.log(+change.time);
-      // console.log(+club.availabilities[0].time);
-      // console.log(+change.time === +club.availabilities[0].time);
       if (
         club.availabilities.find(
           (availability) =>

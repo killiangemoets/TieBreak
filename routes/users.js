@@ -7,31 +7,6 @@ var bcrypt = require("bcrypt");
 
 router.post("/sign-up", async function (req, res, next) {
   try {
-    // if (req.body.password.length < 8) {
-    //   throw new Error(
-    //     `${
-    //       req.body.password.length === 0
-    //         ? "zzz Please provide a password zzz"
-    //         : "zzz Your password should have at least 8 characters zzz"
-    //     } ${
-    //       req.body.firstname.length === 0
-    //         ? "xxx Please provide a firstname xxx"
-    //         : ""
-    //     } ${
-    //       req.body.lastname.length === 0
-    //         ? "www Please provide a lastname www"
-    //         : ""
-    //     } ${
-    //       req.body.phone.length === 0
-    //         ? "vvv Please provide a phone number vvv"
-    //         : ""
-    //     } ${
-    //       req.body.email.length === 0
-    //         ? "yyy Please provide an email address yyy"
-    //         : ""
-    //     }`
-    //   );
-    // }
     const hash =
       req.body.password.length > 0
         ? bcrypt.hashSync(req.body.password, 10)
@@ -57,7 +32,6 @@ router.post("/sign-up", async function (req, res, next) {
       },
     });
   } catch (err) {
-    // Exemple of error: trying to create a document without one of the require fields bc it will reject the promise.
     res.status(400).json({
       status: "fail",
       message: err.message,

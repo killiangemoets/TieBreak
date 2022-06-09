@@ -471,7 +471,7 @@
   background-color: #eee;
   /* z-index: 999 !important; */
   /* z-index: 1; */
-  width: 43.7rem;
+  width: 44.4rem;
   max-height: 46.9rem;
   overflow-y: scroll;
   position: absolute;
@@ -491,7 +491,7 @@
   /* padding: 1rem; */
 }
 
-.club .current-infos {
+.current-infos {
   display: flex;
   align-items: center;
   justify-content: center;
