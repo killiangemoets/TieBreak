@@ -96,7 +96,6 @@ function CreateAccount() {
         body: JSON.stringify(newUser),
       });
       const response = await rawResponse.json();
-      console.log(response);
       if (response.status === "success") {
         setIsSignUp(true);
         localStorage.setItem("token", JSON.stringify(response.data.user.token));
