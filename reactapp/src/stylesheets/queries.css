@@ -277,10 +277,11 @@
 
   .clubs-cards {
     flex-direction: row !important;
-    height: 26rem !important;
+    height: 29rem !important;
     grid-row: 1/2;
     width: 92% !important;
     margin: 0 auto;
+    overflow-y: hidden !important;
   }
   .times-list {
     width: 92vw !important;
@@ -422,6 +423,11 @@
   .new-logo-img {
     width: 2rem !important;
     height: 2rem !important;
+  }
+
+  .new-ball-icon {
+    width: 1.8rem !important;
+    height: 1.8em !important;
   }
 
   .new-logo {
@@ -730,6 +736,10 @@
   .stats-section {
     border-radius: 24px !important;
   }
+  .game-card-img-content {
+    border-top-left-radius: 24px !important;
+    border-bottom-left-radius: 24px !important;
+  }
 
   .center-games {
     width: 100% !important;
@@ -784,6 +794,46 @@
 
   .sign-in-club-title {
     font-size: 4.8rem !important;
+  }
+
+  .club-card {
+    width: 32rem !important;
+    height: 19.8rem !important;
+  }
+  .club-img-div {
+    height: 19.8rem !important;
+    width: 15.2rem !important;
+  }
+  .club-result .club-img-sub-div,
+  .club-card-selected .club-img-sub-div {
+    height: calc(19.8rem - 4px) !important;
+    width: calc(19.8rem - 2px) !important;
+  }
+  .club-result.club-card-selected .club-img-div {
+    height: calc(19.8rem - 14px) !important;
+  }
+  .club-card-selected .club-img-sub-div {
+    height: calc(19.8rem - 10px) !important;
+  }
+  .club-img {
+    height: 19.8rem !important;
+  }
+  .club-title {
+    font-size: 1.4rem !important;
+  }
+  .club-infos {
+    font-size: 1.2rem !important;
+    gap: 0.4rem !important;
+  }
+  .club-button {
+    font-size: 1.4rem !important;
+    padding: 0.6rem 1.8rem !important;
+  }
+  .search-results {
+    width: 33.6rem !important;
+  }
+  .clubs-cards {
+    height: 22.8rem !important;
   }
 }
 
@@ -887,6 +937,17 @@
 
   .new-logo-img {
     margin-bottom: 0.4rem !important;
+  }
+
+  .new-ball-icon {
+    width: 1.4rem !important;
+    height: 1.4em !important;
+  }
+  .new-logo {
+    margin-bottom: 0.4rem !important;
+  }
+  .new {
+    gap: 0.3rem !important;
   }
 
   .news {

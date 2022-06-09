@@ -264,7 +264,7 @@
   justify-content: center;
   overflow: hidden;
   height: 26rem;
-  width: 20rem !important;
+  width: 20rem;
   background-color: #bbb;
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
