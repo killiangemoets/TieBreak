@@ -30,6 +30,10 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/clubs", clubsRouter);
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "reactapp/build/index.html"));
+});
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
