@@ -61,7 +61,7 @@ function Dashboard() {
   async function getClubInfos(token) {
     var rawResponse = await fetch(`../clubs/infos/${token}`);
     var response = await rawResponse.json();
-    console.log(response);
+    // console.log(response);
 
     var rawResponsePlayers = await fetch(`../users/all`);
     var responsePlayers = await rawResponsePlayers.json();
@@ -171,7 +171,6 @@ function Dashboard() {
         return category.month === month && category.year === year;
       });
 
-      console.log(index);
       if (index < 0) {
         categories.push({
           year,
@@ -191,7 +190,6 @@ function Dashboard() {
       }
     });
 
-    console.log(categories);
     let xAxis = [],
       yAxis = [];
     categories.forEach((category) => {
@@ -249,8 +247,6 @@ function Dashboard() {
       const day = new Date(reservation.date).getDay();
       counts[day] += 1;
     });
-
-    console.log(counts);
 
     const options = {
       plugins: {
@@ -344,7 +340,6 @@ function Dashboard() {
 
   function renderReservationsByDay(reservations, year, month) {
     const numDaysInTheMonth = new Date(year, month + 1, 0).getDate();
-    console.log(numDaysInTheMonth);
     const numReservations = Array(numDaysInTheMonth).fill(0);
 
     let days = [];
@@ -359,8 +354,6 @@ function Dashboard() {
       }
     });
 
-    console.log(numReservations);
-    console.log(days);
 
     const options = {
       plugins: {

@@ -46,7 +46,6 @@ function Home(props) {
 
     const dateNow = new Date(Date.now());
     const timeNow = dateNow.getHours();
-    console.log(dateNow, timeNow);
 
     // totalGames.sort(function (a, b) {
     //   // console.log(new Date(a.date) + " and " + new Date(b.date));
@@ -142,7 +141,6 @@ function Home(props) {
   }
   useEffect(() => {
     const storage = localStorage.getItem("token");
-    console.log(JSON.parse(storage));
     if (storage) setToken(JSON.parse(storage));
     else setToken(false);
     matchData(JSON.parse(storage));

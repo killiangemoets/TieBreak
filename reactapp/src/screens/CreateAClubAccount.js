@@ -100,7 +100,6 @@ function CreateClubAccount() {
     const map = useMapEvents({
       click(e) {
         setPosition(e.latlng);
-        // console.log(e.latlng);
         map.locate();
       },
     });
@@ -178,7 +177,7 @@ function CreateClubAccount() {
         body: JSON.stringify(newClub),
       });
       const response = await rawResponse.json();
-      console.log(response);
+      // console.log(response);
       if (response.status === "success") {
         setIsSignUp(true);
         localStorage.setItem("token", JSON.stringify(response.data.club.token));
@@ -353,7 +352,7 @@ function CreateClubAccount() {
                 className="map-container-sign-up"
                 center={mapPosition}
                 zoom={6}
-                onClick={(e) => console.log(e)}
+                // onClick={(e) => console.log(e)}
               >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

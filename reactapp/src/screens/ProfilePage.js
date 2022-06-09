@@ -56,7 +56,7 @@ function Profile(props) {
   async function getPersonnalInfos(token) {
     var rawResponse = await fetch(`/users/infos/${token}`);
     var response = await rawResponse.json();
-    console.log(response);
+
     if (response.status === "success") setPersonnalInfos(response.data.infos);
     if (response.data.infos?.image)
       setImageToUpload({
@@ -103,7 +103,7 @@ function Profile(props) {
         }),
       });
       var response = await rawResponse.json();
-      console.log(response);
+
 
       setPhoneError("");
       if (response.status === "success") {

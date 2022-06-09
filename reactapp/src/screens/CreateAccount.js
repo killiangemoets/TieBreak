@@ -62,7 +62,6 @@ function CreateAccount() {
       password.length !== 0 &&
       phone.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
     ) {
-      console.log(imageToUpload);
       let file;
       if (imageToUpload?.preview.length > 0) {
         const data = new FormData();

@@ -99,7 +99,6 @@ function EditCalendar() {
             +change.time === +time
         )
       ) {
-        console.log("change detected");
         return (
           +changes.find(
             (change) =>
@@ -115,8 +114,6 @@ function EditCalendar() {
       }
     });
 
-    console.log(obtainedValues);
-
     setValues(obtainedValues);
   }
 
@@ -128,10 +125,8 @@ function EditCalendar() {
       date.getMonth() === today.getMonth() &&
       date.getDate() === today.getDate()
     ) {
-      console.log("TODAY");
       limitTime = today.getHours();
     }
-    console.log("Limit Time: " + limitTime);
 
     const obtainedValues = hours.map((time) => {
       const list_reservations = reservations.filter((el) => {
@@ -164,7 +159,6 @@ function EditCalendar() {
       }
     });
 
-    console.log(obtainedValues);
     setValues(obtainedValues);
   }
 
@@ -192,7 +186,6 @@ function EditCalendar() {
         }
       });
       setChanges(changesCopy);
-      console.log(changesCopy);
     } else {
       setChanges((prevChanges) => [
         ...prevChanges,
@@ -213,10 +206,8 @@ function EditCalendar() {
       date.getMonth() === today.getMonth() &&
       date.getDate() === today.getDate()
     ) {
-      console.log("TODAY");
       limitTime = today.getHours();
     }
-    console.log("Limit Time: " + limitTime);
 
     const infos = hours.map((time, i) => {
       const list_reservations = reservations.filter((el) => {
@@ -306,7 +297,7 @@ function EditCalendar() {
       body: JSON.stringify({ token, changes }),
     });
     var response = await rawResponse.json();
-    console.log(response);
+    // console.log(response);
     setGoback(true);
   }
 
