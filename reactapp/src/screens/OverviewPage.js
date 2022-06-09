@@ -31,7 +31,6 @@ function Overview() {
 
   const getLocalStorage = function () {
     const storage = localStorage.getItem("currentReservation");
-    console.log(JSON.parse(storage));
     if (storage) setOverview(JSON.parse(storage));
   };
 

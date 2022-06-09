@@ -557,7 +557,7 @@ function Reservation(props) {
     var response = await rawResponse.json();
     // console.log(response);
 
-    console.log(response.data.availabilities);
+
     if (club.length === 0) {
       setAvailableClubs(response.data.availabilities);
     } else {
@@ -599,7 +599,7 @@ function Reservation(props) {
               availability.time - 8
             ] = `Only ${availability.courts} left`;
         });
-        console.log(courtsLeftLessThanThree);
+ 
         setCourtsLeft(courtsLeftLessThanThree);
       } else {
         setAvailableHours(times);
@@ -628,7 +628,7 @@ function Reservation(props) {
               availability.time - 8
             ] = `Only ${availability.courts} left`;
         });
-        console.log(courtsLeftLessThanThree);
+
         setCourtsLeft(courtsLeftLessThanThree);
       }
     }
@@ -737,7 +737,6 @@ function Reservation(props) {
                     placeholder="dd-mm-yyyy"
                     data-date=""
                     onChange={(e) => {
-                      console.log(e.target.value);
                       if (e.target.value) updateInputDate(e.target.value);
                     }}
                     data-date-format="DD MMMM YYYY"

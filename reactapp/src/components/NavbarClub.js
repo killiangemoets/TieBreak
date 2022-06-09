@@ -37,10 +37,8 @@ function NavbarClub(props) {
 
   useEffect(() => {
     const storage = localStorage.getItem("username");
-    // console.log(JSON.parse(storage));
     if (storage) setUsername(JSON.parse(storage));
     const storage2 = localStorage.getItem("image");
-    console.log(JSON.parse(storage2));
     if (storage2) setImage(JSON.parse(storage2));
   }, [props.refreshUser]);
 

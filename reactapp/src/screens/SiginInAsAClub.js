@@ -39,7 +39,6 @@ function ClubSignIn() {
     });
 
     const response = await loginResponse.json();
-    console.log(response);
 
     if (response.status === "success") {
       setIsLogin(true);

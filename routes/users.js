@@ -22,9 +22,6 @@ router.post("/sign-up", async function (req, res, next) {
       token: uid2(6),
     });
 
-    console.log(req.body.password);
-    console.log(hash);
-
     res.status(201).json({
       status: "success",
       data: {
@@ -42,7 +39,7 @@ router.post("/sign-up", async function (req, res, next) {
 router.post("/sign-in", async function (req, res, next) {
   try {
     const user = await userModel.findOne({ email: req.body.email });
-    console.log(user);
+
     if (!user) {
       res.status(404).json({
         status: "fail",

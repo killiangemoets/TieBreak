@@ -32,7 +32,6 @@ function Confirmation(props) {
 
   const getLocalStorage = function () {
     const storage = localStorage.getItem("currentReservation");
-    console.log(JSON.parse(storage));
     if (storage) setOverview(JSON.parse(storage));
 
     // const storage2 = localStorage.getItem("myList");
@@ -44,7 +43,6 @@ function Confirmation(props) {
     let currentReservation, token;
 
     const storage = localStorage.getItem("currentReservation");
-    console.log(JSON.parse(storage));
     if (storage) currentReservation = JSON.parse(storage);
 
     const storage2 = localStorage.getItem("token");
@@ -67,8 +65,7 @@ function Confirmation(props) {
     });
     var response = await rawResponse.json();
 
-    console.log("-----USER------");
-    console.log(response);
+    // console.log(response);
 
     var rawResponse2 = await fetch("/clubs/reservations", {
       method: "POST",
@@ -83,8 +80,7 @@ function Confirmation(props) {
       }),
     });
     var response2 = await rawResponse2.json();
-    console.log("-----CLUB------");
-    console.log(response2);
+    // console.log(response2);
     localStorage.removeItem("currentReservation");
     // }
   }

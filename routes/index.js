@@ -8,7 +8,8 @@ var clubModel = require("../models/clubs");
 const stripe = require("stripe")(
   "sk_test_51KjexnJNQutKRIOsRcOA3IOshaqmr6hANOTiJIiVdrsajHQcOZ2yDtXB2fttQnvGN1sHhSRUzDy5XY1yg2B1ITgq00DVdoxPnk"
 );
-const YOUR_DOMAIN = "http://localhost:3001";
+// const YOUR_DOMAIN = "http://localhost:3001";
+const YOUR_DOMAIN = "https://tiebreak-app.herokuapp.com";
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -62,7 +63,6 @@ router.get("/schedule", async function (req, res, next) {
         dateNow.getMonth() == date.getMonth() &&
         dateNow.getDate() == date.getDate()
       ) {
-        console.log("Today!");
         currentTime = dateNow.getHours();
       }
 
@@ -127,19 +127,18 @@ router.post("/create-checkout-session", async function (req, res) {
 router.get("/news", async function (req, res, next) {
   try {
     // toISOString()
-    console.log("hey");
     let end_url = "";
     if (req.query?.date && req.query.date !== "") {
       const date = new Date(req.query.date);
       const month = ("0" + (date.getMonth() + 1)).slice(-2);
       const year = date.getFullYear();
       const day = ("0" + date.getDate()).slice(-2);
-      console.log(`${year}-${month}-${day}`);
+      // console.log(`${year}-${month}-${day}`);
       end_url = `matches-by-date/${year}-${month}-${day}`;
     } else if (req.query?.rankings && req.query.rankings !== "") {
       end_url = `rankings/${req.query?.rankings}`;
     }
-    console.log(end_url);
+    // console.log(end_url);
 
     const rawResponse = await request(
       "GET",

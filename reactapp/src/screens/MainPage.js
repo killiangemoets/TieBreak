@@ -45,7 +45,7 @@ function Home(props) {
     // On récupère le token grace à REDUX
     var responseClubs = await rawResponseClubs.json();
 
-    console.log(responseClubs);
+
 
     const totalGames = response.data.games.map((game) => {
       return {
@@ -69,7 +69,6 @@ function Home(props) {
 
     const dateNow = new Date(Date.now());
     const timeNow = dateNow.getHours();
-    console.log(dateNow, timeNow);
 
     // totalGames.sort(function (a, b) {
     //   // console.log(new Date(a.date) + " and " + new Date(b.date));
@@ -168,7 +167,6 @@ function Home(props) {
     const storage1 = localStorage.getItem("type");
     if (JSON.parse(storage1) !== "player") setType(false);
     const storage = localStorage.getItem("token");
-    console.log(JSON.parse(storage));
     if (storage) setToken(JSON.parse(storage));
     else setToken(false);
     matchData(JSON.parse(storage));

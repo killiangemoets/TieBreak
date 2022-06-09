@@ -50,7 +50,6 @@ function CalendarScreen() {
     var rawResponsePlayers = await fetch(`../users/all`);
     var responsePlayers = await rawResponsePlayers.json();
 
-    console.log(responsePlayers);
     const reservations = response.data.infos.reservations.map((reservation) => {
       const user = responsePlayers.data.users.find(
         (user) => user.token === reservation.userToken

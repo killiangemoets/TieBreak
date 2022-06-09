@@ -232,7 +232,6 @@ router.post("/infos", async function (req, res, next) {
             +availability.time === +change.time
         )
       ) {
-        console.log("yes");
         club.availabilities.forEach((availability) => {
           if (
             new Date(availability.date).getFullYear() ===
@@ -247,8 +246,6 @@ router.post("/infos", async function (req, res, next) {
           }
         });
       } else {
-        console.log("no");
-
         club.availabilities.push({
           date: new Date(change.date),
           time: change.time,

@@ -40,7 +40,6 @@ function CreateAccount(props) {
     });
 
     const body = await loginResponse.json();
-    console.log(body);
 
     // Il faut aller voir la ligne 86 dans users.js des routes en backend pour voir le status //
     if (body.status === "success") {

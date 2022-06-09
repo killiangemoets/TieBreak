@@ -71,7 +71,6 @@ function ClubProfile() {
     const map = useMapEvents({
       click(e) {
         setPosition(e.latlng);
-        // console.log(e.latlng);
         map.locate();
       },
     });
@@ -111,7 +110,6 @@ function ClubProfile() {
   async function getClubInfos(token) {
     var rawResponse = await fetch(`/clubs/infos/${token}`);
     var response = await rawResponse.json();
-    console.log(response);
     if (response.status === "success") {
       setClubInfos(response.data.infos);
       setPosition({
@@ -126,7 +124,6 @@ function ClubProfile() {
   }
 
   async function handleConfirm(token) {
-    console.log(position);
     if (
       newPhone.length === 0 ||
       newPhone.match(
@@ -315,7 +312,7 @@ function ClubProfile() {
                   className="map-container-sign-up"
                   center={mapPosition}
                   zoom={6}
-                  onClick={(e) => console.log(e)}
+                  // onClick={(e) => console.log(e)}
                 >
                   <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

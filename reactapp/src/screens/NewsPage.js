@@ -246,7 +246,6 @@ function News() {
   async function getNews(date = "", rankings = "") {
     var rawResponse = await fetch(`/news?date=${date}&rankings=${rankings}`);
     var response = await rawResponse.json();
-    console.log(response);
 
     if (date.length !== 0) {
       let gamesToRender = [];
@@ -277,7 +276,7 @@ function News() {
           });
         });
       });
-      console.log(gamesToRender);
+
       setGames(gamesToRender);
     }
 
@@ -293,7 +292,7 @@ function News() {
         });
       }
 
-      console.log(rankingsToRender);
+
       if (rankings === "ATP") setATPRankings(rankingsToRender);
       if (rankings === "WTA") setWTARankings(rankingsToRender);
     }
