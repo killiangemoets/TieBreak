@@ -557,7 +557,6 @@ function Reservation(props) {
     var response = await rawResponse.json();
     // console.log(response);
 
-
     if (club.length === 0) {
       setAvailableClubs(response.data.availabilities);
     } else {
@@ -599,7 +598,7 @@ function Reservation(props) {
               availability.time - 8
             ] = `Only ${availability.courts} left`;
         });
- 
+
         setCourtsLeft(courtsLeftLessThanThree);
       } else {
         setAvailableHours(times);

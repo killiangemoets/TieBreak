@@ -46,8 +46,8 @@ function Home() {
     return (
       <div>
         <NavbarHomePage />
-        <div className="allPage">
-          <div className="header margin-top" onClick={() => hideNavBar()}>
+        <div className="allPage" onClick={() => hideNavBar()}>
+          <div className="header margin-top">
             <div className="details-banner">
               <div className="header-title">
                 <h1 id="title-main-page">
